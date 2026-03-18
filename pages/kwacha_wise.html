@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kwacha Wise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Ionicons: rounded / stroked icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="../assets/app_shared.css">
+    <style>
+        /* prevent any unwanted horizontal scrolling */
+        html, body { overflow-x: hidden; }
+
+        .kwacha-title {
+            text-align: center;
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-top: 80px;
+            margin-bottom: 48px;
+        }
+        /* layout: two equal width columns so left image and right info align with the grid columns */
+        .kwacha-main {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr; /* equal columns */
+            gap: 24px;
+            margin-bottom: 48px;
+            justify-items: center; /* center content in each column */
+            align-items: start;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        /* image card in the main column: make full column width and match the card-media padding
+           so the inner visible image edges align with images in the grid below */
+        .kwacha-main-img {
+            background: #F7F7F7;
+            border-radius: 14px;
+            width: 100%;
+            max-width: 100%;
+            height: 440px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 36px;        /* MATCHES .kwacha-card .kwacha-media padding for edge alignment */
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .kwacha-main-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* keep whole image visible */
+            border-radius: 14px;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        /* info column: fill its column and center content; limit max width so text lines remain readable */
+        .kwacha-main-info {
+            width: 100%;
+            max-width: 560px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 18px;
+            box-sizing: border-box;
+
+        }
+        .header-description{
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: rgb(145,145,145);
+            line-height: 1.6;
+        }
+        .kwacha-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .kwacha-tag {
+            background: #ededed;
+            color: #2f2f2f;
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .kwacha-links {
+            margin-top: 12px;
+        }
+        .kwacha-links a {
+            display: inline-block;
+            margin-right: 8px;
+            font-size: 24px;
+        }
+        /* ensure the grid below uses the same two-column sizing so edges line up */
+        .kwacha-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        @media (min-width: 641px) {
+            .kwacha-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .kwacha-card {
+
+            background: transparent;
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            /* removed shadow so images have no visible shadow */
+            box-shadow: none;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
+            height: 480px;
+            align-items: stretch;
+        }
+
+        .kwacha-card .kwacha-media {
+            padding: 36px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 420px;
+            flex-shrink: 0;
+            background: transparent;
+        }
+        .kwacha-card .kwacha-media::before {
+            content: "";
+            position: absolute;
+            inset: 0px;
+            border-radius: 14px;
+            background: #F7F7F7;
+            z-index: 1;
+            /* ensure placeholder has no shadow */
+            box-shadow: none;
+        }
+        .kwacha-card .kwacha-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center center;
+            border-radius: 14px;
+            display: block;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.6s cubic-bezier(0,0,0.2,1);
+            background: transparent;
+            /* explicitly remove any image shadows */
+            box-shadow: none;
+        }
+        .kwacha-card:hover .kwacha-media img { transform: scale(1.06); }
+        .kwacha-card .kwacha-body {
+            padding: 12px 14px;
+            display: none; /* hide body/title area as requested */
+            flex: 1 1 auto;
+        }
+        .kwacha-card.span {
+            grid-column: 1 / -1;
+            height: 420px;
+        }
+        @media (max-width: 640px) {
+            /* stacked layout on small screens: keep padding so edges match card spacing */
+            .kwacha-main {
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+                padding: 0 12px;
+                box-sizing: border-box;
+            }
+
+             /* make the top image area fill the content width on small screens,
+                keep internal padding like the cards and ensure the img stays fully visible */
+             .kwacha-main-img {
+                 width: 100%;
+                 max-width: 100%;
+                 margin: 0 auto;
+                 padding: 20px;            /* similar padding to card-media on mobile */
+                 box-sizing: border-box;
+                 height: auto;             /* allow height to size to content */
+                 display: flex;
+                 align-items: center;
+                 justify-content: center;
+                 border-radius: 14px;      /* match card radius */
+                 background: #F7F7F7;      /* keep grey background on small screens */
+                 overflow: hidden;
+             }
+             .kwacha-main-img img {
+                 width: 100%;
+                 height: auto;             /* ensure whole image is visible (contain behavior) */
+                 object-fit: contain;
+                 border-radius: 12px;      /* small inner rounding for visual match */
+                 display: block;
+             }
+
+
+            .kwacha-card { height: 420px; }
+            .kwacha-card .kwacha-media { height: 360px; padding: 32px; }
+            .kwacha-card .kwacha-media::before { inset: 10px; border-radius: 12px; }
+            .kwacha-card .kwacha-media img { border-radius: 12px; }
+            .kwacha-card.span { grid-column: auto; height: 360px; }
+
+            /* reduced spacing between grid images on mobile */
+            .kwacha-grid {
+                gap: 0px;         /* previously 24px; tightened for mobile */
+                /*margin-bottom: 20px;*/
+            }
+        }
+
+        /* Top bar above title (as seen in top_bar.png) */
+        .kwacha-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            margin: 40px 6px 18px;
+            /* removed: cursor: pointer; */
+        }
+        .kwacha-topbar .circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            border: 1px solid #e3e3e3;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.18s, border-color 0.08s;
+            cursor: pointer; /* only the interactive circle shows pointer */
+        }
+        /* Ionicon sizing/color for rounded-stroke arrow */
+        .kwacha-topbar .arrow {
+            width: 22px;
+            height: 22px;
+            color: #2f2f2f;
+            transition: color 0.18s;
+            display: inline-block;
+        }
+        /* ensure the inner SVG scales to the CSS size */
+        .kwacha-topbar .arrow svg { width: 100%; height: 100%; display: block; }
+
+        .kwacha-topbar .project-text {
+            font-size: 1.0rem;
+            font-weight: 500;
+            color: #6f6f6f;
+            transition: color 0.18s;
+            cursor: pointer; /* text is interactive */
+        }
+
+        /* NEW: bordered-only tag placed at the far right of the top bar */
+        .kwacha-topbar .top-tag {
+            margin-left: auto;                  /* push to the far end */
+            border: 1px solid #e3e3e3;          /* border only, keep same border color */
+            background: transparent;            /* no background */
+            color: #6f6f6f;                     /* muted text color */
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-sizing: border-box;
+            cursor: pointer; /* tag is interactive */
+        }
+        .kwacha-topbar .top-tag:hover,
+        .kwacha-topbar .top-tag:focus {
+            color: #141414;
+            border-color: #d0d0d0;
+            outline: none;
+        }
+
+        /* NEW: only change visuals when the circle or the text are hovered/focused.
+           JS toggles the .hovering class on the container so both elements update together.
+           Note: avoid using .kwacha-topbar:hover so hovering empty space in the row won't trigger changes. */
+        .kwacha-topbar .circle:hover,
+        .kwacha-topbar .circle:focus,
+        .kwacha-topbar.hovering .circle {
+            background: #141414;
+            border-color: transparent; /* makes the grey border disappear visually */
+        }
+        .kwacha-topbar .circle:hover .arrow,
+        .kwacha-topbar .circle:focus .arrow,
+        .kwacha-topbar.hovering .circle .arrow {
+            color: #fff;
+        }
+        .kwacha-topbar .circle:focus { outline: 2px solid rgba(0,0,0,0.06); }
+
+        .kwacha-topbar .project-text:hover,
+        .kwacha-topbar .project-text:focus,
+        .kwacha-topbar.hovering .project-text {
+            color: #141414;
+        }
+
+        /* Remove any previous rules that targeted .kwacha-topbar:hover ... (they are replaced above) */
+
+    </style>
+</head>
+<body>
+<header id="app-header"></header>
+<main class="container">
+    <div class="kwacha-topbar">
+        <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back">
+            <!-- plain left arrow icon (no circle) — the surrounding .circle provides the circular container -->
+            <ion-icon name="arrow-back-outline" class="arrow" aria-hidden="true" title="Back"></ion-icon>
+        </div>
+        <span class="project-text" tabindex="0">Projects</span>
+        <!-- NEW: single bordered-only tag aligned to the far right -->
+        <div class="top-tag" tabindex="0">Design</div>
+    </div>
+    <div class="kwacha-title">Kwacha Wise App Design</div>
+    <div class="kwacha-main">
+        <div class="kwacha-main-img">
+            <!-- added: keep the top image (copy of the grid image) visible above the description -->
+            <img src="../assets/images/portifolio/fintech/home_mockup.png" alt="Stats Mockup Group">
+        </div>
+        <div class="kwacha-main-info">
+            <div class="header-description">
+                This concept explores a modern personal finance analytics experience designed in Figma. The interface highlights total income, total expenditure, and current balance at a glance, backed by a clear monthly bar chart and quick performance indicators. A structured transactions feed makes it easy to review subscriptions, transfers, and payment status.
+                 </div>
+            <div class="kwacha-tags">
+                <span class="kwacha-tag">Fintech</span>
+                <span class="kwacha-tag">PersonalFinance</span>
+                <span class="kwacha-tag">ExpenseTracker</span>
+<!--                <span class="kwacha-tag">BudgetingApp</span>-->
+                <span class="kwacha-tag">AppDesign</span>
+                <span class="kwacha-tag">UI/UX</span>
+                <span class="kwacha-tag">Figma</span>
+                <span class="kwacha-tag">ProductDesign</span>
+                <span class="kwacha-tag">iOSDesign</span>
+                <span class="kwacha-tag">DarkModeUI</span>
+                <span class="kwacha-tag">DataVisualization</span>
+            </div>
+            <div class="kwacha-links">
+                <span style="font-weight:500; gap: 8px; font-size: 1.1rem;">Links</span><br>
+                <a href="#" style="margin-top: 7px;" id="figma-link">
+                    <img src="../assets/svg/devicon_figma.svg" alt="Figma" style="width:32px;height:32px;vertical-align:middle;" />
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="kwacha-grid">
+        <!-- moved last grid image (home_mockup) to be first -->
+        <div class="kwacha-card">
+            <div class="kwacha-media">
+                <img src="../assets/images/portifolio/fintech/home.png" alt="Home Mockup" />
+            </div>
+            <div class="kwacha-body"></div>
+        </div>
+
+        <!-- analytics (original first) now second -->
+        <div class="kwacha-card">
+            <div class="kwacha-media">
+                <img src="../assets/images/portifolio/fintech/analytics.png" alt="Analytics" />
+            </div>
+            <div class="kwacha-body"></div>
+        </div>
+
+        <!-- stats_group remains and spans both columns -->
+        <div class="kwacha-card span">
+            <div class="kwacha-media">
+                <img src="../assets/images/portifolio/fintech/stats_group.png" alt="Stats Group" />
+            </div>
+            <div class="kwacha-body"></div>
+        </div>
+
+        <!-- analytics_2 (original second) moved to be just before the final appended image -->
+        <div class="kwacha-card">
+            <div class="kwacha-media">
+                <img src="../assets/images/portifolio/fintech/analytics_2.png" alt="Analytics 2" />
+            </div>
+            <div class="kwacha-body"></div>
+        </div>
+
+        <!-- append the former top image as the last item in the grid -->
+        <div class="kwacha-card">
+            <div class="kwacha-media">
+                <img src="../assets/images/portifolio/fintech/stats_mockup_group.png" alt="Stats Mockup Group" />
+            </div>
+            <div class="kwacha-body"></div>
+        </div>
+    </div>
+</main>
+<footer id="app-footer"></footer>
+<script src="../assets/app_shared.js"></script>
+<script>
+    // Figma link placeholder
+    const figmaLink = document.getElementById('figma-link');
+    figmaLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Replace with your actual Figma link
+        window.open('https://www.figma.com/', '_blank');
+    });
+</script>
+
+<!-- ADDED: attach lightweight listeners so only hovering/focusing the circle or project-text toggles the visual state -->
+<script>
+(function() {
+    const topbar = document.querySelector('.kwacha-topbar');
+    if (!topbar) return;
+    const circle = topbar.querySelector('.circle');
+    const text = topbar.querySelector('.project-text');
+
+    function setHover() { topbar.classList.add('hovering'); }
+    function clearHover() { topbar.classList.remove('hovering'); }
+
+    [circle, text].forEach(el => {
+        if (!el) return;
+        el.addEventListener('mouseenter', setHover);
+        el.addEventListener('mouseleave', clearHover);
+        el.addEventListener('focus', setHover);
+        el.addEventListener('blur', clearHover);
+    });
+
+    // ensure keyboard users get the same behavior when tabbing into the elements
+})();
+</script>
+
+<!-- NEW: navigate back to main portfolio when circle or "Projects" text are activated -->
+<script>
+(function() {
+    const topbar = document.querySelector('.kwacha-topbar');
+    if (!topbar) return;
+    const circle = topbar.querySelector('.circle');
+    const text = topbar.querySelector('.project-text');
+    const target = '../portifolio.html';
+
+    function goHome(e) {
+        // allow normal link activation if user used modifier keys
+        if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
+        window.location.href = target;
+    }
+
+    function keyActivate(e) {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+            e.preventDefault();
+            goHome(e);
+        }
+    }
+
+    [circle, text].forEach(el => {
+        if (!el) return;
+        el.addEventListener('click', goHome);
+        el.addEventListener('keydown', keyActivate);
+    });
+})();
+</script>
+
+</body>
+</html>

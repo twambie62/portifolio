@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Home App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Ionicons: rounded / stroked icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="../assets/app_shared.css">
+    <style>
+        /* prevent any unwanted horizontal scrolling */
+        html, body { overflow-x: hidden; }
+
+        /* ===== HEADER — matches bp_app.html ===== */
+
+        /* Row 1: title left, tags right */
+        .header-row-1 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-top: 80px;
+            margin-bottom: 28px;
+        }
+        .header-title {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.22;
+            color: #141414;
+        }
+        .header-tags {
+            margin-left: 100px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+        .header-tags span {
+            background: #ededed;
+            color: #2f2f2f;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Row 2: 2-column image area — left image sets the height, right boxes match it */
+        .header-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 24px;
+            align-items: stretch;
+        }
+        .header-left {
+            display: flex;
+        }
+        .header-left .header-cell {
+            width: 100%;
+            flex: 1;
+        }
+        /* Right column: flex column that stretches to match left image height */
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .header-right .header-cell {
+            flex: 1;
+        }
+        .header-cell {
+            background: #F0F0F0;
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            box-sizing: border-box;
+        }
+        .header-cell img {
+            width: 40%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            display: block;
+        }
+
+        /* Row 3: description left, links+disclaimer right */
+        .header-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: start;
+            margin-bottom: 48px;
+        }
+        .header-description {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: rgb(145,145,145);
+            line-height: 1.6;
+        }
+        .header-side {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .header-links-label {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #141414;
+            margin-bottom: 4px;
+        }
+        .header-link-icons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .header-link-icons a {
+            display: inline-flex;
+        }
+        .header-link-icons img {
+            width: 28px;
+            height: 28px;
+        }
+        .header-disclaimer {
+            font-size: 0.82rem;
+            color: rgb(160,160,160);
+            line-height: 1.5;
+        }
+        .header-disclaimer strong {
+            color: #141414;
+            font-weight: 600;
+        }
+
+        /* Mobile: stack everything */
+        @media (max-width: 640px) {
+            .header-row-1 {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                margin-top: 40px;
+            }
+            .header-tags {
+                justify-content: flex-start;
+            }
+            .header-row-2 {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .header-left .header-cell {
+                aspect-ratio: 16 / 10;
+            }
+            .header-right {
+                flex-direction: row;
+                gap: 10px;
+            }
+            .header-right .header-cell {
+                flex: 1;
+                aspect-ratio: 1 / 1;
+            }
+            .header-row-3 {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+        }
+
+        /* ===== END HEADER ===== */
+
+        /* ensure the grid below uses the same two-column sizing so edges line up */
+        .kwacha-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        @media (min-width: 641px) {
+            .kwacha-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .kwacha-card {
+
+            background: transparent;
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            /* removed shadow so images have no visible shadow */
+            box-shadow: none;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
+            height: 480px;
+            align-items: stretch;
+        }
+
+        .kwacha-card .kwacha-media {
+            padding: 36px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 420px;
+            flex-shrink: 0;
+            background: transparent;
+        }
+        .kwacha-card .kwacha-media::before {
+            content: "";
+            position: absolute;
+            inset: 0px;
+            border-radius: 14px;
+            background: #F7F7F7;
+            z-index: 1;
+            /* ensure placeholder has no shadow */
+            box-shadow: none;
+        }
+        .kwacha-card .kwacha-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center center;
+            border-radius: 14px;
+            display: block;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.6s cubic-bezier(0,0,0.2,1);
+            background: transparent;
+            /* explicitly remove any image shadows */
+            box-shadow: none;
+        }
+        .kwacha-card:hover .kwacha-media img { transform: scale(1.06); }
+        .kwacha-card .kwacha-body {
+            padding: 12px 14px;
+            display: none; /* hide body/title area as requested */
+            flex: 1 1 auto;
+        }
+        .kwacha-card.span {
+            grid-column: 1 / -1;
+            height: 420px;
+        }
+        @media (max-width: 640px) {
+            .kwacha-card { height: 420px; }
+            .kwacha-card .kwacha-media { height: 360px; padding: 32px; }
+            .kwacha-card .kwacha-media::before { inset: 10px; border-radius: 12px; }
+            .kwacha-card .kwacha-media img { border-radius: 12px; }
+            .kwacha-card.span { grid-column: auto; height: 360px; }
+
+            .kwacha-grid {
+                gap: 0;
+            }
+        }
+
+        /* Top bar above title (as seen in top_bar.png) */
+        .kwacha-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            margin: 40px 6px 18px;
+            /* removed: cursor: pointer; */
+        }
+        .kwacha-topbar .circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            border: 1px solid #e3e3e3;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.18s, border-color 0.08s;
+            cursor: pointer; /* only the interactive circle shows pointer */
+        }
+        /* Ionicon sizing/color for rounded-stroke arrow */
+        .kwacha-topbar .arrow {
+            width: 22px;
+            height: 22px;
+            color: #2f2f2f;
+            transition: color 0.18s;
+            display: inline-block;
+        }
+        /* ensure the inner SVG scales to the CSS size */
+        .kwacha-topbar .arrow svg { width: 100%; height: 100%; display: block; }
+
+        .kwacha-topbar .project-text {
+            font-size: 1.0rem;
+            font-weight: 500;
+            color: #6f6f6f;
+            transition: color 0.18s;
+            cursor: pointer; /* text is interactive */
+        }
+
+        /* NEW: bordered-only tag placed at the far right of the top bar */
+        .kwacha-topbar .top-tag {
+            margin-left: auto;                  /* push to the far end */
+            border: 1px solid #e3e3e3;          /* border only, keep same border color */
+            background: transparent;            /* no background */
+            color: #6f6f6f;                     /* muted text color */
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-sizing: border-box;
+            cursor: pointer; /* tag is interactive */
+        }
+        .kwacha-topbar .top-tag:hover,
+        .kwacha-topbar .top-tag:focus {
+            color: #141414;
+            border-color: #d0d0d0;
+            outline: none;
+        }
+
+        /* NEW: only change visuals when the circle or the text are hovered/focused.
+           JS toggles the .hovering class on the container so both elements update together.
+           Note: avoid using .kwacha-topbar:hover so hovering empty space in the row won't trigger changes. */
+        .kwacha-topbar .circle:hover,
+        .kwacha-topbar .circle:focus,
+        .kwacha-topbar.hovering .circle {
+            background: #141414;
+            border-color: transparent; /* makes the grey border disappear visually */
+        }
+        .kwacha-topbar .circle:hover .arrow,
+        .kwacha-topbar .circle:focus .arrow,
+        .kwacha-topbar.hovering .circle .arrow {
+            color: #fff;
+        }
+        .kwacha-topbar .circle:focus { outline: 2px solid rgba(0,0,0,0.06); }
+
+        .kwacha-topbar .project-text:hover,
+        .kwacha-topbar .project-text:focus,
+        .kwacha-topbar.hovering .project-text {
+            color: #141414;
+        }
+
+        /* Remove any previous rules that targeted .kwacha-topbar:hover ... (they are replaced above) */
+
+        /* Phone video frame — iPhone 16 Pro aspect ratio (~9:19.5) — matches bp_app.html */
+        .phone-video-wrap {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        .phone-frame {
+            width: 220px;
+            aspect-ratio: 9 / 19.5;
+            border-radius: 40px;
+            overflow: hidden;
+            border: 8px solid #e3e3e3;
+        }
+        .phone-frame video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 24px;
+        }
+        @media (max-width: 640px) {
+            .phone-frame {
+                width: 240px;
+                border-radius: 34px;
+            }
+            .phone-frame video {
+                border-radius: 24px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<header id="app-header"></header>
+<main class="container">
+    <div class="kwacha-topbar">
+        <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back">
+            <!-- plain left arrow icon (no circle) — the surrounding .circle provides the circular container -->
+            <ion-icon name="arrow-back-outline" class="arrow" aria-hidden="true" title="Back"></ion-icon>
+        </div>
+        <span class="project-text" tabindex="0">Projects</span>
+        <!-- NEW: single bordered-only tag aligned to the far right -->
+        <div class="top-tag" tabindex="0">Design</div>
+    </div>
+
+    <!-- Row 1: Title left, Tags right -->
+    <div class="header-row-1">
+        <div class="header-title">Smart Home App:<br>IoT based smart home control system</div>
+        <div class="header-tags">
+            <span>IoT</span>
+            <span>UI/UX Design</span>
+            <span>App development</span>
+            <span>Smart Home</span>
+            <span>Figma</span>
+            <span>Product Design</span>
+        </div>
+    </div>
+
+    <!-- Row 2: Image grid (left image sets height, right grey boxes match it) -->
+    <div class="header-row-2">
+        <div class="header-left">
+            <div class="header-cell">
+                <img src="../assets/images/portifolio/smart_home/main_screen_home.png" alt="Smart Home Main Screen" />
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="header-cell"></div>
+            <div class="header-cell"></div>
+        </div>
+    </div>
+
+    <!-- Row 3: Description left, Links + Disclaimer right -->
+    <div class="header-row-3">
+        <div class="header-description">
+            This concept explores a modern smart home control experience designed in Figma. The interface highlights total devices, room controls, and automation at a glance, backed by a clean dashboard and quick access to device settings. A structured layout makes it easy to manage lighting, temperature, and security across rooms.
+        </div>
+        <div class="header-side">
+            <div>
+                <div class="header-links-label">Links</div>
+                <div class="header-link-icons">
+                    <a href="#" id="figma-link">
+                        <img src="../assets/svg/devicon_figma.svg" alt="Figma" />
+                    </a>
+                    <a href="#" id="github-link">
+                        <i class="ri-github-fill" style="font-size:28px; color:#141414;"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="header-disclaimer">
+                <strong>Disclaimer:</strong> This is a design concept project showcasing UI/UX skills for a smart home application.
+            </div>
+        </div>
+    </div>
+
+    <!-- Phone videos -->
+    <div class="phone-video-wrap">
+        <div class="phone-frame">
+            <video controls muted playsinline>
+                <source src="../assets/images/portifolio/smart_home/smart_home_1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="phone-frame">
+            <video controls muted playsinline>
+                <source src="../assets/images/portifolio/smart_home/smart_home_2.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="phone-frame">
+            <video controls muted playsinline>
+                <source src="../assets/images/portifolio/smart_home/smart_home_3.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="phone-frame">
+            <video controls muted playsinline>
+                <source src="../assets/images/portifolio/smart_home/smart_home_5.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="kwacha-grid">
+        <div class="kwacha-card">
+            <div class="kwacha-media">
+                <img src="../assets/images/portifolio/smart_home/first_screen.png" alt="First Screen" />
+            </div>
+            <div class="kwacha-body"></div>
+        </div>
+        <div class="kwacha-card">
+            <div class="kwacha-media">
+                <img src="../assets/images/portifolio/smart_home/main_screen_home.png" alt="Smart Home Main Screen" />
+            </div>
+            <div class="kwacha-body"></div>
+        </div>
+        <div class="kwacha-card">
+            <div class="kwacha-media">
+                <img src="../assets/images/portifolio/smart_home/main_screen_full.png" alt="Main Screen Full" />
+            </div>
+            <div class="kwacha-body"></div>
+        </div>
+        <div class="kwacha-card">
+            <div class="kwacha-media">
+                <img src="../assets/images/portifolio/smart_home/main_screen_old_design.png" alt="Main Screen Old Design" />
+            </div>
+            <div class="kwacha-body"></div>
+        </div>
+    </div>
+</main>
+<footer id="app-footer"></footer>
+<script src="../assets/app_shared.js"></script>
+
+<!-- ADDED: attach lightweight listeners so only hovering/focusing the circle or project-text toggles the visual state -->
+<script>
+    (function() {
+        const topbar = document.querySelector('.kwacha-topbar');
+        if (!topbar) return;
+        const circle = topbar.querySelector('.circle');
+        const text = topbar.querySelector('.project-text');
+
+        function setHover() { topbar.classList.add('hovering'); }
+        function clearHover() { topbar.classList.remove('hovering'); }
+
+        [circle, text].forEach(el => {
+            if (!el) return;
+            el.addEventListener('mouseenter', setHover);
+            el.addEventListener('mouseleave', clearHover);
+            el.addEventListener('focus', setHover);
+            el.addEventListener('blur', clearHover);
+        });
+
+        // ensure keyboard users get the same behavior when tabbing into the elements
+    })();
+</script>
+
+<!-- NEW: navigate back to main portfolio when circle or "Projects" text are activated -->
+<script>
+    (function() {
+        const topbar = document.querySelector('.kwacha-topbar');
+        if (!topbar) return;
+        const circle = topbar.querySelector('.circle');
+        const text = topbar.querySelector('.project-text');
+        const target = '../portifolio.html';
+
+        function goHome(e) {
+            // allow normal link activation if user used modifier keys
+            if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
+            window.location.href = target;
+        }
+
+        function keyActivate(e) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                goHome(e);
+            }
+        }
+
+        [circle, text].forEach(el => {
+            if (!el) return;
+            el.addEventListener('click', goHome);
+            el.addEventListener('keydown', keyActivate);
+        });
+    })();
+</script>
+
+</body>
+</html>

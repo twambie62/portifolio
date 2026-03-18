@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/app_shared.css">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --card: #F7F7F7;
+            --text: #2f2f2f;
+            --muted: #6f6f6f;
+            --primary: #0f0f0f;
+            --chip: #f0f0f0;
+            --dot: #f3b13f;
+            --border: #E3E3E3;
+            --radius: 14px;
+            --radius-small: 8px;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--bg);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text);
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        .container { width: min(1100px, 94vw); margin: 0 auto; }
+        /* Nav */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            /*backdrop-filter: blur(8px);*/
+            padding: 14px 0; /* keep vertical spacing, horizontal padding moved to header container */
+            pointer-events: auto;
+        }
+
+        /* Make only the header's container span the full viewport so the nav can be centered relative to the screen.
+           This keeps the rest of the page constrained by .container while allowing the nav to center across the viewport. */
+        header > .container {
+            max-width: none;
+            width: 100%;
+            padding: 0 14px;         /* small horizontal padding from screen edges */
+            display: flex;
+            justify-content: center; /* center the nav block in the viewport */
+        }
+
+        /* Nav: centered flex bar that sizes to its contents and stays centered in the viewport */
+        .nav {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            display: inline-flex;           /* shrink-to-fit: nav sizes to its contents */
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 8px 8px;
+            margin: 0 auto;                 /* keep nav centered in the header container */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+            width: auto;                    /* do not stretch */
+            max-width: none;                /* ensure it won't expand to viewport width */
+        }
+        /* Keep the logo in the nav flow; draw a rounded rectangle around it */
+        .logo {
+            position: static;
+            font-weight: 800;
+            font-size: 26px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 12px;                   /* space inside the rectangle */
+            border: 1px solid var(--border);     /* keep border as-is */
+            border-radius: 10px;                 /* rounded corners for the rectangle */
+            background: var(--bg);               /* white background */
+            /* stronger, evenly-spread shadow so the rectangle lifts off the nav */
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+            z-index: 12;                         /* ensure shadow displays above nav */
+        }
+
+        .logo span {
+            margin-left: 0px;           /* small gap between logo and nav links */
+            display: inline-block; }
+        .nav a {
+            font-size: 13px;
+            padding: 6px 10px;
+            border-radius: 10px;
+            /* do NOT transition border-color to avoid flicker — border should flip instantly */
+            transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+            /* keep a transparent border by default so enabling the visible border doesn't shift layout */
+            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-sizing: border-box; /* ensure border doesn't shift layout */
+        }
+        /* hover stays grey for non-active items */
+        .nav a:hover { background: #ededed; }
+        /* active: white background + visible border line + stronger, evenly-spread shadow */
+        .nav a.active {
+            background: var(--bg);               /* white */
+            border: 1px solid var(--border);     /* visible border line (applies instantly) */
+            /* stronger shadow with a small spread so it visually extends equally left/right */
+            box-shadow: 0 12px 36px 4px rgba(0,0,0,0.12);
+            position: relative;                  /* establish stacking context */
+            z-index: 6;                          /* sit above nav so shadow shows */
+            transform: translateY(0);            /* keeps consistent with hover transform */
+        }
+        .nav a.active:hover {
+            /* keep white when hovering an active item and slightly increase elevation */
+            background: var(--bg);
+            box-shadow: 0 14px 44px 5px rgba(0,0,0,0.14);
+        }
+        /* Hero */
+        .hero {
+            text-align: center;
+            /* increased bottom padding so the button has more space from the tech stack */
+            padding: 28px 0 56px;
+        }
+        /* Avatar wrapper sized to the avatar so the chip can be centered precisely */
+        .avatar-wrap {
+            position: relative;
+            display: inline-block; /* centers with text-align:center on .hero */
+            width: 86px; /* match avatar width */
+            margin: 0 auto 22px; /* allow extra space for overlapping chip */
+        }
+        .avatar {
+            width: 96px; height: 96px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: -3px;
+            /*margin-bottom: -2px; !* spacing handled by wrapper *!*/
+            border: 4px solid var(--card);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 1;
+        }
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            border-radius: var(--radius-small);
+            padding: 6px 12px;
+            font-size: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+        }
+        /* Position the chip overlapping the bottom of the avatar, centered */
+        .hero .avatar-wrap .chip {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px; /* slightly overlap the avatar bottom */
+            z-index: 3; /* sit above the avatar */
+            white-space: nowrap;
+        }
+
+        h1 {
+            margin: 14px 0 10px;
+            font-size: clamp(26px, 3vw + 12px, 34px);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .sub {
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto 16px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 12px;
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+            transition: 0.2s;
+        }
+        .btn:hover { transform: translateY(-1px); }
+        .btn-grey {
+            font-weight: 500;
+            /*border: 1px solid #b7b7b7;*/
+            background: transparent;
+            color: #919191;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.0);
+            /*background: var(--card);*/
+            border: 1px solid var(--border);
+            /*color: var(--muted);*/
+            padding: 0px 20px;
+        }
+        /* Tech */
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px 26px;
+            margin: 28px auto 18px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+        .tech { display: inline-flex; align-items: center; gap: 10px; }
+        .tech i { font-size: 18px; color: #7f7f7f; }
+
+        /* Languages marquee (right-to-left, endless) with fading edges */
+        .lang-marquee {
+            width: 100%;
+            overflow: hidden;
+            margin-top: 12px;
+            position: relative; /* needed for fade overlays */
+        }
+        /* soft fading overlays on the left and right edges */
+        .lang-marquee::before,
+        .lang-marquee::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px; /* adjust fade width */
+            pointer-events: none;
+            z-index: 3; /* sit above the track */
+        }
+        /* left fade: solid page bg -> transparent */
+        .lang-marquee::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--bg) 0%, rgba(255,255,255,0) 100%);
+        }
+        /* right fade: transparent -> solid page bg */
+        .lang-marquee::after {
+            right: 0;
+            background: linear-gradient(270deg, var(--bg) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        /* marquee uses two identical groups placed side-by-side.
+           Animate the whole track from 0 → -50% so the second group slides in seamlessly. */
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            will-change: transform;
+            animation: marquee 18s linear infinite;
+            z-index: 1; /* below fades */
+            gap: 8px; /* reduced spacing between marquee items */
+        }
+        .marquee-group {
+            display: flex;
+            gap: 8px; /* reduced spacing between items inside each duplicated group */
+            align-items: center;
+            flex: 0 0 auto; /* keep groups side-by-side */
+        }
+        .marquee-item { flex: 0 0 auto; }
+        .marquee-item img { height: 40px; width: auto; display: block; }
+
+        /* Reverse marquee: scrolls left → right (opposite direction).
+           It uses the same duplicated-group technique but animates from -50% → 0. */
+        .marquee-track-rtl {
+            display: flex;
+            align-items: center;
+            will-change: transform;
+            animation: marquee-rtl 18s linear infinite;
+            z-index: 1;
+            gap: 8px; /* reduced spacing for reverse track too */
+        }
+        .lang-marquee.rtl:hover .marquee-track-rtl { animation-play-state: paused; }
+
+        /* Extra spacing for the second (frameworks) marquee */
+        .pill-row.marquee-bottom { margin-top: 12px; margin-bottom: 56px; }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); } /* second duplicated group replaces the first */
+        }
+        @keyframes marquee-rtl {
+            0%   { transform: translateX(-50%); }
+            100% { transform: translateX(0); } /* moves the track right for a seamless loop */
+        }
+
+        /* pause on hover (optional) */
+        .lang-marquee:hover .marquee-track { animation-play-state: paused; }
+
+        @media (max-width: 640px) {
+            /* keep nav shrink-to-fit on small screens, reduce left padding so it doesn't push */
+            .nav {
+                padding: 8px 8px;
+
+                 }
+            .logo {
+                margin-left: 0px;
+                position: static;
+            }
+
+            /* slightly smaller card and image on small screens */
+            .card { height: 420px; min-height: 420px; }
+            .card-media { height: 320px; padding: 24px; display: flex; align-items: center; justify-content: center; }
+            .card-media img { border-radius: 12px; }
+            .card-media::before { inset: 10px; border-radius: 12px; }
+        }
+
+        /* Section labels */
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-small);
+            padding: 6px 10px;
+            font-size: 12px;
+            color: var(--muted);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+            margin-bottom: 14px;
+            margin-top: 24px; /* added: separate projects label from the marquees above */
+        }
+        /* Projects */
+        .projects {
+            display: grid;
+            grid-template-columns: 1fr; /* default: 1 column for mobile */
+            gap: 22px;
+            margin: 12px 0 40px;
+            padding: 0 24px; /* Add horizontal padding to the grid */
+        }
+        @media (min-width: 641px) {
+            .projects {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns for wide view */
+            }
+        }
+        .card {
+            /*background: var(--card);*/
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 14px 30px rgba(0,0,0,0.05);
+
+            /* Fixed card height */
+            height: 480px; /* increased card height to fit taller image */
+            /*min-height: 320px;*/
+        }
+
+        /* Replaced: use a media wrapper to provide padding and a placeholder behind the image.
+           The ::before placeholder fills the inner area (inset by the padding), has the same
+           rounded corners and background, and sits behind the img. When an img exists it covers
+           the placeholder; when no img exists, the placeholder becomes the visible "image". */
+        .card-media {
+            padding: 44px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            background: transparent; /* no visible bg around the media area */
+            height: 420px; /* further increased image area height */
+        }
+        .card-media::before {
+            content: "";
+            position: absolute;
+            inset: 12px; /* matches .card-media padding so the placeholder equals the image area */
+            border-radius: 14px;
+            background: var(--card); /* placeholder color when no image is present */
+            z-index: 1;
+        }
+        .card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center center;
+            border-radius: 14px; /* image radius */
+            display: block;
+            position: relative;
+            z-index: 2; /* place image above the placeholder */
+            background: transparent;
+            /* No margin needed, centering handled by flex on .card-media */
+            transition: transform 0.60s cubic-bezier(0,0,0.2,1); /* smooth scaling */
+        }
+        .card:hover .card-media img {
+            transform: scale(1.08);
+        }
+
+        .card-body {
+            padding: 12px 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+
+            /* let body fill remaining space inside fixed-height card */
+            flex: 1 1 auto;
+            overflow: auto;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .nav {
+                padding: 8px 8px;
+
+                 }
+            .logo {
+                margin-left: 0px;
+                position: static;
+            }
+
+            /* slightly smaller card and image on small screens */
+            .card { height: 442px; min-height: 420px;}
+            .card-media { height: 380px; padding: 24px; display: flex; align-items: center; justify-content: center; }
+            .card-media img { border-radius: 12px; }
+            .card-media::before { inset: 10px; border-radius: 12px; }
+            .card-body { padding: 12px 14px 8px; } /* reduced bottom padding for less space below title */
+        }
+        /* Work */
+        .work {
+            margin: 18px 0 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .work-item {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+        .work-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            color: var(--text);
+            font-weight: 600; /* keep time range bold */
+        }
+        .work-meta { font-size: 12px; color: var(--muted); }
+
+        /* Ensure the labels inside the time row (Full time / Hybrid / Internship)
+           are regular weight and muted (not bold). */
+        .work-top .work-meta {
+            font-weight: 400;
+            color: var(--muted);
+        }
+
+        /* Increased spacing between the time row and the company row */
+        .work-item > .work-meta { margin-top: 12px; }
+
+        .bullet {
+            width: 6px; height: 6px;
+            background: var(--dot);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        /* Contact */
+        form {
+            display: grid;
+            gap: 12px;
+            margin: 6px 0 32px;
+            width: 100%; /* default: allow full width on very small screens */
+        }
+        .row-2 { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+        /* Constrain contact form on larger-than-mobile viewports so it doesn't span the whole width.
+           Adjust max-width to taste (720px is a comfortable reading width). */
+        @media (min-width: 641px) {
+            #contact form {
+                max-width: 620px;
+                margin: 12px auto 40px; /* center the form and add a little extra spacing */
+                width: 100%;
+            }
+        }
+
+        input, textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-family: inherit;
+            background: var(--card);
+            font-size: 14px;
+            outline: none;
+            transition: 0.15s;
+        }
+        input:focus, textarea:focus { border-color: #b7b7b7; }
+        textarea { min-height: 180px; resize: vertical; }
+        .submit-row { display: flex; justify-content: flex-end; }
+        /* Footer */
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin: 32px 0 38px;
+        }
+        .icon-btn {
+            width: 42px; height: 42px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg); /* changed: white background while keeping border */
+            display: grid;
+            place-items: center;
+            color: var(--text);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: 0.2s;
+        }
+        .icon-btn:hover { transform: translateY(-2px); }
+        @media (max-width: 640px) {
+            .nav {
+
+                padding: 8px 8px;
+                 }
+            .logo {
+                margin-left: 0px;           /* small gap between logo and nav links */
+                position: static; }
+        }
+
+        /* Added: orange dot used in chips and section labels */
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--dot);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Larger screens: bring the logo into the nav flow (so it sits next to links)
+           and give the nav more horizontal padding so items have space from the edges. */
+        @media (min-width: 900px) {
+            /* keep nav sized to content and centered on wide screens,
+               make logo participate in the flow so it sits adjacent to links */
+            .nav {
+                justify-content: center;
+                /*padding: 10px 22px;*/
+                padding: 8px 12px;
+
+                gap: 18px;
+                width: auto;
+            }
+            /* ensure the logo rectangle stays consistent on large screens */
+            .logo {
+                position: static;    /* participate in the inline-flex flow */
+                margin-right: 6px;
+                margin-left: 0px;           /* small gap between logo and nav links */
+                font-size: 26px;
+                padding: 6px 12px;
+                border: 1px solid var(--border); /* keep border as-is */
+                border-radius: 10px;
+                background: var(--bg);
+                /* match the stronger shadow used everywhere */
+                box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+                z-index: 12;
+            }
+            .nav a { padding: 6px 12px; }
+        }
+        #work .work {
+            padding-left: 80px; /* adjust value as needed (e.g. 16px / 24px) */
+        }
+        /* Add left padding/margin for the work content on larger screens (exclude the section label) */
+        @media (min-width: 641px) {
+            /* apply to the content under the "Work" label only */
+            #work .work {
+                padding-left: 80px; /* adjust value as needed (e.g. 16px / 24px) */
+            }
+        }
+    </style>
+</head>
+<body>
+<header id="app-header"></header>
+
+<main id="home" class="container">
+    <section class="hero">
+        <div class="avatar-wrap">
+            <div class="avatar">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="Avatar">
+            </div>
+            <div class="chip"><span class="dot"></span>Hi I am Twambi</div>
+        </div>
+        <h1>I'm a web and app developer<br>and a UI/UX designer,</h1>
+        <p class="sub">Focused on building products that look great, feel intuitive, and perform reliably.</p>
+        <button class="btn">Available for hire <i class="ri-arrow-right-line"></i></button>
+    </section>
+
+    <section id="about" style="text-align:center;">
+        <div class="chip"><span class="dot"></span>My Tech Stack</div>
+        <div class="pill-row">
+            <div class="lang-marquee" aria-hidden="false">
+                <div class="marquee-track" aria-hidden="true">
+                    <!-- visible group -->
+                    <div class="marquee-group">
+                        <div class="marquee-item"><img src="assets/languages.svg" alt="languages"></div>
+                    </div>
+                    <!-- duplicate group (exact same content) for seamless looping -->
+                    <div class="marquee-group" aria-hidden="true">
+                        <div class="marquee-item"><img src="assets/languages.svg" alt="languages"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- second marquee: frameworks (scrolls left → right) -->
+        <div class="pill-row marquee-bottom" style="margin-top:12px;">
+            <div class="lang-marquee rtl" aria-hidden="false">
+                <div class="marquee-track-rtl" aria-hidden="true">
+                    <!-- visible group -->
+                    <div class="marquee-group">
+                        <div class="marquee-item"><img src="assets/frameworks.svg" alt="frameworks"></div>
+                    </div>
+                    <!-- duplicate group (exact same content) for seamless looping -->
+                    <div class="marquee-group" aria-hidden="true">
+                        <div class="marquee-item"><img src="assets/frameworks.svg" alt="frameworks"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-label"><span class="dot"></span>My Projects</div>
+        <div class="projects">
+            <article class="card" id="fintech-app-card">
+                <div class="card-media">
+                    <img src="assets/images/portifolio/fintech/home_mockup.png" alt="Fintech App">
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Fintech App</div>
+                </div>
+            </article>
+
+            <!-- Blood Pressure card: add id, role and tabindex so it is clickable & keyboard-accessible -->
+            <article class="card" id="bp-card" role="button" tabindex="0" aria-label="Open Blood Pressure App project">
+                <div class="card-media">
+                    <img src="assets/images/portifolio/blood_pressure/home.png" alt="Blood Pressure Project">
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Blood Pressure App</div>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-media">
+                    <img src="assets/images/portifolio/influencer_malawi/onboarding_profile.png" alt="Influencer Malawi App Main Picture">
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Influencer Malawi app</div>
+                </div>
+            </article>
+            <a href="pages/courier_app.html" class="card-link">
+                <article class="card">
+                    <div class="card-media">
+                        <img src="assets/images/portifolio/courier/home_live_tracking.png" alt="Courier App Home Live Tracking">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Courier App</div>
+                    </div>
+                </article>
+            </a>
+            <a href="pages/akometsi_app.html" class="card-link">
+                <article class="card">
+                    <div class="card-media">
+                        <img src="assets/images/portifolio/akometsi/home_movie_details_dark.png" alt="Movie App Home Movie Details Dark">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Movie App</div>
+                    </div>
+                </article>
+            </a>
+            <article class="card" id="smarthome-card" role="button" tabindex="0" aria-label="Open Smart Home App">
+                <div class="card-media">
+                    <img src="assets/images/portifolio/smart_home/main_screen_home.png" alt="Smart Home App Main Screen Home">
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Smart Home App</div>
+                </div>
+            </article>
+            <a href="pages/notes_app.html" class="card-link">
+                <article class="card">
+                    <div class="card-media">
+                        <img src="assets/images/portifolio/notes/home_onboarding.png" alt="Notes App Home Onboarding">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Notes App</div>
+                    </div>
+                </article>
+            </a>
+            <article class="card" id="trackit-card" role="button" tabindex="0" aria-label="Open Track it Website">
+                <div class="card-media">
+                    <img src="assets/images/portifolio/notes_website/track_it_main_image.png" alt="Track it Website">
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Track it Website</div>
+                </div>
+            </article>
+            <article class="card" id="smartapps-card" role="button" tabindex="0" aria-label="Open Smart Apps Website">
+                <div class="card-media">
+                    <img src="assets/images/portifolio/smart_apps/hero_section_2_2.png" alt="Smart Apps Website Hero Section">
+                </div>
+                <div class="card-body">
+                    <div class="card-title">Smart Apps Website</div>
+                </div>
+            </article>
+            <a href="pages/smart_apps_redesign.html" class="card-link">
+                <article class="card">
+                    <div class="card-media">
+                        <img src="assets/images/portifolio/smart_apps/hero_section_redesign.png" alt="Smart Apps Redesign Hero Section">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Smart Apps Redesign</div>
+                    </div>
+                </article>
+            </a>
+        </div>
+        <div style="display: flex; justify-content: center; margin-top: 24px;">
+            <button id="show-more-projects" class="btn btn-grey" style="padding: 12px 28px; font-size: 16px;">Show More <i class="ri-arrow-down-line"></i></button>
+        </div>
+        <div id="extra-projects" style="display: none; margin-top: 22px;">
+            <div class="projects" style="justify-content: center;">
+                <article class="card">
+                    <div class="card-media">
+                        <img src="assets/images/portifolio/posters/courier_poster.png" alt="Courier App Poster">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Courier App Poster</div>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-media">
+                        <img src="assets/images/portifolio/posters/kwacha_pos_poster.png" alt="Kwacha POS poster">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Kwacha POS poster</div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-media">
+                        <img src="assets/images/portifolio/posters/testimonial.jpg" alt="Kwacha POS poster">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Influencer Malawi Testimonial</div>
+                    </div>
+                </article>
+            </div>
+            <div style="display: flex; justify-content: center; margin-top: 24px;">
+                <button id="show-less-projects" class="btn btn-grey" style="padding: 12px 28px; font-size: 16px;">Show Less <i class="ri-arrow-up-line"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="work">
+        <div class="section-label"><span class="dot"></span>Work</div>
+        <div class="work">
+            <div class="work-item">
+                <div class="work-top">December 2025 - Now <span class="work-meta">Full time</span></div>
+                <div class="work-meta"><span class="bullet"></span>Tech265 — Full-Stack Software Developer and</div>
+            </div>
+            <div class="work-item">
+                <div class="work-top">Jun 2024 - Nov 2024 <span class="work-meta">Internship</span></div>
+                <div class="work-meta"><span class="bullet"></span>Imosys — Mobile developer</div>
+            </div>
+            <div class="work-item" style="border-bottom:none;">
+                <div class="work-top">Feb 2020 - Nov 2022 <span class="work-meta">Hybrid</span></div>
+                <div class="work-meta"><span class="bullet"></span>JPI Systems — Mobile developer</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-label"><span class="dot"></span>Contact</div>
+        <form>
+            <div class="row-2">
+                <input type="text" placeholder="Full name" required>
+                <input type="email" placeholder="Email" required>
+            </div>
+            <input type="text" placeholder="Subject">
+            <textarea placeholder="Your message"></textarea>
+            <div class="submit-row">
+                <button type="submit" class="btn">Submit</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+<footer id="app-footer"></footer>
+<script src="assets/app_shared.js"></script>
+<script>
+    // Smooth scroll and active state
+    const links = document.querySelectorAll('.nav a');
+    const sections = [...document.querySelectorAll('main section')];
+
+    // keep page content visible under a fixed header by syncing body top padding
+    const headerEl = document.querySelector('header');
+    function syncHeaderSpacing() {
+        document.body.style.paddingTop = headerEl.offsetHeight + 'px';
+    }
+    window.addEventListener('resize', syncHeaderSpacing);
+    // initial
+    syncHeaderSpacing();
+
+    const setActive = () => {
+        const y = scrollY + 120;
+        const current = sections.findLast(sec => y >= sec.offsetTop);
+        if (!current) return;
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current.id));
+    };
+    links.forEach(link => link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    }));
+    window.addEventListener('scroll', setActive);
+    setActive();
+
+    const showMoreBtn = document.getElementById('show-more-projects');
+    const showLessBtn = document.getElementById('show-less-projects');
+    const extraProjects = document.getElementById('extra-projects');
+
+    showMoreBtn.addEventListener('click', function() {
+        extraProjects.style.display = 'block';
+        showMoreBtn.style.display = 'none';
+    });
+    showLessBtn.addEventListener('click', function() {
+        extraProjects.style.display = 'none';
+        showMoreBtn.style.display = 'inline-flex';
+    });
+
+    document.getElementById('fintech-app-card').addEventListener('click', function() {
+        window.location.href = 'pages/kwacha_wise.html';
+    });
+
+    // NEW: wire up the Blood Pressure card to open the BP page (click + keyboard)
+    (function() {
+        const bpCard = document.getElementById('bp-card');
+        if (!bpCard) return;
+        const target = 'pages/bp_app.html'; // navigates to the existing BP page file
+
+        function goBP(e) {
+            if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
+            window.location.href = target;
+        }
+        function keyActivate(e) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                goBP(e);
+            }
+        }
+        bpCard.addEventListener('click', goBP);
+        bpCard.addEventListener('keydown', keyActivate);
+    })();
+
+    // NEW: wire up the Track it Website card to open the Notes Website page (click + keyboard)
+    (function() {
+        const trackCard = document.getElementById('trackit-card');
+        if (!trackCard) return;
+        const target = 'pages/notes_website.html';
+
+        function goTrack(e) {
+            if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
+            window.location.href = target;
+        }
+        function keyActivate(e) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                goTrack(e);
+            }
+        }
+        trackCard.addEventListener('click', goTrack);
+        trackCard.addEventListener('keydown', keyActivate);
+    })();
+
+    // NEW: wire up the Smart Apps Website card to open the Smart Apps page (click + keyboard)
+    (function() {
+        const smartCard = document.getElementById('smartapps-card');
+        if (!smartCard) return;
+        const target = 'pages/smart_apps.html';
+
+        function goSmart(e) {
+            if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
+            window.location.href = target;
+        }
+        function keyActivate(e) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                goSmart(e);
+            }
+        }
+        smartCard.addEventListener('click', goSmart);
+        smartCard.addEventListener('keydown', keyActivate);
+    })();
+
+    // NEW: wire up the Smart Home App card to open the Smart Home page (click + keyboard)
+    (function() {
+        const smartHomeCard = document.getElementById('smarthome-card');
+        if (!smartHomeCard) return;
+        const target = 'pages/smart_home.html';
+        function goSmartHome(e) {
+            if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
+            window.location.href = target;
+        }
+        function keyActivate(e) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                goSmartHome(e);
+            }
+        }
+        smartHomeCard.addEventListener('click', goSmartHome);
+        smartHomeCard.addEventListener('keydown', keyActivate);
+    })();
+</script>
+</body>
+</html>
