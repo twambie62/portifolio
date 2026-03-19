@@ -39,37 +39,30 @@
             left: 0;
             right: 0;
             z-index: 100;
-            /*backdrop-filter: blur(8px);*/
-            padding: 14px 0; /* keep vertical spacing, horizontal padding moved to header container */
+            padding: 14px 0;
             pointer-events: auto;
         }
-
-        /* Make only the header's container span the full viewport so the nav can be centered relative to the screen.
-           This keeps the rest of the page constrained by .container while allowing the nav to center across the viewport. */
         header > .container {
             max-width: none;
             width: 100%;
-            padding: 0 14px;         /* small horizontal padding from screen edges */
+            padding: 0 14px;
             display: flex;
-            justify-content: center; /* center the nav block in the viewport */
+            justify-content: center;
         }
-
-        /* Nav: centered flex bar that sizes to its contents and stays centered in the viewport */
         .nav {
             background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 14px;
-            display: inline-flex;           /* shrink-to-fit: nav sizes to its contents */
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 20px;
             padding: 8px 8px;
-            margin: 0 auto;                 /* keep nav centered in the header container */
+            margin: 0 auto;
             box-shadow: 0 10px 20px rgba(0,0,0,0.04);
-            width: auto;                    /* do not stretch */
-            max-width: none;                /* ensure it won't expand to viewport width */
+            width: auto;
+            max-width: none;
         }
-        /* Keep the logo in the nav flow; draw a rounded rectangle around it */
         .logo {
             position: static;
             font-weight: 800;
@@ -77,67 +70,104 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 6px 12px;                   /* space inside the rectangle */
-            border: 1px solid var(--border);     /* keep border as-is */
-            border-radius: 10px;                 /* rounded corners for the rectangle */
-            background: var(--bg);               /* white background */
-            /* stronger, evenly-spread shadow so the rectangle lifts off the nav */
+            padding: 6px 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg);
             box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-            z-index: 12;                         /* ensure shadow displays above nav */
+            z-index: 12;
         }
-
-        .logo span {
-            margin-left: 0px;           /* small gap between logo and nav links */
-            display: inline-block; }
+        .logo span { margin-left: 0px; display: inline-block; }
         .nav a {
             font-size: 13px;
             padding: 6px 10px;
             border-radius: 10px;
-            /* do NOT transition border-color to avoid flicker — border should flip instantly */
             transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
-            /* keep a transparent border by default so enabling the visible border doesn't shift layout */
             border: 1px solid transparent;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            box-sizing: border-box; /* ensure border doesn't shift layout */
+            box-sizing: border-box;
         }
-        /* hover stays grey for non-active items */
         .nav a:hover { background: #ededed; }
-        /* active: white background + visible border line + stronger, evenly-spread shadow */
         .nav a.active {
-            background: var(--bg);               /* white */
-            border: 1px solid var(--border);     /* visible border line (applies instantly) */
-            /* stronger shadow with a small spread so it visually extends equally left/right */
+            background: var(--bg);
+            border: 1px solid var(--border);
             box-shadow: 0 12px 36px 4px rgba(0,0,0,0.12);
-            position: relative;                  /* establish stacking context */
-            z-index: 6;                          /* sit above nav so shadow shows */
-            transform: translateY(0);            /* keeps consistent with hover transform */
+            position: relative;
+            z-index: 6;
+            transform: translateY(0);
         }
         .nav a.active:hover {
-            /* keep white when hovering an active item and slightly increase elevation */
             background: var(--bg);
             box-shadow: 0 14px 44px 5px rgba(0,0,0,0.14);
         }
+        /* Nav links wrapper for desktop */
+        .nav-links {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+        }
+        /* Hamburger button */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 101;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        /* Mobile menu overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.97);
+            z-index: 99;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            font-size: 18px;
+            font-weight: 500;
+            padding: 12px 24px;
+            border-radius: 12px;
+            transition: background 0.18s;
+        }
+        .mobile-menu a:hover { background: #ededed; }
+
         /* Hero */
         .hero {
             text-align: center;
-            /* increased bottom padding so the button has more space from the tech stack */
             padding: 28px 0 56px;
         }
-        /* Avatar wrapper sized to the avatar so the chip can be centered precisely */
         .avatar-wrap {
             position: relative;
-            display: inline-block; /* centers with text-align:center on .hero */
-            width: 86px; /* match avatar width */
-            margin: 0 auto 22px; /* allow extra space for overlapping chip */
+            display: inline-block;
+            width: 86px;
+            margin: 0 auto 22px;
         }
         .avatar {
             width: 96px; height: 96px;
             border-radius: 50%;
             overflow: hidden;
             margin-left: -3px;
-            /*margin-bottom: -2px; !* spacing handled by wrapper *!*/
             border: 4px solid var(--card);
             box-shadow: 0 12px 30px rgba(0,0,0,0.08);
             position: relative;
@@ -155,16 +185,14 @@
             font-size: 12px;
             box-shadow: 0 6px 18px rgba(0,0,0,0.05);
         }
-        /* Position the chip overlapping the bottom of the avatar, centered */
         .hero .avatar-wrap .chip {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            bottom: -10px; /* slightly overlap the avatar bottom */
-            z-index: 3; /* sit above the avatar */
+            bottom: -10px;
+            z-index: 3;
             white-space: nowrap;
         }
-
         h1 {
             margin: 14px 0 10px;
             font-size: clamp(26px, 3vw + 12px, 34px);
@@ -195,13 +223,10 @@
         .btn:hover { transform: translateY(-1px); }
         .btn-grey {
             font-weight: 500;
-            /*border: 1px solid #b7b7b7;*/
             background: transparent;
             color: #919191;
             box-shadow: 0 10px 30px rgba(0,0,0,0.0);
-            /*background: var(--card);*/
             border: 1px solid var(--border);
-            /*color: var(--muted);*/
             padding: 0px 20px;
         }
         /* Tech */
@@ -222,7 +247,7 @@
             width: 100%;
             overflow: hidden;
             margin-top: 12px;
-            position: relative; /* needed for fade overlays */
+            position: relative;
         }
         /* soft fading overlays on the left and right edges */
         .lang-marquee::before,
@@ -231,9 +256,9 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 80px; /* adjust fade width */
+            width: 80px;
             pointer-events: none;
-            z-index: 3; /* sit above the track */
+            z-index: 3;
         }
         /* left fade: solid page bg -> transparent */
         .lang-marquee::before {
@@ -253,14 +278,14 @@
             align-items: center;
             will-change: transform;
             animation: marquee 18s linear infinite;
-            z-index: 1; /* below fades */
-            gap: 8px; /* reduced spacing between marquee items */
+            z-index: 1;
+            gap: 8px;
         }
         .marquee-group {
             display: flex;
-            gap: 8px; /* reduced spacing between items inside each duplicated group */
+            gap: 8px;
             align-items: center;
-            flex: 0 0 auto; /* keep groups side-by-side */
+            flex: 0 0 auto;
         }
         .marquee-item { flex: 0 0 auto; }
         .marquee-item img { height: 40px; width: auto; display: block; }
@@ -273,42 +298,20 @@
             will-change: transform;
             animation: marquee-rtl 18s linear infinite;
             z-index: 1;
-            gap: 8px; /* reduced spacing for reverse track too */
+            gap: 8px;
         }
         .lang-marquee.rtl:hover .marquee-track-rtl { animation-play-state: paused; }
-
-        /* Extra spacing for the second (frameworks) marquee */
         .pill-row.marquee-bottom { margin-top: 12px; margin-bottom: 56px; }
 
         @keyframes marquee {
             from { transform: translateX(0); }
-            to   { transform: translateX(-50%); } /* second duplicated group replaces the first */
+            to   { transform: translateX(-50%); }
         }
         @keyframes marquee-rtl {
             0%   { transform: translateX(-50%); }
-            100% { transform: translateX(0); } /* moves the track right for a seamless loop */
+            100% { transform: translateX(0); }
         }
-
-        /* pause on hover (optional) */
         .lang-marquee:hover .marquee-track { animation-play-state: paused; }
-
-        @media (max-width: 640px) {
-            /* keep nav shrink-to-fit on small screens, reduce left padding so it doesn't push */
-            .nav {
-                padding: 8px 8px;
-
-                 }
-            .logo {
-                margin-left: 0px;
-                position: static;
-            }
-
-            /* slightly smaller card and image on small screens */
-            .card { height: 420px; min-height: 420px; }
-            .card-media { height: 320px; padding: 24px; display: flex; align-items: center; justify-content: center; }
-            .card-media img { border-radius: 12px; }
-            .card-media::before { inset: 10px; border-radius: 12px; }
-        }
 
         /* Section labels */
         .section-label {
@@ -323,56 +326,73 @@
             color: var(--muted);
             box-shadow: 0 6px 18px rgba(0,0,0,0.05);
             margin-bottom: 14px;
-            margin-top: 24px; /* added: separate projects label from the marquees above */
+            margin-top: 24px;
         }
-        /* Projects */
+
+        /* ===== PROJECTS GRID — REDESIGNED ===== */
         .projects {
             display: grid;
-            grid-template-columns: 1fr; /* default: 1 column for mobile */
-            gap: 22px;
+            grid-template-columns: 1fr;
+            gap: 20px;
             margin: 12px 0 40px;
-            padding: 0 24px; /* Add horizontal padding to the grid */
+            padding: 0 80px;
         }
         @media (min-width: 641px) {
             .projects {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns for wide view */
+                padding: 0 80px;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
+
+        @media (max-width: 960px) {
+            .projects {
+                padding: 0 20px;
+                /*grid-template-columns: repeat(2, 1fr);*/
+            }
+        }
+
+        /* Card link wrapper */
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        /* Card */
         .card {
-            /*background: var(--card);*/
             border: 1px solid var(--border);
             border-radius: var(--radius);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 14px 30px rgba(0,0,0,0.05);
-
-            /* Fixed card height */
-            height: 480px; /* increased card height to fit taller image */
-            /*min-height: 320px;*/
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            transition: box-shadow 0.25s, transform 0.25s;
+            cursor: pointer;
+        }
+        .card:hover {
+            /*box-shadow: 0 14px 36px rgba(0,0,0,0.08);*/
+            transform: translateY(-2px);
         }
 
-        /* Replaced: use a media wrapper to provide padding and a placeholder behind the image.
-           The ::before placeholder fills the inner area (inset by the padding), has the same
-           rounded corners and background, and sits behind the img. When an img exists it covers
-           the placeholder; when no img exists, the placeholder becomes the visible "image". */
+        /* Card media area */
         .card-media {
-            padding: 44px;
+            padding: 24px;
             box-sizing: border-box;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
             position: relative;
-            background: transparent; /* no visible bg around the media area */
-            height: 420px; /* further increased image area height */
+            background: transparent;
+            height: 280px;
+            overflow: hidden;
         }
         .card-media::before {
             content: "";
             position: absolute;
-            inset: 12px; /* matches .card-media padding so the placeholder equals the image area */
-            border-radius: 14px;
-            background: var(--card); /* placeholder color when no image is present */
+            inset: 10px;
+            border-radius: 12px;
+            background: var(--card);
             z-index: 1;
         }
         .card-media img {
@@ -380,47 +400,107 @@
             height: 100%;
             object-fit: contain;
             object-position: center center;
-            border-radius: 14px; /* image radius */
+            border-radius: 12px;
             display: block;
             position: relative;
-            z-index: 2; /* place image above the placeholder */
+            z-index: 2;
             background: transparent;
-            /* No margin needed, centering handled by flex on .card-media */
-            transition: transform 0.60s cubic-bezier(0,0,0.2,1); /* smooth scaling */
+            transition: transform 0.60s cubic-bezier(0,0,0.2,1);
         }
         .card:hover .card-media img {
-            transform: scale(1.08);
+            transform: scale(1.06);
         }
 
+        /* Arrow icon — top right of card media */
+        .card-arrow {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            /*background: var(--bg);*/
+            /*border: 1px solid var(--border);*/
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            overflow: hidden;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .card-arrow i {
+            font-size: 16px;
+            color: var(--text);
+            transition: color 0.3s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: translate(-20px, 20px);
+            opacity: 0;
+        }
+        /* On card hover: arrow bg turns black, icon slides to center */
+        .card:hover .card-arrow {
+            background: #141414;
+            border-color: #141414;
+        }
+        .card:hover .card-arrow i {
+            color: #fff;
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+
+        /* Card body */
         .card-body {
-            padding: 12px 14px 16px;
+            padding: 14px 16px 16px;
             display: flex;
             flex-direction: column;
             gap: 6px;
-
-            /* let body fill remaining space inside fixed-height card */
             flex: 1 1 auto;
-            overflow: auto;
+        }
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
+        }
+        .card-desc {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+        .card-tags span {
+            border: 1px solid #D9D9D9;
+
+            /*background: #ededed;*/
+            color: #2f2f2f;
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 500;
+            white-space: nowrap;
         }
 
-        /* Responsive adjustments */
+        /* Mobile card sizing */
         @media (max-width: 640px) {
-            .nav {
-                padding: 8px 8px;
-
-                 }
-            .logo {
-                margin-left: 0px;
-                position: static;
-            }
-
-            /* slightly smaller card and image on small screens */
-            .card { height: 442px; min-height: 420px;}
-            .card-media { height: 380px; padding: 24px; display: flex; align-items: center; justify-content: center; }
-            .card-media img { border-radius: 12px; }
-            .card-media::before { inset: 10px; border-radius: 12px; }
-            .card-body { padding: 12px 14px 8px; } /* reduced bottom padding for less space below title */
+            .card-media { height: 200px; padding: 16px; }
+            .card-media::before { inset: 8px; border-radius: 10px; }
+            .card-media img { border-radius: 10px; }
+            .card-arrow { top: 14px; right: 14px; width: 32px; height: 32px; }
+            .card-arrow i { font-size: 14px; }
+            .card-body { padding: 10px 12px 14px; }
+            .card-title { font-size: 0.95rem; }
+            .card-desc { font-size: 0.78rem; -webkit-line-clamp: 2; }
+            .card-tags span { font-size: 10px; padding: 3px 8px; }
+            .projects { gap: 14px; padding: 0 8px; }
         }
+
         /* Work */
         .work {
             margin: 18px 0 48px;
@@ -440,20 +520,11 @@
             gap: 14px;
             flex-wrap: wrap;
             color: var(--text);
-            font-weight: 600; /* keep time range bold */
+            font-weight: 600;
         }
         .work-meta { font-size: 12px; color: var(--muted); }
-
-        /* Ensure the labels inside the time row (Full time / Hybrid / Internship)
-           are regular weight and muted (not bold). */
-        .work-top .work-meta {
-            font-weight: 400;
-            color: var(--muted);
-        }
-
-        /* Increased spacing between the time row and the company row */
+        .work-top .work-meta { font-weight: 400; color: var(--muted); }
         .work-item > .work-meta { margin-top: 12px; }
-
         .bullet {
             width: 6px; height: 6px;
             background: var(--dot);
@@ -466,20 +537,16 @@
             display: grid;
             gap: 12px;
             margin: 6px 0 32px;
-            width: 100%; /* default: allow full width on very small screens */
+            width: 100%;
         }
         .row-2 { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-
-        /* Constrain contact form on larger-than-mobile viewports so it doesn't span the whole width.
-           Adjust max-width to taste (720px is a comfortable reading width). */
         @media (min-width: 641px) {
             #contact form {
                 max-width: 620px;
-                margin: 12px auto 40px; /* center the form and add a little extra spacing */
+                margin: 12px auto 40px;
                 width: 100%;
             }
         }
-
         input, textarea {
             width: 100%;
             border: 1px solid var(--border);
@@ -505,7 +572,7 @@
             width: 42px; height: 42px;
             border-radius: 12px;
             border: 1px solid var(--border);
-            background: var(--bg); /* changed: white background while keeping border */
+            background: var(--bg);
             display: grid;
             place-items: center;
             color: var(--text);
@@ -513,17 +580,7 @@
             transition: 0.2s;
         }
         .icon-btn:hover { transform: translateY(-2px); }
-        @media (max-width: 640px) {
-            .nav {
 
-                padding: 8px 8px;
-                 }
-            .logo {
-                margin-left: 0px;           /* small gap between logo and nav links */
-                position: static; }
-        }
-
-        /* Added: orange dot used in chips and section labels */
         .dot {
             width: 8px;
             height: 8px;
@@ -532,49 +589,72 @@
             display: inline-block;
         }
 
-        /* Larger screens: bring the logo into the nav flow (so it sits next to links)
-           and give the nav more horizontal padding so items have space from the edges. */
+        /* Mobile: hamburger menu */
+        @media (max-width: 700px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .nav { gap: 12px; }
+        }
+        @media (min-width: 701px) {
+            .mobile-menu { display: none !important; }
+        }
+
         @media (min-width: 900px) {
-            /* keep nav sized to content and centered on wide screens,
-               make logo participate in the flow so it sits adjacent to links */
             .nav {
                 justify-content: center;
-                /*padding: 10px 22px;*/
                 padding: 8px 12px;
-
                 gap: 18px;
                 width: auto;
             }
-            /* ensure the logo rectangle stays consistent on large screens */
             .logo {
-                position: static;    /* participate in the inline-flex flow */
+                position: static;
                 margin-right: 6px;
-                margin-left: 0px;           /* small gap between logo and nav links */
+                margin-left: 0px;
                 font-size: 26px;
                 padding: 6px 12px;
-                border: 1px solid var(--border); /* keep border as-is */
+                border: 1px solid var(--border);
                 border-radius: 10px;
                 background: var(--bg);
-                /* match the stronger shadow used everywhere */
                 box-shadow: 0 12px 28px rgba(0,0,0,0.12);
                 z-index: 12;
             }
             .nav a { padding: 6px 12px; }
         }
         #work .work {
-            padding-left: 80px; /* adjust value as needed (e.g. 16px / 24px) */
+            padding-left: 80px;
         }
-        /* Add left padding/margin for the work content on larger screens (exclude the section label) */
         @media (min-width: 641px) {
-            /* apply to the content under the "Work" label only */
             #work .work {
-                padding-left: 80px; /* adjust value as needed (e.g. 16px / 24px) */
+                padding-left: 80px;
             }
         }
     </style>
 </head>
 <body>
-<header id="app-header"></header>
+<header id="app-header">
+    <div class="container">
+        <nav class="nav">
+            <div class="logo"><span>t.</span></div>
+            <div class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </div>
+</header>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobile-menu">
+    <a href="#home" class="mobile-nav-link">Home</a>
+    <a href="#about" class="mobile-nav-link">About</a>
+    <a href="#projects" class="mobile-nav-link">Projects</a>
+    <a href="#contact" class="mobile-nav-link">Contact</a>
+</div>
 
 <main id="home" class="container">
     <section class="hero">
@@ -594,27 +674,21 @@
         <div class="pill-row">
             <div class="lang-marquee" aria-hidden="false">
                 <div class="marquee-track" aria-hidden="true">
-                    <!-- visible group -->
                     <div class="marquee-group">
                         <div class="marquee-item"><img src="assets/languages.svg" alt="languages"></div>
                     </div>
-                    <!-- duplicate group (exact same content) for seamless looping -->
                     <div class="marquee-group" aria-hidden="true">
                         <div class="marquee-item"><img src="assets/languages.svg" alt="languages"></div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- second marquee: frameworks (scrolls left → right) -->
         <div class="pill-row marquee-bottom" style="margin-top:12px;">
             <div class="lang-marquee rtl" aria-hidden="false">
                 <div class="marquee-track-rtl" aria-hidden="true">
-                    <!-- visible group -->
                     <div class="marquee-group">
                         <div class="marquee-item"><img src="assets/frameworks.svg" alt="frameworks"></div>
                     </div>
-                    <!-- duplicate group (exact same content) for seamless looping -->
                     <div class="marquee-group" aria-hidden="true">
                         <div class="marquee-item"><img src="assets/frameworks.svg" alt="frameworks"></div>
                     </div>
@@ -626,98 +700,175 @@
     <section id="projects">
         <div class="section-label"><span class="dot"></span>My Projects</div>
         <div class="projects">
-            <article class="card" id="fintech-app-card">
-                <div class="card-media">
-                    <img src="assets/images/portifolio/fintech/home_mockup.png" alt="Fintech App">
-                </div>
-                <div class="card-body">
-                    <div class="card-title">Fintech App</div>
-                </div>
-            </article>
+            <a href="pages/kwacha_wise.html" class="card-link">
+                <article class="card">
+                    <div class="card-media">
+                        <img src="assets/images/portifolio/fintech/home_mockup.png" alt="Fintech App">
+                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Fintech App</div>
+                        <div class="card-desc">A modern personal finance analytics experience with income tracking, expenditure insights, and clean dashboard.</div>
+                        <div class="card-tags">
+                            <span>UI/UX</span>
+                            <span>App Design</span>
+                        </div>
+                    </div>
+                </article>
+            </a>
 
-            <!-- Blood Pressure card: add id, role and tabindex so it is clickable & keyboard-accessible -->
-            <article class="card" id="bp-card" role="button" tabindex="0" aria-label="Open Blood Pressure App project">
-                <div class="card-media">
-                    <img src="assets/images/portifolio/blood_pressure/home.png" alt="Blood Pressure Project">
-                </div>
-                <div class="card-body">
-                    <div class="card-title">Blood Pressure App</div>
-                </div>
-            </article>
+            <a href="pages/bp_app.html" class="card-link">
+                <article class="card">
+                    <div class="card-media">
+                        <img src="assets/images/portifolio/blood_pressure/home.png" alt="Blood Pressure Project">
+                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Blood Pressure App</div>
+                        <div class="card-desc">Remote blood pressure monitoring system connected to Arduino ESP-32 for real-time patient tracking.</div>
+                        <div class="card-tags">
+                            <span>UI/UX</span>
+                            <span>App Design</span>
+                        </div>
+                    </div>
+                </article>
+            </a>
 
             <article class="card">
                 <div class="card-media">
-                    <img src="assets/images/portifolio/influencer_malawi/onboarding_profile.png" alt="Influencer Malawi App Main Picture">
+                    <img src="assets/images/portifolio/influencer_malawi/onboarding_profile.png" alt="Influencer Malawi App">
+                    <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
                 </div>
                 <div class="card-body">
-                    <div class="card-title">Influencer Malawi app</div>
+                    <div class="card-title">Influencer Malawi App</div>
+                    <div class="card-desc">A platform connecting influencers with brands for collaboration and marketing campaigns.</div>
+                    <div class="card-tags">
+                        <span>UI/UX</span>
+                        <span>App Design</span>
+                    </div>
                 </div>
             </article>
+
             <a href="pages/courier_app.html" class="card-link">
                 <article class="card">
                     <div class="card-media">
-                        <img src="assets/images/portifolio/courier/home_live_tracking.png" alt="Courier App Home Live Tracking">
+                        <img src="assets/images/portifolio/courier/home_live_tracking.png" alt="Courier App">
+                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
                     </div>
                     <div class="card-body">
                         <div class="card-title">Courier App</div>
+                        <div class="card-desc">Live tracking courier application with real-time delivery updates and payment integration.</div>
+                        <div class="card-tags">
+                            <span>UI/UX</span>
+                            <span>App Design</span>
+                        </div>
                     </div>
                 </article>
             </a>
+
             <a href="pages/akometsi_app.html" class="card-link">
                 <article class="card">
                     <div class="card-media">
-                        <img src="assets/images/portifolio/akometsi/home_movie_details_dark.png" alt="Movie App Home Movie Details Dark">
+                        <img src="assets/images/portifolio/akometsi/home_movie_details_dark.png" alt="Movie App">
+                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
                     </div>
                     <div class="card-body">
                         <div class="card-title">Movie App</div>
+                        <div class="card-desc">A streaming platform with movie details, video player, and group viewing features in dark mode.</div>
+                        <div class="card-tags">
+                            <span>UI/UX</span>
+                            <span>App Design</span>
+                        </div>
                     </div>
                 </article>
             </a>
-            <article class="card" id="smarthome-card" role="button" tabindex="0" aria-label="Open Smart Home App">
-                <div class="card-media">
-                    <img src="assets/images/portifolio/smart_home/main_screen_home.png" alt="Smart Home App Main Screen Home">
-                </div>
-                <div class="card-body">
-                    <div class="card-title">Smart Home App</div>
-                </div>
-            </article>
+
+            <a href="pages/smart_home.html" class="card-link">
+                <article class="card">
+                    <div class="card-media">
+                        <img src="assets/images/portifolio/smart_home/main_screen_home.png" alt="Smart Home App">
+                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Smart Home App</div>
+                        <div class="card-desc">IoT-based smart home control system with room management, automation, and device settings.</div>
+                        <div class="card-tags">
+                            <span>UI/UX</span>
+                            <span>App Design</span>
+                        </div>
+                    </div>
+                </article>
+            </a>
+
             <a href="pages/notes_app.html" class="card-link">
                 <article class="card">
                     <div class="card-media">
-                        <img src="assets/images/portifolio/notes/home_onboarding.png" alt="Notes App Home Onboarding">
+                        <img src="assets/images/portifolio/notes/home_onboarding.png" alt="Notes App">
+                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
                     </div>
                     <div class="card-body">
                         <div class="card-title">Notes App</div>
+                        <div class="card-desc">A personal management app for notes, habits, and finance tracking with clean onboarding.</div>
+                        <div class="card-tags">
+                            <span>UI/UX</span>
+                            <span>App Design</span>
+                        </div>
                     </div>
                 </article>
             </a>
-            <article class="card" id="trackit-card" role="button" tabindex="0" aria-label="Open Track it Website">
-                <div class="card-media">
-                    <img src="assets/images/portifolio/notes_website/track_it_main_image.png" alt="Track it Website">
-                </div>
-                <div class="card-body">
-                    <div class="card-title">Track it Website</div>
-                </div>
-            </article>
-            <article class="card" id="smartapps-card" role="button" tabindex="0" aria-label="Open Smart Apps Website">
-                <div class="card-media">
-                    <img src="assets/images/portifolio/smart_apps/hero_section_2_2.png" alt="Smart Apps Website Hero Section">
-                </div>
-                <div class="card-body">
-                    <div class="card-title">Smart Apps Website</div>
-                </div>
-            </article>
+
+            <a href="pages/notes_website.html" class="card-link">
+                <article class="card">
+                    <div class="card-media">
+                        <img src="assets/images/portifolio/notes_website/track_it_main_image.png" alt="Track it Website">
+                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Track it Website</div>
+                        <div class="card-desc">A landing page for a personal productivity and task management web application.</div>
+                        <div class="card-tags">
+                            <span>UI/UX</span>
+                            <span>Web Design</span>
+                        </div>
+                    </div>
+                </article>
+            </a>
+
+            <a href="pages/smart_apps.html" class="card-link">
+                <article class="card">
+                    <div class="card-media">
+                        <img src="assets/images/portifolio/smart_apps/hero_section_2_2.png" alt="Smart Apps Website">
+                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">Smart Apps Website</div>
+                        <div class="card-desc">A technology company website showcasing web hosting, services, and company information.</div>
+                        <div class="card-tags">
+                            <span>UI/UX</span>
+                            <span>Web Design</span>
+                        </div>
+                    </div>
+                </article>
+            </a>
+
             <a href="pages/smart_apps_redesign.html" class="card-link">
                 <article class="card">
                     <div class="card-media">
-                        <img src="assets/images/portifolio/smart_apps/hero_section_redesign.png" alt="Smart Apps Redesign Hero Section">
+                        <img src="assets/images/portifolio/smart_apps/hero_section_redesign.png" alt="Smart Apps Redesign">
+                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
                     </div>
                     <div class="card-body">
                         <div class="card-title">Smart Apps Redesign</div>
+                        <div class="card-desc">A fresh redesign of the Smart Apps website with modernized hero section and improved UX.</div>
+                        <div class="card-tags">
+                            <span>UI/UX</span>
+                            <span>Web Design</span>
+                        </div>
                     </div>
                 </article>
             </a>
         </div>
+
         <div style="display: flex; justify-content: center; margin-top: 24px;">
             <button id="show-more-projects" class="btn btn-grey" style="padding: 12px 28px; font-size: 16px;">Show More <i class="ri-arrow-down-line"></i></button>
         </div>
@@ -726,26 +877,43 @@
                 <article class="card">
                     <div class="card-media">
                         <img src="assets/images/portifolio/posters/courier_poster.png" alt="Courier App Poster">
+                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
                     </div>
                     <div class="card-body">
                         <div class="card-title">Courier App Poster</div>
+                        <div class="card-desc">Promotional poster design for the Courier delivery application.</div>
+                        <div class="card-tags">
+                            <span>Graphic Design</span>
+                            <span>Poster Design</span>
+                        </div>
                     </div>
                 </article>
                 <article class="card">
                     <div class="card-media">
                         <img src="assets/images/portifolio/posters/kwacha_pos_poster.png" alt="Kwacha POS poster">
+                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
                     </div>
                     <div class="card-body">
-                        <div class="card-title">Kwacha POS poster</div>
+                        <div class="card-title">Kwacha POS Poster</div>
+                        <div class="card-desc">Point of sale system promotional poster design for Kwacha brand.</div>
+                        <div class="card-tags">
+                            <span>Graphic Design</span>
+                            <span>Poster Design</span>
+                        </div>
                     </div>
                 </article>
-
                 <article class="card">
                     <div class="card-media">
-                        <img src="assets/images/portifolio/posters/testimonial.jpg" alt="Kwacha POS poster">
+                        <img src="assets/images/portifolio/posters/testimonial.jpg" alt="Testimonial">
+                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
                     </div>
                     <div class="card-body">
                         <div class="card-title">Influencer Malawi Testimonial</div>
+                        <div class="card-desc">Testimonial graphic design for Influencer Malawi platform.</div>
+                        <div class="card-tags">
+                            <span>Graphic Design</span>
+                            <span>Poster Design</span>
+                        </div>
                     </div>
                 </article>
             </div>
@@ -789,20 +957,25 @@
     </section>
 </main>
 
-<footer id="app-footer"></footer>
-<script src="assets/app_shared.js"></script>
+<footer id="app-footer">
+    <div class="socials">
+        <a class="icon-btn" href="#"><i class="ri-linkedin-fill"></i></a>
+        <a class="icon-btn" href="#"><i class="ri-facebook-circle-fill"></i></a>
+        <a class="icon-btn" href="#"><i class="ri-instagram-line"></i></a>
+        <a class="icon-btn" href="#"><i class="ri-twitter-x-line"></i></a>
+    </div>
+</footer>
+
 <script>
     // Smooth scroll and active state
-    const links = document.querySelectorAll('.nav a');
+    const links = document.querySelectorAll('.nav-links a');
     const sections = [...document.querySelectorAll('main section')];
 
-    // keep page content visible under a fixed header by syncing body top padding
     const headerEl = document.querySelector('header');
     function syncHeaderSpacing() {
         document.body.style.paddingTop = headerEl.offsetHeight + 'px';
     }
     window.addEventListener('resize', syncHeaderSpacing);
-    // initial
     syncHeaderSpacing();
 
     const setActive = () => {
@@ -818,6 +991,7 @@
     window.addEventListener('scroll', setActive);
     setActive();
 
+    // Show more/less
     const showMoreBtn = document.getElementById('show-more-projects');
     const showLessBtn = document.getElementById('show-less-projects');
     const extraProjects = document.getElementById('extra-projects');
@@ -831,88 +1005,21 @@
         showMoreBtn.style.display = 'inline-flex';
     });
 
-    document.getElementById('fintech-app-card').addEventListener('click', function() {
-        window.location.href = 'pages/kwacha_wise.html';
+    // Hamburger menu
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburgerBtn.addEventListener('click', function() {
+        mobileMenu.classList.toggle('open');
     });
-
-    // NEW: wire up the Blood Pressure card to open the BP page (click + keyboard)
-    (function() {
-        const bpCard = document.getElementById('bp-card');
-        if (!bpCard) return;
-        const target = 'pages/bp_app.html'; // navigates to the existing BP page file
-
-        function goBP(e) {
-            if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
-            window.location.href = target;
-        }
-        function keyActivate(e) {
-            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
-                e.preventDefault();
-                goBP(e);
-            }
-        }
-        bpCard.addEventListener('click', goBP);
-        bpCard.addEventListener('keydown', keyActivate);
-    })();
-
-    // NEW: wire up the Track it Website card to open the Notes Website page (click + keyboard)
-    (function() {
-        const trackCard = document.getElementById('trackit-card');
-        if (!trackCard) return;
-        const target = 'pages/notes_website.html';
-
-        function goTrack(e) {
-            if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
-            window.location.href = target;
-        }
-        function keyActivate(e) {
-            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
-                e.preventDefault();
-                goTrack(e);
-            }
-        }
-        trackCard.addEventListener('click', goTrack);
-        trackCard.addEventListener('keydown', keyActivate);
-    })();
-
-    // NEW: wire up the Smart Apps Website card to open the Smart Apps page (click + keyboard)
-    (function() {
-        const smartCard = document.getElementById('smartapps-card');
-        if (!smartCard) return;
-        const target = 'pages/smart_apps.html';
-
-        function goSmart(e) {
-            if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
-            window.location.href = target;
-        }
-        function keyActivate(e) {
-            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
-                e.preventDefault();
-                goSmart(e);
-            }
-        }
-        smartCard.addEventListener('click', goSmart);
-        smartCard.addEventListener('keydown', keyActivate);
-    })();
-
-    // NEW: wire up the Smart Home App card to open the Smart Home page (click + keyboard)
-    (function() {
-        const smartHomeCard = document.getElementById('smarthome-card');
-        if (!smartHomeCard) return;
-        const target = 'pages/smart_home.html';
-        function goSmartHome(e) {
-            if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
-            window.location.href = target;
-        }
-        function keyActivate(e) {
-            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
-                e.preventDefault();
-                goSmartHome(e);
-            }
-        }
-        smartHomeCard.addEventListener('click', goSmartHome);
-        smartHomeCard.addEventListener('keydown', keyActivate);
-    })();
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            mobileMenu.classList.remove('open');
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
 </script>
 </body>
 </html>

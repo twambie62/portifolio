@@ -43,7 +43,7 @@
         .header-tags span {
             background: #ededed;
             color: #2f2f2f;
-            border-radius: 8px;
+            border-radius: 6px;
             padding: 6px 10px;
             font-size: 13px;
             font-weight: 500;
@@ -148,6 +148,7 @@
             }
             .header-tags {
                 justify-content: flex-start;
+                margin-left: 0;
             }
             .header-row-2 {
                 grid-template-columns: 1fr;
@@ -180,26 +181,20 @@
             margin-bottom: 32px;
         }
         @media (min-width: 641px) {
-            .kwacha-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .kwacha-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
         .kwacha-card {
-
             background: transparent;
             border-radius: 14px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            /* removed shadow so images have no visible shadow */
             box-shadow: none;
             cursor: pointer;
             transition: box-shadow 0.2s, transform 0.2s;
             height: 480px;
             align-items: stretch;
         }
-
         .kwacha-card .kwacha-media {
             padding: 36px;
             box-sizing: border-box;
@@ -218,7 +213,6 @@
             border-radius: 14px;
             background: #F7F7F7;
             z-index: 1;
-            /* ensure placeholder has no shadow */
             box-shadow: none;
         }
         .kwacha-card .kwacha-media img {
@@ -232,13 +226,12 @@
             z-index: 2;
             transition: transform 0.6s cubic-bezier(0,0,0.2,1);
             background: transparent;
-            /* explicitly remove any image shadows */
             box-shadow: none;
         }
         .kwacha-card:hover .kwacha-media img { transform: scale(1.06); }
         .kwacha-card .kwacha-body {
             padding: 12px 14px;
-            display: none; /* hide body/title area as requested */
+            display: none;
             flex: 1 1 auto;
         }
         .kwacha-card.span {
@@ -251,10 +244,7 @@
             .kwacha-card .kwacha-media::before { inset: 10px; border-radius: 12px; }
             .kwacha-card .kwacha-media img { border-radius: 12px; }
             .kwacha-card.span { grid-column: auto; height: 360px; }
-
-            .kwacha-grid {
-                gap: 0;
-            }
+            .kwacha-grid { gap: 0; }
         }
 
         /* Top bar above title (as seen in top_bar.png) */
@@ -264,23 +254,20 @@
             justify-content: flex-start;
             gap: 12px;
             margin: 40px 6px 18px;
-            /* removed: cursor: pointer; */
         }
         .kwacha-topbar .circle {
-            width: 36px;
-            height: 36px;
+            width: 36px; height: 36px;
             border-radius: 50%;
             display: flex;
             border: 1px solid #e3e3e3;
             align-items: center;
             justify-content: center;
             transition: background 0.18s, border-color 0.08s;
-            cursor: pointer; /* only the interactive circle shows pointer */
+            cursor: pointer;
         }
         /* Ionicon sizing/color for rounded-stroke arrow */
         .kwacha-topbar .arrow {
-            width: 22px;
-            height: 22px;
+            width: 22px; height: 22px;
             color: #2f2f2f;
             transition: color 0.18s;
             display: inline-block;
@@ -293,7 +280,7 @@
             font-weight: 500;
             color: #6f6f6f;
             transition: color 0.18s;
-            cursor: pointer; /* text is interactive */
+            cursor: pointer;
         }
 
         /* NEW: bordered-only tag placed at the far right of the top bar */
@@ -366,13 +353,8 @@
             border-radius: 24px;
         }
         @media (max-width: 640px) {
-            .phone-frame {
-                width: 240px;
-                border-radius: 34px;
-            }
-            .phone-frame video {
-                border-radius: 24px;
-            }
+            .phone-frame { width: 240px; border-radius: 34px; }
+            .phone-frame video { border-radius: 24px; }
         }
 
     </style>
@@ -411,8 +393,12 @@
             </div>
         </div>
         <div class="header-right">
-            <div class="header-cell"></div>
-            <div class="header-cell"></div>
+            <div class="header-cell">
+                <img src="../assets/images/portifolio/smart_home/first_screen.png" alt="First Screen" />
+            </div>
+            <div class="header-cell">
+                <img src="../assets/images/portifolio/smart_home/main_screen_full.png" alt="Main Screen Full" />
+            </div>
         </div>
     </div>
 
@@ -463,10 +449,11 @@
         </div>
     </div>
 
+    <!-- Grid: reordered — main_screen_home second, first_screen last -->
     <div class="kwacha-grid">
         <div class="kwacha-card">
             <div class="kwacha-media">
-                <img src="../assets/images/portifolio/smart_home/first_screen.png" alt="First Screen" />
+                <img src="../assets/images/portifolio/smart_home/main_screen_full.png" alt="Main Screen Full" />
             </div>
             <div class="kwacha-body"></div>
         </div>
@@ -478,13 +465,13 @@
         </div>
         <div class="kwacha-card">
             <div class="kwacha-media">
-                <img src="../assets/images/portifolio/smart_home/main_screen_full.png" alt="Main Screen Full" />
+                <img src="../assets/images/portifolio/smart_home/main_screen_old_design.png" alt="Main Screen Old Design" />
             </div>
             <div class="kwacha-body"></div>
         </div>
         <div class="kwacha-card">
             <div class="kwacha-media">
-                <img src="../assets/images/portifolio/smart_home/main_screen_old_design.png" alt="Main Screen Old Design" />
+                <img src="../assets/images/portifolio/smart_home/first_screen.png" alt="First Screen" />
             </div>
             <div class="kwacha-body"></div>
         </div>
