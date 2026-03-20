@@ -693,7 +693,7 @@
             .processes-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 640px) {
-            .we-cards { padding-left: 0; }
+            .we-cards { padding-left: 0; padding-right: 0; }
             .we-card { padding: 18px 0; }
             .processes-grid { grid-template-columns: 1fr; gap: 10px; }
             .process-card { padding: 18px 16px 16px; }
@@ -946,16 +946,365 @@
                 gap: 10px;
                 padding: 0;
             }
-            .svc-card.tall { min-height: 300px; }
-            .svc-right-top { min-height: 200px; }
-            .svc-digital { min-height: 200px; }
+
+            /* Reset card layout: image on top, text below */
+            .svc-card {
+                flex-direction: column;
+                justify-content: flex-start;
+                min-height: auto !important;
+                height: auto !important;
+            }
+            .svc-card .svc-img {
+                position: static;
+                width: 50%;
+                height: auto;
+                margin: 16px 0 0 16px;
+                align-items: flex-start;
+                justify-content: flex-start;
+            }
+            .svc-card .svc-img img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                object-position: left top;
+            }
+            /* Hide the gradient overlay on mobile */
+            .svc-card::after {
+                display: none;
+            }
+            /* Text below the image, full width */
+            .svc-card .svc-text {
+                position: static;
+                max-width: 100%;
+                padding: 12px 16px 18px;
+                z-index: auto;
+            }
+
+            /* Tall cards (UI/UX) — match other cards on mobile */
+            .svc-card.tall .svc-img {
+                width: 55%;
+                height: auto;
+                top: auto; right: auto;
+            }
+
+            .svc-card.tall .svc-img.uiux {
+                width: 23%;
+                height: auto;
+                top: auto; right: auto;
+            }
+            .svc-card.tall .svc-text { max-width: 100%; }
+
+            .svc-right-top .svc-img {
+                margin-right: 0;
+                margin-top: 0;
+            }
+
+            .svc-digital .svc-img {
+                bottom: auto; right: auto;
+            }
+
+            .svc-app .svc-img {
+                margin-right: 0;
+                padding: 0;
+            }
+
+            /* Small cards in the split row — image top-left, text below */
             .svc-split { flex-direction: row; }
-            .svc-split .svc-card-sm { min-height: 150px; }
-            .svc-text { max-width: 65%; padding: 16px 16px; }
-            .svc-card.tall .svc-text { max-width: 90%; }
+            .svc-split .svc-card-sm {
+                min-height: auto;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+            .svc-split .svc-card-sm .svc-sm-img {
+                justify-content: flex-start;
+                padding: 12px 12px 0;
+                margin-top: 0;
+                order: -1;
+            }
+            .svc-split .svc-card-sm .svc-sm-text {
+                padding: 10px 12px 14px;
+            }
+
+            .svc-digital .svc-img {
+
+
+            padding-right: 60px;
+
+            }
         }
         @media (max-width: 420px) {
             .svc-split { flex-direction: column; }
+        }
+
+        /* ===== SKILLS SECTION ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 0 0 56px;
+            padding: 0 192px;
+        }
+
+        .skill-card {
+            position: relative;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 18px 18px 18px;
+
+        }
+
+        /* Dot pattern background fading to bottom-right */
+        .skill-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(0,0,0,0.12) 1px, transparent 1px);
+            background-size: 14px 14px;
+            -webkit-mask-image: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0) 70%);
+            mask-image: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .skill-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-card-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2.4rem;
+            font-weight: 400;
+            /*font-style: italic;*/
+            color: #c0c0c0;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .skill-card-icon {
+            width: 140px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            padding-left: 12px;
+        }
+        .skill-card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .skill-card-title {
+            position: relative;
+            z-index: 1;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .skill-card-desc {
+            position: relative;
+            z-index: 1;
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 900px) {
+            .skills-grid {
+                padding: 0;
+            }
+        }
+        @media (max-width: 640px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+                padding: 0;
+            }
+            .skill-card {
+                padding: 20px 18px 24px;
+            }
+            .skill-card-number { font-size: 2rem; }
+            .skill-card-icon { width: 140px; height: 140px; }
+        }
+
+        /* ===== WHY CHOOSE ME SECTION ===== */
+        .wcm-wrapper {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 48px 36px 44px;
+            margin: 0 0 56px;
+        }
+        .wcm-heading {
+            text-align: center;
+            font-size: clamp(1.6rem, 3vw + 0.5rem, 2.4rem);
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--text);
+            margin: 0 0 36px;
+        }
+        .wcm-heading .muted { color: #c0c0c0; }
+
+        /* Row 1: 3 equal columns */
+        .wcm-row-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        /* Row 2: 2 equal columns */
+        .wcm-row-bottom {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        /* Base card — white */
+        .wcm-card {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 24px 24px 20px;
+        }
+        .wcm-card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+            position: relative;
+            z-index: 1;
+        }
+        .wcm-card-desc {
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Card images */
+        .wcm-card-img {
+            margin-top: auto;
+            position: relative;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .wcm-card-img img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Popular Services — tool logos grid */
+        .wcm-popular .wcm-tools-logos {
+            display: grid;
+            grid-template-columns: repeat(4, 48px);
+            gap: 10px;
+            margin-top: 18px;
+            position: relative;
+            z-index: 1;
+        }
+        .wcm-tools-logos .tool-logo {
+            width: 48px;
+            height: 48px;
+            background: var(--card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 9px;
+        }
+        .wcm-tools-logos .tool-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Robust products — dark card */
+        .wcm-robust {
+            background: #0f0f0f;
+        }
+        .wcm-robust .wcm-card-title {
+            color: #ffffff;
+        }
+        .wcm-robust .wcm-card-desc {
+            color: rgba(255,255,255,0.5);
+        }
+        .wcm-robust .wcm-card-img {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .wcm-robust .wcm-card-img img {
+            width: 80%;
+            max-width: 200px;
+        }
+
+        /* Vast Knowledge — tags image */
+        .wcm-vast .wcm-card-img {
+            margin-top: 12px;
+        }
+        .wcm-vast .wcm-card-img img {
+            width: 100%;
+        }
+
+        /* Fast Execution */
+        .wcm-fast .wcm-card-img {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+        }
+        .wcm-fast .wcm-card-img img {
+            width: 90%;
+            max-width: 400px;
+            border-radius: 10px;
+        }
+
+        /* Collaboration */
+        .wcm-collab .wcm-card-img {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+        }
+        .wcm-collab .wcm-card-img img {
+            width: 90%;
+            max-width: 400px;
+        }
+
+        @media (max-width: 900px) {
+            .wcm-wrapper { padding: 32px 18px 28px; }
+            .wcm-row-top { grid-template-columns: 1fr 1fr 1fr; }
+        }
+        @media (max-width: 700px) {
+            .wcm-wrapper { padding: 28px 14px 24px; }
+            .wcm-row-top {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .wcm-row-bottom {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .wcm-card {
+                padding: 20px 18px 18px;
+            }
         }
 
         /* Contact */
@@ -1474,7 +1823,7 @@
 
             <!-- Left col row 1-2: UI/UX Design (tall) -->
             <div class="svc-card tall svc-uiux">
-                <div class="svc-img"><img src="assets/images/services/ui_ux.png" alt="UI/UX Design"></div>
+                <div class="svc-img uiux"><img src="assets/images/services/ui_ux.png" alt="UI/UX Design"></div>
                 <div class="svc-text">
                     <div class="svc-title">UI/UX design</div>
                     <div class="svc-desc">I craft intuitive interfaces and seamless user experiences, turning complex workflows into delightful, easy-to-use products.</div>
@@ -1495,7 +1844,7 @@
                 <div class="svc-card-sm">
                     <div class="svc-sm-text">
                         <div class="svc-sm-title">Brand Identity</div>
-                        <div class="svc-sm-desc">Cohesive logos, colour palettes, and visual guidelines that tell your story.</div>
+                        <div class="svc-sm-desc">Creating cohesive brand identities, from logos, posters and marketing materials to digital assets.</div>
                     </div>
                     <div class="svc-sm-img"><img src="assets/images/services/brand_identity.png" alt="Brand Identity"></div>
                 </div>
@@ -1522,8 +1871,156 @@
                 <div class="svc-img"><img src="assets/images/services/digital_strategy.png" alt="Digital Strategy"></div>
                 <div class="svc-text">
                     <div class="svc-title">Digital Strategy</div>
-                    <div class="svc-desc">End-to-end digital roadmaps — market research, content strategy, and conversion-focused user journeys.</div>
+                    <div class="svc-desc">End-to-end digital roadmaps research, content strategy, and conversion-focused user journeys.</div>
                 </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-label"><span class="dot"></span>Skills</div>
+
+        <div class="skills-grid">
+
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <span class="skill-card-number">01</span>
+                    <div class="skill-card-icon"><img src="assets/images/skills/ui_ux.svg" alt="UI/UX Design"></div>
+                </div>
+                <div class="skill-card-title">UI/UX design</div>
+                <div class="skill-card-desc">Designing intuitive, modern interfaces user flows, wireframes, and polished UI that feels smooth, clear, and conversion-focused.</div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <span class="skill-card-number">02</span>
+                    <div class="skill-card-icon"><img src="assets/images/skills/graphic_design.svg" alt="Graphic Design"></div>
+                </div>
+                <div class="skill-card-title">Graphic design</div>
+                <div class="skill-card-desc">Creating compelling visual content including logos, posters, marketing materials, and brand assets that communicate effectively.</div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <span class="skill-card-number">03</span>
+                    <div class="skill-card-icon"><img src="assets/images/skills/app_development.svg" alt="App Development"></div>
+                </div>
+                <div class="skill-card-title">App development</div>
+                <div class="skill-card-desc">Building cross-platform mobile applications from concept to deployment using Flutter, React Native, and native Android development.</div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <span class="skill-card-number">04</span>
+                    <div class="skill-card-icon"><img src="assets/images/skills/web_developement.svg" alt="Web Development"></div>
+                </div>
+                <div class="skill-card-title">Web development</div>
+                <div class="skill-card-desc">Crafting fast, accessible, and SEO-friendly websites with modern frameworks, clean code, and responsive layouts.</div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <span class="skill-card-number">05</span>
+                    <div class="skill-card-icon"><img src="assets/images/skills/ai_and_machine_learning.svg" alt="AI and Machine Learning"></div>
+                </div>
+                <div class="skill-card-title">AI and Machine learning</div>
+                <div class="skill-card-desc">Integrating intelligent features using machine learning models, natural language processing, and data-driven decision making.</div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <span class="skill-card-number">06</span>
+                    <div class="skill-card-icon"><img src="assets/images/skills/iot.svg" alt="IOT & Embedded Systems"></div>
+                </div>
+                <div class="skill-card-title">IOT &amp; Embedded systems</div>
+                <div class="skill-card-desc">Designing and programming connected devices, sensor networks, and embedded firmware for smart hardware solutions.</div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <span class="skill-card-number">07</span>
+                    <div class="skill-card-icon"><img src="assets/images/skills/cyber_security.svg" alt="Cyber Security"></div>
+                </div>
+                <div class="skill-card-title">Cyber Security</div>
+                <div class="skill-card-desc">Implementing secure architectures, vulnerability assessments, and best practices to protect applications and data from threats.</div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <span class="skill-card-number">08</span>
+                    <div class="skill-card-icon"><img src="assets/images/skills/3d_modeling.svg" alt="3D Modeling"></div>
+                </div>
+                <div class="skill-card-title">3d Modeling</div>
+                <div class="skill-card-desc">Creating detailed 3D assets, environments, and product visualizations for games, apps, and marketing presentations.</div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <span class="skill-card-number">09</span>
+                    <div class="skill-card-icon"><img src="assets/images/skills/motion_graphics.svg" alt="Motion Graphics"></div>
+                </div>
+                <div class="skill-card-title">Motion Graphics</div>
+                <div class="skill-card-desc">Producing dynamic animations, video effects, and motion design for engaging digital content and storytelling.</div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="why-choose-me">
+        <div class="wcm-wrapper">
+            <div class="wcm-heading">Many Reasons why you<br>Should <span class="muted">Choose Me</span></div>
+
+            <!-- Row 1: 3 cards -->
+            <div class="wcm-row-top">
+
+                <!-- Popular Services -->
+                <div class="wcm-card wcm-popular">
+                    <div class="wcm-card-title">Popular Services</div>
+                    <div class="wcm-card-desc">I map flows, sketch ideas and design</div>
+                    <div class="wcm-tools-logos">
+                        <div class="tool-logo"><img src="assets/images/choose_me/figma_logo.svg" alt="Figma"></div>
+                        <div class="tool-logo"><img src="assets/images/choose_me/vscode_logo.svg" alt="VS Code"></div>
+                        <div class="tool-logo"><img src="assets/images/choose_me/photoshop_logo.svg" alt="Photoshop"></div>
+                        <div class="tool-logo"><img src="assets/images/choose_me/webflow_logo.svg" alt="Webflow"></div>
+                        <div class="tool-logo"><img src="assets/images/choose_me/webflow_logo.svg" alt="Webflow"></div>
+                        <div class="tool-logo"><img src="assets/images/choose_me/apple_logo.svg" alt="Apple"></div>
+                        <div class="tool-logo"><img src="assets/images/choose_me/framer_logo.svg" alt="Framer"></div>
+                    </div>
+                </div>
+
+                <!-- Robust Products (dark card) -->
+                <div class="wcm-card wcm-robust">
+                    <div class="wcm-card-title">Robust products</div>
+                    <div class="wcm-card-img"><img src="assets/images/choose_me/robust.png" alt="Robust Products"></div>
+                </div>
+
+                <!-- Vast Knowledge -->
+                <div class="wcm-card wcm-vast">
+                    <div class="wcm-card-title">Vast Knowledge</div>
+                    <div class="wcm-card-desc">Finish projects on time with precision</div>
+                    <div class="wcm-card-img"><img src="assets/images/choose_me/vast_knowledge.svg" alt="Vast Knowledge"></div>
+                </div>
+
+            </div>
+
+            <!-- Row 2: 2 cards -->
+            <div class="wcm-row-bottom">
+
+                <!-- Fast Execution -->
+                <div class="wcm-card wcm-fast">
+                    <div class="wcm-card-title">Fast Execution</div>
+                    <div class="wcm-card-desc">Finish projects on time with precision</div>
+                    <div class="wcm-card-img"><img src="assets/images/choose_me/fast_execution.png" alt="Fast Execution"></div>
+                </div>
+
+                <!-- Collaboration -->
+                <div class="wcm-card wcm-collab">
+                    <div class="wcm-card-title">Collaboration</div>
+                    <div class="wcm-card-desc">Finish projects on time with precision</div>
+                    <div class="wcm-card-img"><img src="assets/images/choose_me/collaboration.png" alt="Collaboration"></div>
+                </div>
+
             </div>
 
         </div>
