@@ -1141,6 +1141,9 @@
         }
 
         /* ===== WHY CHOOSE ME SECTION ===== */
+        #why-choose-me {
+            margin: 0 100px;
+        }
         .wcm-heading {
             text-align: center;
             font-size: clamp(1.6rem, 3vw + 0.5rem, 2.4rem);
@@ -1154,7 +1157,7 @@
             background: var(--card);
             border-radius: 24px;
             padding: 12px 12px 12px;
-            margin: 0 100px 56px;
+            margin: 0 0 56px;
         }
 
         /* Row 1: 3 equal columns */
@@ -1172,7 +1175,7 @@
             gap: 14px;
         }
 
-        /* Base card — white */
+        /* Base card — white with faint grey border */
         .wcm-card {
             background: #ffffff;
             border-radius: 16px;
@@ -1181,7 +1184,7 @@
             display: flex;
             flex-direction: column;
             padding: 20px 20px 4px;
-            border: 1px solid #e5e5e5;
+            border: 1px solid #EBEBEB;
         }
         .wcm-card-title {
             font-size: 1.05rem;
@@ -1212,29 +1215,77 @@
             height: auto;
         }
 
-        /* Popular Services — tool logos grid */
-        .wcm-popular .wcm-tools-logos {
-            display: grid;
-            grid-template-columns: repeat(4, 48px);
-            gap: 10px;
-            margin-top: 50px;
-            align-self: center;
-            align-items: center;
+        /* Popular Services — animated marquee rows */
+        .wcm-popular {
+            padding-bottom: 24px;
+        }
+        .wcm-popular-marquees {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             position: relative;
             z-index: 1;
+            padding-top: 16px;
         }
-        .wcm-tools-logos .tool-logo {
+        .wcm-icon-marquee {
+            width: 100%;
+            /*overflow: hidden;*/
+            position: relative;
+        }
+        .wcm-icon-marquee::before,
+        .wcm-icon-marquee::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 40px;
+
+            pointer-events: none;
+            z-index: 3;
+        }
+        .wcm-icon-marquee::before {
+            left: -21px;
+
+            background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0) 100%);
+        }
+        .wcm-icon-marquee::after {
+            right: -21px;
+            background: linear-gradient(270deg, #ffffff 0%, rgba(255,255,255,0) 100%);
+        }
+        .wcm-icon-track {
+            display: flex;
+            align-items: center;
+            will-change: transform;
+            animation: marquee 14s linear infinite;
+            gap: 12px;
+        }
+        .wcm-icon-track-rtl {
+            display: flex;
+            align-items: center;
+            will-change: transform;
+            animation: marquee-rtl 14s linear infinite;
+            gap: 10px;
+        }
+        .wcm-icon-group {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex: 0 0 auto;
+        }
+        .wcm-icon-item {
+            flex: 0 0 auto;
             width: 48px;
             height: 48px;
             background: #ffffff;
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 9px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
         }
-        .wcm-tools-logos .tool-logo img {
+        .wcm-icon-item img {
             width: 100%;
             height: 100%;
             object-fit: contain;
@@ -1270,54 +1321,137 @@
             width: 100%;
         }
 
-        /* Fast Execution */
+        /* Fast Execution — image touches the bottom of the card */
         .wcm-fast {
             padding-bottom: 0;
         }
         .wcm-fast .wcm-card-img {
             margin-top: 16px;
+            margin-bottom: 0;
             display: flex;
-            justify-content: flex-start;
-            align-content: flex-end;
-            align-self: flex-end;
-            margin-right: -16px;
+            justify-content: center;
+            align-items: flex-end;
         }
         .wcm-fast .wcm-card-img img {
             width: 100%;
             max-width: 364px;
             border-radius: 10px 10px 0 0;
-            display: flex;
-            justify-content: flex-start;
-            align-content: flex-end;
-            align-self: flex-end;
-            margin-right: -16px;
-
+            display: block;
         }
 
-        /* Collaboration */
+        /* Collaboration — image stretches edge to edge */
         .wcm-collab {
             padding-bottom: 0;
         }
         .wcm-collab .wcm-card-img {
             display: flex;
-            margin: 16px -24px 14px;
+            margin: 16px -20px 0;
             justify-content: center;
         }
         .wcm-collab .wcm-card-img img {
             width: 100%;
         }
 
-        @media (max-width: 900px) {
+        /* ===== TOOLS SECTION — floating icons around centered text ===== */
+        .tools-section {
+            position: relative;
+            /*min-height: 432px;*/
+            min-height: 492px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 64px 56px;
+            /*overflow: hidden;*/
+        }
+        .tools-center-text {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 420px;
+            padding: 0px 0px;
+        }
+        .tools-center-text h2 {
+            font-size: clamp(1.4rem, 2.5vw + 0.5rem, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text);
+            margin: 0 0 12px;
+        }
+        .tools-center-text h2 .muted {
+            color: #c0c0c0;
+        }
+        .tools-center-text p {
+            font-size: 0.84rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+        /* Floating tool icons */
+        .tools-float-icon {
+            position: absolute;
+            z-index: 1;
+            width: 60px;
+            height: 60px;
+            background: #ffffff;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            border: 1px solid #F2F2F2;
+        }
+        .tools-float-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        /* Positions for 8 icons scattered around center text */
+        .tools-float-icon:nth-child(1) { top: 1%;  left: 16%; }      /* Figma — top left */
+        .tools-float-icon:nth-child(2) { top: 1%;  right: 16%; }     /* Illustrator — top right */
+        .tools-float-icon:nth-child(3) { top: 32%; left: 6%; }       /* Blender — mid left */
+        .tools-float-icon:nth-child(4) { top: 32%; right: 6%; }      /* Android Studio — mid right */
+        .tools-float-icon:nth-child(5) { bottom: 24%; left: 6.1%; }    /* After Effects — lower left */
+        .tools-float-icon:nth-child(6) { bottom: 24%; right: 6.1%; }   /* Expo — lower right */
+        .tools-float-icon:nth-child(7) { bottom: -4%;  left: 16%; }   /* Photoshop — bottom left */
+        .tools-float-icon:nth-child(8) { bottom: -4%;  right: 16%; }  /* VS Code — bottom right */
 
-            .wcm-wrapper {
-                padding: 32px 18px 28px;
-                margin: 0 0px 56px;
+        @media (max-width: 700px) {
+            .tools-section {
+                min-height: 392px;
+                margin: 0 4px 56px;
+
+                            }
+            .tools-float-icon {
+                width: 48px;
+                height: 48px;
+                padding: 8px;
+                border-radius: 12px;
             }
+            .tools-float-icon:nth-child(1) { top: -4%;  left: 26%; }      /* Figma — top left */
+            .tools-float-icon:nth-child(2) { top: -4%;  right: 26%; }     /* Illustrator — top right */
+            .tools-float-icon:nth-child(3) { top: 14%; left: 4%; }       /* Blender — mid left */
+            .tools-float-icon:nth-child(4) { top: 14%; right: 4%; }      /* Android Studio — mid right */
+            .tools-float-icon:nth-child(5) { bottom: 21%; left: 4%; }    /* After Effects — lower left */
+            .tools-float-icon:nth-child(6) { bottom: 21%; right: 4%; }   /* Expo — lower right */
+            .tools-float-icon:nth-child(7) { bottom: 2%;  left: 26%; }   /* Photoshop — bottom left */
+            .tools-float-icon:nth-child(8) { bottom: 2%;  right: 26%; }
+        }
+
+        @media (max-width: 900px) {
+            #why-choose-me {
+                margin: 0;
+            }
+            .wcm-wrapper {
+                padding: 12px;
+                margin: 0 0 56px;
+            }
+
             .wcm-row-top { grid-template-columns: 1fr 1fr 1fr; }
         }
         @media (max-width: 700px) {
             .wcm-wrapper {
-                padding: 28px 14px 24px;
+                padding: 10px;
                 margin: 0 0 56px;
             }
             .wcm-row-top {
@@ -1332,7 +1466,7 @@
                 padding: 20px 18px 18px;
             }
             .wcm-collab {
-                padding-bottom: 0;
+                padding-bottom: 20px;
             }
             .wcm-collab .wcm-card-img {
                 margin-left: -18px;
@@ -1340,6 +1474,274 @@
             }
             .wcm-fast {
                 padding-bottom: 0;
+            }
+
+            .wcm-popular {
+                padding-bottom: 28px;
+            }
+            .wcm-popular-marquees {
+
+                padding-top: 64px;
+            }
+
+            .wcm-icon-item {
+                flex: 0 0 auto;
+                width: 56px;
+                height: 56px;
+                background: #ffffff;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 8px;
+                box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            }
+        }
+
+        /* ===== ABOUT ME SECTION ===== */
+        .about-me-section {
+            margin: 0 106px 56px;
+        }
+        .about-me-heading {
+            text-align: center;
+            margin: 20px 0 28px;
+        }
+        .about-me-heading h2 {
+            font-size: clamp(1.4rem, 2.5vw + 0.5rem, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0;
+            color: var(--text);
+        }
+        .about-me-heading h2 .muted {
+            color: #c0c0c0;
+        }
+
+        /* Bio card: image left, text right */
+        .about-me-bio {
+            display: flex;
+            gap: 24px;
+            align-items: stretch;
+            margin-bottom: 20px;
+        }
+        .about-me-img {
+            flex: 0 0 46%;
+            max-width: 46%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--card);
+            display: flex;
+            align-self: center;
+            align-items: center;
+            justify-content: center;
+        }
+        .about-me-img img {
+            padding-top: 20px;
+            width: 60%;
+            /*height: 50%;*/
+            object-fit: cover;
+            display: block;
+            border-radius: 8px;
+
+
+        }
+        .about-me-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 14px;
+            margin-right: 48px;
+        }
+        .about-me-text p {
+            font-size: 0.84rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+        .about-me-text p strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* Stats row */
+        .about-me-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border: 1px solid var(--border);
+            border-radius: 0px 0px 0 0;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+        .about-me-stat {
+            text-align: center;
+            padding: 48px 12px;
+            border-right: 1px solid var(--border);
+        }
+        .about-me-stat:last-child {
+            border-right: none;
+        }
+        .about-me-stat .stat-number {
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.2;
+        }
+        .about-me-stat .stat-label {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        /* Bottom bar: avatars + stars + marquee */
+        .about-me-bottom {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 0px 0px;
+            padding: 14px 18px;
+            margin-top: -1px;
+            overflow: hidden;
+        }
+        .about-me-clients {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 0 0 auto;
+        }
+        .about-me-avatars {
+            display: flex;
+            margin-top: 16px;
+        }
+        .about-me-avatars img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            object-fit: cover;
+            margin-left: -8px;
+        }
+        .about-me-avatars img:first-child {
+            margin-left: 0;
+        }
+        .about-me-clients-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+        .about-me-stars {
+            display: flex;
+            gap: 1px;
+            font-size: 14px;
+            color: #f3b13f;
+            margin-top: 16px;
+        }
+        .about-me-stars .star-empty {
+            color: #d0d0d0;
+        }
+        .about-me-clients-label {
+            font-size: 0.72rem;
+            color: var(--muted);
+        }
+        .about-me-clients-label strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* About Me Marquee */
+        .about-marquee-wrap {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            min-width: 0;
+            margin-top: 20px;
+            margin-bottom: 12px;
+
+        }
+        .about-marquee-wrap::before,
+        .about-marquee-wrap::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            pointer-events: none;
+            z-index: 3;
+        }
+        .about-marquee-wrap::before {
+            left: 0;
+            background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0) 100%);
+        }
+        .about-marquee-wrap::after {
+            right: 0;
+            background: linear-gradient(270deg, #fff 0%, rgba(255,255,255,0) 100%);
+        }
+        .about-marquee-track {
+            display: flex;
+            align-items: center;
+            will-change: transform;
+            animation: aboutMarquee 18s linear infinite;
+            gap: 44px;
+        }
+        .about-marquee-group {
+            display: flex;
+            gap: 44px;
+            align-items: center;
+            flex: 0 0 auto;
+        }
+        .about-marquee-item {
+            font-size: 0.84rem;
+            font-weight: 500;
+            color: var(--muted);
+            white-space: nowrap;
+            flex: 0 0 auto;
+        }
+        @keyframes aboutMarquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        .about-marquee-wrap:hover .about-marquee-track {
+            animation-play-state: paused;
+        }
+
+        @media (max-width: 700px) {
+            .about-me-section {
+                margin: 0 8px 56px;
+            }
+            .about-me-text {
+                margin-right: 0;
+            }
+            .about-me-bio {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .about-me-img {
+                flex: none;
+                max-width: 100%;
+                width: 100%;
+                height: 392px;
+            }
+            .about-me-stats {
+                grid-template-columns: 1fr;
+            }
+            .about-me-stat {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 48px 12px;
+            }
+            .about-me-stat:last-child {
+                border-bottom: none;
+            }
+            .about-me-bottom {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+
+            }
+            .about-marquee-wrap {
+                margin-top: 0;
             }
         }
 
@@ -2014,14 +2416,57 @@
                 <div class="wcm-card wcm-popular">
                     <div class="wcm-card-title">Popular Services</div>
                     <div class="wcm-card-desc">I map flows, sketch ideas and design</div>
-                    <div class="wcm-tools-logos">
-                        <div class="tool-logo"><img src="assets/images/choose_me/figma_logo.svg" alt="Figma"></div>
-                        <div class="tool-logo"><img src="assets/images/choose_me/vscode_logo.svg" alt="VS Code"></div>
-                        <div class="tool-logo"><img src="assets/images/choose_me/photoshop_logo.svg" alt="Photoshop"></div>
-                        <div class="tool-logo"><img src="assets/images/choose_me/webflow_logo.svg" alt="Webflow"></div>
-                        <div class="tool-logo"><img src="assets/images/choose_me/webflow_logo.svg" alt="Webflow"></div>
-                        <div class="tool-logo"><img src="assets/images/choose_me/apple_logo.svg" alt="Apple"></div>
-                        <div class="tool-logo"><img src="assets/images/choose_me/framer_logo.svg" alt="Framer"></div>
+                    <div class="wcm-popular-marquees">
+                        <!-- First line: moves left -->
+                        <div class="wcm-icon-marquee">
+                            <div class="wcm-icon-track">
+                                <div class="wcm-icon-group">
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/android_logo.svg" alt="Android"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/expo.svg" alt="Expo"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/figma_logo.svg" alt="Figma"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/framer.svg" alt="Framer"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/postman.svg" alt="Postman"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/vite.svg" alt="Vite"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/webflow.svg" alt="Webflow"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/wordpress.svg" alt="WordPress"></div>
+                                </div>
+                                <div class="wcm-icon-group" aria-hidden="true">
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/android_logo.svg" alt="Android"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/expo.svg" alt="Expo"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/figma_logo.svg" alt="Figma"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/framer.svg" alt="Framer"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/postman.svg" alt="Postman"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/vite.svg" alt="Vite"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/webflow.svg" alt="Webflow"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/wordpress.svg" alt="WordPress"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Second line: moves right -->
+                        <div class="wcm-icon-marquee">
+                            <div class="wcm-icon-track-rtl">
+                                <div class="wcm-icon-group">
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/docker.svg" alt="Docker"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/firebase.svg" alt="Firebase"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/git.svg" alt="Git"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/github.svg" alt="GitHub"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/node_js.svg" alt="Node.js"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/superbase.svg" alt="Supabase"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/tailwind.svg" alt="Tailwind"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/varcel.svg" alt="Vercel"></div>
+                                </div>
+                                <div class="wcm-icon-group" aria-hidden="true">
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/docker.svg" alt="Docker"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/firebase.svg" alt="Firebase"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/git.svg" alt="Git"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/github.svg" alt="GitHub"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/node_js.svg" alt="Node.js"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/superbase.svg" alt="Supabase"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/tailwind.svg" alt="Tailwind"></div>
+                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/varcel.svg" alt="Vercel"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -2059,6 +2504,104 @@
 
             </div>
 
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools-section" class="tools-section">
+        <!-- Floating tool icons -->
+        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/figma.svg" alt="Figma"></div>
+        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/illustrator.svg" alt="Illustrator"></div>
+        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/blender.svg" alt="Blender"></div>
+        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/android_studio.svg" alt="Android Studio"></div>
+        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/after_effects.svg" alt="After Effects"></div>
+        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/expo.svg" alt="Expo"></div>
+        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/photoshop.svg" alt="Photoshop"></div>
+        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/vscode.svg" alt="VS Code"></div>
+        <!-- Center text -->
+        <div class="tools-center-text">
+            <h2>A Collection of Tools I Use to Bring<span class="muted"> Ideas to Life</span></h2>
+            <p>Designing &amp; Developing — Meet the Tools That Make It Happen</p>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <div class="section-label"><span class="dot"></span>About me</div>
+    <section id="about-me" class="about-me-section">
+
+
+        <div class="about-me-heading">
+            <h2>Building experiences that<br>solve <span class="muted">real problems</span></h2>
+        </div>
+
+        <!-- Bio card -->
+        <div class="about-me-bio">
+            <div class="about-me-img">
+                <img src="assets/images/about_me/twambi.png" alt="Twambi">
+            </div>
+            <div class="about-me-text">
+                <p><strong>I'm Twambi a full-stack software developer and Electronics &amp; Computer Engineering Graduate</strong> at MUBAS, building technology that actually matters.</p>
+                <p></p>
+                <p><strong>By day, I craft mobile and web experiences at Tech265, a Malawian IT company</strong>. My work spans the full stack, from clean, intuitive frontends to robust backend systems.</p>
+                <p></p>
+
+                <p><strong>My academic journey in Electronics and Computer Science</strong> has sharpened more than just my coding skills, it has given me a deep appreciation for how hardware and software intersect to solve real-world problems.</p>
+                <p></p>
+
+                <p><strong>That curiosity drives everything I build.</strong> Beyond the day job, I'm passionate about renewable energy, IoT, and sustainable technology.</p>
+            </div>
+        </div>
+
+        <!-- Stats row -->
+        <div class="about-me-stats">
+            <div class="about-me-stat">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="about-me-stat">
+                <div class="stat-number">6+</div>
+                <div class="stat-label">Years of experience</div>
+            </div>
+            <div class="about-me-stat">
+                <div class="stat-number">99%</div>
+                <div class="stat-label">Customer satisfaction</div>
+            </div>
+        </div>
+
+        <!-- Bottom bar: avatars + stars + marquee -->
+        <div class="about-me-bottom">
+            <div class="about-me-clients">
+                <div class="about-me-avatars">
+                    <img src="assets/images/about_me/person_1.png" alt="Client 1">
+                    <img src="assets/images/about_me/person_2.png" alt="Client 2">
+                    <img src="assets/images/about_me/person_3.png" alt="Client 3">
+                    <img src="assets/images/about_me/person_4.png" alt="Client 4">
+                </div>
+                <div class="about-me-clients-info">
+                    <div class="about-me-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span class="star-empty">★</span>
+                    </div>
+                    <div class="about-me-clients-label"><strong>10+</strong> clients satisfied</div>
+                </div>
+            </div>
+            <div class="about-marquee-wrap">
+                <div class="about-marquee-track">
+                    <div class="about-marquee-group">
+                        <span class="about-marquee-item">Tech 265</span>
+                        <span class="about-marquee-item">Fast kwacha</span>
+                        <span class="about-marquee-item">JPI</span>
+                        <span class="about-marquee-item">GreenTech</span>
+                        <span class="about-marquee-item">Influencer Malawi</span>
+                    </div>
+                    <div class="about-marquee-group">
+                        <span class="about-marquee-item">Tech 265</span>
+                        <span class="about-marquee-item">Fast kwacha</span>
+                        <span class="about-marquee-item">JPI</span>
+                        <span class="about-marquee-item">GreenTech</span>
+                        <span class="about-marquee-item">Influencer Malawi</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
