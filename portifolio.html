@@ -336,19 +336,22 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
-            margin: 12px 0 40px;
-            padding: 0 80px;
+            margin: 12px -16px 40px;
+            padding: 0 64px;
         }
         @media (min-width: 641px) {
             .projects {
                 padding: 0 80px;
                 grid-template-columns: repeat(2, 1fr);
+                margin: 12px 0 40px;
             }
         }
 
         @media (max-width: 960px) {
             .projects {
                 padding: 0 20px;
+                margin: 12px 0 40px;
+
                 /*grid-template-columns: repeat(2, 1fr);*/
             }
         }
@@ -378,7 +381,7 @@
 
         /* Card media area */
         .card-media {
-            padding: 24px;
+            padding: 28px;
             box-sizing: border-box;
             display: flex;
             align-items: center;
@@ -386,7 +389,7 @@
             flex-shrink: 0;
             position: relative;
             background: transparent;
-            height: 280px;
+            height: 348px;
             overflow: hidden;
         }
         .card-media::before {
@@ -491,7 +494,7 @@
 
         /* Mobile card sizing */
         @media (max-width: 640px) {
-            .card-media { height: 200px; padding: 16px; }
+            .card-media { height: 224px; padding: 20px; }
             .card-media::before { inset: 8px; border-radius: 10px; }
             .card-media img { border-radius: 10px; }
             .card-arrow { top: 14px; right: 14px; width: 32px; height: 32px; }
@@ -1040,9 +1043,9 @@
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 16px;
             margin: 0 0 56px;
-            padding: 0 192px;
+            padding: 0 210px;
         }
 
         .skill-card {
@@ -1065,7 +1068,7 @@
             background-image: radial-gradient(circle, rgba(0,0,0,0.12) 1px, transparent 1px);
             background-size: 14px 14px;
             -webkit-mask-image: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0) 70%);
-            mask-image: linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 80%);
+            mask-image: linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 37%, rgba(0,0,0,0) 80%);
             pointer-events: none;
             z-index: 0;
         }
@@ -1742,6 +1745,298 @@
             }
             .about-marquee-wrap {
                 margin-top: 0;
+            }
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials-section {
+            margin: 0 106px 56px;
+        }
+        .testimonials-heading {
+            text-align: center;
+            margin: 20px 0 28px;
+        }
+        .testimonials-heading h2 {
+            font-size: clamp(1.4rem, 2.5vw + 0.5rem, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0;
+            color: var(--text);
+        }
+        .testimonials-heading h2 .muted {
+            color: #c0c0c0;
+        }
+        .testimonials-cards-wrap {
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonials-cards-wrap::before,
+        .testimonials-cards-wrap::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            pointer-events: none;
+            z-index: 3;
+        }
+        .testimonials-cards-wrap::before {
+            left: 0;
+            background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0) 100%);
+        }
+        .testimonials-cards-wrap::after {
+            right: 0;
+            background: linear-gradient(270deg, #fff 0%, rgba(255,255,255,0) 100%);
+        }
+        .testimonials-cards-track {
+            display: flex;
+            gap: 20px;
+            will-change: transform;
+            animation: testimonialMarquee 30s linear infinite;
+            width: max-content;
+            cursor: grab;
+        }
+        .testimonials-cards-track:active {
+            cursor: grabbing;
+        }
+        .testimonials-cards-wrap:hover .testimonials-cards-track {
+            /*animation-play-state: paused;*/
+        }
+        @keyframes testimonialMarquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        .testimonial-card {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 16px 24px 24px;
+            min-width: 272px;
+            max-width: 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            flex: 0 0 auto;
+        }
+        .testimonial-card .testimonial-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .testimonial-card .quote-icon {
+            width: 44px;
+            height: 44px;
+            opacity: 0.6;
+        }
+        .testimonial-stars {
+            display: flex;
+            gap: 2px;
+            font-size: 16px;
+            color: #f3b13f;
+        }
+        .testimonial-card .testimonial-text {
+            font-size: 0.84rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0;
+            flex: 1;
+        }
+        .testimonial-person {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        .testimonial-person img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .testimonial-person-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .testimonial-person-info .name {
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .testimonial-person-info .role {
+            font-size: 0.72rem;
+            color: var(--muted);
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            margin: 0 64px 56px;
+        }
+        .faq-layout {
+            display: flex;
+            gap: 112px;
+            align-items: flex-start;
+        }
+        .faq-left {
+            flex: 0 0 36%;
+            max-width: 36%;
+        }
+        .faq-left h2 {
+            font-size: clamp(1.4rem, 2.5vw + 0.5rem, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 20px 0 16px;
+            color: var(--text);
+        }
+        .faq-left h2 .muted {
+            color: #c0c0c0;
+        }
+        .faq-left p {
+            font-size: 0.84rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+        .faq-right {
+            margin-top: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            background: #E6E6E6;
+            border-radius: 14px;
+            padding: 4px;
+        }
+        .faq-item {
+            cursor: pointer;
+            transition: background 0.18s, box-shadow 0.18s;
+            background: #fff;
+            border-radius: 12px;
+            border: none;
+            overflow: hidden;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-item:hover {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .faq-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 18px;
+        }
+        .faq-item-header span {
+            font-size: 0.88rem;
+            color: var(--text);
+        }
+        .faq-item .faq-plus {
+            font-size: 1.2rem;
+            color: var(--muted);
+            flex: 0 0 auto;
+            margin-left: 12px;
+            transition: transform 0.3s ease;
+        }
+        .faq-item.open .faq-plus {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 18px;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 18px 16px;
+        }
+        .faq-answer p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ===== QUOTE SECTION ===== */
+        .quote-section {
+            margin: 40px 106px 56px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .quote-section .quote-icon-large {
+            width: 68px;
+            height: 68px;
+            opacity: 0.7;
+            margin-bottom: 16px;
+        }
+
+        .quote-section .quote-icon-large.start-quote {
+            /*transform: rotate(180deg);*/
+            margin-top: 16px;
+            margin-bottom: 8px;
+            align-self: flex-start;
+        }
+
+        .quote-section .quote-icon-large.end-quote {
+            transform: rotate(180deg);
+            margin-top: 16px;
+            margin-bottom: 0;
+            align-self: flex-end;
+        }
+        .quote-section .quote-text {
+            font-size: clamp(1.6rem, 3.5vw + 0.5rem, 2.9rem);
+            font-weight: 800;
+            line-height: 1.35;
+            margin: 0;
+            color: var(--text);
+            max-width: 700px;
+        }
+        .quote-section .quote-text .muted {
+            color: #c0c0c0;
+        }
+        .quote-section .btn {
+            margin-top: 28px;
+        }
+        .quote-section .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+            box-shadow: none;
+            font-weight: 500;
+            border-radius: 30px;
+            padding: 12px 24px;
+            font-size: 0.9rem;
+        }
+        .quote-section .btn-outline:hover {
+            background: var(--card);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 700px) {
+            .testimonials-section {
+                margin: 0 8px 56px;
+            }
+            .testimonial-card {
+                min-width: 260px;
+                max-width: 280px;
+            }
+            .faq-section {
+                margin: 0 8px 56px;
+            }
+            .faq-layout {
+                flex-direction: column;
+                gap: 24px;
+            }
+            .faq-left {
+                flex: none;
+                max-width: 100%;
+            }
+            .quote-section {
+                margin: 40px 8px 56px;
             }
         }
 
@@ -2605,6 +2900,181 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <div class="section-label"><span class="dot"></span>Testimonials</div>
+    <section id="testimonials" class="testimonials-section">
+        <div class="testimonials-heading">
+            <h2>Hear what other people<br>say <span class="muted">about me</span></h2>
+        </div>
+
+        <div class="testimonials-cards-wrap">
+            <div class="testimonials-cards-track">
+                <!-- Group 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-top-row">
+                        <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+                        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    </div>
+                    <p class="testimonial-text">An exceptional developer who truly understands both design and functionality. The attention to detail in UI/UX and the quality of the final product exceeded expectations.</p>
+                    <div class="testimonial-person">
+                        <img src="assets/images/about_me/person_1.png" alt="John Makungwa">
+                        <div class="testimonial-person-info">
+                            <span class="name">John Makungwa</span>
+                            <span class="role">CEO of Tech 265</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-top-row">
+                        <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+                        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    </div>
+                    <p class="testimonial-text">Delivers a seamless mobile application with impressive performance and a polished user experience. Communication was clear, and every milestone was met</p>
+                    <div class="testimonial-person">
+                        <img src="assets/images/about_me/person_2.png" alt="Joseph Justin">
+                        <div class="testimonial-person-info">
+                            <span class="name">Joseph Justin</span>
+                            <span class="role">CEO of Green Tech</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-top-row">
+                        <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+                        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    </div>
+                    <p class="testimonial-text">A rare combination of technical expertise and design thinking. The ability to translate complex ideas into intuitive interfaces is outstanding</p>
+                    <div class="testimonial-person">
+                        <img src="assets/images/about_me/person_3.png" alt="Thomson Thawani">
+                        <div class="testimonial-person-info">
+                            <span class="name">Thomson Thawani</span>
+                            <span class="role">Visual Designer at Tech265</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Group 2 (duplicate for marquee) -->
+                <div class="testimonial-card">
+                    <div class="testimonial-top-row">
+                        <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+                        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    </div>
+                    <p class="testimonial-text">An exceptional developer who truly understands both design and functionality. The attention to detail in UI/UX and the quality of the final product exceeded expectations.</p>
+                    <div class="testimonial-person">
+                        <img src="assets/images/about_me/person_1.png" alt="John Makungwa">
+                        <div class="testimonial-person-info">
+                            <span class="name">John Makungwa</span>
+                            <span class="role">CEO of Tech 265</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-top-row">
+                        <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+                        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    </div>
+                    <p class="testimonial-text">Delivers a seamless mobile application with impressive performance and a polished user experience. Communication was clear, and every milestone was met</p>
+                    <div class="testimonial-person">
+                        <img src="assets/images/about_me/person_2.png" alt="Joseph Justin">
+                        <div class="testimonial-person-info">
+                            <span class="name">Joseph Justin</span>
+                            <span class="role">CEO of Green Tech</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-top-row">
+                        <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+                        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    </div>
+                    <p class="testimonial-text">A rare combination of technical expertise and design thinking. The ability to translate complex ideas into intuitive interfaces is outstanding</p>
+                    <div class="testimonial-person">
+                        <img src="assets/images/about_me/person_3.png" alt="Thomson Thawani">
+                        <div class="testimonial-person-info">
+                            <span class="name">Thomson Thawani</span>
+                            <span class="role">Visual Designer at Tech265</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <div class="section-label"><span class="dot"></span>FAQ</div>
+    <section id="faq" class="faq-section">
+        <div class="faq-layout">
+            <div class="faq-left">
+                <h2>Frequent Asked<br><span class="muted">Questions</span></h2>
+                <p>Answers to common questions about my work, processes, services and how I work</p>
+                <a href="#contact" class="btn" style="display:inline-flex;">Contact me <span style="margin-left:6px;">+</span></a>
+            </div>
+            <div class="faq-right">
+                <div class="faq-item">
+                    <div class="faq-item-header">
+                        <span>1. Are you available for freelance or full-time work?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I am currently working at Tech 265, but I'm open to freelance opportunities and collaborations on interesting projects.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-item-header">
+                        <span>2. Where are you based and do you work remotely?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I am based in Malawi and available to work both locally and remotely with clients worldwide.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-item-header">
+                        <span>3. How can I contact you?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can reach me via email or through the contact form on this portfolio. I'm also available on professional platforms like LinkedIn.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-item-header">
+                        <span>4. What technologies do you specialize in?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I specialize in Flutter, React, and Django, with experience in Android development (Java/XML), UI/UX design, API integration, and embedded systems.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-item-header">
+                        <span>5. How do you charge (hourly or per project)?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I typically charge per project depending on the scope and complexity, but hourly rates can also be arranged for ongoing work.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-item-header">
+                        <span>6. How long does it take to complete a project?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Project timelines vary based on requirements, but I always aim to deliver efficiently while maintaining high quality. Clear timelines are provided after discussing project details.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <img class="quote-icon-large start-quote" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+        <p class="quote-text"><strong>Great products aren't built alone — </strong><span class="muted">they're shaped by the right minds</span> <strong>at the right table. And I'd love </strong><span class="muted">that seat</span></p>
+        <img class="quote-icon-large end-quote" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+        <a href="#contact" class="btn btn-outline" style="margin-top:28px;">Lets work together <span style="margin-left:6px;">→</span></a>
+    </section>
+
     <section id="contact">
         <div class="section-label"><span class="dot"></span>Contact</div>
         <form>
@@ -2682,6 +3152,87 @@
             mobileMenu.classList.remove('open');
             const target = document.querySelector(link.getAttribute('href'));
             if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Testimonial marquee drag-to-scroll
+    (function() {
+        const track = document.querySelector('.testimonials-cards-track');
+        if (!track) return;
+        let isDragging = false;
+        let startX, currentTranslate = 0;
+        let resumeTimeout;
+
+        function getTranslateX(el) {
+            const style = window.getComputedStyle(el);
+            const matrix = new DOMMatrix(style.transform);
+            return matrix.m41;
+        }
+
+        track.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            startX = e.pageX;
+            currentTranslate = getTranslateX(track);
+            track.style.animation = 'none';
+            track.style.transform = `translateX(${currentTranslate}px)`;
+            clearTimeout(resumeTimeout);
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+            const dx = e.pageX - startX;
+            track.style.transform = `translateX(${currentTranslate + dx}px)`;
+        });
+
+        document.addEventListener('mouseup', function() {
+            if (!isDragging) return;
+            isDragging = false;
+            // Resume animation after 2s
+            resumeTimeout = setTimeout(function() {
+                track.style.animation = '';
+                track.style.transform = '';
+            }, 2000);
+        });
+
+        // Touch support
+        track.addEventListener('touchstart', function(e) {
+            isDragging = true;
+            startX = e.touches[0].pageX;
+            currentTranslate = getTranslateX(track);
+            track.style.animation = 'none';
+            track.style.transform = `translateX(${currentTranslate}px)`;
+            clearTimeout(resumeTimeout);
+        }, { passive: true });
+
+        track.addEventListener('touchmove', function(e) {
+            if (!isDragging) return;
+            const dx = e.touches[0].pageX - startX;
+            track.style.transform = `translateX(${currentTranslate + dx}px)`;
+        }, { passive: true });
+
+        track.addEventListener('touchend', function() {
+            if (!isDragging) return;
+            isDragging = false;
+            resumeTimeout = setTimeout(function() {
+                track.style.animation = '';
+                track.style.transform = '';
+            }, 2000);
+        });
+    })();
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(function(item) {
+        item.addEventListener('click', function() {
+            const isOpen = item.classList.contains('open');
+            // Close all items
+            document.querySelectorAll('.faq-item').forEach(function(i) {
+                i.classList.remove('open');
+            });
+            // Open clicked if it was closed
+            if (!isOpen) {
+                item.classList.add('open');
+            }
         });
     });
 </script>

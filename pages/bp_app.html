@@ -179,8 +179,8 @@
             display: grid;
             grid-template-columns: 1fr;
             column-gap: 24px;
-            row-gap: 14px;
-            margin-bottom: 32px;
+            row-gap: 24px;
+            margin-bottom: 0;
         }
         @media (min-width: 641px) {
             .kwacha-grid {
@@ -199,7 +199,7 @@
             box-shadow: none;
             cursor: pointer;
             transition: box-shadow 0.2s, transform 0.2s;
-            height: 480px;
+            /*height: 480px;*/
             align-items: stretch;
         }
 
@@ -266,8 +266,8 @@
             height: 420px;
         }
         @media (max-width: 640px) {
-            .kwacha-card { height: 420px; }
-            .kwacha-card .kwacha-media { height: 360px; padding: 32px; }
+            .kwacha-card { height: 448px; }
+            .kwacha-card .kwacha-media {  padding: 32px; }
             .kwacha-card .kwacha-media::before { inset: 10px; border-radius: 12px; }
             .kwacha-card .kwacha-media img { border-radius: 12px; }
             .kwacha-card.span { grid-column: auto; height: 360px; }
