@@ -30,7 +30,7 @@ header > .container {
     display: flex;
     justify-content: center;
 }
-/* Header styles (copied from portifolio.html) */
+/* Header styles (copied from index.html) */
 .app-nav {
     background: #fff;
     border: 1px solid #E3E3E3;
@@ -78,28 +78,199 @@ header > .container {
     z-index: 6;
 }
 .app-nav a:hover { background: #ededed; }
-footer {
-    margin-top: 48px;
-    padding-bottom: 24px;
+/* === Footer Styles (matches footer.png reference) === */
+#app-footer {
+  background: #F7F7F7;
+  border-radius: 20px;
+  /*box-shadow: 0 2px 18px rgba(0,0,0,0.06);*/
+  margin: 64px auto 32px;
+  max-width: 1180px;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
 }
-.socials {
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-    margin: 32px 0 38px;
+.footer-container {
+  padding: 28px 20px 0 20px;
+  position: relative;
+  z-index: 2;
 }
-.icon-btn {
-    width: 42px; height: 42px;
-    border-radius: 12px;
-    border: 1px solid #E3E3E3;
-    background: #fff;
-    display: grid;
-    place-items: center;
-    color: #2f2f2f;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-    transition: 0.2s;
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
 }
-.icon-btn:hover { transform: translateY(-2px); }
+.footer-left {
+  flex: 1 1 0;
+  min-width: 260px;
+}
+.footer-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #181818;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.footer-sub {
+  color: #888;
+  font-size: 0.9rem;
+  /*margin-top: 8px;*/
+  margin-bottom: 2px;
+}
+.footer-email {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 40px;
+}
+.footer-socials {
+  display: flex;
+  gap: 22px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.footer-social svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  fill: #222;
+  transition: opacity 0.2s;
+}
+.footer-social:hover svg {
+  opacity: 0.7;
+}
+.footer-right {
+  flex: 0 0 220px;
+  text-align: right;
+  align-self: flex-start;
+}
+.footer-contact-title {
+  font-weight: 550;
+  color: #181818;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+.footer-contact-phone {
+  color: #8C8C8C;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+.footer-location-title {
+  font-weight: 550;
+  color: #181818;
+  font-size: 1rem;
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+.footer-location {
+  color: #8C8C8C;
+  font-size: 0.9rem;
+}
+.footer-divider {
+  border-bottom: 1px solid #e5e5e5;
+  margin: 28px 0 0 0;
+}
+.footer-copyright {
+  text-align: right;
+  color: #888;
+  font-size: 0.9rem;
+  margin: 16px 0 0 0;
+}
+.footer-svg-bg {
+  position: relative;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  min-height: 160px;
+}
+.footer-svg-bg img {
+  width: 100%;
+  /*max-width: 100%;*/
+  /*height: 160px;*/
+  object-fit: contain;
+  /*opacity: 0.18;*/
+  /*margin-left: -12px;*/
+  margin-top: 0;
+  padding: 8px;
+  margin-bottom: -20px;
+}
+.footer-dot {
+  position: absolute;
+  right: 44px;
+  bottom: 38px;
+  width: 32px;
+  height: 32px;
+  /*background: #FF8C5B;*/
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(255,140,91,0.08);
+}
+.footer-bottom-bar {
+  color: #888;
+  font-size: 0.81rem;
+  margin: 0 0 18px 0;
+  padding-left: 2px;
+  padding-bottom: 0;
+}
+.footer-heart {
+  color: #FF8C5B;
+  font-weight: 700;
+  margin: 0 2px;
+}
+.footer-author {
+  color: #FF8C5B;
+  font-weight: 500;
+  margin: 0 2px;
+}
+.footer-scroll {
+  color: #FF8C5B;
+  font-weight: 500;
+  margin: 0 2px;
+}
+@media (max-width: 700px) {
+  #app-footer {
+    border-radius: 0;
+    margin: 32px 0 0 0;
+    max-width: 100vw;
+  }
+  .footer-container {
+    padding: 24px 10px 0 10px;
+  }
+  .footer-top {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .footer-right {
+    text-align: left;
+    align-self: flex-start;
+    margin-top: 18px;
+  }
+  .footer-svg-bg img {
+    /*height: 90px;*/
+      width: 100%;
+      /*max-width: 100%;*/
+      /*height: 160px;*/
+      object-fit: contain;
+      /*opacity: 0.18;*/
+      /*margin-left: -12px;*/
+      margin-top: 0;
+      padding: 8px;
+      margin-bottom: 12px;
+  }
+  .footer-dot {
+    right: 10px;
+    bottom: 18px;
+    width: 18px;
+    height: 18px;
+  }
+  .footer-bottom-bar {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+}
 /* Kwacha Wise card grid */
 .kwacha-cards {
     margin-top: 80px;
@@ -142,4 +313,3 @@ footer {
 .kwacha-card:focus {
     outline: 2px solid #b7b7b7;
 }
-
