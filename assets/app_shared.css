@@ -81,7 +81,7 @@ header > .container {
 }
 .app-nav a:hover { background: #ededed; }
 /* === Footer Styles (matches footer.png reference) === */
-#app-footer {
+.app-footer {
   background: #F7F7F7;
   border-radius: 20px;
   /*box-shadow: 0 2px 18px rgba(0,0,0,0.06);*/
@@ -234,10 +234,10 @@ header > .container {
   margin: 0 2px;
 }
 @media (max-width: 700px) {
-  #app-footer {
+  .app-footer {
     border-radius: 16px;
     margin: 32px 0px 0px 0px;
-      height: 776px;
+      height: 772px;
 
       /*margin: 32px 12px 20px 12px;*/
 
