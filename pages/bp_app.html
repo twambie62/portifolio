@@ -178,8 +178,8 @@
         .kwacha-grid {
             display: grid;
             grid-template-columns: 1fr;
-            column-gap: 24px;
-            row-gap: 24px;
+            column-gap: 28px;
+            row-gap: 32px;
             margin-bottom: 0;
         }
         @media (min-width: 641px) {
@@ -199,7 +199,7 @@
             box-shadow: none;
             cursor: pointer;
             transition: box-shadow 0.2s, transform 0.2s;
-            /*height: 480px;*/
+            height: 480px;
             align-items: stretch;
         }
 
@@ -210,7 +210,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            height: 420px;
+            height: 480px;
             flex-shrink: 0;
             background: transparent;
         }
@@ -263,17 +263,19 @@
         }
         .kwacha-card.span {
             grid-column: 1 / -1;
-            height: 420px;
+            height: 480px;
         }
         @media (max-width: 640px) {
-            .kwacha-card { height: 448px; }
-            .kwacha-card .kwacha-media {  padding: 32px; }
+            /*.kwacha-card { height: 448px; }*/
+            .kwacha-card .kwacha-media {height: 380px;  padding: 32px; }
             .kwacha-card .kwacha-media::before { inset: 10px; border-radius: 12px; }
             .kwacha-card .kwacha-media img { border-radius: 12px; }
-            .kwacha-card.span { grid-column: auto; height: 360px; }
+            .kwacha-card.span { grid-column: auto; height: 380px; }
 
             .kwacha-grid {
-                gap: 0;
+                /*gap: 0;*/
+                row-gap: 12px;/* previously 24px; tightened for mobile */
+
             }
         }
 
@@ -570,7 +572,7 @@
         if (!topbar) return;
         const circle = topbar.querySelector('.circle');
         const text = topbar.querySelector('.project-text');
-        const target = '../portifolio.html';
+        const target = '../index.html';
 
         function goHome(e) {
             // allow normal link activation if user used modifier keys

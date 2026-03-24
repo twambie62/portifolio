@@ -180,8 +180,8 @@
         .kwacha-grid {
             display: grid;
             grid-template-columns: 1fr;
-            column-gap: 24px;
-            row-gap: 14px;
+            column-gap: 28px;
+            row-gap: 32px;
             margin-bottom: 32px;
         }
         @media (min-width: 641px) {
@@ -206,7 +206,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            height: 420px;
+            height: 480px;
             flex-shrink: 0;
             background: transparent;
         }
@@ -539,7 +539,7 @@
         if (!topbar) return;
         const circle = topbar.querySelector('.circle');
         const text = topbar.querySelector('.project-text');
-        const target = '../portifolio.html';
+        const target = '../index.html';
 
         function goHome(e) {
             // allow normal link activation if user used modifier keys

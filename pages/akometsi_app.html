@@ -94,7 +94,7 @@
       display: grid;
       grid-template-columns: 1fr;
       column-gap: 24px;
-      row-gap: 14px;
+      row-gap: 28px;
       margin-bottom: 32px;
     }
     @media (min-width: 641px) {
@@ -125,7 +125,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      height: 420px;
+      height: 480px;
       flex-shrink: 0;
       background: transparent;
     }
@@ -198,15 +198,17 @@
       }
 
 
-      .kwacha-card { height: 420px; }
-      .kwacha-card .kwacha-media { height: 360px; padding: 32px; }
+      .kwacha-card { height: 380px; }
+      .kwacha-card .kwacha-media { height: 380px; padding: 32px; }
       .kwacha-card .kwacha-media::before { inset: 10px; border-radius: 12px; }
       .kwacha-card .kwacha-media img { border-radius: 12px; }
       .kwacha-card.span { grid-column: auto; height: 360px; }
 
       /* reduced spacing between grid images on mobile */
       .kwacha-grid {
-        gap: 0px;         /* previously 24px; tightened for mobile */
+        gap: 0px;
+        row-gap: 12px;
+        /* previously 24px; tightened for mobile */
         /*margin-bottom: 20px;*/
       }
     }
@@ -491,7 +493,7 @@
     if (!topbar) return;
     const circle = topbar.querySelector('.circle');
     const text = topbar.querySelector('.project-text');
-    const target = '../portifolio.html';
+    const target = '../index.html';
 
     function goHome(e) {
       // allow normal link activation if user used modifier keys
