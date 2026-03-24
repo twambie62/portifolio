@@ -384,6 +384,50 @@
             transition: none !important;
         }
 
+        /* Ensure the first-grid image uses identical card/media styling (padding, grey placeholder, radius) */
+        #first-grid-media {
+            padding: 36px;
+            box-sizing: border-box;
+            position: relative;
+            display: block;
+            background: transparent;
+            height: auto !important;
+        }
+        #first-grid-media::before {
+            content: "";
+            position: absolute;
+            inset: 0px;
+            border-radius: 14px;
+            background: #F7F7F7;
+            z-index: 1;
+            box-shadow: none;
+        }
+        #first-grid-media img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            object-position: center center;
+            border-radius: 14px;
+            display: block;
+            position: relative;
+            z-index: 2;
+            transition: none !important;
+            background: transparent;
+            box-shadow: none;
+        }
+        @media (max-width: 640px) {
+            #first-grid-media {
+                padding: 20px !important;
+            }
+            #first-grid-media::before {
+                inset: 10px !important;
+                border-radius: 12px !important;
+            }
+            #first-grid-media img {
+                border-radius: 12px !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -441,6 +485,15 @@
         </div>
     </div>
 
+    <!-- Add: grid with a single card that reuses the header image (same style/IDs as smart_apps) -->
+    <div class="kwacha-grid" style="grid-template-columns:1fr;">
+        <div class="kwacha-card">
+            <div class="kwacha-media" id="first-grid-media">
+                <img id="first-grid-img" src="../assets/images/portifolio/smart_apps/hero_section_redesign.png" alt="Hero Section Redesign" />
+            </div>
+            <div class="kwacha-body"></div>
+        </div>
+    </div>
 
 </main>
 <!--<footer id="app-footer"></footer>-->

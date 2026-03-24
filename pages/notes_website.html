@@ -169,6 +169,32 @@
             }
         }
 
+        /* --- added: ensure header main image and grid-first image show visible grey padding on mobile --- */
+        @media (max-width: 640px) {
+            .header-main-img {
+                padding: 48px !important;
+                box-sizing: border-box !important;
+                border-radius: 14px !important;
+                background: #F0F0F0 !important;
+                display: block;
+                width: 100%;
+            }
+
+            /* Keep the first grid media padded so the grey ::before placeholder is visible */
+            #first-grid-media {
+                padding: 48px ;
+                box-sizing: border-box !important;
+            }
+            #first-grid-media::before {
+                inset: -16px !important;
+                border-radius: 12px !important;
+                background: #F7F7F7 !important;
+            }
+            #first-grid-media img {
+                border-radius: 12px !important;
+            }
+        }
+
         /* ===== END HEADER ===== */
 
         /* ensure the grid below uses the same two-column sizing so edges line up */
@@ -340,22 +366,50 @@
             color: #141414;
         }
 
-        /* Remove any previous rules that targeted .kwacha-topbar:hover ... (they are replaced above) */
-
-        /* Phone video frame — iPhone 16 Pro aspect ratio (~9:19.5) */
-        .phone-video-wrap {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 48px;
-        }
-        .phone-frame {
-            width: 212px;
-            aspect-ratio: 9 / 19.5;
-            border-radius: 40px;
+        .kwacha-card {
+            background: transparent;
+            border-radius: 14px;
             overflow: hidden;
-            /*background: #000;*/
-            border: 8px solid #e3e3e3;
-            /*box-shadow: 0 16px 48px rgba(0,0,0,0.14);*/
+            display: flex;
+            flex-direction: column;
+            box-shadow: none; /* images have no visible shadow */
+            cursor: pointer;
+            transition: box-shadow 0.2s; /* keep small transition for shadow only */
+            height: auto; /* allow card to grow with its content (image) */
+            align-items: stretch;
+        }
+
+        .kwacha-card .kwacha-media {
+            padding: 36px;          /* same inner padding as other pages */
+            box-sizing: border-box;
+            display: block;         /* let media size to content */
+            position: relative;
+            height: auto !important; /* allow media to grow to the image height */
+            background: transparent;
+        }
+
+        .kwacha-card .kwacha-media::before {
+            content: "";
+            position: absolute;
+            inset: 0px;
+            border-radius: 14px;
+            background: #F7F7F7;
+            z-index: 1;
+            /* ensure placeholder has no shadow */
+            box-shadow: none;
+        }
+        .kwacha-card .kwacha-media img {
+            width: 100%;
+            height: auto;               /* natural image height controls container */
+            object-fit: contain;        /* ensure whole image visible */
+            object-position: center center;
+            border-radius: 14px;
+            display: block;
+            position: relative;
+            z-index: 2;
+            transition: none !important; /* disable transform transition for natural growth */
+            background: transparent;
+            box-shadow: none;           /* explicitly remove any image shadows */
         }
         .phone-frame video {
             width: 100%;
@@ -364,13 +418,30 @@
             display: block;
             border-radius: 24px;
         }
+
+        .kwacha-card .kwacha-media img {
+            width: 100%;
+            height: auto;               /* natural image height controls container */
+            object-fit: contain;        /* ensure whole image visible */
+            object-position: center center;
+            border-radius: 14px;
+            display: block;
+            position: relative;
+            z-index: 2;
+            transition: none !important; /* disable transform transition for natural growth */
+            background: transparent;
+            box-shadow: none;           /* explicitly remove any image shadows */
+        }
         @media (max-width: 640px) {
-            .phone-frame {
-                width: 240px;
-                border-radius: 34px;
-            }
-            .phone-frame video {
-                border-radius: 24px;
+
+            /*.kwacha-card { height: auto; }*/
+            .kwacha-card .kwacha-media { padding: 20px; }
+            .kwacha-card .kwacha-media::before { inset: 10px; border-radius: 12px; }
+            .kwacha-card .kwacha-media img { border-radius: 12px; }
+            /*.kwacha-card.span { grid-column: auto; height: 360px; }*/
+
+            .kwacha-grid {
+                gap: 0;
             }
         }
 
@@ -378,10 +449,15 @@
         .kwacha-grid .kwacha-card:first-child:hover .kwacha-media img {
             transform: none !important;
         }
+
+
+
         /* Remove transform transition for the first image so it won't animate */
         .kwacha-grid .kwacha-card:first-child .kwacha-media img {
             transition: none !important;
         }
+
+
 
     </style>
 </head>
@@ -412,9 +488,9 @@
 
     <!-- Header image spanning full width -->
     <div style="max-width:1200px; margin:0 auto 24px;">
-        <img src="../assets/images/portifolio/notes_website/track_it_main_image.png"
+        <img class="header-main-img" src="../assets/images/portifolio/notes_website/track_it_main_image.png"
              alt="Track It Landing Page"
-             style="width:100%; padding:36px; display:block; border-radius:20px; background:#F0F0F0; box-sizing:border-box;" />
+             style="width:100%; padding:48px; display:block; border-radius:20px; background:#F0F0F0; box-sizing:border-box;" />
     </div>
 
     <!-- Row 3: Description left, Links + Disclaimer right -->
