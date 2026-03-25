@@ -39,7 +39,7 @@ header > .container {
     justify-content: center;
     align-items: center;
     gap: 8px;
-    padding: 12px 12px;
+    padding: 10px 10px;
     /*margin: 0 auto;*/
     box-shadow: 0 10px 20px rgba(0,0,0,0.04);
     width: auto;
@@ -52,7 +52,8 @@ header > .container {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 6px 16px;
+    padding: 6px 12px;
+    margin-right: 4px;
     border: 1px solid #E3E3E3;
     border-radius: 10px;
     background: #fff;
@@ -81,7 +82,7 @@ header > .container {
 }
 .app-nav a:hover { background: #ededed; }
 /* === Footer Styles (matches footer.png reference) === */
-#app-footer {
+#app-footer, .app-footer {
   background: #F7F7F7;
   border-radius: 20px;
   /*box-shadow: 0 2px 18px rgba(0,0,0,0.06);*/
@@ -131,14 +132,16 @@ header > .container {
   margin-top: 0;
   margin-bottom: 0;
 }
-.footer-social svg {
-  width: 24px;
-  height: 24px;
+.footer-social svg, .footer-social img {
+  /*width: 24px;*/
+  /*height: 24px;*/
   display: block;
+  /* fill only affects inline SVG; images will ignore it */
   fill: #222;
   transition: opacity 0.2s;
 }
-.footer-social:hover svg {
+.footer-social:hover svg,
+.footer-social:hover img {
   opacity: 0.7;
 }
 .footer-right {
@@ -214,8 +217,8 @@ header > .container {
 .footer-bottom-bar {
   color: #888;
   font-size: 0.81rem;
-  margin: 0 0 18px 0;
-  padding-left: 2px;
+  margin: 12px 0 18px 0;
+  padding-left: 4px;
   padding-bottom: 0;
 }
 .footer-heart {
@@ -234,14 +237,14 @@ header > .container {
   margin: 0 2px;
 }
 @media (max-width: 700px) {
-  .app-footer {
+  .app-footer, #app-footer {
     border-radius: 16px;
     margin: 32px 0px 0px 0px;
       min-height: 772px;
 
       /*margin: 32px 12px 20px 12px;*/
 
-    /*max-width: auto;*/
+    /*max-width: auto*/;
   }
   .footer-container {
     padding: 24px 16px 0 16px;
@@ -262,7 +265,7 @@ header > .container {
       /*height: 160px;*/
       object-fit: contain;
       /*opacity: 0.18;*/
-      /*margin-left: -12px;*/
+      margin-left: -12px;
       margin-top: 0;
       padding: 8px;
       margin-bottom: 24px;

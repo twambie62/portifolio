@@ -1,22 +1,23 @@
 // app_shared.js: injects header and footer into pages for reuse
 function renderHeader() {
-    document.getElementById('app-header').innerHTML = `
+    const headerEl = document.getElementById('app-header');
+    if (!headerEl) return;
+    headerEl.innerHTML = `
         <div class="container">
             <nav class="app-nav">
                 <div class="logo"><span>t.</span></div>
-                <a href="../index.html" class="active">Home</a>
-                <a href="../index.html#about">About Me</a>
-                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#home" >Home</a>
+                <a href="../index.html#projects" class="active">Projects</a>
+                <a href="../index.html#about-me">About Me</a>
                 <a href="../index.html#contact">Contact</a>
             </nav>
         </div>
     `;
 }
 function renderFooter() {
-    document.getElementById('app-footer').innerHTML = `
-<head>
-
-</head>
+    const footerEl = document.getElementById('app-footer');
+    if (!footerEl) return;
+    footerEl.innerHTML = `
   <div class="footer-container">
     <div class="footer-top">
       <div class="footer-left">
@@ -24,10 +25,10 @@ function renderFooter() {
         <div class="footer-sub">Feel free to email me</div>
         <div class="footer-email">twambililemusukwa@gmail.com</div>
         <div class="footer-socials">
-          <a href="#" aria-label="LinkedIn" style="width:28px; height: 28px" class="footer-social"><img src="../assets/images/footer/linkedin.svg" alt="LinkedIn" /></a>
-          <a href="#" aria-label="Facebook" style="width:25px; height: 25px" class="footer-social"><img src="../assets/images/footer/facebook.svg" alt="Facebook" /></a>
-          <a href="#" aria-label="Instagram" style="width:25px; height: 25px" class="footer-social"><img src="../assets/images/footer/instagram.svg" alt="Instagram" /></a>
-          <a href="#" aria-label="X" style="width:21px; height: 21px; margin-top: 2px" class="footer-social"><img src="../assets/images/footer/twitter_x.svg" alt="X" /></a>
+          <a href="https://www.linkedin.com/in/twambi-musukwa-088403271/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" style="width:26px; height: 26px" class="footer-social"><img src="../assets/images/footer/linkedin.svg" alt="LinkedIn" /></a>
+          <a href="https://web.facebook.com/twambilile.musukwa.3" aria-label="Facebook" target="_blank" rel="noopener noreferrer" style="width:24px; height: 24px" class="footer-social"><img src="../assets/images/footer/facebook.svg" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/twambi_boi" aria-label="Instagram" target="_blank" rel="noopener noreferrer" style="width:24px; height: 24px" class="footer-social"><img src="../assets/images/footer/instagram.svg" alt="Instagram" /></a>
+          <a href="https://x.com/influx_ix" aria-label="X" target="_blank" rel="noopener noreferrer" style="width:20px; height: 20px; margin-top: 2px" class="footer-social"><img src="../assets/images/footer/twitter_x.svg" alt="X" /></a>
         </div>
       </div>
       <div class="footer-right">
@@ -51,6 +52,14 @@ function renderFooter() {
 
     `;
 }
-renderHeader();
-renderFooter();
 
+// Render after DOM is ready so elements exist regardless of script placement
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        renderHeader();
+        renderFooter();
+    });
+} else {
+    renderHeader();
+    renderFooter();
+}
