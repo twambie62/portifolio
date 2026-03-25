@@ -83,11 +83,11 @@ function renderFooter() {
         <div class="footer-sub">Feel free to email me</div>
         <div class="footer-email">twambililemusukwa@gmail.com</div>
         <div class="footer-socials">
-          <a href="https://www.linkedin.com/in/twambi-musukwa-088403271/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" style="width:26px; height: 26px" class="footer-social"><img src="../assets/images/footer/linkedin.svg" alt="LinkedIn" /></a>
-          <a href="https://web.facebook.com/twambilile.musukwa.3" aria-label="Facebook" target="_blank" rel="noopener noreferrer" style="width:24px; height: 24px" class="footer-social"><img src="../assets/images/footer/facebook.svg" alt="Facebook" /></a>
-          <a href="https://www.instagram.com/twambi_boi" aria-label="Instagram" target="_blank" rel="noopener noreferrer" style="width:24px; height: 24px" class="footer-social"><img src="../assets/images/footer/instagram.svg" alt="Instagram" /></a>
-          <a href="https://x.com/influx_ix" aria-label="X" target="_blank" rel="noopener noreferrer" style="width:20px; height: 20px; margin-top: 2px" class="footer-social"><img src="../assets/images/footer/twitter_x.svg" alt="X" /></a>
-        </div>
+           <a href="https://www.linkedin.com/in/twambi-musukwa-088403271/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" style="width:28px; height: 28px" class="footer-social"><img src="../assets/images/footer/linkedin.svg" alt="LinkedIn" /></a>
+          <a href="https://web.facebook.com/twambilile.musukwa.3" aria-label="Facebook" target="_blank" rel="noopener noreferrer" style="width:25px; height: 25px" class="footer-social"><img src="../assets/images/footer/facebook.svg" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/twambi_boi" aria-label="Instagram" target="_blank" rel="noopener noreferrer" style="width:25px; height: 25px" class="footer-social"><img src="../assets/images/footer/instagram.svg" alt="Instagram" /></a>
+          <a href="https://x.com/influx_ix" aria-label="X" target="_blank" rel="noopener noreferrer" style="width:21px; height: 21px; margin-top: 2px" class="footer-social"><img src="../assets/images/footer/twitter_x.svg" alt="X" /></a>
+      </div>
       </div>
       <div class="footer-right">
         <div class="footer-contact-title">Contact me</div>
