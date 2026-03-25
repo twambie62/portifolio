@@ -6,14 +6,72 @@ function renderHeader() {
         <div class="container">
             <nav class="app-nav">
                 <div class="logo"><span>t.</span></div>
-                <a href="../index.html#home" >Home</a>
-                <a href="../index.html#projects" class="active">Projects</a>
+                <a href="../index.html" class="active">Home</a>
+                <a href="../index.html#projects">Projects</a>
                 <a href="../index.html#about-me">About Me</a>
+                
                 <a href="../index.html#contact">Contact</a>
             </nav>
         </div>
     `;
+
+    // Attach delegated click listener once to handle smooth in-page scrolling
+    if (!headerEl._navSmoothScrollAttached) {
+        headerEl.addEventListener('click', function(e) {
+            const a = e.target.closest('a');
+            if (!a) return;
+            const href = a.getAttribute('href');
+            if (!href) return;
+
+            // Try to resolve the link relative to current location
+            let targetUrl;
+            try {
+                targetUrl = new URL(href, window.location.href);
+            } catch (err) {
+                return; // invalid URL, let browser handle
+            }
+
+            // Helper: are we on the index page?
+            const onIndexPage = (function() {
+                const p = window.location.pathname || '';
+                // Normalize Windows file paths and trailing slashes
+                return p.endsWith('index.html') || p === '/' || p === '' || p.toLowerCase().endsWith('\\index.html');
+            })();
+
+            // If we're already on the index page and the link points to index (or includes a hash), handle smooth scroll
+            const linkPointsToIndex = (function() {
+                const tp = targetUrl.pathname || '';
+                return tp.endsWith('index.html') || tp === '/' || tp === '' || tp.toLowerCase().endsWith('\\index.html');
+            })();
+
+            // If there's a hash (e.g. #about) or the link explicitly points to index and we're on index, do smooth scroll
+            if ((onIndexPage && linkPointsToIndex) || (linkPointsToIndex && targetUrl.hash)) {
+                // If link has a hash, scroll to that element. If no hash, scroll to top.
+                const hash = targetUrl.hash || '';
+                // Only intercept when target is same page (index) to avoid preventing cross-page navigation
+                if (onIndexPage) {
+                    e.preventDefault();
+                    if (hash) {
+                        const id = hash.slice(1);
+                        const el = document.getElementById(id);
+                        if (el) {
+                            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            try { history.replaceState(null, '', '#' + id); } catch (e) { /* ignore */ }
+                            return;
+                        }
+                        // if element not found, fall back to top
+                    }
+                    // No hash or element missing -> scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    try { history.replaceState(null, '', window.location.pathname); } catch (e) { /* ignore */ }
+                }
+            }
+            // Otherwise allow normal navigation (e.g., from other pages to index.html)
+        });
+        headerEl._navSmoothScrollAttached = true;
+    }
 }
+
 function renderFooter() {
     const footerEl = document.getElementById('app-footer');
     if (!footerEl) return;
