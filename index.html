@@ -189,73 +189,79 @@
         @media (max-width: 700px) {
             .hero-pill--branding { width: 90px; top: 44px; left: 1%; }
             .hero-pill--software { width: 90px; top: 44px; right: 1%; }
-            .hero-pill--uiux     { width: 75px; bottom: 44px; right: 2%; }
-        }
-        .avatar-wrap {
-            position: relative;
-            display: inline-block;
-            width: 108px;
-            margin: 24px auto 24px;
-        }
-        .avatar {
-            width: 108px; height: 108px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-left: -3px;
-            border: 4px solid var(--card);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-            position: relative;
-            z-index: 1;
-        }
-        .chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            color: var(--muted);
-            border-radius: var(--radius-small);
-            padding: 6px 12px;
-            font-size: 12px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-        }
-        .hero .avatar-wrap .chip {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -10px;
-            z-index: 3;
-            white-space: nowrap;
-        }
-        h1 {
-            margin: 14px 0 10px;
-            font-size: clamp(26px, 3vw + 12px, 34px);
-            font-weight: 700;
-            line-height: 1.2;
-        }
-        .sub {
-            color: var(--muted);
-            max-width: 520px;
-            margin: 0 auto 16px;
-            line-height: 1.5;
-            font-size: 14px;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            border-radius: 12px;
-            border: none;
-            background: var(--primary);
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-            transition: 0.2s;
-        }
-        .btn:hover { transform: translateY(-1px); }
-        /* Hero button row + lets chat wrapper */
+            .hero-pill--uiux     { width: 75px; bottom: 40px; right: -4%; }
+
+            .hero-btns {
+
+                gap: 10px;
+            }
+
+            }
+            .avatar-wrap {
+                position: relative;
+                display: inline-block;
+                width: 108px;
+                margin: 24px auto 24px;
+            }
+            .avatar {
+                width: 108px; height: 108px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-left: -3px;
+                border: 4px solid var(--card);
+                box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+                position: relative;
+                z-index: 1;
+            }
+            .chip {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                background: var(--card);
+                border: 1px solid var(--border);
+                color: var(--muted);
+                border-radius: var(--radius-small);
+                padding: 6px 12px;
+                font-size: 12px;
+                box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+            }
+            .hero .avatar-wrap .chip {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -10px;
+                z-index: 3;
+                white-space: nowrap;
+            }
+            h1 {
+                margin: 14px 0 10px;
+                font-size: clamp(26px, 3vw + 12px, 34px);
+                font-weight: 700;
+                line-height: 1.2;
+            }
+            .sub {
+                color: var(--muted);
+                max-width: 520px;
+                margin: 0 auto 16px;
+                line-height: 1.5;
+                font-size: 14px;
+            }
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 10px 18px;
+                border-radius: 12px;
+                border: none;
+                background: var(--primary);
+                color: #fff;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+                transition: 0.2s;
+            }
+            .btn:hover { transform: translateY(-1px); }
+            /* Hero button row + lets chat wrapper */
         .hero-btns-wrap {
             display: inline-flex;
             position: relative;
@@ -521,7 +527,7 @@
             }
 
             .hero-proj-card img {
-                height: 160px;
+                height: 200px;
             }
         }
 
