@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560" preserveAspectRatio="none" fill="none">
+  <!-- Line color: #E3E3E3 — same as -border variable -->
+  <!-- 4 double-line pairs, evenly distributed across 1100px width -->
+  <!-- Pair 1 — left edge area -->
+  <line x1="155" y1="0" x2="155" y2="560" stroke="#E6E6E6" stroke-width="1"/>
+  <line x1="185" y1="0" x2="185" y2="560" stroke="#E6E6E6" stroke-width="1"/>
+  <!-- Pair 2 — left-center -->
+  <line x1="385" y1="0" x2="385" y2="560" stroke="#E6E6E6" stroke-width="1"/>
+  <line x1="415" y1="0" x2="415" y2="560" stroke="#E6E6E6" stroke-width="1"/>
+  <!-- Pair 3 — right-center -->
+  <line x1="705" y1="0" x2="705" y2="560" stroke="#E6E6E6" stroke-width="1"/>
+  <line x1="735" y1="0" x2="735" y2="560" stroke="#E6E6E6" stroke-width="1"/>
+  <!-- Pair 4 — right edge area -->
+  <line x1="935" y1="0" x2="935" y2="560" stroke="#E6E6E6" stroke-width="1"/>
+  <line x1="965" y1="0" x2="965" y2="560" stroke="#E6E6E6" stroke-width="1"/>
+</svg>
+

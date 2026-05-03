@@ -320,36 +320,37 @@
         /* ===== HERO LINES ===== */
         .hero-lines-wrap {
             position: relative;
-            /*overflow: hidden;*/
-            /*background: yellow;*/
-        }
-        /* 4 double vertical line groups (8 lines total) */
-        .hero-lines {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: min(1200px, 100vw);
-            background: var(--primary);
-            pointer-events: none;
-            z-index: 20;
-            display: flex;
-            justify-content: space-between;
 
         }
-        .hero-line-pair {
-            display: flex;
-            gap: 10px;
-            height: 100%;
+        /* Grid lines image: width = container, height = hero + half of marquee cards, fades top & bottom */
+        .hero-lines-img {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1100px, 94vw);
+            height: 616px; /* hero ~420px + half marquee height ~140px */
+            /*width: 8000px;*/
+            pointer-events: none;
+            z-index: 0;
+            display: block;
+            -webkit-mask-image: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0) 1%,
+                rgba(0,0,0,1) 6%,
+                rgba(0,0,0,1) 70%,
+                rgba(0,0,0,0) 100%
+            );
+            mask-image: linear-gradient(
+                to bottom,
+                rgba(0,0,0,1) 0%,
+                rgba(0,0,0,1) 6%,
+                rgba(0,0,0,1) 70%,
+                rgba(0,0,0,0) 100%
+            );
         }
-        .hero-line {
-            width: 1px;
-            height: 100%;
-            background: var(--border);
-        }
-        .hero-lines-wrap > * { position: relative; z-index: 1; }
-        .hero-lines-wrap .hero-lines { z-index: 0; }
+        .hero-lines-wrap > *:not(.hero-lines-img) { position: relative; z-index: 1; }
+        .hero-lines-wrap .hero-lines-img { position: absolute; z-index: 0; }
 
         /* ===== HERO PROJECT MARQUEE ===== */
         .hero-proj-marquee-wrap {
@@ -390,11 +391,11 @@
             border-radius: 18px;
             overflow: hidden;
             /*border: 1px solid var(--border);*/
-            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-            background: var(--card);
+            /*box-shadow: 0 6px 20px rgba(0,0,0,0.06);*/
+            /*background: var(--card);*/
         }
         .hero-proj-card img {
-            height: 280px;
+            height: 320px;
             width: auto;
             display: block;
             object-fit: contain;
@@ -2282,12 +2283,7 @@
 <main id="home" class="container">
     <!-- Hero vertical lines wrapper: covers hero + projects marquee and fades at the marquee end -->
     <div class="hero-lines-wrap">
-        <div class="hero-lines" aria-hidden="true">
-            <div class="hero-line-pair"><div class="hero-line"></div><div class="hero-line"></div></div>
-            <div class="hero-line-pair"><div class="hero-line"></div><div class="hero-line"></div></div>
-            <div class="hero-line-pair"><div class="hero-line"></div><div class="hero-line"></div></div>
-            <div class="hero-line-pair"><div class="hero-line"></div><div class="hero-line"></div></div>
-        </div>
+        <img class="hero-lines-img" src="assets/images/hero/grid_lines.svg" alt="" aria-hidden="true">
 
     <section class="hero">
         <div class="avatar-wrap">
