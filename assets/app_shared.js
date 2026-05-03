@@ -104,7 +104,7 @@ function renderFooter() {
       <span class="footer-dot"></span>
     </div>
     <div class="footer-bottom-bar">
-      Made with <span class="footer-heart">♥</span> by <span class="footer-author">Twambi Musukwa</span> Thank you <span class="footer-scroll">For scrolling</span>
+      Made with <span class="footer-heart">♥</span> by <span class="footer-author">Twambi</span> Thank you <span class="footer-scroll">For scrolling</span>
     </div>
   </div>
 

@@ -292,7 +292,7 @@
             flex: 0 0 auto;
         }
         .marquee-item { flex: 0 0 auto; }
-        .marquee-item img { height: 40px; width: auto; display: block; }
+        .marquee-item img { height: 30px; width: auto; display: block; }
 
         /* Reverse marquee: scrolls left → right (opposite direction).
            It uses the same duplicated-group technique but animates from -50% → 0. */
@@ -305,7 +305,7 @@
             gap: 8px;
         }
         .lang-marquee.rtl:hover .marquee-track-rtl { animation-play-state: paused; }
-        .pill-row.marquee-bottom { margin-top: 12px; margin-bottom: 56px; }
+        .pill-row.marquee-bottom { margin-top: 12px; margin-bottom: 24px; }
 
         @keyframes marquee {
             from { transform: translateX(0); }
@@ -316,6 +316,91 @@
             100% { transform: translateX(0); }
         }
         .lang-marquee:hover .marquee-track { animation-play-state: paused; }
+
+        /* ===== HERO LINES ===== */
+        .hero-lines-wrap {
+            position: relative;
+            /*overflow: hidden;*/
+            /*background: yellow;*/
+        }
+        /* 4 double vertical line groups (8 lines total) */
+        .hero-lines {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1200px, 100vw);
+            background: var(--primary);
+            pointer-events: none;
+            z-index: 20;
+            display: flex;
+            justify-content: space-between;
+
+        }
+        .hero-line-pair {
+            display: flex;
+            gap: 10px;
+            height: 100%;
+        }
+        .hero-line {
+            width: 1px;
+            height: 100%;
+            background: var(--border);
+        }
+        .hero-lines-wrap > * { position: relative; z-index: 1; }
+        .hero-lines-wrap .hero-lines { z-index: 0; }
+
+        /* ===== HERO PROJECT MARQUEE ===== */
+        .hero-proj-marquee-wrap {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            margin: 0 0 40px;
+            /* fade left and right edges */
+        }
+        .hero-proj-marquee-wrap::before,
+        .hero-proj-marquee-wrap::after {
+            content: "";
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 120px;
+            z-index: 3;
+            pointer-events: none;
+        }
+        .hero-proj-marquee-wrap::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--bg) 0%, transparent 100%);
+        }
+        .hero-proj-marquee-wrap::after {
+            right: 0;
+            background: linear-gradient(270deg, var(--bg) 0%, transparent 100%);
+        }
+        .hero-proj-track {
+            display: flex;
+            width: max-content;
+            gap: 20px;
+            align-items: center;
+            animation: marquee 58s linear infinite;
+            will-change: transform;
+        }
+        /*.hero-proj-marquee-wrap:hover .hero-proj-track { animation-play-state: paused; }*/
+        .hero-proj-card {
+            flex: 0 0 auto;
+            border-radius: 18px;
+            overflow: hidden;
+            /*border: 1px solid var(--border);*/
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            background: var(--card);
+        }
+        .hero-proj-card img {
+            height: 280px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+        }
+        .hero-proj-card:hover img { transform: scale(1.04); }
 
         /* Section labels */
         .section-label {
@@ -347,14 +432,18 @@
                 grid-template-columns: repeat(2, 1fr);
                 margin: 12px 0 40px;
             }
+
         }
 
         @media (max-width: 960px) {
             .projects {
                 padding: 0 20px;
                 margin: 12px 0 40px;
-
                 /*grid-template-columns: repeat(2, 1fr);*/
+            }
+
+            .hero-proj-card img {
+                height: 160px;
             }
         }
 
@@ -2191,6 +2280,15 @@
 </div>
 
 <main id="home" class="container">
+    <!-- Hero vertical lines wrapper: covers hero + projects marquee and fades at the marquee end -->
+    <div class="hero-lines-wrap">
+        <div class="hero-lines" aria-hidden="true">
+            <div class="hero-line-pair"><div class="hero-line"></div><div class="hero-line"></div></div>
+            <div class="hero-line-pair"><div class="hero-line"></div><div class="hero-line"></div></div>
+            <div class="hero-line-pair"><div class="hero-line"></div><div class="hero-line"></div></div>
+            <div class="hero-line-pair"><div class="hero-line"></div><div class="hero-line"></div></div>
+        </div>
+
     <section class="hero">
         <div class="avatar-wrap">
             <div class="avatar">
@@ -2202,6 +2300,36 @@
         <p class="sub">Passionate about building products that combine great design, usability & dependable high-performance</p>
         <button class="btn">Available for hire <i class="ri-arrow-right-line"></i></button>
     </section>
+
+    <!-- Hero project preview marquee -->
+    <div class="hero-proj-marquee-wrap">
+        <div class="hero-proj-track">
+            <!-- Group 1 -->
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_1.png" alt="Project 1"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_2.png" alt="Project 2"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_3.png" alt="Project 3"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_4.png" alt="Project 4"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_5.png" alt="Project 5"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_6.png" alt="Project 6"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_7.png" alt="Project 7"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_8.png" alt="Project 8"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_9.png" alt="Project 9"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_10.png" alt="Project 10"></div>
+            <!-- Group 2 (duplicate for seamless loop) -->
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_1.png" alt="Project 1"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_2.png" alt="Project 2"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_3.png" alt="Project 3"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_4.png" alt="Project 4"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_5.png" alt="Project 5"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_6.png" alt="Project 6"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_7.png" alt="Project 7"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_8.png" alt="Project 8"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_9.png" alt="Project 9"></div>
+            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_10.png" alt="Project 10"></div>
+        </div>
+    </div>
+
+    </div><!-- /.hero-lines-wrap -->
 
     <section id="about" style="text-align:center;">
         <div class="chip"><span class="dot"></span>My Tech Stack</div>
@@ -3154,7 +3282,7 @@
       <span class="footer-dot"></span>
     </div>
     <div class="footer-bottom-bar">
-      Made with <span class="footer-heart">♥</span> by <span class="footer-author">Twambi Musukwa</span> Thank you <span class="footer-scroll">For scrolling</span>
+      Made with <span class="footer-heart">♥</span> by <span class="footer-author">Twambi</span> Thank you <span class="footer-scroll">For scrolling</span>
     </div>
   </div>
 </footer>
