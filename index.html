@@ -255,6 +255,53 @@
             transition: 0.2s;
         }
         .btn:hover { transform: translateY(-1px); }
+        /* Hero button row + lets chat wrapper */
+        .hero-btns-wrap {
+            display: inline-flex;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            margin-top: 4px;
+        }
+        .hero-btns {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+        }
+        /* Both hero buttons: medium weight, consistent height */
+        .hero-btns .btn {
+            font-weight: 400;
+            font-size: 13.5px;
+            padding: 10px 22px;
+        }
+        /* View my CV — outlined style */
+        .hero-cv-btn {
+            background: var(--chip) ;
+            color: var(--text) !important;
+            box-shadow: none !important;
+            border: 1.2px solid var(--border) !important;
+            font-weight: 500 !important;
+        }
+        .hero-cv-btn:hover {
+            background: var(--card) !important;
+        }
+        /* "Lets Chat" SVG — sits just below-left of the button row, arrow pointing toward Contact me */
+        .hero-lets-chat {
+            position: absolute;
+            /* arrow tip lands right at the left edge of Contact me button */
+            right: calc(100% - 20px);
+            bottom: -58px;
+            pointer-events: none;
+            width: 152px;
+        }
+        .hero-lets-chat img {
+            width: 152px;
+            height: auto;
+            display: block;
+        }
+        @media (max-width: 700px) {
+            .hero-lets-chat { display: none; }
+        }
         .btn-grey {
             font-weight: 500;
             background: transparent;
@@ -387,7 +434,7 @@
             width: 100%;
             overflow: hidden;
             position: relative;
-            margin: 14px 0 48px;
+            margin: 36px 0 48px;
             /* fade left and right edges */
         }
         .hero-proj-marquee-wrap::before,
@@ -395,7 +442,7 @@
             content: "";
             position: absolute;
             top: 0; bottom: 0;
-            width: 120px;
+            width: 124px;
             z-index: 3;
             pointer-events: none;
         }
@@ -2329,7 +2376,15 @@
         </div>
         <h1>I'm a web and app developer<br>and a UI/UX designer.</h1>
         <p class="sub">Passionate about building products that combine great design, usability & dependable high-performance</p>
-        <button class="btn">Available for hire <i class="ri-arrow-right-line"></i></button>
+        <div class="hero-btns-wrap">
+            <div class="hero-btns">
+                <a href="#contact" class="btn">Contact me</a>
+                <a href="#" class="btn hero-cv-btn">View my CV</a>
+            </div>
+            <div class="hero-lets-chat" aria-hidden="true">
+                <img src="assets/images/hero/lets_chat.svg" alt="Lets Chat">
+            </div>
+        </div>
     </section>
 
     <!-- Hero project preview marquee -->
