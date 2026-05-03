@@ -65,7 +65,7 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.04);
             width: auto;
             max-width: none;
-            margin-top: -16px;
+            margin-top: -18px;
         }
         .logo {
             position: static;
@@ -160,6 +160,36 @@
         .hero {
             text-align: center;
             padding: 28px 0 56px;
+            position: relative; /* needed for pill absolute positioning */
+        }
+        /* Floating pill badges */
+        .hero-pill {
+            position: absolute;
+            pointer-events: none;
+            height: auto;
+        }
+        /* Branding — top-left, with cursor pointing down-right */
+        .hero-pill--branding {
+            width: 114px;
+            top: 45px;
+            left: 16%;
+        }
+        /* Software — top-right */
+        .hero-pill--software {
+            width: 111px;
+            top: 40px;
+            right: 12%;
+        }
+        /* UI/UX — bottom-right, lower than software */
+        .hero-pill--uiux {
+            width: 102px;
+            bottom: 60px;
+            right:14%;
+        }
+        @media (max-width: 700px) {
+            .hero-pill--branding { width: 90px; top: 44px; left: 1%; }
+            .hero-pill--software { width: 90px; top: 44px; right: 1%; }
+            .hero-pill--uiux     { width: 75px; bottom: 44px; right: 2%; }
         }
         .avatar-wrap {
             position: relative;
@@ -328,7 +358,7 @@
             top: -100px;
             left: 50%;
             transform: translateX(-50%);
-            width: min(1100px, 94vw);
+            width: min(1300px, 100vw);
             height: 616px; /* hero ~420px + half marquee height ~140px */
             /*width: 8000px;*/
             pointer-events: none;
@@ -357,7 +387,7 @@
             width: 100%;
             overflow: hidden;
             position: relative;
-            margin: 0 0 40px;
+            margin: 14px 0 48px;
             /* fade left and right edges */
         }
         .hero-proj-marquee-wrap::before,
@@ -2286,6 +2316,11 @@
         <img class="hero-lines-img" src="assets/images/hero/grid_lines.svg" alt="" aria-hidden="true">
 
     <section class="hero">
+        <!-- Floating pill badges — match hero_reference positions -->
+        <img src="assets/images/hero/branding.svg" alt="Branding" class="hero-pill hero-pill--branding" aria-hidden="true">
+        <img src="assets/images/hero/software.svg" alt="Software" class="hero-pill hero-pill--software" aria-hidden="true">
+        <img src="assets/images/hero/ui_ux.svg" alt="UI/UX" class="hero-pill hero-pill--uiux" aria-hidden="true">
+
         <div class="avatar-wrap">
             <div class="avatar">
                 <img src="assets/images/about_me/me.png" alt="Avatar">
