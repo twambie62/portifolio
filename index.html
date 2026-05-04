@@ -170,26 +170,115 @@
         }
         /* Branding — top-left, with cursor pointing down-right */
         .hero-pill--branding {
-            width: 114px;
+            width: 92px;
             top: 45px;
             left: 16%;
+            animation: branding-wander 9s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+            transform-origin: center center;
+        }
+
+        @keyframes branding-wander {
+            /* Start: resting position top-left */
+            0%   { transform: translate(0px, 0px) rotate(-2deg); }
+            /* Move 1: drift right and slightly down toward center */
+            18%  { transform: translate(52px, 28px) rotate(1deg); }
+            /* Move 2: continue inward and down, closer to avatar */
+            36%  { transform: translate(90px, 72px) rotate(3deg); }
+            /* Move 3: ease back left, drop a little more */
+            54%  { transform: translate(48px, 96px) rotate(0deg); }
+            /* Move 4: swing slightly right again */
+            72%  { transform: translate(64px, 52px) rotate(2deg); }
+            /* Return: glide smoothly back to origin */
+            90%  { transform: translate(12px, 10px) rotate(-1deg); }
+            100% { transform: translate(0px, 0px) rotate(-2deg); }
         }
         /* Software — top-right */
         .hero-pill--software {
-            width: 111px;
+            width: 90px;
             top: 40px;
             right: 12%;
+            animation: software-wander 11s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+            transform-origin: center center;
+        }
+
+        @keyframes software-wander {
+            /* Rest at origin, slight tilt */
+            0%   { transform: translate(0px,   0px)  rotate(2deg); }
+            /* Move 1: drift left, nudge down */
+            14%  { transform: translate(-38px, 22px) rotate(-1deg); }
+            /* Move 2: continue left and down toward center */
+            28%  { transform: translate(-80px, 58px) rotate(-3deg); }
+            /* Move 3: drop further inward, ease left more */
+            42%  { transform: translate(-108px, 92px) rotate(-1deg); }
+            /* Move 4: swing slightly right while staying low */
+            56%  { transform: translate(-72px, 114px) rotate(1deg); }
+            /* Move 5: drift further right but still below start */
+            68%  { transform: translate(-28px, 88px) rotate(3deg); }
+            /* Return path — arc back upward via a different curve (swings right first) */
+            80%  { transform: translate(10px,  50px) rotate(2deg); }
+            90%  { transform: translate(4px,   16px) rotate(3deg); }
+            100% { transform: translate(0px,   0px)  rotate(2deg); }
         }
         /* UI/UX — bottom-right, lower than software */
         .hero-pill--uiux {
-            width: 102px;
+            width: 84px;
             bottom: 60px;
             right:14%;
+            animation: uiux-wander 10s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+            transform-origin: center center;
+        }
+
+        @keyframes uiux-wander {
+            /* Start */
+            0%   { transform: translate(0px,   0px)   rotate(1deg);   }
+            /* Step 1 — move up-left */
+            16%  { transform: translate(-24px, -18px) rotate(-1deg);  }
+            /* Step 2 — peak far left, still going up */
+            32%  { transform: translate(-44px, -36px) rotate(-2.5deg);}
+            /* Step 3 — arc rightward across the top (leftward X shrinks, Y stays high) */
+            50%  { transform: translate(-14px, -50px) rotate(-1deg);  }
+            /* Step 4 — continue right, start descending */
+            65%  { transform: translate(16px,  -34px) rotate(1deg);   }
+            /* Step 5 — sweep down-right back toward origin */
+            80%  { transform: translate(20px,  -10px) rotate(2deg);   }
+            /* Settle in */
+            92%  { transform: translate(6px,    2px)  rotate(1.5deg); }
+            100% { transform: translate(0px,    0px)  rotate(1deg);   }
         }
         @media (max-width: 700px) {
-            .hero-pill--branding { width: 90px; top: 44px; left: 1%; }
-            .hero-pill--software { width: 90px; top: 44px; right: 1%; }
-            .hero-pill--uiux     { width: 75px; bottom: 40px; right: -4%; }
+            .hero-pill--branding { width: 90px; top: 44px; left: 1%; animation: branding-wander-sm 9s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+            @keyframes branding-wander-sm {
+                0%   { transform: translate(0px, 0px) rotate(-2deg); }
+                18%  { transform: translate(28px, 18px) rotate(1deg); }
+                36%  { transform: translate(50px, 48px) rotate(3deg); }
+                54%  { transform: translate(26px, 64px) rotate(0deg); }
+                72%  { transform: translate(36px, 34px) rotate(2deg); }
+                90%  { transform: translate(6px, 6px) rotate(-1deg); }
+                100% { transform: translate(0px, 0px) rotate(-2deg); }
+            }
+            .hero-pill--software { width: 90px; top: 44px; right: 1%; animation: software-wander-sm 11s cubic-bezier(0.37, 0, 0.63, 1) infinite; }
+            @keyframes software-wander-sm {
+                0%   { transform: translate(0px,   0px)  rotate(2deg); }
+                14%  { transform: translate(-20px, 14px) rotate(-1deg); }
+                28%  { transform: translate(-44px, 34px) rotate(-3deg); }
+                42%  { transform: translate(-58px, 54px) rotate(-1deg); }
+                56%  { transform: translate(-38px, 66px) rotate(1deg); }
+                68%  { transform: translate(-14px, 50px) rotate(3deg); }
+                80%  { transform: translate(6px,   28px) rotate(2deg); }
+                90%  { transform: translate(2px,   10px) rotate(3deg); }
+                100% { transform: translate(0px,   0px)  rotate(2deg); }
+            }
+            .hero-pill--uiux     { width: 75px; bottom: 40px; right: -4%; animation: uiux-wander-sm 10s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+            @keyframes uiux-wander-sm {
+                0%   { transform: translate(0px,   0px)   rotate(1deg);   }
+                16%  { transform: translate(-14px, -10px) rotate(-1deg);   }
+                32%  { transform: translate(-24px, -20px) rotate(-2.5deg); }
+                50%  { transform: translate(-8px,  -28px) rotate(-1deg);   }
+                65%  { transform: translate(9px,   -19px) rotate(1deg);    }
+                80%  { transform: translate(11px,  -6px)  rotate(2deg);    }
+                92%  { transform: translate(3px,    1px)  rotate(1.5deg);  }
+                100% { transform: translate(0px,    0px)  rotate(1deg);    }
+            }
 
             .hero-btns {
 
