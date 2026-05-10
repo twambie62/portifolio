@@ -3854,6 +3854,80 @@
     }
   })();
 </script>
+<script>
+  // ── Experience & Education cards — slide in from right on scroll ──────
+  (function () {
+    const weCards = document.querySelectorAll('#work .we-card, #education .we-card');
+    if (!weCards.length) return;
+
+    // Also animate the section headings
+    const weHeadings = document.querySelectorAll('#work .about-me-heading, #education .about-me-heading');
+
+    // Set initial state — pushed to the right, invisible
+    gsap.set(weCards,    { opacity: 0, x: 24 });
+    gsap.set(weHeadings, { opacity: 0, x: 20 });
+
+    // Headings slide in first, then cards follow per-entry
+    weHeadings.forEach(function (heading) {
+      gsap.to(heading, {
+        opacity: 1,
+        x: 0,
+        duration: 0.7,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: heading,
+          start: 'top 85%',
+          once: true,
+        },
+      });
+    });
+
+    // Each card slides in from the right with a subtle stagger per section
+    weCards.forEach(function (card, i) {
+      // Find the index of the card within its own parent so stagger resets per section
+      const siblings = card.parentElement.querySelectorAll('.we-card');
+      const localIndex = Array.from(siblings).indexOf(card);
+
+      gsap.to(card, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: 'power3.out',
+        delay: localIndex * 0.12,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 88%',
+          once: true,
+        },
+      });
+    });
+  })();
+</script>
+<script>
+  // ── Process cards — staggered slide up on scroll ──────────────────────
+  (function () {
+    const processGrid = document.querySelector('.processes-grid');
+    if (!processGrid) return;
+
+    const cards = processGrid.querySelectorAll('.process-card');
+    if (!cards.length) return;
+
+    gsap.set(cards, { opacity: 0, y: 60 });
+
+    gsap.to(cards, {
+      opacity: 1,
+      y: 0,
+      duration: 0.75,
+      ease: 'power3.out',
+      stagger: 0.15,
+      scrollTrigger: {
+        trigger: processGrid,
+        start: 'top 82%',
+        once: true,
+      },
+    });
+  })();
+</script>
 </body>
 
 </html>
