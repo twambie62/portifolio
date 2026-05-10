@@ -16,78 +16,79 @@
         /* prevent any unwanted horizontal scrolling */
         html, body { overflow-x: hidden; }
 
-        .kwacha-title {
-            text-align: center;
-            font-size: 2.4rem;
-            font-weight: 600;
-            margin-top: 80px;
-            margin-bottom: 48px;
-        }
-        /* layout: two equal width columns so left image and right info align with the grid columns */
-        .kwacha-main {
+        /* ===== HEADER — smart_apps style ===== */
+        .header-row-1 {
             display: grid;
-            grid-template-columns: 1.4fr 1fr; /* equal columns */
-            gap: 24px;
-            margin-bottom: 48px;
-            justify-items: center; /* center content in each column */
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
             align-items: start;
-            max-width: 100%;
-            box-sizing: border-box;
+            margin-top: 80px;
+            margin-bottom: 28px;
         }
-        /* image card in the main column: make full column width and match the card-media padding
-           so the inner visible image edges align with images in the grid below */
-        .kwacha-main-img {
-            background: #F7F7F7;
-            border-radius: 14px;
-            width: 100%;
-            max-width: 100%;
-            height: 440px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 36px;        /* MATCHES .kwacha-card .kwacha-media padding for edge alignment */
-            overflow: hidden;
-            box-sizing: border-box;
+        .header-title {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.22;
+            color: #141414;
         }
-        .kwacha-main-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* keep whole image visible */
-            border-radius: 14px;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-        /* info column: fill its column and center content; limit max width so text lines remain readable */
-        .kwacha-main-info {
-            width: 100%;
-            max-width: 560px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            gap: 18px;
-            box-sizing: border-box;
-        }
-        .kwacha-tags {
+        .header-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
+            justify-content: flex-end;
         }
-        .kwacha-tag {
+        .header-tags span {
             background: #ededed;
             color: #2f2f2f;
-            border-radius: 8px;
-            padding: 6px 14px;
-            font-size: 14px;
+            border-radius: 6px;
+            padding: 6px 16px;
+            font-size: 13px;
             font-weight: 500;
+            white-space: nowrap;
         }
-        .kwacha-links {
-            margin-top: 12px;
+        .header-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: start;
+            margin-bottom: 48px;
         }
-        .kwacha-links a {
-            display: inline-block;
-            margin-right: 8px;
-            font-size: 24px;
+        .header-description {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: rgb(145,145,145);
+            line-height: 1.6;
         }
+        .header-side {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .header-links-label {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #141414;
+            margin-bottom: 4px;
+        }
+        .header-link-icons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .header-link-icons a { display: inline-flex; }
+        .header-link-icons img { width: 28px; height: 28px; }
+        .header-disclaimer {
+            font-size: 0.82rem;
+            color: rgb(160,160,160);
+            line-height: 1.5;
+        }
+        .header-disclaimer strong { color: #141414; font-weight: 600; }
+        @media (max-width: 640px) {
+            .header-row-1 { grid-template-columns: 1fr; gap: 18px; margin-top: 40px; }
+            .header-tags { justify-content: flex-start; }
+            .header-row-3 { grid-template-columns: 1fr; gap: 18px; }
+        }
+        /* ===== END HEADER ===== */
         /* ensure the grid below uses the same two-column sizing so edges line up */
         .kwacha-grid {
             display: grid;
@@ -299,12 +300,6 @@
 
         /* Remove any previous rules that targeted .kwacha-topbar:hover ... (they are replaced above) */
 
-        .header-description{
-            font-size: 0.95rem;
-            font-weight: 400;
-            color: rgb(145,145,145);
-            line-height: 1.6;
-        }
     </style>
 </head>
 <body>
@@ -319,33 +314,42 @@
         <!-- NEW: single bordered-only tag aligned to the far right -->
         <div class="top-tag" tabindex="0">Design</div>
     </div>
-    <div class="kwacha-title">Courier App Design</div>
-    <div class="kwacha-main">
-        <div class="kwacha-main-img">
-            <!-- added: keep the top image (copy of the grid image) visible above the description -->
-            <img src="../assets/images/portifolio/courier/home_live_tracking.png" alt="Courier App Home Live Tracking">
+    <!-- Row 1: Title left, Tags right -->
+    <div class="header-row-1">
+        <div class="header-title">Courier App Design</div>
+        <div class="header-tags">
+            <span>Courier</span>
+            <span>Logistics</span>
+            <span>LiveTracking</span>
+            <span>AppDesign</span>
+            <span>UI/UX</span>
+            <span>Figma</span>
         </div>
-        <div class="kwacha-main-info">
-            <div class="header-description">
-                A delivery-focused Courier app UI showcasing real-time live tracking, delivery status cards, driver assignment, and in-app notifications. The design emphasizes clarity for both customers and drivers with clear actions, map integration, and compact summary cards — created in Figma for mobile-first use.
+    </div>
+
+    <!-- Header image spanning full width -->
+    <div style="margin-bottom:24px; background:#F0F0F0; border-radius:20px; height:520px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+        <img src="../assets/images/portifolio/courier/home_live_tracking.png"
+             alt="Courier App Hero"
+             style="width:100%; height:100%; padding:36px; display:block; box-sizing:border-box; object-fit:contain;" />
+    </div>
+
+    <!-- Row 3: Description left, Links right -->
+    <div class="header-row-3">
+        <div class="header-description">
+            A delivery-focused Courier app UI showcasing real-time live tracking, delivery status cards, driver assignment, and in-app notifications. The design emphasizes clarity for both customers and drivers with clear actions, map integration, and compact summary cards — created in Figma for mobile-first use.
+        </div>
+        <div class="header-side">
+            <div>
+                <div class="header-links-label">Links</div>
+                <div class="header-link-icons">
+                    <a href="#" id="figma-link">
+                        <img src="../assets/svg/devicon_figma.svg" alt="Figma" />
+                    </a>
+                </div>
             </div>
-            <div class="kwacha-tags">
-                <span class="kwacha-tag">Courier</span>
-                <span class="kwacha-tag">Logistics</span>
-                <span class="kwacha-tag">LiveTracking</span>
-                <span class="kwacha-tag">DeliveryApp</span>
-                <span class="kwacha-tag">MapIntegration</span>
-                <span class="kwacha-tag">DriverApp</span>
-                <span class="kwacha-tag">MobileApp</span>
-                <span class="kwacha-tag">AppDesign</span>
-                <span class="kwacha-tag">UI/UX</span>
-                <span class="kwacha-tag">Figma</span>
-            </div>
-            <div class="kwacha-links">
-                <span style="font-weight:500; gap: 8px; font-size: 1.1rem;">Links</span><br>
-                <a href="#" style="margin-top: 7px;" id="figma-link">
-                    <img src="../assets/svg/devicon_figma.svg" alt="Figma" style="width:32px;height:32px;vertical-align:middle;" />
-                </a>
+            <div class="header-disclaimer">
+                <strong>Disclaimer:</strong> This is a design concept project showcasing UI/UX skills for a courier and logistics mobile application.
             </div>
         </div>
     </div>

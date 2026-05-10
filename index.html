@@ -167,6 +167,8 @@
             position: absolute;
             pointer-events: none;
             height: auto;
+            opacity: 0;                        /* hidden until GSAP reveals them */
+            animation-play-state: paused;      /* freeze wander until timeline ends */
         }
         /* Branding — top-left, with cursor pointing down-right */
         .hero-pill--branding {
@@ -289,16 +291,16 @@
             .avatar-wrap {
                 position: relative;
                 display: inline-block;
-                width: 108px;
+                width: 100px;
                 margin: 24px auto 24px;
             }
             .avatar {
-                width: 108px; height: 108px;
+                width: 100px; height: 100px;
                 border-radius: 50%;
                 overflow: hidden;
-                margin-left: -3px;
-                border: 4px solid var(--card);
-                box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+                margin-left: 0px;
+                /*border: 4px solid var(--card);*/
+                /*box-shadow: 0 12px 30px rgba(0,0,0,0.08);*/
                 position: relative;
                 z-index: 1;
             }
@@ -350,6 +352,35 @@
                 transition: 0.2s;
             }
             .btn:hover { transform: translateY(-1px); }
+
+            /* ── Framer-style slide-text hover ── */
+            .btn-slide {
+                overflow: hidden;
+                /* remove the default translateY lift so GSAP controls it fully */
+            }
+            .btn-slide:hover { transform: none; }
+            .btn-slide-inner {
+                position: relative;
+                display: inline-flex;
+                flex-direction: column;
+                height: 1.2em; /* clip to one line of text */
+                overflow: hidden;
+                pointer-events: none;
+            }
+            .btn-slide-default,
+            .btn-slide-hover {
+                display: block;
+                white-space: nowrap;
+                line-height: 1.2em;
+                will-change: transform;
+            }
+            /* hover duplicate starts below, out of view */
+            .btn-slide-hover {
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: translateY(100%);
+            }
             /* Hero button row + lets chat wrapper */
         .hero-btns-wrap {
             display: inline-flex;
@@ -367,7 +398,7 @@
         .hero-btns .btn {
             font-weight: 400;
             font-size: 13.5px;
-            padding: 10px 22px;
+            padding: 11px 23px;
         }
         /* View my CV — outlined style */
         .hero-cv-btn {
@@ -783,6 +814,9 @@
             padding-left: 96px;
             padding-right: 96px;
         }
+        @media (min-width: 1100px) {
+            .we-cards { padding-left: 100px; padding-right: 180px; }
+        }
 
         .we-card {
             border: none;
@@ -899,10 +933,12 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 14px;
-            margin: 18px 0px 0 72px;
-            padding-left: 52px;
-            padding-right: 52px;
-
+            margin: 18px 80px 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        @media (min-width: 1100px) {
+            .processes-grid { margin: 18px 132px 0; }
         }
         .process-card {
             border: 1px solid var(--border);
@@ -961,18 +997,19 @@
         }
 
         @media (max-width: 900px) {
-            .processes-grid { grid-template-columns: repeat(2, 1fr); }
+            .processes-grid { grid-template-columns: repeat(2, 1fr); margin: 18px 48px 0; }
         }
         @media (max-width: 640px) {
             .we-cards { padding-left: 0; padding-right: 0; }
             .we-card { padding: 18px 0; }
             .processes-grid {
-                padding-left: 8px;
-                padding-right: 8px;
-                margin: 18px 0px 0 68px;
-
-                grid-template-columns: 1fr; gap: 20px; }
-            .process-card {padding: 18px 16px 16px; }
+                margin: 18px 12px 0;
+                padding-left: 0;
+                padding-right: 0;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .process-card { padding: 18px 16px 16px; }
             .process-number { font-size: 2rem; }
         }
 
@@ -1335,7 +1372,10 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
             margin: 0 0 56px;
-            padding: 0 210px;
+            padding: 0 96px;
+        }
+        @media (min-width: 1100px) {
+            .skills-grid { padding: 0 240px; }
         }
 
         .skill-card {
@@ -1803,6 +1843,9 @@
         /* ===== ABOUT ME SECTION ===== */
         .about-me-section {
             margin: 0 106px 56px;
+        }
+        @media (min-width: 1100px) {
+            .about-me-section { margin: 0 140px 56px; }
         }
         .about-me-heading {
             text-align: center;
@@ -2468,16 +2511,26 @@
 
         <div class="avatar-wrap">
             <div class="avatar">
-                <img src="assets/images/about_me/me.png" alt="Avatar">
+                <img id="hero-avatar" src="assets/images/about_me/me.png" alt="Avatar">
             </div>
-            <div class="chip"><span class="dot"></span>Hi I am Twambi</div>
+            <div id="hero-greeting" class="chip"><span class="dot"></span>Hi I am Twambi</div>
         </div>
-        <h1>I'm a web and app developer<br>and a UI/UX designer.</h1>
-        <p class="sub">Passionate about building products that combine great design, usability & dependable high-performance</p>
+        <h1 id="hero-heading">I'm a web and app developer<br>and a UI/UX designer.</h1>
+        <p id="hero-sub" class="sub">Passionate about building products that combine great design, usability & dependable high-performance</p>
         <div class="hero-btns-wrap">
             <div class="hero-btns">
-                <a href="#contact" class="btn">Contact me</a>
-                <a href="#" class="btn hero-cv-btn">View my CV</a>
+                <a id="hero-btn-1" href="mailto:twambililemusukwa@gmail.com" class="btn btn-slide">
+                    <span class="btn-slide-inner">
+                        <span class="btn-slide-default">Contact me</span>
+                        <span class="btn-slide-hover">Contact me</span>
+                    </span>
+                </a>
+                <a id="hero-btn-2" href="https://drive.google.com/file/d/1VaOheAdv-UTsDFuWMKhqLfepPAMPAzgy/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn hero-cv-btn btn-slide">
+                    <span class="btn-slide-inner">
+                        <span class="btn-slide-default">View my CV</span>
+                        <span class="btn-slide-hover">View my CV</span>
+                    </span>
+                </a>
             </div>
             <div class="hero-lets-chat" aria-hidden="true">
                 <img src="assets/images/hero/lets_chat.svg" alt="Lets Chat">
@@ -3418,18 +3471,18 @@
         <img class="quote-icon-large start-quote" src="assets/images/testimonial_faq/comma.svg" alt="quote">
         <p class="quote-text"><strong>Great products aren't built alone — </strong><span class="muted">they're shaped by the right minds</span> <strong>at the right table. And I'd love </strong><span class="muted">that seat</span></p>
         <img class="quote-icon-large end-quote" src="assets/images/testimonial_faq/comma.svg" alt="quote">
-        <a href="#contact" class="btn btn-outline" style="margin-top:28px;">Lets work together <span style="margin-left:6px;">→</span></a>
+        <a href="mailto:twambililemusukwa@gmail.com" class="btn btn-outline" style="margin-top:28px;">Lets work together <span style="margin-left:6px;">→</span></a>
     </section>
 
     <section id="contact">
         <div class="section-label"><span class="dot"></span>Contact</div>
-        <form>
+        <form id="contact-form">
             <div class="row-2">
-                <input type="text" placeholder="Full name" required>
-                <input type="email" placeholder="Email" required>
+                <input type="text" id="contact-name" placeholder="Full name" required>
+                <input type="email" id="contact-email" placeholder="Email" required>
             </div>
-            <input type="text" placeholder="Subject">
-            <textarea placeholder="Your message"></textarea>
+            <input type="text" id="contact-subject" placeholder="Subject">
+            <textarea id="contact-message" placeholder="Your message"></textarea>
             <div class="submit-row">
                 <button type="submit" class="btn">Submit</button>
             </div>
@@ -3630,6 +3683,176 @@
       // ignore errors
     }
   });
+</script>
+<!-- GSAP + SplitType CDN -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/split-type"></script>
+<script>gsap.registerPlugin(ScrollTrigger);</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    // ── SplitType: split heading into individual words ──────────────────
+    const headingEl = document.getElementById('hero-heading');
+    const split = new SplitType(headingEl, { types: 'words' });
+
+    // Hide all words initially (GSAP will animate them in)
+    gsap.set(split.words, { opacity: 0, y: 40, filter: 'blur(14px)' });
+
+    // Hide all other hero elements before timeline starts
+    gsap.set('.avatar-wrap',   { opacity: 0.5, y: 60, scale:0.8  });
+    gsap.set('#hero-greeting', { opacity: 0, y: 20,      });
+    gsap.set('#hero-sub',      { opacity: 0, y: 20,      filter: 'blur(8px)'  });
+    gsap.set(['#hero-btn-1', '#hero-btn-2'], { opacity: 0, y: 20, scale: 1 });
+    gsap.set('.hero-lets-chat',        { opacity: 0, y: 20 });
+    gsap.set('.hero-proj-marquee-wrap', { opacity: 0, y: 50,  filter: 'blur(14px)' });
+
+    // ── Timeline ────────────────────────────────────────────────────────
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    // 1. Avatar — scale + fade + unblur
+    tl.to('.avatar-wrap', {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 1,
+    });
+
+    // 2. Greeting tag — rise + fade + unblur (0.3s after avatar starts)
+    tl.to('#hero-greeting', {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      duration: 0.6,
+    },
+        '-=0.5'
+    ); // overlaps so greeting starts ~0.3s after avatar began
+
+    // 3. Heading words — staggered rise + fade + unblur
+    tl.to(split.words, {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      duration: 0.8,
+      stagger: 0.1,
+    }, '+=0.03');
+
+    // 4. Subtitle — rise + fade + unblur, starts after last word finishes
+    tl.to('#hero-sub', {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      duration: 0.7,
+    }, '-=0.2');
+
+    // 5. Buttons + lets-chat — rise + fade, staggered
+    tl.to(['#hero-btn-1', '#hero-btn-2'], {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.4,
+    }, '+=0.00');
+
+    // lets-chat SVG slides up alongside the buttons
+    tl.to('.hero-lets-chat', {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: 'power3.out',
+    }, '+=0.39'); // starts 0.1s after buttons begin
+
+    // 6. Pills — fade + scale in after all hero content has appeared,
+    //    then hand off to the CSS wander animations
+    gsap.set('.hero-pill', { scale: 0.7 });
+    tl.to('.hero-pill', {
+      opacity: 1,
+      scale: 1,
+      duration: 0.6,
+      ease: 'back.out(1.6)',
+      stagger: 0.15,
+      onComplete: function () {
+        // Release the CSS wander animations now that pills are visible
+        document.querySelectorAll('.hero-pill').forEach(function (pill) {
+          pill.style.animationPlayState = 'running';
+        });
+      },
+    }, '+=0.1');
+
+    // 7. Project cards marquee — slides up after pills pop in
+    tl.to('.hero-proj-marquee-wrap', {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      duration: 1,
+      ease: 'power3.out',
+    }, '-=0.6');
+
+  });
+</script>
+<script>
+  // ── Framer-style slide-text button hover — works on any .btn-slide ──
+  (function () {
+    const DURATION = 0.4;
+    const EASE = 'power2.out';
+
+    document.querySelectorAll('.btn-slide').forEach(function (btn) {
+      const def  = btn.querySelector('.btn-slide-default');
+      const dup  = btn.querySelector('.btn-slide-hover');
+      if (!def || !dup) return;
+
+      // make sure hover span starts below
+      gsap.set(dup, { y: '100%' });
+
+      btn.addEventListener('mouseenter', function () {
+        gsap.to(def,  { y: '-100%', duration: DURATION, ease: EASE });
+        gsap.to(dup,  { y:    '0%', duration: DURATION, ease: EASE });
+      });
+
+      btn.addEventListener('mouseleave', function () {
+        gsap.to(def,  { y:    '0%', duration: DURATION, ease: EASE });
+        gsap.to(dup,  { y:  '100%', duration: DURATION, ease: EASE });
+      });
+    });
+  })();
+</script>
+<script>
+  // ── Project cards — staggered scroll reveal (all cards across every section) ──
+  (function () {
+    const allCards = document.querySelectorAll('.card');
+    if (!allCards.length) return;
+
+    // Set all cards to their hidden start state immediately
+    gsap.set(allCards, { opacity: 0, scale:0.97, y: 40 });
+
+    allCards.forEach(function (card, i) {
+      gsap.to(card, {
+        opacity: 1,
+        y: 0,
+        scale:1,
+        duration: 0.5,
+        ease: 'back.out(1.4)',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 96%',
+          once: true,
+        },
+
+      });
+    });
+
+    // Re-run ScrollTrigger refresh when extra-projects is shown
+    // so newly visible cards animate in correctly
+    const showMoreBtn = document.getElementById('show-more-projects');
+    if (showMoreBtn) {
+      showMoreBtn.addEventListener('click', function () {
+        // Small delay to let the display:block paint before ScrollTrigger measures
+        setTimeout(function () {
+          ScrollTrigger.refresh();
+        }, 50);
+      });
+    }
+  })();
 </script>
 </body>
 
