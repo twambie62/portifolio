@@ -414,7 +414,6 @@
         /* "Lets Chat" SVG — sits just below-left of the button row, arrow pointing toward Contact me */
         .hero-lets-chat {
             position: absolute;
-            /* arrow tip lands right at the left edge of Contact me button */
             right: calc(100% - 20px);
             bottom: -58px;
             pointer-events: none;
@@ -426,7 +425,17 @@
             display: block;
         }
         @media (max-width: 700px) {
-            .hero-lets-chat { display: none; }
+            .hero-lets-chat {
+                position: absolute;
+                /* on mobile, anchor left of the Contact me button */
+                left: -52px;
+                /*right: auto;*/
+                bottom: -52px;
+                width: 118px;
+            }
+            .hero-lets-chat img {
+                width: 118px;
+            }
         }
         .btn-grey {
             font-weight: 500;
@@ -3912,19 +3921,56 @@
     const cards = processGrid.querySelectorAll('.process-card');
     if (!cards.length) return;
 
-    gsap.set(cards, { opacity: 0, y: 60 });
+    gsap.set(cards, { opacity: 0, y: 40 });
 
     gsap.to(cards, {
       opacity: 1,
       y: 0,
-      duration: 0.75,
+      duration: 0.8,
       ease: 'power3.out',
-      stagger: 0.15,
+      stagger: 0.12,
       scrollTrigger: {
         trigger: processGrid,
         start: 'top 82%',
         once: true,
       },
+    });
+  })();
+</script>
+<script>
+  // ── Two-tone section headings — staggered word fade-up on scroll ──────
+  (function () {
+    const headingSelectors = [
+      '.services-heading',
+      '.wcm-heading',
+      '.tools-center-text h2',
+      '.about-me-heading h2',
+      '.testimonials-heading h2',
+      '.faq-left h2',
+    ];
+
+    headingSelectors.forEach(function (sel) {
+      const el = document.querySelector(sel);
+      if (!el) return;
+
+      // SplitType splits into words while preserving inner <span> (muted) markup
+      const split = new SplitType(el, { types: 'words' });
+
+      // Set initial state
+      gsap.set(split.words, { opacity: 0, y: 24 });
+
+      gsap.to(split.words, {
+        opacity: 1,
+        y: 0,
+        duration: 0.65,
+        ease: 'power3.out',
+        stagger: 0.03,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          once: true,
+        },
+      });
     });
   })();
 </script>
