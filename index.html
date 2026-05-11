@@ -431,7 +431,7 @@
                 left: -52px;
                 /*right: auto;*/
                 bottom: -52px;
-                width: 118px;
+                width: 132px;
             }
             .hero-lets-chat img {
                 width: 118px;
@@ -3713,7 +3713,7 @@
     gsap.set('.avatar-wrap',   { opacity: 0.5, y: 60, scale:0.8  });
     gsap.set('#hero-greeting', { opacity: 0, y: 20,      });
     gsap.set('#hero-sub',      { opacity: 0, y: 20,      filter: 'blur(8px)'  });
-    gsap.set(['#hero-btn-1', '#hero-btn-2'], { opacity: 0, y: 20, scale: 1 });
+    gsap.set(['#hero-btn-1', '#hero-btn-2'], { opacity: 0, y: 24 });
     gsap.set('.hero-lets-chat',        { opacity: 0, y: 20 });
     gsap.set('.hero-proj-marquee-wrap', { opacity: 0, y: 50,  filter: 'blur(14px)' });
 
@@ -3753,15 +3753,15 @@
       y: 0,
       filter: 'blur(0px)',
       duration: 0.7,
-    }, '-=0.2');
+    }, '-=0.3');
 
     // 5. Buttons + lets-chat — rise + fade, staggered
     tl.to(['#hero-btn-1', '#hero-btn-2'], {
       opacity: 1,
       y: 0,
-      scale: 1,
-      duration: 0.4,
-    }, '+=0.00');
+      duration: 0.5,
+      ease: 'power3.out',
+    }, '-=0.2');
 
     // lets-chat SVG slides up alongside the buttons
     tl.to('.hero-lets-chat', {
@@ -3771,8 +3771,16 @@
       ease: 'power3.out',
     }, '+=0.39'); // starts 0.1s after buttons begin
 
-    // 6. Pills — fade + scale in after all hero content has appeared,
-    //    then hand off to the CSS wander animations
+    // 6. Project cards marquee — slides up after buttons/lets-chat settle
+    tl.to('.hero-proj-marquee-wrap', {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      duration: 0.9,
+      ease: 'power3.out',
+    }, '+=0.05');
+
+    // 7. Pills — last to appear, fade + scale pop, then release CSS wander animations
     gsap.set('.hero-pill', { scale: 0.7 });
     tl.to('.hero-pill', {
       opacity: 1,
@@ -3781,21 +3789,12 @@
       ease: 'back.out(1.6)',
       stagger: 0.15,
       onComplete: function () {
-        // Release the CSS wander animations now that pills are visible
         document.querySelectorAll('.hero-pill').forEach(function (pill) {
           pill.style.animationPlayState = 'running';
         });
       },
     }, '+=0.1');
 
-    // 7. Project cards marquee — slides up after pills pop in
-    tl.to('.hero-proj-marquee-wrap', {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      duration: 1,
-      ease: 'power3.out',
-    }, '-=0.6');
 
   });
 </script>
@@ -3938,7 +3937,31 @@
   })();
 </script>
 <script>
-  // ── Two-tone section headings — staggered word fade-up on scroll ──────
+  // ── Skill cards — staggered fade-up on scroll ─────────────────────────
+  (function () {
+    const skillCards = document.querySelectorAll('.skill-card');
+    if (!skillCards.length) return;
+
+    gsap.set(skillCards, { opacity: 0, y: 50 });
+
+    skillCards.forEach(function (card, i) {
+      gsap.to(card, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power3.out',
+        delay: (i % 2) * 0.12,   // stagger within each row (2-col grid)
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 88%',
+          once: true,
+        },
+      });
+    });
+  })();
+</script>
+<script>
+  // ── Two-tone section headings — whole-element fade-up on scroll ───────
   (function () {
     const headingSelectors = [
       '.services-heading',
@@ -3949,28 +3972,138 @@
       '.faq-left h2',
     ];
 
-    headingSelectors.forEach(function (sel) {
-      const el = document.querySelector(sel);
-      if (!el) return;
+    const els = headingSelectors
+      .map(function (sel) { return document.querySelector(sel); })
+      .filter(Boolean);
 
-      // SplitType splits into words while preserving inner <span> (muted) markup
-      const split = new SplitType(el, { types: 'words' });
+    // Set all hidden upfront
+    gsap.set(els, { opacity: 0, y: 32 });
 
-      // Set initial state
-      gsap.set(split.words, { opacity: 0, y: 24 });
-
-      gsap.to(split.words, {
+    // Each heading animates as one whole element when it enters the viewport
+    els.forEach(function (el) {
+      gsap.to(el, {
         opacity: 1,
         y: 0,
-        duration: 0.65,
+        duration: 1,
         ease: 'power3.out',
-        stagger: 0.03,
         scrollTrigger: {
           trigger: el,
-          start: 'top 85%',
+          start: 'top 90%',
           once: true,
         },
       });
+    });
+  })();
+</script>
+<script>
+  // ── Why Choose Me bento grid — fade up on scroll ────────────────────
+  (function () {
+    const wrapper = document.querySelector('.wcm-wrapper');
+    if (!wrapper) return;
+    gsap.set(wrapper, { opacity: 0, y: 72 });
+    gsap.to(wrapper, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: wrapper,
+        start: 'top 95%',
+        once: true,
+      },
+    });
+  })();
+</script>
+</script>
+<script>
+  // ── Tools section subtext — fade up on scroll ─────────────────────────
+  (function () {
+    const sub = document.querySelector('.tools-center-text p');
+    if (!sub) return;
+    gsap.set(sub, { opacity: 0, y: 24 });
+    gsap.to(sub, {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: sub,
+        start: 'top 88%',
+        once: true,
+      },
+    });
+  })();
+</script>
+<script>
+  // ── About Me bio — image from left, text from right ───────────────────
+  (function () {
+    const img  = document.querySelector('.about-me-img');
+    const text = document.querySelector('.about-me-text');
+    if (!img || !text) return;
+
+    gsap.set(img,  { opacity: 0, x: -26 });
+    gsap.set(text, { opacity: 0, x:  26 });
+
+    const trigger = { trigger: document.querySelector('.about-me-bio'), start: 'top 82%', once: true };
+
+    gsap.to(img, {
+      opacity: 1, x: 0,
+      duration: 1, ease: 'power3.out',
+      scrollTrigger: trigger,
+    });
+    gsap.to(text, {
+      opacity: 1, x: 0,
+      duration: 0.9, ease: 'power3.out',
+      delay: 0.2,
+      scrollTrigger: trigger,
+    });
+  })();
+</script>
+<script>
+  // ── Testimonials marquee — fade up on scroll ──────────────────────────
+  (function () {
+    const wrap = document.querySelector('.testimonials-cards-wrap');
+    if (!wrap) return;
+    gsap.set(wrap, { opacity: 0, y: 50 });
+    gsap.to(wrap, {
+      opacity: 1, y: 0,
+      duration: 0.9, ease: 'power3.out',
+      scrollTrigger: { trigger: wrap, start: 'top 85%', once: true },
+    });
+  })();
+
+  // ── FAQ — all driven by the heading's ScrollTrigger ──────────────────
+  (function () {
+    const heading = document.querySelector('.faq-left h2');
+    const faqSub  = document.querySelector('.faq-left p');
+    const faqBtn  = document.querySelector('.faq-left .btn');
+    const items   = document.querySelectorAll('.faq-item');
+    if (!heading) return;
+
+    gsap.set([faqSub, faqBtn].filter(Boolean), { opacity: 0, y: 30 });
+    gsap.set(items, { opacity: 0, y: 40 });
+
+    ScrollTrigger.create({
+      trigger: heading,
+      start: 'top 85%',
+      once: true,
+      onEnter: function () {
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+        // Subtext and button follow the heading with a small delay
+        if (faqSub) tl.to(faqSub, { opacity: 1, y: 0, duration: 0.6 }, '+=0.1');
+        if (faqBtn) tl.to(faqBtn, { opacity: 1, y: 0, duration: 0.55 }, '-=0.3');
+
+        // FAQ items start at the very beginning of the timeline (position 0)
+        // so they animate simultaneously with the heading, staggered
+        if (items.length) {
+          tl.to(items, {
+            opacity: 1, y: 0,
+            duration: 0.6,
+            stagger: 0.09,
+          }, 0);
+        }
+      },
     });
   })();
 </script>
