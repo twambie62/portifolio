@@ -359,7 +359,7 @@
   </div>
 
   <!-- Header image spanning full width -->
-  <div style="margin-bottom:24px; background:#F0F0F0; border-radius:20px; height:520px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+  <div class="header-hero-img" style="margin-bottom:24px; background:#F0F0F0; border-radius:20px; height:520px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
     <img src="../assets/images/portifolio/akometsi/home_movie_details_dark.png"
          alt="Akometsi Hero"
          style="width:100%; height:100%; padding:36px; display:block; box-sizing:border-box; object-fit:contain;" />
@@ -456,67 +456,98 @@
 </main>
 <!--<footer id="app-footer"></footer>-->
 <script src="../assets/app_shared.js"></script>
-<script>
-  // Figma link placeholder
-  const figmaLink = document.getElementById('figma-link');
-  figmaLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    // Replace with your actual Figma link
-    window.open('https://www.figma.com/', '_blank');
-  });
-</script>
 
-<!-- ADDED: attach lightweight listeners so only hovering/focusing the circle or project-text toggles the visual state -->
+<!-- GSAP for entrance animations -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script>
-  (function() {
+document.addEventListener('DOMContentLoaded', function () {
+
+  // ── Topbar hover state ──────────────────────────────────────────────
+  (function () {
     const topbar = document.querySelector('.kwacha-topbar');
     if (!topbar) return;
     const circle = topbar.querySelector('.circle');
-    const text = topbar.querySelector('.project-text');
+    const text   = topbar.querySelector('.project-text');
 
-    function setHover() { topbar.classList.add('hovering'); }
+    function setHover()   { topbar.classList.add('hovering'); }
     function clearHover() { topbar.classList.remove('hovering'); }
 
     [circle, text].forEach(el => {
       if (!el) return;
       el.addEventListener('mouseenter', setHover);
       el.addEventListener('mouseleave', clearHover);
-      el.addEventListener('focus', setHover);
-      el.addEventListener('blur', clearHover);
+      el.addEventListener('focus',      setHover);
+      el.addEventListener('blur',       clearHover);
     });
-
-    // ensure keyboard users get the same behavior when tabbing into the elements
   })();
-</script>
 
-<!-- NEW: navigate back to main portfolio when circle or "Projects" text are activated -->
-<script>
-  (function() {
+  // ── Topbar navigation ───────────────────────────────────────────────
+  (function () {
     const topbar = document.querySelector('.kwacha-topbar');
     if (!topbar) return;
     const circle = topbar.querySelector('.circle');
-    const text = topbar.querySelector('.project-text');
+    const text   = topbar.querySelector('.project-text');
     const target = '../index.html';
 
     function goHome(e) {
-      // allow normal link activation if user used modifier keys
       if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
       window.location.href = target;
     }
-
     function keyActivate(e) {
       if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
         e.preventDefault();
         goHome(e);
       }
     }
-
     [circle, text].forEach(el => {
       if (!el) return;
-      el.addEventListener('click', goHome);
+      el.addEventListener('click',   goHome);
       el.addEventListener('keydown', keyActivate);
     });
   })();
+
+  // ── Figma link ──────────────────────────────────────────────────────
+  const figmaLink = document.getElementById('figma-link');
+  if (figmaLink) {
+    figmaLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.open('https://www.figma.com/', '_blank');
+    });
+  }
+
+  // ── Entrance animation: right → left fade-in, staggered ────────────
+  const targets = [
+    document.querySelector('.kwacha-topbar'),
+    document.querySelector('.header-row-1'),
+    document.querySelector('.header-hero-img'),
+    document.querySelector('.header-row-3'),
+  ].filter(Boolean);
+
+  gsap.set(targets, { opacity: 0, x: 60 });
+  gsap.to(targets, {
+    opacity: 1,
+    x: 0,
+    duration: 0.75,
+    ease: 'power3.out',
+    stagger: 0.14,
+    delay: 0.1,
+  });
+
+  // Tag chips stagger
+  const tags = document.querySelectorAll('.header-tags span');
+  if (tags.length) {
+    gsap.set(tags, { opacity: 0, x: 40 });
+    gsap.to(tags, {
+      opacity: 1,
+      x: 0,
+      duration: 0.55,
+      ease: 'power3.out',
+      stagger: 0.07,
+      delay: 0.35,
+    });
+  }
+
+});
 </script>
 <footer id="app-footer"></footer>
 </body>

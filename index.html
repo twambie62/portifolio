@@ -428,13 +428,13 @@
             .hero-lets-chat {
                 position: absolute;
                 /* on mobile, anchor left of the Contact me button */
-                left: -52px;
+                left: -60px;
                 /*right: auto;*/
                 bottom: -52px;
-                width: 132px;
+                width: 130px;
             }
             .hero-lets-chat img {
-                width: 118px;
+                width: 130px;
             }
         }
         .btn-grey {
@@ -1685,7 +1685,7 @@
             display: block;
         }
 
-        /* Collaboration — image stretches edge to edge */
+        /* Collaboration — two images side by side, edge to edge */
         .wcm-collab {
             padding-bottom: 0;
         }
@@ -1693,9 +1693,14 @@
             display: flex;
             margin: 16px -20px 0;
             justify-content: center;
+            gap: 0;
+            overflow: hidden; /* clips images so they never show outside the card */
         }
         .wcm-collab .wcm-card-img img {
-            width: 100%;
+            width: 50%;
+            flex: 1 1 50%;
+            display: block;
+            object-fit: cover;
         }
 
 
@@ -2334,20 +2339,30 @@
 
         .quote-section .quote-icon-large.end-quote {
             transform: rotate(180deg);
-            margin-top: 16px;
-            margin-bottom: 0;
-            align-self: flex-end;
+            margin-top: -72px;
+            align-self: end;
+            margin-bottom: 60px;
+            margin-right: 100px;
+
         }
         .quote-section .quote-text {
-            font-size: clamp(1.6rem, 3.5vw + 0.5rem, 2.9rem);
+            font-size: clamp(1.5rem, 3.5vw + 0.5rem, 2.9rem);
             font-weight: 800;
-            line-height: 1.35;
+            line-height: 1.3;
             margin: 0;
             color: var(--text);
             max-width: 700px;
         }
         .quote-section .quote-text .muted {
             color: #c0c0c0;
+        }
+        .quote-section .quote-author {
+            display: block;
+            margin-top: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #c0c0c0;
+            letter-spacing: 0.01em;
         }
         .quote-section .btn {
             margin-top: 28px;
@@ -2507,7 +2522,11 @@
     <a href="#contact" class="mobile-nav-link">Contact</a>
 </div>
 
-<main id="home" class="container">
+<!-- Page transition overlay -->
+<div id="page-overlay"></div>
+
+<main id="home" class="container" data-barba="wrapper">
+<div >
     <!-- Hero vertical lines wrapper: covers hero + projects marquee and fades at the marquee end -->
     <div class="hero-lines-wrap">
         <img class="hero-lines-img" src="assets/images/hero/grid_lines.svg" alt="" aria-hidden="true">
@@ -3202,7 +3221,10 @@
                 <div class="wcm-card wcm-collab">
                     <div class="wcm-card-title">Collaboration</div>
                     <div class="wcm-card-desc">Clear communication and partnership throughout projects</div>
-                    <div class="wcm-card-img"><img src="assets/images/choose_me/collaboration.png" alt="Collaboration"></div>
+                    <div class="wcm-card-img">
+                        <img class="collab-img-left"  src="assets/images/choose_me/collaboration_1.png" alt="Collaboration 1">
+                        <img class="collab-img-right" src="assets/images/choose_me/collaboration_2.png" alt="Collaboration 2">
+                    </div>
                 </div>
 
             </div>
@@ -3478,7 +3500,8 @@
     <!-- Quote Section -->
     <section class="quote-section">
         <img class="quote-icon-large start-quote" src="assets/images/testimonial_faq/comma.svg" alt="quote">
-        <p class="quote-text"><strong>Great products aren't built alone — </strong><span class="muted">they're shaped by the right minds</span> <strong>at the right table. And I'd love </strong><span class="muted">that seat</span></p>
+        <p class="quote-text"><strong>Great things in Business </strong><span class="muted">are never done by one person.</span><span></span> <br><strong> They're done by a skilled </strong><span class="muted">Team of people.</span></p>
+        <span class="quote-author">~ Steve Jobs</span>
         <img class="quote-icon-large end-quote" src="assets/images/testimonial_faq/comma.svg" alt="quote">
         <a href="mailto:twambililemusukwa@gmail.com" class="btn btn-outline" style="margin-top:28px;">Lets work together <span style="margin-left:6px;">→</span></a>
     </section>
@@ -3497,6 +3520,7 @@
             </div>
         </form>
     </section>
+</div>
 </main>
 
 <footer class="app-footer">
@@ -4156,6 +4180,110 @@
         trigger: svgWrap,
         start: 'top 90%',
         once: true,
+      },
+    });
+  })();
+</script>
+<script>
+  // ── Collaboration images — scroll-driven converge / diverge ───────────
+  // Left image starts pushed left, right image pushed right.
+  // Scrolling down brings them together; scrolling back pulls them apart.
+  // Parent has overflow:hidden so nothing bleeds outside the card.
+  (function () {
+    const imgLeft  = document.querySelector('.collab-img-left');
+    const imgRight = document.querySelector('.collab-img-right');
+    const trigger  = document.querySelector('.wcm-collab');
+    if (!imgLeft || !imgRight || !trigger) return;
+
+    // Initial pushed-apart state
+    gsap.set(imgLeft,  { x: '-40%' });
+    gsap.set(imgRight, { x:  '40%' });
+
+    gsap.to(imgLeft,  {
+      x: '0%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: trigger,
+        start: 'top 90%',
+        end:   'top 30%',
+        scrub: 1.4,
+      },
+    });
+
+    gsap.to(imgRight, {
+      x: '0%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: trigger,
+        start: 'top 90%',
+        end:   'top 30%',
+        scrub: 1.4,
+      },
+    });
+  })();
+</script>
+<script>
+  // ── Quote section — staggered blur-slide-up words (mirrors hero heading) ──
+  (function () {
+    const section    = document.querySelector('.quote-section');
+    const quoteEl    = document.querySelector('.quote-section .quote-text');
+    const authorEl   = document.querySelector('.quote-section .quote-author');
+    const startMark  = document.querySelector('.quote-section .start-quote');
+    const endMark    = document.querySelector('.quote-section .end-quote');
+    const ctaBtn     = document.querySelector('.quote-section .btn-outline');
+    if (!section || !quoteEl) return;
+
+    // Split quote text into words
+    const split = new SplitType(quoteEl, { types: 'words' });
+
+    // ── Initial hidden states ────────────────────────────────────────
+    gsap.set(split.words, { opacity: 0, y: 44, filter: 'blur(14px)' });
+    gsap.set(startMark,   { opacity: 0, scale: 0.4, transformOrigin: 'top left'   });
+    gsap.set(endMark,     { opacity: 0, scale: 0.4, transformOrigin: 'bottom right' });
+    if (authorEl) gsap.set(authorEl, { opacity: 0, y: 20, filter: 'blur(6px)' });
+    if (ctaBtn)   gsap.set(ctaBtn,   { opacity: 0, y: 20 });
+
+    // ── ScrollTrigger timeline ───────────────────────────────────────
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top 80%',
+      once: true,
+      onEnter: function () {
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+        // 1. Opening quote mark — scale pop in
+        tl.to(startMark, {
+          opacity: 1, scale: 1,
+          duration: 0.55, ease: 'back.out(1.8)',
+        });
+
+        // 2. Quote words — staggered blur + rise (same as hero heading)
+        tl.to(split.words, {
+          opacity: 1, y: 0, filter: 'blur(0px)',
+          duration: 0.75, stagger: 0.055,
+        }, '-=0.15');
+
+        // 3. Author line — fades up after last word settles
+        if (authorEl) {
+          tl.to(authorEl, {
+            opacity: 1, y: 0, filter: 'blur(0px)',
+            duration: 0.55,
+          }, '-=0.2');
+        }
+
+        // 4. Closing quote mark — scale pop in, mirrored timing
+        tl.to(endMark, {
+          opacity: 1, scale: 1,
+          duration: 0.55, ease: 'back.out(1.8)',
+        }, '-=0.4');
+
+        // 5. CTA button — gentle rise after everything settles
+        if (ctaBtn) {
+          tl.to(ctaBtn, {
+            opacity: 1, y: 0,
+            duration: 0.5,
+          }, '-=0.1');
+        }
       },
     });
   })();
