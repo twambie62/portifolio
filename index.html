@@ -3761,7 +3761,7 @@
       y: 0,
       duration: 0.5,
       ease: 'power3.out',
-    }, '-=0.2');
+    }, '-=0.25');
 
     // lets-chat SVG slides up alongside the buttons
     tl.to('.hero-lets-chat', {
@@ -3778,7 +3778,7 @@
       filter: 'blur(0px)',
       duration: 0.9,
       ease: 'power3.out',
-    }, '+=0.05');
+    }, '-=0.00');
 
     // 7. Pills — last to appear, fade + scale pop, then release CSS wander animations
     gsap.set('.hero-pill', { scale: 0.7 });
@@ -3801,7 +3801,7 @@
 <script>
   // ── Framer-style slide-text button hover — works on any .btn-slide ──
   (function () {
-    const DURATION = 0.4;
+    const DURATION = 0.45;
     const EASE = 'power2.out';
 
     document.querySelectorAll('.btn-slide').forEach(function (btn) {
@@ -3904,7 +3904,7 @@
         delay: localIndex * 0.12,
         scrollTrigger: {
           trigger: card,
-          start: 'top 88%',
+          start: 'top 90%',
           once: true,
         },
       });
@@ -3925,12 +3925,12 @@
     gsap.to(cards, {
       opacity: 1,
       y: 0,
-      duration: 0.8,
+      duration: 0.85,
       ease: 'power3.out',
       stagger: 0.12,
       scrollTrigger: {
         trigger: processGrid,
-        start: 'top 82%',
+        start: 'top 90%',
         once: true,
       },
     });
@@ -4028,7 +4028,7 @@
       ease: 'power3.out',
       scrollTrigger: {
         trigger: sub,
-        start: 'top 88%',
+        start: 'top 85%',
         once: true,
       },
     });
@@ -4068,7 +4068,7 @@
     gsap.to(wrap, {
       opacity: 1, y: 0,
       duration: 0.9, ease: 'power3.out',
-      scrollTrigger: { trigger: wrap, start: 'top 85%', once: true },
+      scrollTrigger: { trigger: wrap, start: 'top 95%', once: true },
     });
   })();
 
@@ -4103,6 +4103,59 @@
             stagger: 0.09,
           }, 0);
         }
+      },
+    });
+  })();
+</script>
+<script>
+  // ── About Me counters — count up on scroll ────────────────────────────
+  (function () {
+    const counters = [
+      { selector: '.about-me-stat:nth-child(1) .stat-number', target: 25, suffix: '+' },
+      { selector: '.about-me-stat:nth-child(2) .stat-number', target: 6,  suffix: '+' },
+      { selector: '.about-me-stat:nth-child(3) .stat-number', target: 99, suffix: '%' },
+    ];
+
+    counters.forEach(function (c) {
+      const el = document.querySelector(c.selector);
+      if (!el) return;
+
+      const obj = { val: 0 };
+
+      gsap.to(obj, {
+        val: c.target,
+        duration: 2,
+        ease: 'power3.out',
+        onUpdate: function () {
+          el.textContent = Math.round(obj.val) + c.suffix;
+        },
+
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 80%',
+          once: true,
+        },
+      });
+    });
+  })();
+</script>
+<script>
+  // ── Footer SVG — smooth fade up on scroll ─────────────────────────────
+  (function () {
+    const svgWrap = document.querySelector('.footer-svg-bg');
+    if (!svgWrap) return;
+
+    gsap.set(svgWrap, { opacity: 0, y: 60 });
+
+    gsap.to(svgWrap, {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: svgWrap,
+        start: 'top 90%',
+        once: true,
       },
     });
   })();
