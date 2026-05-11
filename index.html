@@ -3749,26 +3749,26 @@
       opacity: 1,
       y: 0,
       scale: 1,
-      duration: 1,
+      duration: 0.5,
     });
 
-    // 2. Greeting tag — rise + fade + unblur (0.3s after avatar starts)
+    // 2. Greeting tag — rise + fade + unblur
     tl.to('#hero-greeting', {
       opacity: 1,
       y: 0,
       filter: 'blur(0px)',
-      duration: 0.6,
+      duration: 0.4,
     },
-        '-=0.5'
-    ); // overlaps so greeting starts ~0.3s after avatar began
+        '-=0.4'
+    );
 
     // 3. Heading words — staggered rise + fade + unblur
     tl.to(split.words, {
       opacity: 1,
       y: 0,
       filter: 'blur(0px)',
-      duration: 0.8,
-      stagger: 0.1,
+      duration: 0.6,
+      stagger: 0.07,
     }, '+=0.03');
 
     // 4. Subtitle — rise + fade + unblur, starts after last word finishes
@@ -3776,16 +3776,16 @@
       opacity: 1,
       y: 0,
       filter: 'blur(0px)',
-      duration: 0.7,
-    }, '-=0.3');
+      duration: 0.6,
+    }, '-=0.1');
 
     // 5. Buttons + lets-chat — rise + fade, staggered
     tl.to(['#hero-btn-1', '#hero-btn-2'], {
       opacity: 1,
       y: 0,
-      duration: 0.5,
-      ease: 'power3.out',
-    }, '-=0.25');
+      duration: 0.25,
+      ease: 'power2.out',
+    }, '-=0.2');
 
     // lets-chat SVG slides up alongside the buttons
     tl.to('.hero-lets-chat', {
@@ -3800,7 +3800,7 @@
       opacity: 1,
       y: 0,
       filter: 'blur(0px)',
-      duration: 0.9,
+      duration: 0.7,
       ease: 'power3.out',
     }, '-=0.00');
 
@@ -4284,6 +4284,29 @@
             duration: 0.5,
           }, '-=0.1');
         }
+      },
+    });
+  })();
+</script>
+
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+  // Tools section — circular icon entrance animation
+  (function () {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('.tools-float-icon', {
+      scale: 0,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'back.out(1.7)',
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: '.tools-section',
+        start: 'top 80%',
+        once: true,
       },
     });
   })();
