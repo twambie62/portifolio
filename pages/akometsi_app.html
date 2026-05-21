@@ -331,13 +331,32 @@
       }
     }
 
+        /* ===== Header hero video ===== */
+        .header-hero-video {
+            background: #F0F0F0;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16 / 7.8;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .header-hero-video video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: inherit;
+        }
+
   </style>
 </head>
 <body>
 <header id="app-header"></header>
 <main class="container">
   <div class="kwacha-topbar">
-    <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back">
+    <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back" onclick="history.back()" onkeydown="if(event.key==='Enter'||event.key===' ')history.back()">
       <!-- plain left arrow icon (no circle) — the surrounding .circle provides the circular container -->
       <ion-icon name="arrow-back-outline" class="arrow" aria-hidden="true" title="Back"></ion-icon>
     </div>
@@ -358,11 +377,11 @@
     </div>
   </div>
 
-  <!-- Header image spanning full width -->
-  <div class="header-hero-img" style="margin-bottom:24px; background:#F0F0F0; border-radius:20px; height:460px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-    <img src="../assets/images/portifolio/akometsi/home_movie_details_dark.png"
-         alt="Akometsi Hero"
-         style="width:100%; height:100%; padding:36px; display:block; box-sizing:border-box; object-fit:contain;" />
+  <!-- Header video full width -->
+  <div class="header-hero-video">
+    <video id="hero-video" muted loop playsinline preload="auto">
+      <source src="../assets/videos_headers/akometsi.mp4" type="video/mp4">
+    </video>
   </div>
 
   <!-- Row 3: Description left, Links right -->
@@ -516,22 +535,32 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ── Entrance animation: right → left fade-in, staggered ────────────
+  const heroVideo = document.getElementById('hero-video');
+  const heroWrap  = document.querySelector('.header-hero-video');
+
   const targets = [
     document.querySelector('.kwacha-topbar'),
     document.querySelector('.header-row-1'),
-    document.querySelector('.header-hero-img'),
     document.querySelector('.header-row-3'),
   ].filter(Boolean);
 
   gsap.set(targets, { opacity: 0, x: 60 });
   gsap.to(targets, {
-    opacity: 1,
-    x: 0,
-    duration: 0.75,
-    ease: 'power3.out',
-    stagger: 0.14,
-    delay: 0.1,
+    opacity: 1, x: 0, duration: 0.75,
+    ease: 'power3.out', stagger: 0.14, delay: 0.1,
   });
+
+  // Hero video container slides in, then video starts
+  if (heroWrap) {
+    gsap.set(heroWrap, { opacity: 0, x: 60 });
+    gsap.to(heroWrap, {
+      opacity: 1, x: 0, duration: 0.75,
+      ease: 'power3.out', delay: 0.38,
+      onComplete: function () {
+        if (heroVideo) heroVideo.play();
+      },
+    });
+  }
 
   // Tag chips stagger
   const tags = document.querySelectorAll('.header-tags span');

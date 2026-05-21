@@ -411,11 +411,12 @@
         </div>
     </div>
 
-    <!-- Header image spanning full width -->
-    <div class="header-hero-img" style="max-width:1200px; margin:0 auto 24px;">
-        <img src="../assets/images/portifolio/smart_apps/hero_section_2_2.png"
-             alt="Hero Section 2_2"
-             style="width:100%; padding:36px; display:block; border-radius:20px; background:#F0F0F0; box-sizing:border-box;" />
+    <!-- Header video — full width, 16/9 -->
+    <div class="header-hero-img" style="max-width:1200px; margin:0 auto 24px; background:#F0F0F0; border-radius:20px; overflow:hidden; aspect-ratio:16/8;">
+        <video id="hero-video" muted loop playsinline preload="auto"
+               style="width:100%; height:100%; display:block; object-fit:cover;">
+            <source src="../assets/videos_headers/smart_apps.mp4" type="video/mp4">
+        </video>
     </div>
 
     <!-- Row 3: Description left, Links + Disclaimer right -->
@@ -533,10 +534,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ── Entrance animation: right → left fade-in, staggered ────────────
+  const heroImg = document.querySelector('.header-hero-img');
+  const heroVideo = document.getElementById('hero-video');
+
   const targets = [
     document.querySelector('.kwacha-topbar'),
     document.querySelector('.header-row-1'),
-    document.querySelector('.header-hero-img'),
     document.querySelector('.header-row-3'),
   ].filter(Boolean);
 
@@ -545,6 +548,18 @@ document.addEventListener('DOMContentLoaded', function () {
     opacity: 1, x: 0, duration: 0.75,
     ease: 'power3.out', stagger: 0.14, delay: 0.1,
   });
+
+  // Hero video container slides in after the others, then video starts
+  if (heroImg) {
+    gsap.set(heroImg, { opacity: 0, x: 60 });
+    gsap.to(heroImg, {
+      opacity: 1, x: 0, duration: 0.75,
+      ease: 'power3.out', delay: 0.38,
+      onComplete: function () {
+        if (heroVideo) heroVideo.play();
+      },
+    });
+  }
 
   const tags = document.querySelectorAll('.header-tags span');
   if (tags.length) {

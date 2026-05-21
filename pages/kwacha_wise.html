@@ -314,7 +314,7 @@
 <main class="container" data-barba="wrapper">
 <div data-barba="container" data-barba-namespace="kwacha-wise">
     <div class="kwacha-topbar">
-        <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back">
+        <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back" onclick="history.back()" onkeydown="if(event.key==='Enter'||event.key===' ')history.back()">
             <!-- plain left arrow icon (no circle) — the surrounding .circle provides the circular container -->
             <ion-icon name="arrow-back-outline" class="arrow" aria-hidden="true" title="Back"></ion-icon>
         </div>

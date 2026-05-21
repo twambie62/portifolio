@@ -88,6 +88,33 @@
             .header-tags { justify-content: flex-start; }
             .header-row-3 { grid-template-columns: 1fr; gap: 18px; }
         }
+        /* ===== Header hero video ===== */
+        .header-hero-video {
+            background: #F0F0F0;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            height: auto;
+            margin-bottom: 24px;
+
+
+            position: relative;
+        }
+        .header-hero-video video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: inherit;
+        }
+        @media (max-width: 640px) {
+            .header-hero-video {
+                aspect-ratio: 16 / 9;
+                height: auto;
+            }
+        }
         /* ===== END HEADER ===== */
         /* ensure the grid below uses the same two-column sizing so edges line up */
         .kwacha-grid {
@@ -327,11 +354,11 @@
         </div>
     </div>
 
-    <!-- Header image spanning full width -->
-    <div class="header-hero-img" style="margin-bottom:24px; background:#F0F0F0; border-radius:20px; height:460px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-        <img src="../assets/images/portifolio/courier/home_live_tracking.png"
-             alt="Courier App Hero"
-             style="width:100%; height:100%; padding:36px; display:block; box-sizing:border-box; object-fit:contain;" />
+    <!-- Header video full width -->
+    <div class="header-hero-video">
+        <video id="hero-video" muted loop playsinline preload="auto">
+            <source src="../assets/videos_headers/smart_courier.mp4" type="video/mp4">
+        </video>
     </div>
 
     <!-- Row 3: Description left, Links right -->
@@ -441,10 +468,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ── Entrance animation: right → left fade-in, staggered ────────────
+  const heroVideo = document.getElementById('hero-video');
+  const heroWrap  = document.querySelector('.header-hero-video');
+
   const targets = [
     document.querySelector('.kwacha-topbar'),
     document.querySelector('.header-row-1'),
-    document.querySelector('.header-hero-img'),
     document.querySelector('.header-row-3'),
   ].filter(Boolean);
 
@@ -453,6 +482,18 @@ document.addEventListener('DOMContentLoaded', function () {
     opacity: 1, x: 0, duration: 0.75,
     ease: 'power3.out', stagger: 0.14, delay: 0.1,
   });
+
+  // Hero video container slides in, then video starts
+  if (heroWrap) {
+    gsap.set(heroWrap, { opacity: 0, x: 60 });
+    gsap.to(heroWrap, {
+      opacity: 1, x: 0, duration: 0.75,
+      ease: 'power3.out', delay: 0.38,
+      onComplete: function () {
+        if (heroVideo) heroVideo.play();
+      },
+    });
+  }
 
   const tags = document.querySelectorAll('.header-tags span');
   if (tags.length) {

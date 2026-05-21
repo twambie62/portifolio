@@ -49,32 +49,36 @@
             white-space: nowrap;
         }
 
-        /* Row 2: 2-column image area — left image sets the height, right boxes match it */
+        /* Row 2: 2-column image area — fixed height so it never becomes too tall */
         .header-row-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 14px;
             margin-bottom: 24px;
             align-items: stretch;
+            height: 372px; /* comfortable fixed height on desktop */
         }
         .header-left {
             display: flex;
+            min-height: 0;
         }
         .header-left .header-cell {
             width: 100%;
             flex: 1;
+            min-height: 0;
         }
-        /* Right column: flex column that stretches to match left image height */
+        /* Right column: flex column that stretches to match left height */
         .header-right {
             display: flex;
             flex-direction: column;
             gap: 14px;
+            min-height: 0;
         }
         .header-right .header-cell {
             flex: 1;
-            /* remove default padding for right-column cells so images can fill edge-to-edge */
             padding: 0;
             box-sizing: border-box;
+            min-height: 0;
         }
         .header-cell {
             background: #F0F0F0;
@@ -92,6 +96,49 @@
             object-fit: contain;
             border-radius: 10px;
             display: block;
+        }
+
+        .header-right .header-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+            display: block;
+        }
+        .header-left .header-cell {
+            padding: 0;
+            position: relative;
+        }
+        .header-left .header-cell video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: inherit;
+            background: transparent;
+        }
+
+        @media (max-width: 640px) {
+            .header-row-2 {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            .header-left .header-cell {
+                aspect-ratio: 16 / 9;
+                height: auto;
+                width: 100%;
+                position: relative;
+            }
+            .header-right {
+                flex-direction: row;
+                gap: 10px;
+                height: 200px; /* taller image on mobile */
+            }
+            .header-right .header-cell {
+                flex: 1;
+            }
         }
 
         /* Row 3: description left, links+disclaimer right */
@@ -150,21 +197,6 @@
             }
             .header-tags {
                 justify-content: flex-start;
-            }
-            .header-row-2 {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            .header-left .header-cell {
-                aspect-ratio: 16 / 10;
-            }
-            .header-right {
-                flex-direction: row;
-                gap: 10px;
-            }
-            .header-right .header-cell {
-                flex: 1;
-                aspect-ratio: 1 / 1;
             }
             .header-row-3 {
                 grid-template-columns: 1fr;
@@ -403,7 +435,7 @@
 <header id="app-header"></header>
 <main class="container">
     <div class="kwacha-topbar">
-        <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back">
+        <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back" onclick="history.back()" onkeydown="if(event.key==='Enter'||event.key===' ')history.back()">
             <!-- plain left arrow icon (no circle) — the surrounding .circle provides the circular container -->
             <ion-icon name="arrow-back-outline" class="arrow" aria-hidden="true" title="Back"></ion-icon>
         </div>
@@ -432,7 +464,9 @@
     <div class="header-row-2">
         <div class="header-left">
             <div class="header-cell">
-                <img src="../assets/images/portifolio/blood_pressure/home.png" alt="Blood Pressure Home" />
+                <video id="hero-video" muted loop playsinline preload="auto">
+                    <source src="../assets/videos_headers/blood_pressure_app.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
         <div class="header-right">
@@ -588,10 +622,12 @@ document.addEventListener('DOMContentLoaded', function () {
   })();
 
   // ── Entrance animation: right → left fade-in, staggered ────────────
+  const heroVideo = document.getElementById('hero-video');
+  const heroRow2  = document.querySelector('.header-row-2');
+
   const targets = [
     document.querySelector('.kwacha-topbar'),
     document.querySelector('.header-row-1'),
-    document.querySelector('.header-row-2'),
     document.querySelector('.header-row-3'),
   ].filter(Boolean);
 
@@ -600,6 +636,18 @@ document.addEventListener('DOMContentLoaded', function () {
     opacity: 1, x: 0, duration: 0.75,
     ease: 'power3.out', stagger: 0.14, delay: 0.1,
   });
+
+  // Row 2 (video + image) slides in after row 1, then video starts
+  if (heroRow2) {
+    gsap.set(heroRow2, { opacity: 0, x: 60 });
+    gsap.to(heroRow2, {
+      opacity: 1, x: 0, duration: 0.75,
+      ease: 'power3.out', delay: 0.38,
+      onComplete: function () {
+        if (heroVideo) heroVideo.play();
+      },
+    });
+  }
 
   const tags = document.querySelectorAll('.header-tags span');
   if (tags.length) {

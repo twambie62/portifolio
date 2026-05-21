@@ -3097,6 +3097,8 @@
                 <div class="skill-card-desc">Designing and programming connected devices, sensor networks, and embedded firmware for smart hardware solutions.</div>
             </div>
 
+            <!-- Cyber Security skill commented out as requested -->
+            <!--
             <div class="skill-card">
                 <div class="skill-card-header">
                     <span class="skill-card-number">07</span>
@@ -3105,6 +3107,7 @@
                 <div class="skill-card-title">Cyber Security</div>
                 <div class="skill-card-desc">Implementing secure architectures, vulnerability assessments, and best practices to protect applications and data from threats.</div>
             </div>
+            -->
 
             <div class="skill-card">
                 <div class="skill-card-header">
@@ -3731,7 +3734,7 @@
     const split = new SplitType(headingEl, { types: 'words' });
 
     // Hide all words initially (GSAP will animate them in)
-    gsap.set(split.words, { opacity: 0, y: 40, filter: 'blur(14px)' });
+    gsap.set(split.words, { opacity: 0, y: 46, filter: 'blur(14px)' });
 
     // Hide all other hero elements before timeline starts
     gsap.set('.avatar-wrap',   { opacity: 0.5, y: 60, scale:0.8  });
@@ -3767,8 +3770,8 @@
       opacity: 1,
       y: 0,
       filter: 'blur(0px)',
-      duration: 0.6,
-      stagger: 0.07,
+      duration: 1,
+      stagger: 0.08,
     }, '+=0.03');
 
     // 4. Subtitle — rise + fade + unblur, starts after last word finishes
@@ -3855,23 +3858,23 @@
     if (!allCards.length) return;
 
     // Set all cards to their hidden start state immediately
-    gsap.set(allCards, { opacity: 0, scale:0.97, y: 40 });
-
-    allCards.forEach(function (card, i) {
-      gsap.to(card, {
-        opacity: 1,
-        y: 0,
-        scale:1,
-        duration: 0.5,
-        ease: 'back.out(1.4)',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 96%',
-          once: true,
-        },
-
-      });
-    });
+    // gsap.set(allCards, { opacity: 0, scale:1, y: 200 });
+    //
+    // allCards.forEach(function (card, i) {
+    //   gsap.to(card, {
+    //     opacity: 1,
+    //     y: 0,
+    //     scale:1,
+    //     duration: 1,
+    //       ease: 'power3.out',
+    //       scrollTrigger: {
+    //       trigger: card,
+    //       start: 'top 96%',
+    //       once: true,
+    //     },
+    //
+    //   });
+    // });
 
     // Re-run ScrollTrigger refresh when extra-projects is shown
     // so newly visible cards animate in correctly
@@ -4038,7 +4041,6 @@
     });
   })();
 </script>
-</script>
 <script>
   // ── Tools section subtext — fade up on scroll ─────────────────────────
   (function () {
@@ -4204,8 +4206,8 @@
       ease: 'none',
       scrollTrigger: {
         trigger: trigger,
-        start: 'top 90%',
-        end:   'top 30%',
+        start: 'top 85%',
+        end:   'top 20%',
         scrub: 1.4,
       },
     });
@@ -4215,8 +4217,8 @@
       ease: 'none',
       scrollTrigger: {
         trigger: trigger,
-        start: 'top 90%',
-        end:   'top 30%',
+        start: 'top 85%',
+        end:   'top 20%',
         scrub: 1.4,
       },
     });
@@ -4253,34 +4255,44 @@
 
         // 1. Opening quote mark — scale pop in
         tl.to(startMark, {
-          opacity: 1, scale: 1,
-          duration: 0.55, ease: 'back.out(1.8)',
+          opacity: 1,
+          scale: 1,
+          duration: 0.55,
+          ease: 'back.out(1.8)',
         });
 
         // 2. Quote words — staggered blur + rise (same as hero heading)
         tl.to(split.words, {
-          opacity: 1, y: 0, filter: 'blur(0px)',
-          duration: 0.75, stagger: 0.055,
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          duration: 0.75,
+          stagger: 0.055,
         }, '-=0.15');
 
         // 3. Author line — fades up after last word settles
         if (authorEl) {
           tl.to(authorEl, {
-            opacity: 1, y: 0, filter: 'blur(0px)',
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)',
             duration: 0.55,
           }, '-=0.2');
         }
 
         // 4. Closing quote mark — scale pop in, mirrored timing
         tl.to(endMark, {
-          opacity: 1, scale: 1,
-          duration: 0.55, ease: 'back.out(1.8)',
+          opacity: 1,
+          scale: 1,
+          duration: 0.55,
+          ease: 'back.out(1.8)',
         }, '-=0.4');
 
         // 5. CTA button — gentle rise after everything settles
         if (ctaBtn) {
           tl.to(ctaBtn, {
-            opacity: 1, y: 0,
+            opacity: 1,
+            y: 0,
             duration: 0.5,
           }, '-=0.1');
         }
@@ -4289,28 +4301,30 @@
   })();
 </script>
 
-<!-- GSAP + ScrollTrigger -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
-  // Tools section — circular icon entrance animation
+  // ── Project cards — inner device image smooth rise + fade ───────────
   (function () {
-    gsap.registerPlugin(ScrollTrigger);
+    const images = document.querySelectorAll('.projects .card-media img');
+    if (!images.length) return;
 
-    gsap.from('.tools-float-icon', {
-      scale: 0,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'back.out(1.7)',
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: '.tools-section',
-        start: 'top 80%',
-        once: true,
-      },
+    gsap.set(images, { opacity: 0, y: 40, scale: 0.85 });
+
+    images.forEach(function (img) {
+      gsap.to(img, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: img,
+          start: 'top 92%',
+          once: true,
+        },
+        clearProps: 'transform,opacity',
+      });
     });
   })();
 </script>
-</body>
 
-</html>
+
