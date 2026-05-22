@@ -801,7 +801,7 @@
 
         /* Mobile card sizing */
         @media (max-width: 640px) {
-            .card-media { height: 296px; padding: 20px; }/*288px 320px */
+            .card-media { height: 312px; padding: 24px; }/*288px 320px */
             .card-media::before { inset: 8px; border-radius: 10px; }
             .card-media img { border-radius: 10px; }
             .card-arrow { top: 14px; right: 14px; width: 32px; height: 32px; }
@@ -3760,7 +3760,7 @@
       opacity: 1,
       y: 0,
       filter: 'blur(0px)',
-      duration: 0.4,
+      duration: 0.35,
     },
         '-=0.4'
     );
@@ -4307,15 +4307,16 @@
     const images = document.querySelectorAll('.projects .card-media img');
     if (!images.length) return;
 
-    gsap.set(images, { opacity: 0, y: 40, scale: 0.85 });
+    const isMobile = window.matchMedia('(max-width: 640px)').matches;
+    gsap.set(images, { opacity: 0, y: isMobile ? 0 : 40, scale:  isMobile ? 0.9 :0.8 });
 
     images.forEach(function (img) {
       gsap.to(img, {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 1.1,
-        ease: 'power3.out',
+        duration: .9,
+        ease: 'expo.out',
         scrollTrigger: {
           trigger: img,
           start: 'top 92%',

@@ -336,7 +336,7 @@
             background: #F0F0F0;
             border-radius: 20px;
             overflow: hidden;
-            aspect-ratio: 16 / 7.8;
+            aspect-ratio: 16 / 7.9;
             margin-bottom: 24px;
             position: relative;
         }
@@ -348,6 +348,11 @@
             object-fit: cover;
             display: block;
             border-radius: inherit;
+        }
+        @media (max-width: 640px) {
+            .header-hero-video {
+                border-radius: 14px;
+            }
         }
 
   </style>
