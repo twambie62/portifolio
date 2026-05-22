@@ -429,6 +429,86 @@
             }
         }
 
+        /* ===== OVERVIEW SECTION ===== */
+        .proj-meta-card {
+            border-top: 1px solid #e3e3e3;
+            border-bottom: 1px solid #e3e3e3;
+            /*border-radius: 14px;*/
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+        .proj-meta-col {
+            padding: 20px 16px;
+            margin-top: 14px;
+            margin-bottom: 14px;
+            margin-left: 12px;
+            display: flex;
+            flex-direction: column;
+            /*align-items: center;*/
+            /*text-align: center;*/
+            gap: 10px;
+            border-right: 1px solid #e3e3e3;
+            box-sizing: border-box;
+        }
+        .proj-meta-col:last-child {
+            border-right: none;
+        }
+        .proj-meta-label {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #141414;
+            line-height: 1.3;
+        }
+        .proj-meta-value {
+            font-size: 0.88rem;
+            font-weight: 400;
+            color: #a0a0a0;
+            line-height: 1.5;
+        }
+        .overview-title {
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: #141414;
+            line-height: 1.25;
+            margin-top: 8px;
+            margin-bottom: 24px;
+        }
+
+        /* Mobile: switch to horizontal rows */
+        @media (max-width: 640px) {
+            .proj-meta-card {
+                grid-template-columns: 1fr;
+                border: 1px solid #e3e3e3;
+                border-radius: 12px;
+            }
+            .proj-meta-col {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                text-align: left;
+                border-right: none;
+                border-bottom: 1px solid #e3e3e3;
+                padding: 18px 20px;
+                gap: 8px;
+                margin-top: 2px;
+                margin-bottom: 2px;
+                margin-right: 12px;
+            }
+            .proj-meta-col:last-child {
+                border-bottom: none;
+            }
+            .proj-meta-value {
+                text-align: right;
+            }
+            .overview-title {
+                font-size: 1.25rem;
+                margin-bottom: 20px;
+            }
+        }
+        /* ===== END OVERVIEW ===== */
+
     </style>
 </head>
 <body>
@@ -476,6 +556,29 @@
         </div>
     </div>
 
+    <!-- ===== OVERVIEW ===== -->
+    <div class="proj-meta-card">
+        <div class="proj-meta-col">
+            <span class="proj-meta-label">Role</span>
+            <span class="proj-meta-value">UI Designer &amp; Developer</span>
+        </div>
+        <div class="proj-meta-col">
+            <span class="proj-meta-label">Client</span>
+            <span class="proj-meta-value">MUBAS</span>
+        </div>
+        <div class="proj-meta-col">
+            <span class="proj-meta-label">Platform</span>
+            <span class="proj-meta-value">Android</span>
+        </div>
+        <div class="proj-meta-col">
+            <span class="proj-meta-label">Year</span>
+            <span class="proj-meta-value">2025</span>
+        </div>
+    </div>
+
+    <div class="overview-title">Overview</div>
+    <!-- ===== END OVERVIEW ===== -->
+
     <!-- Row 3: Description left, Links + Disclaimer right -->
     <div class="header-row-3">
         <div class="header-description">
@@ -498,6 +601,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Phone video -->
     <div class="phone-video-wrap">
