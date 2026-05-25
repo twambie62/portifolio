@@ -15,7 +15,7 @@
     <style>
         /* prevent any unwanted horizontal scrolling */
         html, body { overflow-x: hidden; }
-        .container { width: min(1088px, 94vw); margin: 0 auto; }
+        .container { width: min(1080px, 94vw); margin: 0 auto; }
         /* ===== HEADER — matches new_header.png ===== */
 
         /* Row 1: title left, tags right */
@@ -143,17 +143,14 @@
 
         /* Row 3: description left, links+disclaimer right */
         .header-row-3 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            align-items: start;
+            display: block;
             margin-bottom: 48px;
         }
         .header-description{
-            font-size: 0.95rem;
+            font-size: 1.3rem;
             font-weight: 400;
             color: rgb(145,145,145);
-            line-height: 1.6;
+            line-height: 1.8;
         }
         .header-side {
             display: flex;
@@ -197,10 +194,6 @@
             }
             .header-tags {
                 justify-content: flex-start;
-            }
-            .header-row-3 {
-                grid-template-columns: 1fr;
-                gap: 18px;
             }
         }
 
@@ -471,7 +464,7 @@
             line-height: 1.3;
         }
         .overview-title {
-            font-size: 1.55rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: #141414;
             line-height: 1.25;
@@ -584,123 +577,93 @@
 
     <!-- ===== EVERYTHING BELOW VIDEO/IMAGE (indented 50px each side on desktop) ===== -->
     <div class="overview-indent">
-    <div class="proj-meta-card">
-        <div class="proj-meta-col">
-            <span class="proj-meta-label">Role</span>
-            <span class="proj-meta-value">UI Designer &amp; Developer</span>
+        <div class="proj-meta-card">
+            <div class="proj-meta-col">
+                <span class="proj-meta-label">Role</span>
+                <span class="proj-meta-value">UI Designer &amp; Developer</span>
+            </div>
+            <div class="proj-meta-col">
+                <span class="proj-meta-label">Client</span>
+                <span class="proj-meta-value">MUBAS</span>
+            </div>
+            <div class="proj-meta-col">
+                <span class="proj-meta-label">Platform</span>
+                <span class="proj-meta-value">Android</span>
+            </div>
+            <div class="proj-meta-col">
+                <span class="proj-meta-label">Year</span>
+                <span class="proj-meta-value">2025</span>
+            </div>
         </div>
-        <div class="proj-meta-col">
-            <span class="proj-meta-label">Client</span>
-            <span class="proj-meta-value">MUBAS</span>
-        </div>
-        <div class="proj-meta-col">
-            <span class="proj-meta-label">Platform</span>
-            <span class="proj-meta-value">Android</span>
-        </div>
-        <div class="proj-meta-col">
-            <span class="proj-meta-label">Year</span>
-            <span class="proj-meta-value">2025</span>
-        </div>
-    </div>
 
-    <div class="overview-title">Overview</div>
+        <div class="overview-title">Overview</div>
 
-    <!-- Row 3: Description left, Links + Disclaimer right -->
-    <div class="header-row-3">
-        <div class="header-description">
-            This project is a remote blood pressure monitoring system designed to enable continuous patient monitoring outside the hospital environment. It combines embedded hardware, IoT communication, and a mobile/cloud platform to allow doctors to track patients' blood pressure in real time.
+        <!-- Row 3: Description full width -->
+        <div class="header-row-3">
+            <div class="header-description">
+                This project is a remote blood pressure monitoring system designed to enable continuous patient monitoring outside the hospital environment. It combines embedded hardware, IoT communication, and a mobile/cloud platform to allow doctors to track patients' blood pressure in real time.
+            </div>
         </div>
-        <div class="header-side">
-            <div>
-                <div class="header-links-label">Links</div>
-                <div class="header-link-icons">
-                    <a href="#" id="figma-link">
-                        <img src="../assets/svg/devicon_figma.svg" alt="Figma" />
-                    </a>
-                    <a href="#" id="github-link">
-                        <i class="ri-github-fill" style="font-size:28px; color:#141414;"></i>
-                    </a>
+
+
+        <!-- Phone video -->
+        <div class="phone-video-wrap">
+            <div class="phone-frame">
+                <video controls muted playsinline>
+                    <source src="../assets/images/portifolio/blood_pressure/bp_app.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <div class="kwacha-grid">
+            <div class="kwacha-card">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/blood_pressure/login_signin.png" alt="Login Sign In" />
                 </div>
+                <div class="kwacha-body"></div>
             </div>
-            <div class="header-disclaimer">
-                <strong>Disclaimer:</strong> This was a school project was done in a rush the quality of code and file structure is wack!
+            <div class="kwacha-card">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/blood_pressure/home.png" alt="Blood Pressure Home" />
+                </div>
+                <div class="kwacha-body"></div>
             </div>
-        </div>
-    </div>
 
+            <div class="kwacha-card">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/blood_pressure/chat_messages_2.png" alt="Chat Messages 2" />
+                </div>
+                <div class="kwacha-body"></div>
+            </div>
 
-    <!-- Phone video -->
-    <div class="phone-video-wrap">
-        <div class="phone-frame">
-            <video controls muted playsinline>
-                <source src="../assets/images/portifolio/blood_pressure/bp_app.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
+            <div class="kwacha-card">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/blood_pressure/home_messages.png" alt="Home Messages" />
+                </div>
+                <div class="kwacha-body"></div>
+            </div>
 
-    <div class="kwacha-grid">
-        <div class="kwacha-card">
-            <div class="kwacha-media">
-                <img src="../assets/images/portifolio/blood_pressure/login_signin.png" alt="Login Sign In" />
+            <div class="kwacha-card span">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/blood_pressure/stats_appoitnments.png" alt="Stats Appointments" />
+                </div>
+                <div class="kwacha-body"></div>
             </div>
-            <div class="kwacha-body"></div>
-        </div>
-        <div class="kwacha-card">
-            <div class="kwacha-media">
-                <img src="../assets/images/portifolio/blood_pressure/home.png" alt="Blood Pressure Home" />
-            </div>
-            <div class="kwacha-body"></div>
-        </div>
 
-        <div class="kwacha-card">
-            <div class="kwacha-media">
-                <img src="../assets/images/portifolio/blood_pressure/chat_messages_2.png" alt="Chat Messages 2" />
+            <div class="kwacha-card full-bleed">
+                <div class="kwacha-media" style="padding:0;">
+                    <img src="../assets/images/portifolio/blood_pressure/bp_system_3.jpg" alt="BP System 3" style="width:100%; height:100%; object-fit:cover; display:block;" />
+                </div>
+                <div class="kwacha-body"></div>
             </div>
-            <div class="kwacha-body"></div>
-        </div>
-
-        <div class="kwacha-card">
-            <div class="kwacha-media">
-                <img src="../assets/images/portifolio/blood_pressure/home_messages.png" alt="Home Messages" />
+            <div class="kwacha-card full-bleed">
+                <div class="kwacha-media" style="padding:0;">
+                    <img src="../assets/images/portifolio/blood_pressure/bp_system_2.jpg" alt="BP System 2" style="width:100%; height:100%; object-fit:cover; display:block;" />
+                </div>
+                <div class="kwacha-body"></div>
             </div>
-            <div class="kwacha-body"></div>
-        </div>
-
-        <div class="kwacha-card span">
-            <div class="kwacha-media">
-                <img src="../assets/images/portifolio/blood_pressure/stats_appoitnments.png" alt="Stats Appointments" />
-            </div>
-            <div class="kwacha-body"></div>
-        </div>
-
-        <div class="kwacha-card">
-            <div class="kwacha-media">
-                <img src="../assets/images/portifolio/blood_pressure/chat_messages.png" alt="Chat Messages" />
-            </div>
-            <div class="kwacha-body"></div>
-        </div>
-
-        <div class="kwacha-card">
-            <div class="kwacha-media">
-                <img src="../assets/images/portifolio/blood_pressure/home_chat.png" alt="Home Chat" />
-            </div>
-            <div class="kwacha-body"></div>
-        </div>
-
-        <div class="kwacha-card full-bleed">
-            <div class="kwacha-media" style="padding:0;">
-                <img src="../assets/images/portifolio/blood_pressure/bp_system_3.jpg" alt="BP System 3" style="width:100%; height:100%; object-fit:cover; display:block;" />
-            </div>
-            <div class="kwacha-body"></div>
-        </div>
-        <div class="kwacha-card full-bleed">
-            <div class="kwacha-media" style="padding:0;">
-                <img src="../assets/images/portifolio/blood_pressure/bp_system_2.jpg" alt="BP System 2" style="width:100%; height:100%; object-fit:cover; display:block;" />
-            </div>
-            <div class="kwacha-body"></div>
-        </div>
-    </div><!-- /.kwacha-grid -->
+        </div><!-- /.kwacha-grid -->
     </div><!-- /.overview-indent -->
 
 </main>
@@ -710,88 +673,88 @@
 <!-- GSAP for entrance animations -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
 
-  // ── Topbar hover state ──────────────────────────────────────────────
-  (function () {
-    const topbar = document.querySelector('.kwacha-topbar');
-    if (!topbar) return;
-    const circle = topbar.querySelector('.circle');
-    const text   = topbar.querySelector('.project-text');
-    function setHover()   { topbar.classList.add('hovering'); }
-    function clearHover() { topbar.classList.remove('hovering'); }
-    [circle, text].forEach(el => {
-      if (!el) return;
-      el.addEventListener('mouseenter', setHover);
-      el.addEventListener('mouseleave', clearHover);
-      el.addEventListener('focus',      setHover);
-      el.addEventListener('blur',       clearHover);
+        // ── Topbar hover state ──────────────────────────────────────────────
+        (function () {
+            const topbar = document.querySelector('.kwacha-topbar');
+            if (!topbar) return;
+            const circle = topbar.querySelector('.circle');
+            const text   = topbar.querySelector('.project-text');
+            function setHover()   { topbar.classList.add('hovering'); }
+            function clearHover() { topbar.classList.remove('hovering'); }
+            [circle, text].forEach(el => {
+                if (!el) return;
+                el.addEventListener('mouseenter', setHover);
+                el.addEventListener('mouseleave', clearHover);
+                el.addEventListener('focus',      setHover);
+                el.addEventListener('blur',       clearHover);
+            });
+        })();
+
+        // ── Topbar navigation ───────────────────────────────────────────────
+        (function () {
+            const topbar = document.querySelector('.kwacha-topbar');
+            if (!topbar) return;
+            const circle = topbar.querySelector('.circle');
+            const text   = topbar.querySelector('.project-text');
+            const target = '../index.html';
+            function goHome(e) {
+                if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
+                window.location.href = target;
+            }
+            function keyActivate(e) {
+                if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                    e.preventDefault(); goHome(e);
+                }
+            }
+            [circle, text].forEach(el => {
+                if (!el) return;
+                el.addEventListener('click',   goHome);
+                el.addEventListener('keydown', keyActivate);
+            });
+        })();
+
+        // ── Entrance animation: right → left fade-in, staggered ────────────
+        const heroVideo = document.getElementById('hero-video');
+        const heroRow2  = document.querySelector('.header-row-2');
+
+        const targets = [
+            document.querySelector('.kwacha-topbar'),
+            document.querySelector('.header-row-1'),
+            document.querySelector('.proj-meta-card'),
+            document.querySelector('.overview-title'),
+            document.querySelector('.header-row-3'),
+        ].filter(Boolean);
+
+        gsap.set(targets, { opacity: 0, x: 60 });
+        gsap.to(targets, {
+            opacity: 1, x: 0, duration: 0.75,
+            ease: 'power3.out', stagger: 0.14, delay: 0.1,
+        });
+
+        // Row 2 (video + image) slides in after row 1, then video starts
+        if (heroRow2) {
+            gsap.set(heroRow2, { opacity: 0, x: 60 });
+            gsap.to(heroRow2, {
+                opacity: 1, x: 0, duration: 0.75,
+                ease: 'power3.out', delay: 0.38,
+                onComplete: function () {
+                    if (heroVideo) heroVideo.play();
+                },
+            });
+        }
+
+        const tags = document.querySelectorAll('.header-tags span');
+        if (tags.length) {
+            gsap.set(tags, { opacity: 0, x: 40 });
+            gsap.to(tags, {
+                opacity: 1, x: 0, duration: 0.55,
+                ease: 'power3.out', stagger: 0.07, delay: 0.35,
+            });
+        }
+
     });
-  })();
-
-  // ── Topbar navigation ───────────────────────────────────────────────
-  (function () {
-    const topbar = document.querySelector('.kwacha-topbar');
-    if (!topbar) return;
-    const circle = topbar.querySelector('.circle');
-    const text   = topbar.querySelector('.project-text');
-    const target = '../index.html';
-    function goHome(e) {
-      if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
-      window.location.href = target;
-    }
-    function keyActivate(e) {
-      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
-        e.preventDefault(); goHome(e);
-      }
-    }
-    [circle, text].forEach(el => {
-      if (!el) return;
-      el.addEventListener('click',   goHome);
-      el.addEventListener('keydown', keyActivate);
-    });
-  })();
-
-  // ── Entrance animation: right → left fade-in, staggered ────────────
-  const heroVideo = document.getElementById('hero-video');
-  const heroRow2  = document.querySelector('.header-row-2');
-
-  const targets = [
-    document.querySelector('.kwacha-topbar'),
-    document.querySelector('.header-row-1'),
-    document.querySelector('.proj-meta-card'),
-    document.querySelector('.overview-title'),
-    document.querySelector('.header-row-3'),
-  ].filter(Boolean);
-
-  gsap.set(targets, { opacity: 0, x: 60 });
-  gsap.to(targets, {
-    opacity: 1, x: 0, duration: 0.75,
-    ease: 'power3.out', stagger: 0.14, delay: 0.1,
-  });
-
-  // Row 2 (video + image) slides in after row 1, then video starts
-  if (heroRow2) {
-    gsap.set(heroRow2, { opacity: 0, x: 60 });
-    gsap.to(heroRow2, {
-      opacity: 1, x: 0, duration: 0.75,
-      ease: 'power3.out', delay: 0.38,
-      onComplete: function () {
-        if (heroVideo) heroVideo.play();
-      },
-    });
-  }
-
-  const tags = document.querySelectorAll('.header-tags span');
-  if (tags.length) {
-    gsap.set(tags, { opacity: 0, x: 40 });
-    gsap.to(tags, {
-      opacity: 1, x: 0, duration: 0.55,
-      ease: 'power3.out', stagger: 0.07, delay: 0.35,
-    });
-  }
-
-});
 </script>
 <footer id="app-footer"></footer>
 

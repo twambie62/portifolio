@@ -3287,7 +3287,7 @@
                 <div class="stat-label">Projects Completed</div>
             </div>
             <div class="about-me-stat">
-                <div class="stat-number">6+</div>
+                <div class="stat-number">4+</div>
                 <div class="stat-label">Years of experience</div>
             </div>
             <div class="about-me-stat">
@@ -3779,15 +3779,15 @@
       opacity: 1,
       y: 0,
       filter: 'blur(0px)',
-      duration: 0.6,
-    }, '-=0.1');
+      duration: 0.5,
+    }, '-=0.5');
 
     // 5. Buttons + lets-chat — rise + fade, staggered
     tl.to(['#hero-btn-1', '#hero-btn-2'], {
       opacity: 1,
       y: 0,
       duration: 0.25,
-      ease: 'power2.out',
+      ease: 'power3.out',
     }, '-=0.2');
 
     // lets-chat SVG slides up alongside the buttons
@@ -4138,7 +4138,7 @@
   (function () {
     const counters = [
       { selector: '.about-me-stat:nth-child(1) .stat-number', target: 25, suffix: '+' },
-      { selector: '.about-me-stat:nth-child(2) .stat-number', target: 6,  suffix: '+' },
+      { selector: '.about-me-stat:nth-child(2) .stat-number', target: 4,  suffix: '+' },
       { selector: '.about-me-stat:nth-child(3) .stat-number', target: 99, suffix: '%' },
     ];
 
