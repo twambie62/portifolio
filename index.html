@@ -21,7 +21,7 @@
 
             --primary: #0f0f0f;
             --chip: #f0f0f0;
-            --dot: #f3b13f;
+            --dot: #FF8833;
             --border: #E3E3E3;
             --radius: 16px;
             --radius-small: 8px;
@@ -1722,7 +1722,7 @@
             display: flex;
             gap: 1px;
             font-size: 14px;
-            color: #f3b13f;
+            color:var(--dot);
             margin-top: 16px;
         }
         .about-me-stars .star-empty {
@@ -1915,7 +1915,7 @@
             display: flex;
             gap: 2px;
             font-size: 16px;
-            color: #f3b13f;
+            color:var(--dot);
         }
         .testimonial-card .testimonial-text {
             font-size: 0.84rem;
@@ -2271,7 +2271,7 @@
             </div>
             <div id="hero-greeting" class="chip"><span class="dot"></span>Hi I am Twambi</div>
         </div>
-        <h1 id="hero-heading">I'm a web and app developer<br>and a UI/UX designer.</h1>
+        <h1 id="hero-heading">I'm a web and app developer,<br>and a UI/UX designer.</h1>
         <p id="hero-sub" class="sub">Passionate about building products that combine great design, usability & dependable high-performance</p>
         <div class="hero-btns-wrap">
             <div class="hero-btns">
@@ -2740,7 +2740,7 @@
     </section>
 
     <section id="skills">
-        <div class="section-label"><span class="dot"></span>Skills</div>
+        <div class="section-label"><span class="dot"></span>All Skills</div>
 
         <div class="skills-grid">
 
@@ -3471,7 +3471,7 @@
       opacity: 1,
       y: 0,
       filter: 'blur(0px)',
-      duration: 1,
+      duration: 0.9,
       stagger: 0.08,
     }, '+=0.03');
 
@@ -3481,7 +3481,7 @@
       y: 0,
       filter: 'blur(0px)',
       duration: 0.5,
-    }, '-=0.5');
+    }, '-=0.45');
 
     // 5. Buttons + lets-chat — rise + fade, staggered
     tl.to(['#hero-btn-1', '#hero-btn-2'], {

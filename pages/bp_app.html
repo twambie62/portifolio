@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../assets/images/about_me/me.png" type="image/png">
     <title>Blood Pressure App</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -210,6 +211,30 @@
         @media (min-width: 641px) {
             .kwacha-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .case-study-col {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .case-study-col img {
+            width: 100%;
+            display: block;
+        }
+        .case-study-col img:first-child {
+            border-radius: 14px 14px 0 0;
+        }
+        .case-study-col img:last-child {
+            border-radius: 0 0 14px 14px;
+        }
+        @media (max-width: 640px) {
+            .case-study-col img:first-child {
+                border-radius: 12px 12px 0 0;
+            }
+            .case-study-col img:last-child {
+                border-radius: 0 0 12px 12px;
             }
         }
 
@@ -664,6 +689,29 @@
                 <div class="kwacha-body"></div>
             </div>
         </div><!-- /.kwacha-grid -->
+
+        <!-- Case Study -->
+        <h2 class="overview-title" style="margin-top: 48px; margin-bottom: 24px;">Case Study</h2>
+        <div class="case-study-col">
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_1.png" alt="Case Study 1"/>
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_2.png" alt="Case Study 2" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_3.png" alt="Case Study 3" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_4.png" alt="Case Study 4" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_5.png" alt="Case Study 5" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_6.png" alt="Case Study 6" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_6(2).png" alt="Case Study 6(2)" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_7.png" alt="Case Study 7" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_8.png" alt="Case Study 8" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_9.png" alt="Case Study 9" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_10.png" alt="Case Study 10" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_11.png" alt="Case Study 11" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_12.png" alt="Case Study 12" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_13.png" alt="Case Study 13" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_14.png" alt="Case Study 14" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_15.png" alt="Case Study 15" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_16.png" alt="Case Study 16" />
+            <img src="../assets/images/case_studies/bp_case_study/bp_case_study_17.png" alt="Case Study 17" />
+        </div>
     </div><!-- /.overview-indent -->
 
 </main>
