@@ -2226,39 +2226,34 @@
         /* ===== GALLERY CAROUSEL ===== */
         .carousel-section {
             width: 100%;
-            overflow: hidden;
             padding: 80px 0 100px;
             position: relative;
             background: transparent;
         }
         .carousel-perspective {
-            perspective: 1200px;
-            perspective-origin: 50% 50%;
             width: 100%;
             overflow: hidden;
             cursor: grab;
             user-select: none;
+            /* fading edges mask — same style as other marquees */
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
         }
         .carousel-perspective:active { cursor: grabbing; }
         .carousel-track {
             display: flex;
             align-items: center;
             will-change: transform;
-            gap: 20px;
-            padding: 40px 0;
-            /* width is set by JS */
+            gap: 16px;
+            padding: 8px 0;
         }
         .c-card {
             flex-shrink: 0;
             width: 240px;
             aspect-ratio: 3 / 4;
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
             position: relative;
-            will-change: transform;
-            transform-style: preserve-3d;
-            transform-origin: center center;
-            transition: box-shadow 0.3s;
         }
         .c-card img {
             width: 100%;
@@ -2270,7 +2265,7 @@
         .c-card .c-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%);
+            background: linear-gradient(to top, rgba(0,0,0,0.50) 0%, transparent 52%);
             pointer-events: none;
         }
         .c-card .c-label {
@@ -2285,8 +2280,12 @@
             font-family: 'Inter', sans-serif;
         }
         @media (max-width: 640px) {
-            .c-card { width: 170px; }
+            .c-card { width: 160px; border-radius: 12px; }
             .carousel-section { padding: 48px 0 64px; }
+            .carousel-perspective {
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+                mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+            }
         }
         /* ===== END GALLERY CAROUSEL ===== */
 
@@ -3293,7 +3292,7 @@
         </form>
     </section>
 
-    <!-- ===== 3D COVERFLOW CAROUSEL ===== -->
+    <!-- ===== GALLERY CAROUSEL ===== -->
     <section id="gallery-carousel" class="carousel-section">
         <div class="carousel-perspective">
             <div class="carousel-track" id="carouselTrack">
@@ -3742,6 +3741,30 @@
       },
     });
   })();
+
+  // ── Service cards — staggered slide up on scroll ───────────────────────
+  (function () {
+    const servicesGrid = document.querySelector('.services-grid');
+    if (!servicesGrid) return;
+
+    const cards = servicesGrid.querySelectorAll('.svc-card');
+    if (!cards.length) return;
+
+    gsap.set(cards, { opacity: 0, y: 40 });
+
+    gsap.to(cards, {
+      opacity: 1,
+      y: 0,
+      duration: 0.85,
+      ease: 'power3.out',
+      stagger: 0.12,
+      scrollTrigger: {
+        trigger: servicesGrid,
+        start: 'top 90%',
+        once: true,
+      },
+    });
+  })();
 </script>
 <script>
   // ── Skill cards — staggered fade-up on scroll ─────────────────────────
@@ -3878,6 +3901,18 @@
     });
   })();
 
+  // ── Gallery carousel — blur + fade up on scroll ──────────────────────
+  (function () {
+    const section = document.querySelector('#gallery-carousel');
+    if (!section) return;
+    gsap.set(section, { opacity: 0, y: 70, filter: 'blur(14px)' });
+    gsap.to(section, {
+      opacity: 1, y: 0, filter: 'blur(0px)',
+      duration: 1.2, ease: 'power3.out',
+      scrollTrigger: { trigger: section, start: 'top 95%', once: true },
+    });
+  })();
+
   // ── FAQ — all driven by the heading's ScrollTrigger ──────────────────
   (function () {
     const heading = document.querySelector('.faq-left h2');
@@ -3946,22 +3981,42 @@
   })();
 </script>
 <script>
-  // ── Footer SVG — smooth fade up on scroll ─────────────────────────────
+  // ── Footer — staggered fade-up on scroll ──────────────────────────────
   (function () {
-    const svgWrap = document.querySelector('.footer-svg-bg');
-    if (!svgWrap) return;
+    const footer = document.querySelector('.app-footer');
+    if (!footer) return;
 
-    gsap.set(svgWrap, { opacity: 0, y: 60 });
+    const phoneEls = Array.from(footer.querySelectorAll('.footer-contact-phone'));
 
-    gsap.to(svgWrap, {
-      opacity: 1,
-      y: 0,
-      duration: 1.2,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: svgWrap,
-        start: 'top 90%',
-        once: true,
+    const els = [
+      footer.querySelector('.footer-title'),
+      footer.querySelector('.footer-sub'),
+      footer.querySelector('.footer-email'),
+      footer.querySelector('.footer-socials'),
+      footer.querySelector('.footer-contact-title'),
+      ...phoneEls,
+      footer.querySelector('.footer-location-title'),
+      footer.querySelector('.footer-location'),
+      footer.querySelector('.footer-divider'),
+      footer.querySelector('.footer-copyright'),
+      footer.querySelector('.footer-svg-bg'),
+      footer.querySelector('.footer-bottom-bar'),
+    ].filter(Boolean);
+
+    gsap.set(els, { opacity: 0, y: 36 });
+
+    ScrollTrigger.create({
+      trigger: footer,
+      start: 'top 90%',
+      once: true,
+      onEnter: function () {
+        gsap.to(els, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          stagger: 0.11,
+        });
       },
     });
   })();
@@ -4108,7 +4163,7 @@
   })();
 </script>
 
-<!-- ===== 3D COVERFLOW CAROUSEL ===== -->
+<!-- ===== GALLERY CAROUSEL ===== -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/Draggable.min.js"></script>
 <script>
 (function () {
@@ -4136,95 +4191,57 @@
         'assets/images/my_pictures/19.jpeg',
     ];
 
-    const LABELS = IMAGES.map(function (_, i) {
-        return String(i + 1).padStart(2, '0');
-    });
-
-    const track    = document.getElementById('carouselTrack');
+    const track = document.getElementById('carouselTrack');
     if (!track) return;
 
-    const isMob    = window.matchMedia('(max-width:640px)').matches;
-    const CARD_W   = isMob ? 170 : 240;
-    const GAP      = 20;
-    const STEP     = CARD_W + GAP;
+    const isMob  = window.matchMedia('(max-width:640px)').matches;
+    const CARD_W = isMob ? 160 : 240;
+    const GAP    = 16;
+    const STEP   = CARD_W + GAP;
 
-    // Build 3 sets of cards for seamless loop
+    // 3 sets of cards for seamless loop
     const allSrc = [...IMAGES, ...IMAGES, ...IMAGES];
-    const allLbl = [...LABELS, ...LABELS, ...LABELS];
 
     allSrc.forEach(function (src, i) {
+        const label = String((i % IMAGES.length) + 1).padStart(2, '0');
+
         const card = document.createElement('div');
         card.className = 'c-card';
 
         const img = document.createElement('img');
         img.src = src;
-        img.alt = 'Photo ' + allLbl[i];
+        img.alt = 'Photo ' + label;
         img.loading = 'lazy';
 
         const overlay = document.createElement('div');
         overlay.className = 'c-overlay';
 
-        const label = document.createElement('div');
-        label.className = 'c-label';
-        label.textContent = allLbl[i];
-
         card.appendChild(img);
         card.appendChild(overlay);
-        card.appendChild(label);
         track.appendChild(card);
     });
 
-    const cards    = Array.from(track.querySelectorAll('.c-card'));
-    const total    = cards.length;
-    const setLen   = IMAGES.length;                     // 19
-    const setW     = setLen * STEP;                     // width of one full set
-    const trackW   = total * STEP;
+    const setLen = IMAGES.length;
+    const setW   = setLen * STEP;
+    const trackW = allSrc.length * STEP;
     track.style.width = trackW + 'px';
 
-    // Start in the middle set so we can loop both directions
+    // Start at middle set
     let xPos = -setW;
     gsap.set(track, { x: xPos });
 
-    // ── 3D tilt per card ─────────────────────────────────────────────
-    const MAX_ROTATE = 48;    // degrees at far edge
-    const MAX_SCALE  = 0.72;  // scale at far edge
-    const SPREAD     = 5;     // cards away from center that reach max tilt
-
-    function updateCardStyles() {
-        const cx = window.innerWidth / 2;
-        cards.forEach(function (card) {
-            const rect  = card.getBoundingClientRect();
-            const cardCx = rect.left + rect.width / 2;
-            const dist   = (cardCx - cx) / (window.innerWidth * 0.5);   // -1 … +1
-            const clamp  = Math.max(-1, Math.min(1, dist));
-            const rotY   = clamp * MAX_ROTATE;
-            const scale  = 1 - Math.abs(clamp) * (1 - MAX_SCALE);
-            const tz     = -Math.abs(clamp) * 120;                       // push back
-            gsap.set(card, {
-                rotationY: rotY,
-                scale: scale,
-                z: tz,
-                transformPerspective: 1200,
-                transformOrigin: 'center center',
-                force3D: true,
-            });
-        });
-    }
-
-    // ── Auto-scroll using GSAP ticker ────────────────────────────────
-    const SPEED = isMob ? 0.4 : 0.55;   // px per ticker frame
-    let paused  = false;
+    // ── Auto-scroll ───────────────────────────────────────────────────
+    const SPEED = isMob ? 0.45 : 0.7;
+    let paused = false;
 
     gsap.ticker.add(function () {
         if (paused) return;
         xPos -= SPEED;
-        // Seamless loop: once we've shifted a full set width, snap back
         if (xPos <= -setW * 2) xPos += setW;
         gsap.set(track, { x: xPos });
-        updateCardStyles();
     });
 
-    // ── Draggable ────────────────────────────────────────────────────
+    // ── Draggable ─────────────────────────────────────────────────────
     let dragStartX = 0;
 
     Draggable.create(track, {
@@ -4236,34 +4253,26 @@
         },
         onDrag: function () {
             xPos = dragStartX + (this.x - this.startX);
-            // normalise into the middle set range
-            while (xPos > -setW)        xPos -= setW;
-            while (xPos < -setW * 2)    xPos += setW;
+            while (xPos > -setW)     xPos -= setW;
+            while (xPos < -setW * 2) xPos += setW;
             gsap.set(track, { x: xPos });
-            updateCardStyles();
         },
         onRelease: function () {
-            // resume auto-scroll after 1.2 s of inertia-like glide
             const vel = this.getVelocity();
             gsap.to({ v: 0 }, {
                 v: 1,
-                duration: 0.8,
+                duration: 0.7,
                 ease: 'power2.out',
                 onUpdate: function () {
-                    xPos += vel * 0.008 * (1 - this.progress());
+                    xPos += vel * 0.006 * (1 - this.progress());
                     while (xPos > -setW)     xPos -= setW;
                     while (xPos < -setW * 2) xPos += setW;
                     gsap.set(track, { x: xPos });
-                    updateCardStyles();
                 },
                 onComplete: function () { paused = false; },
             });
         },
     });
-
-    // Initial tilt pass after images paint
-    requestAnimationFrame(updateCardStyles);
-    window.addEventListener('resize', updateCardStyles);
 })();
 </script>
 <!-- ===== END CAROUSEL ===== -->
