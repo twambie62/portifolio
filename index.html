@@ -39,7 +39,7 @@
         /* Nav */
         header {
             position: fixed;
-            top: 0;
+            top: 40px;
             left: 0;
             right: 0;
             z-index: 100;
@@ -288,101 +288,101 @@
                 gap: 10px;
             }
 
-            }
-            .avatar-wrap {
-                position: relative;
-                display: inline-block;
-                width: 100px;
-                margin: 24px auto 24px;
-            }
-            .avatar {
-                width: 100px; height: 100px;
-                border-radius: 50%;
-                overflow: hidden;
-                margin-left: 0px;
-                /*border: 4px solid var(--card);*/
-                /*box-shadow: 0 12px 30px rgba(0,0,0,0.08);*/
-                position: relative;
-                z-index: 1;
-            }
-            .chip {
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-                background: var(--card);
-                border: 1px solid var(--border);
-                color: var(--muted);
-                border-radius: var(--radius-small);
-                padding: 6px 12px;
-                font-size: 12px;
-                box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-            }
-            .hero .avatar-wrap .chip {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-                bottom: -10px;
-                z-index: 3;
-                white-space: nowrap;
-            }
-            h1 {
-                margin: 14px 0 10px;
-                font-size: clamp(26px, 3vw + 12px, 34px);
-                font-weight: 700;
-                line-height: 1.2;
-            }
-            .sub {
-                color: var(--muted);
-                max-width: 520px;
-                margin: 0 auto 16px;
-                line-height: 1.5;
-                font-size: 14px;
-            }
-            .btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                padding: 10px 18px;
-                border-radius: 12px;
-                border: none;
-                background: var(--primary);
-                color: #fff;
-                font-weight: 600;
-                cursor: pointer;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-                transition: 0.2s;
-            }
-            .btn:hover { transform: translateY(-1px); }
+        }
+        .avatar-wrap {
+            position: relative;
+            display: inline-block;
+            width: 100px;
+            margin: 24px auto 24px;
+        }
+        .avatar {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: 0px;
+            /*border: 4px solid var(--card);*/
+            /*box-shadow: 0 12px 30px rgba(0,0,0,0.08);*/
+            position: relative;
+            z-index: 1;
+        }
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            border-radius: var(--radius-small);
+            padding: 6px 12px;
+            font-size: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+        }
+        .hero .avatar-wrap .chip {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+            z-index: 3;
+            white-space: nowrap;
+        }
+        h1 {
+            margin: 14px 0 10px;
+            font-size: clamp(26px, 3vw + 12px, 34px);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .sub {
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto 16px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 12px;
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+            transition: 0.2s;
+        }
+        .btn:hover { transform: translateY(-1px); }
 
-            /* ── Framer-style slide-text hover ── */
-            .btn-slide {
-                overflow: hidden;
-                /* remove the default translateY lift so GSAP controls it fully */
-            }
-            .btn-slide:hover { transform: none; }
-            .btn-slide-inner {
-                position: relative;
-                display: inline-flex;
-                flex-direction: column;
-                height: 1.2em; /* clip to one line of text */
-                overflow: hidden;
-                pointer-events: none;
-            }
-            .btn-slide-default,
-            .btn-slide-hover {
-                display: block;
-                white-space: nowrap;
-                line-height: 1.2em;
-                will-change: transform;
-            }
-            /* hover duplicate starts below, out of view */
-            .btn-slide-hover {
-                position: absolute;
-                top: 0;
-                left: 0;
-                transform: translateY(100%);
-            }
-            /* Hero button row + lets chat wrapper */
+        /* ── Framer-style slide-text hover ── */
+        .btn-slide {
+            overflow: hidden;
+            /* remove the default translateY lift so GSAP controls it fully */
+        }
+        .btn-slide:hover { transform: none; }
+        .btn-slide-inner {
+            position: relative;
+            display: inline-flex;
+            flex-direction: column;
+            height: 1.2em; /* clip to one line of text */
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .btn-slide-default,
+        .btn-slide-hover {
+            display: block;
+            white-space: nowrap;
+            line-height: 1.2em;
+            will-change: transform;
+        }
+        /* hover duplicate starts below, out of view */
+        .btn-slide-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translateY(100%);
+        }
+        /* Hero button row + lets chat wrapper */
         .hero-btns-wrap {
             display: inline-flex;
             position: relative;
@@ -548,18 +548,18 @@
             z-index: 0;
             display: block;
             -webkit-mask-image: linear-gradient(
-                to bottom,
-                rgba(0,0,0,0) 1%,
-                rgba(0,0,0,1) 6%,
-                rgba(0,0,0,1) 70%,
-                rgba(0,0,0,0) 100%
+                    to bottom,
+                    rgba(0,0,0,0) 1%,
+                    rgba(0,0,0,1) 6%,
+                    rgba(0,0,0,1) 70%,
+                    rgba(0,0,0,0) 100%
             );
             mask-image: linear-gradient(
-                to bottom,
-                rgba(0,0,0,1) 0%,
-                rgba(0,0,0,1) 6%,
-                rgba(0,0,0,1) 70%,
-                rgba(0,0,0,0) 100%
+                    to bottom,
+                    rgba(0,0,0,1) 0%,
+                    rgba(0,0,0,1) 6%,
+                    rgba(0,0,0,1) 70%,
+                    rgba(0,0,0,0) 100%
             );
         }
         .hero-lines-wrap > *:not(.hero-lines-img) { position: relative; z-index: 1; }
@@ -630,6 +630,25 @@
             box-shadow: 0 6px 18px rgba(0,0,0,0.05);
             margin-bottom: 14px;
             margin-top: 24px;
+        }
+
+        /* Green "available" dot on hero greeting */
+        .dot--online {
+            background: #22c55e !important;
+            position: relative;
+        }
+        .dot--online::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.45);
+            animation: dot-pulse 2s ease-out infinite;
+        }
+        @keyframes dot-pulse {
+            0%   { transform: scale(0.85); opacity: 0.8; }
+            70%  { transform: scale(2.2);  opacity: 0;   }
+            100% { transform: scale(2.2);  opacity: 0;   }
         }
 
         /* ===== PROJECTS GRID — REDESIGNED ===== */
@@ -1502,7 +1521,7 @@
                 min-height: 392px;
                 margin: 0 4px 56px;
 
-                            }
+            }
             .tools-float-icon {
                 width: 48px;
                 height: 48px;
@@ -1578,7 +1597,7 @@
                 box-shadow: 0 2px 15px rgba(0,0,0,0.08);
             }
             .wcm-vast .wcm-card-img {
-              /*padding: 8px 8px 0px 8px;*/
+                /*padding: 8px 8px 0px 8px;*/
             }
         }
 
@@ -2321,1022 +2340,1023 @@
 <div id="page-overlay"></div>
 
 <main id="home" class="container" data-barba="wrapper">
-<div >
-    <!-- Hero vertical lines wrapper: covers hero + projects marquee and fades at the marquee end -->
-    <div class="hero-lines-wrap">
-        <img class="hero-lines-img" src="assets/images/hero/grid_lines.svg" alt="" aria-hidden="true">
+    <div >
+        <!-- Hero vertical lines wrapper: covers hero + projects marquee and fades at the marquee end -->
+        <div class="hero-lines-wrap">
+            <img class="hero-lines-img" src="assets/images/hero/grid_lines.svg" alt="" aria-hidden="true">
 
-    <section class="hero">
-        <!-- Floating pill badges — match hero_reference positions -->
-        <img src="assets/images/hero/branding.svg" alt="Branding" class="hero-pill hero-pill--branding" aria-hidden="true">
-        <img src="assets/images/hero/software.svg" alt="Software" class="hero-pill hero-pill--software" aria-hidden="true">
-        <img src="assets/images/hero/ui_ux.svg" alt="UI/UX" class="hero-pill hero-pill--uiux" aria-hidden="true">
+            <section class="hero">
+                <!-- Floating pill badges — match hero_reference positions -->
+                <img src="assets/images/hero/branding.svg" alt="Branding" class="hero-pill hero-pill--branding" aria-hidden="true">
+                <img src="assets/images/hero/software.svg" alt="Software" class="hero-pill hero-pill--software" aria-hidden="true">
+                <img src="assets/images/hero/ui_ux.svg" alt="UI/UX" class="hero-pill hero-pill--uiux" aria-hidden="true">
 
-        <div class="avatar-wrap">
-            <div class="avatar">
-                <img id="hero-avatar" src="assets/images/about_me/me.png" alt="Avatar">
-            </div>
-            <div id="hero-greeting" class="chip"><span class="dot"></span>Hi I am Twambi</div>
-        </div>
-        <h1 id="hero-heading">I'm a web and app developer,<br>and a UI/UX designer.</h1>
-        <p id="hero-sub" class="sub">Passionate about building products that combine great design, usability & dependable high-performance</p>
-        <div class="hero-btns-wrap">
-            <div class="hero-btns">
-                <a id="hero-btn-1" href="mailto:twambililemusukwa@gmail.com" class="btn btn-slide">
+                <div class="avatar-wrap">
+                    <div class="avatar">
+                        <img id="hero-avatar" src="assets/images/about_me/me.png" alt="Avatar">
+                    </div>
+                    <div id="hero-greeting" class="chip"><span class="dot dot--online"></span>Hi I am Twambi</div>
+                </div>
+                <h1 id="hero-heading">I'm a web and app developer,<br>and a UI/UX designer.</h1>
+                <p id="hero-sub" class="sub">Passionate about building products that combine great design, usability & dependable high-performance</p>
+                <div class="hero-btns-wrap">
+                    <div class="hero-btns">
+                        <a id="hero-btn-1" href="mailto:twambililemusukwa@gmail.com" class="btn btn-slide">
                     <span class="btn-slide-inner">
                         <span class="btn-slide-default">Contact me</span>
                         <span class="btn-slide-hover">Contact me</span>
                     </span>
-                </a>
-                <a id="hero-btn-2" href="https://drive.google.com/file/d/1VaOheAdv-UTsDFuWMKhqLfepPAMPAzgy/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn hero-cv-btn btn-slide">
+                        </a>
+                        <a id="hero-btn-2" href="https://drive.google.com/file/d/1VaOheAdv-UTsDFuWMKhqLfepPAMPAzgy/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn hero-cv-btn btn-slide">
                     <span class="btn-slide-inner">
                         <span class="btn-slide-default">View my CV</span>
                         <span class="btn-slide-hover">View my CV</span>
                     </span>
+                        </a>
+                    </div>
+                    <div class="hero-lets-chat" aria-hidden="true">
+                        <img src="assets/images/hero/lets_chat.svg" alt="Lets Chat">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hero project preview marquee -->
+            <div class="hero-proj-marquee-wrap">
+                <div class="hero-proj-track">
+                    <!-- Group 1 -->
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_1.png" alt="Project 1"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_2.png" alt="Project 2"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_3.png" alt="Project 3"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_4.png" alt="Project 4"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_5.png" alt="Project 5"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_6.png" alt="Project 6"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_7.png" alt="Project 7"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_8.png" alt="Project 8"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_9.png" alt="Project 9"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_10.png" alt="Project 10"></div>
+                    <!-- Group 2 (duplicate for seamless loop) -->
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_1.png" alt="Project 1"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_2.png" alt="Project 2"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_3.png" alt="Project 3"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_4.png" alt="Project 4"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_5.png" alt="Project 5"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_6.png" alt="Project 6"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_7.png" alt="Project 7"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_8.png" alt="Project 8"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_9.png" alt="Project 9"></div>
+                    <div class="hero-proj-card"><img src="assets/images/hero/projects/img_10.png" alt="Project 10"></div>
+                </div>
+            </div>
+
+        </div><!-- /.hero-lines-wrap -->
+
+        <section id="about" style="text-align:center;">
+            <div class="chip"><span class="dot"></span>My Tech Stack</div>
+            <div class="pill-row">
+                <div class="lang-marquee" aria-hidden="false">
+                    <div class="marquee-track" aria-hidden="true">
+                        <div class="marquee-group">
+                            <div class="marquee-item"><img src="assets/languages.svg" alt="languages"></div>
+                        </div>
+                        <div class="marquee-group" aria-hidden="true">
+                            <div class="marquee-item"><img src="assets/languages.svg" alt="languages"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pill-row marquee-bottom" style="margin-top:12px;">
+                <div class="lang-marquee rtl" aria-hidden="false">
+                    <div class="marquee-track-rtl" aria-hidden="true">
+                        <div class="marquee-group">
+                            <div class="marquee-item"><img src="assets/frameworks.svg" alt="frameworks"></div>
+                        </div>
+                        <div class="marquee-group" aria-hidden="true">
+                            <div class="marquee-item"><img src="assets/frameworks.svg" alt="frameworks"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="section-label"><span class="dot"></span>My Projects</div>
+            <div class="projects">
+                <a href="pages/kwacha_wise.html" class="card-link">
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/fin_tech_app.png');">
+                            <img src="assets/images/portifolio/fintech/home_mockup.png" alt="Fintech App">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Fintech App</div>
+                            <div class="card-desc">A modern personal finance analytics experience with income tracking, expenditure insights, and clean dashboard.</div>
+                            <div class="card-tags">
+                                <span>UI/UX</span>
+                                <span>App Design</span>
+                            </div>
+                        </div>
+                    </article>
                 </a>
-            </div>
-            <div class="hero-lets-chat" aria-hidden="true">
-                <img src="assets/images/hero/lets_chat.svg" alt="Lets Chat">
-            </div>
-        </div>
-    </section>
 
-    <!-- Hero project preview marquee -->
-    <div class="hero-proj-marquee-wrap">
-        <div class="hero-proj-track">
-            <!-- Group 1 -->
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_1.png" alt="Project 1"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_2.png" alt="Project 2"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_3.png" alt="Project 3"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_4.png" alt="Project 4"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_5.png" alt="Project 5"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_6.png" alt="Project 6"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_7.png" alt="Project 7"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_8.png" alt="Project 8"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_9.png" alt="Project 9"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_10.png" alt="Project 10"></div>
-            <!-- Group 2 (duplicate for seamless loop) -->
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_1.png" alt="Project 1"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_2.png" alt="Project 2"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_3.png" alt="Project 3"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_4.png" alt="Project 4"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_5.png" alt="Project 5"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_6.png" alt="Project 6"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_7.png" alt="Project 7"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_8.png" alt="Project 8"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_9.png" alt="Project 9"></div>
-            <div class="hero-proj-card"><img src="assets/images/hero/projects/img_10.png" alt="Project 10"></div>
-        </div>
-    </div>
-
-    </div><!-- /.hero-lines-wrap -->
-
-    <section id="about" style="text-align:center;">
-        <div class="chip"><span class="dot"></span>My Tech Stack</div>
-        <div class="pill-row">
-            <div class="lang-marquee" aria-hidden="false">
-                <div class="marquee-track" aria-hidden="true">
-                    <div class="marquee-group">
-                        <div class="marquee-item"><img src="assets/languages.svg" alt="languages"></div>
-                    </div>
-                    <div class="marquee-group" aria-hidden="true">
-                        <div class="marquee-item"><img src="assets/languages.svg" alt="languages"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="pill-row marquee-bottom" style="margin-top:12px;">
-            <div class="lang-marquee rtl" aria-hidden="false">
-                <div class="marquee-track-rtl" aria-hidden="true">
-                    <div class="marquee-group">
-                        <div class="marquee-item"><img src="assets/frameworks.svg" alt="frameworks"></div>
-                    </div>
-                    <div class="marquee-group" aria-hidden="true">
-                        <div class="marquee-item"><img src="assets/frameworks.svg" alt="frameworks"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <div class="section-label"><span class="dot"></span>My Projects</div>
-        <div class="projects">
-            <a href="pages/kwacha_wise.html" class="card-link">
-                <article class="card">
-                    <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/fin_tech_app.png');">
-                        <img src="assets/images/portifolio/fintech/home_mockup.png" alt="Fintech App">
-                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">Fintech App</div>
-                        <div class="card-desc">A modern personal finance analytics experience with income tracking, expenditure insights, and clean dashboard.</div>
-                        <div class="card-tags">
-                            <span>UI/UX</span>
-                            <span>App Design</span>
+                <a href="pages/bp_app.html" class="card-link">
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/blood_pressure_app.png');">
+                            <img src="assets/images/portifolio/blood_pressure/home.png" alt="Blood Pressure Project">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
                         </div>
-                    </div>
-                </article>
-            </a>
-
-            <a href="pages/bp_app.html" class="card-link">
-                <article class="card">
-                    <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/blood_pressure_app.png');">
-                        <img src="assets/images/portifolio/blood_pressure/home.png" alt="Blood Pressure Project">
-                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">Blood Pressure App</div>
-                        <div class="card-desc">Remote blood pressure monitoring system connected to Arduino ESP-32 for real-time patient tracking.</div>
-                        <div class="card-tags">
-                            <span>UI/UX</span>
-                            <span>App Design</span>
+                        <div class="card-body">
+                            <div class="card-title">Blood Pressure App</div>
+                            <div class="card-desc">Remote blood pressure monitoring system connected to Arduino ESP-32 for real-time patient tracking.</div>
+                            <div class="card-tags">
+                                <span>UI/UX</span>
+                                <span>App Design</span>
+                            </div>
                         </div>
-                    </div>
-                </article>
-            </a>
+                    </article>
+                </a>
 
-            <article class="card">
-                <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/influencer_malawi_app.png');">
-                    <img src="assets/images/portifolio/influencer_malawi/onboarding_profile.png" alt="Influencer Malawi App">
-                    <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">Influencer Malawi App</div>
-                    <div class="card-desc">A platform connecting influencers with brands for collaboration and marketing campaigns.</div>
-                    <div class="card-tags">
-                        <span>UI/UX</span>
-                        <span>App Design</span>
-                    </div>
-                </div>
-            </article>
-
-            <a href="pages/courier_app.html" class="card-link">
-                <article class="card">
-                    <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/courier_app.png');">
-                        <img src="assets/images/portifolio/courier/home_live_tracking.png" alt="Courier App">
-                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">Courier App</div>
-                        <div class="card-desc">Live tracking courier application with real-time delivery updates and payment integration.</div>
-                        <div class="card-tags">
-                            <span>UI/UX</span>
-                            <span>App Design</span>
-                        </div>
-                    </div>
-                </article>
-            </a>
-
-            <a href="pages/akometsi_app.html" class="card-link">
-                <article class="card">
-                    <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/movie_app.png');">
-                        <img src="assets/images/portifolio/akometsi/home_movie_details_dark.png" alt="Movie App">
-                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">Movie App</div>
-                        <div class="card-desc">A streaming platform with movie details, video player, and group viewing features in dark mode.</div>
-                        <div class="card-tags">
-                            <span>UI/UX</span>
-                            <span>App Design</span>
-                        </div>
-                    </div>
-                </article>
-            </a>
-
-            <a href="pages/smart_home.html" class="card-link">
-                <article class="card">
-                    <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/smart_home_app.png');">
-                        <img src="assets/images/portifolio/smart_home/main_screen_home.png" alt="Smart Home App">
-                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">Smart Home App</div>
-                        <div class="card-desc">IoT-based smart home control system with room management, automation, and device settings.</div>
-                        <div class="card-tags">
-                            <span>UI/UX</span>
-                            <span>App Design</span>
-                        </div>
-                    </div>
-                </article>
-            </a>
-
-            <a href="pages/notes_app.html" class="card-link">
-                <article class="card">
-                    <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/notes_app.png');">
-                        <img src="assets/images/portifolio/notes/home_onboarding.png" alt="Notes App">
-                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">Notes App</div>
-                        <div class="card-desc">A personal management app for notes, habits, and finance tracking with clean onboarding.</div>
-                        <div class="card-tags">
-                            <span>UI/UX</span>
-                            <span>App Design</span>
-                        </div>
-                    </div>
-                </article>
-            </a>
-
-            <a href="pages/notes_website.html" class="card-link">
-                <article class="card">
-                    <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/track_it_website.png');">
-                        <img src="assets/images/portifolio/notes_website/track_it_main_image.png" alt="Track it Website">
-                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">Track it Website</div>
-                        <div class="card-desc">A landing page for a personal productivity, finance and task management mobile application.</div>
-                        <div class="card-tags">
-                            <span>UI/UX</span>
-                            <span>Web Design</span>
-                        </div>
-                    </div>
-                </article>
-            </a>
-
-            <a href="pages/smart_apps.html" class="card-link">
-                <article class="card">
-                    <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/smart_apps_website.png');">
-                        <img src="assets/images/portifolio/smart_apps/hero_section_2_2.png" alt="Smart Apps Website">
-                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">Smart Apps Website</div>
-                        <div class="card-desc">A technology company website showcasing web hosting, services, and company information.</div>
-                        <div class="card-tags">
-                            <span>UI/UX</span>
-                            <span>Web Design</span>
-                        </div>
-                    </div>
-                </article>
-            </a>
-
-            <a href="pages/smart_apps_redesign.html" class="card-link">
-                <article class="card">
-                    <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/smart_apps_redesign.png');">
-                        <img src="assets/images/portifolio/smart_apps/hero_section_redesign.png" alt="Smart Apps Redesign">
-                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">Smart Apps Redesign</div>
-                        <div class="card-desc">A fresh redesign of the Smart Apps website with modernized hero section and improved UX.</div>
-                        <div class="card-tags">
-                            <span>UI/UX</span>
-                            <span>Web Design</span>
-                        </div>
-                    </div>
-                </article>
-            </a>
-        </div>
-
-        <div style="display: flex; justify-content: center; margin-top: 24px;">
-            <button id="show-more-projects" class="btn btn-grey" style="padding: 12px 28px; font-size: 16px;">Show More <i class="ri-arrow-down-line"></i></button>
-        </div>
-        <div id="extra-projects" style="display: none; margin-top: 22px;">
-            <div class="projects" style="justify-content: center;">
-                <article class="card">
-                    <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/courier_app.png');">
-                        <img src="assets/images/portifolio/posters/courier_poster.png" alt="Courier App Poster">
-                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">Courier App Poster</div>
-                        <div class="card-desc">Promotional poster design for the Courier delivery application.</div>
-                        <div class="card-tags">
-                            <span>Graphic Design</span>
-                            <span>Poster Design</span>
-                        </div>
-                    </div>
-                </article>
-                <article class="card">
-                    <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/fin_tech_app.png');">
-                        <img src="assets/images/portifolio/posters/kwacha_pos_poster.png" alt="Kwacha POS poster">
-                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">Kwacha POS Poster</div>
-                        <div class="card-desc">Point of sale system promotional poster design for Kwacha brand.</div>
-                        <div class="card-tags">
-                            <span>Graphic Design</span>
-                            <span>Poster Design</span>
-                        </div>
-                    </div>
-                </article>
                 <article class="card">
                     <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/influencer_malawi_app.png');">
-                        <img src="assets/images/portifolio/posters/testimonial.jpg" alt="Testimonial">
+                        <img src="assets/images/portifolio/influencer_malawi/onboarding_profile.png" alt="Influencer Malawi App">
                         <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
                     </div>
                     <div class="card-body">
-                        <div class="card-title">Influencer Malawi Testimonial</div>
-                        <div class="card-desc">Testimonial graphic design for Influencer Malawi platform.</div>
+                        <div class="card-title">Influencer Malawi App</div>
+                        <div class="card-desc">A platform connecting influencers with brands for collaboration and marketing campaigns.</div>
                         <div class="card-tags">
-                            <span>Graphic Design</span>
-                            <span>Poster Design</span>
+                            <span>UI/UX</span>
+                            <span>App Design</span>
                         </div>
                     </div>
                 </article>
+
+                <a href="pages/courier_app.html" class="card-link">
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/courier_app.png');">
+                            <img src="assets/images/portifolio/courier/home_live_tracking.png" alt="Courier App">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Courier App</div>
+                            <div class="card-desc">Live tracking courier application with real-time delivery updates and payment integration.</div>
+                            <div class="card-tags">
+                                <span>UI/UX</span>
+                                <span>App Design</span>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="pages/akometsi_app.html" class="card-link">
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/movie_app.png');">
+                            <img src="assets/images/portifolio/akometsi/home_movie_details_dark.png" alt="Movie App">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Movie App</div>
+                            <div class="card-desc">A streaming platform with movie details, video player, and group viewing features in dark mode.</div>
+                            <div class="card-tags">
+                                <span>UI/UX</span>
+                                <span>App Design</span>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="pages/smart_home.html" class="card-link">
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/smart_home_app.png');">
+                            <img src="assets/images/portifolio/smart_home/main_screen_home.png" alt="Smart Home App">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Smart Home App</div>
+                            <div class="card-desc">IoT-based smart home control system with room management, automation, and device settings.</div>
+                            <div class="card-tags">
+                                <span>UI/UX</span>
+                                <span>App Design</span>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="pages/notes_app.html" class="card-link">
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/notes_app.png');">
+                            <img src="assets/images/portifolio/notes/home_onboarding.png" alt="Notes App">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Notes App</div>
+                            <div class="card-desc">A personal management app for notes, habits, and finance tracking with clean onboarding.</div>
+                            <div class="card-tags">
+                                <span>UI/UX</span>
+                                <span>App Design</span>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="pages/notes_website.html" class="card-link">
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/track_it_website.png');">
+                            <img src="assets/images/portifolio/notes_website/track_it_main_image.png" alt="Track it Website">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Track it Website</div>
+                            <div class="card-desc">A landing page for a personal productivity, finance and task management mobile application.</div>
+                            <div class="card-tags">
+                                <span>UI/UX</span>
+                                <span>Web Design</span>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="pages/smart_apps.html" class="card-link">
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/smart_apps_website.png');">
+                            <img src="assets/images/portifolio/smart_apps/hero_section_2_2.png" alt="Smart Apps Website">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Smart Apps Website</div>
+                            <div class="card-desc">A technology company website showcasing web hosting, services, and company information.</div>
+                            <div class="card-tags">
+                                <span>UI/UX</span>
+                                <span>Web Design</span>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="pages/smart_apps_redesign.html" class="card-link">
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/smart_apps_redesign.png');">
+                            <img src="assets/images/portifolio/smart_apps/hero_section_redesign.png" alt="Smart Apps Redesign">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Smart Apps Redesign</div>
+                            <div class="card-desc">A fresh redesign of the Smart Apps website with modernized hero section and improved UX.</div>
+                            <div class="card-tags">
+                                <span>UI/UX</span>
+                                <span>Web Design</span>
+                            </div>
+                        </div>
+                    </article>
+                </a>
             </div>
+
             <div style="display: flex; justify-content: center; margin-top: 24px;">
-                <button id="show-less-projects" class="btn btn-grey" style="padding: 12px 28px; font-size: 16px;">Show Less <i class="ri-arrow-up-line"></i></button>
+                <button id="show-more-projects" class="btn btn-grey" style="padding: 12px 28px; font-size: 16px;">Show More <i class="ri-arrow-down-line"></i></button>
             </div>
-        </div>
-    </section>
-
-    <section id="work">
-        <div class="section-label"><span class="dot"></span>Experience</div>
-        <div class="we-cards">
-
-            <!-- Tech265 -->
-            <div class="we-card">
-                <div class="we-card-header">
-                    <span class="we-card-company">Tech265</span>
-                    <span class="we-card-logo"><img src="assets/images/campany_logos/tech265_logo.png" alt="Tech265"></span>
-                    <span class="we-card-role">Full-Stack Software Developer</span>
+            <div id="extra-projects" style="display: none; margin-top: 22px;">
+                <div class="projects" style="justify-content: center;">
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/courier_app.png');">
+                            <img src="assets/images/portifolio/posters/courier_poster.png" alt="Courier App Poster">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Courier App Poster</div>
+                            <div class="card-desc">Promotional poster design for the Courier delivery application.</div>
+                            <div class="card-tags">
+                                <span>Graphic Design</span>
+                                <span>Poster Design</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/fin_tech_app.png');">
+                            <img src="assets/images/portifolio/posters/kwacha_pos_poster.png" alt="Kwacha POS poster">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Kwacha POS Poster</div>
+                            <div class="card-desc">Point of sale system promotional poster design for Kwacha brand.</div>
+                            <div class="card-tags">
+                                <span>Graphic Design</span>
+                                <span>Poster Design</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/influencer_malawi_app.png');">
+                            <img src="assets/images/portifolio/posters/testimonial.jpg" alt="Testimonial">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Influencer Malawi Testimonial</div>
+                            <div class="card-desc">Testimonial graphic design for Influencer Malawi platform.</div>
+                            <div class="card-tags">
+                                <span>Graphic Design</span>
+                                <span>Poster Design</span>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                <div class="we-card-date">Dec 2025 - Present</div>
-                <div class="we-card-desc">
-                    I build digital products that work — end to end, from the first line of code to the final pixel on screen.
-                    At Tech265, I own the full development lifecycle across web and mobile
-                </div>
-                <div class="we-card-meta">
-                    <span class="we-card-meta-label">Full time</span>
-                    <span class="we-card-meta-value">Area 47, Lilongwe</span>
-                </div>
-            </div>
-
-            <!-- iMoSyS -->
-            <div class="we-card">
-                <div class="we-card-header">
-                    <span class="we-card-company">iMoSyS</span>
-                    <span class="we-card-logo"><img src="assets/images/campany_logos/imosys_logo.png" alt="iMoSyS"></span>
-                    <span class="we-card-role">Mobile Developer</span>
-                </div>
-                <div class="we-card-date">Jun 2024 - Nov 2024</div>
-                <div class="we-card-desc">
-                    Worked on web and mobile app development using Flutter and React. Handled testing, bug fixing, API
-                    integration, and database management while collaborating with a team using GitHub and ClickUp.
-                </div>
-                <div class="we-card-meta">
-                    <span class="we-card-meta-label">Internship</span>
-                    <span class="we-card-meta-value">Limbe, Blantyre</span>
-                </div>
-            </div>
-
-            <!-- JPI Systems -->
-            <div class="we-card">
-                <div class="we-card-header">
-                    <span class="we-card-company">JPI Systems</span>
-                    <span class="we-card-logo"><img src="assets/images/campany_logos/jpi_logo.png" alt="JPI Systems"></span>
-                    <span class="we-card-role">Mobile Developer</span>
-                </div>
-                <div class="we-card-date">Feb 2020 - Nov 2022</div>
-                <div class="we-card-desc">
-                    Designed intuitive user interfaces and experiences for mobile applications. Developed Android apps
-                    using Java/XML, including a dating app.
-                </div>
-                <div class="we-card-meta">
-                    <span class="we-card-meta-label">Full time</span>
-                    <span class="we-card-meta-value">Hybrid</span>
+                <div style="display: flex; justify-content: center; margin-top: 24px;">
+                    <button id="show-less-projects" class="btn btn-grey" style="padding: 12px 28px; font-size: 16px;">Show Less <i class="ri-arrow-up-line"></i></button>
                 </div>
             </div>
+        </section>
 
-        </div>
-    </section>
+        <section id="work">
+            <div class="section-label"><span class="dot"></span>Experience</div>
+            <div class="we-cards">
 
-    <section id="education">
-        <div class="section-label"><span class="dot"></span>Education</div>
-        <div class="we-cards">
-
-            <!-- Advanced Degree -->
-            <div class="we-card">
-                <div class="edu-card-title">Advanced Degree in Electronics and computer Engineering</div>
-                <div class="edu-card-years">2024 &nbsp; 2025</div>
-                <div class="edu-card-desc">
-                    Advanced my expertise through studies in machine learning and artificial intelligence, embedded
-                    systems, and &nbsp;web application development. Gained practical knowledge in computer networking,
-                    operating systems, database systems, and microcontroller programming (MIPS), alongside
-                    engineering laws, and entrepreneurship.
+                <!-- Tech265 -->
+                <div class="we-card">
+                    <div class="we-card-header">
+                        <span class="we-card-company">Tech265</span>
+                        <span class="we-card-logo"><img src="assets/images/campany_logos/tech265_logo.png" alt="Tech265"></span>
+                        <span class="we-card-role">Full-Stack Software Developer</span>
+                    </div>
+                    <div class="we-card-date">Dec 2025 - Present</div>
+                    <div class="we-card-desc">
+                        I build digital products that work — end to end, from the first line of code to the final pixel on screen.
+                        At Tech265, I own the full development lifecycle across web and mobile
+                    </div>
+                    <div class="we-card-meta">
+                        <span class="we-card-meta-label">Full time</span>
+                        <span class="we-card-meta-value">Area 47, Lilongwe</span>
+                    </div>
                 </div>
-                <div class="edu-card-school">Malawi University of Business and Applied Sciences</div>
-                <div class="edu-card-location">Chichiri, Blantyre</div>
-            </div>
 
-            <!-- Degree -->
-            <div class="we-card">
-                <div class="edu-card-title">Degree in Electronics and computer Engineering</div>
-                <div class="edu-card-years">2020 &nbsp; 2024</div>
-                <div class="edu-card-desc">
-                    Completed foundational studies in computing, digital and linear electronics, and electrical science.
-                    &nbsp;Developed strong analytical skills through advanced mathematics, including calculus and numerical
-                    methods, alongside training in software development processes, lifecycle, and requirements engineering
+                <!-- iMoSyS -->
+                <div class="we-card">
+                    <div class="we-card-header">
+                        <span class="we-card-company">iMoSyS</span>
+                        <span class="we-card-logo"><img src="assets/images/campany_logos/imosys_logo.png" alt="iMoSyS"></span>
+                        <span class="we-card-role">Mobile Developer</span>
+                    </div>
+                    <div class="we-card-date">Jun 2024 - Nov 2024</div>
+                    <div class="we-card-desc">
+                        Worked on web and mobile app development using Flutter and React. Handled testing, bug fixing, API
+                        integration, and database management while collaborating with a team using GitHub and ClickUp.
+                    </div>
+                    <div class="we-card-meta">
+                        <span class="we-card-meta-label">Internship</span>
+                        <span class="we-card-meta-value">Limbe, Blantyre</span>
+                    </div>
                 </div>
-                <div class="edu-card-school">Malawi University of Business and Applied Sciences</div>
-                <div class="edu-card-location">Chichiri, Blantyre</div>
-            </div>
 
-        </div>
-    </section>
-
-    <section id="processes">
-        <div class="section-label"><span class="dot"></span>Process</div>
-        <div class="processes-grid">
-            <div class="process-card">
-                <div class="process-top">
-                    <div class="process-number">01</div>
-                    <div class="process-dots"><span style="background: var(--muted-dots);" ></span><span></span><span></span></div>
+                <!-- JPI Systems -->
+                <div class="we-card">
+                    <div class="we-card-header">
+                        <span class="we-card-company">JPI Systems</span>
+                        <span class="we-card-logo"><img src="assets/images/campany_logos/jpi_logo.png" alt="JPI Systems"></span>
+                        <span class="we-card-role">Mobile Developer</span>
+                    </div>
+                    <div class="we-card-date">Feb 2020 - Nov 2022</div>
+                    <div class="we-card-desc">
+                        Designed intuitive user interfaces and experiences for mobile applications. Developed Android apps
+                        using Java/XML, including a dating app.
+                    </div>
+                    <div class="we-card-meta">
+                        <span class="we-card-meta-label">Full time</span>
+                        <span class="we-card-meta-value">Hybrid</span>
+                    </div>
                 </div>
-                <div class="process-title">Discover</div>
-                <div class="process-desc">Understanding your goals, requirements, and target users through research and clear communication.</div>
+
             </div>
-            <div class="process-card">
-                <div class="process-top">
-                    <div class="process-number">02</div>
-                    <div class="process-dots"><span style="background: var(--muted-dots);"></span><span style="background: var(--muted-dots);"></span><span></span></div>
+        </section>
+
+        <section id="education">
+            <div class="section-label"><span class="dot"></span>Education</div>
+            <div class="we-cards">
+
+                <!-- Advanced Degree -->
+                <div class="we-card">
+                    <div class="edu-card-title">Advanced Degree in Electronics and computer Engineering</div>
+                    <div class="edu-card-years">2024 &nbsp; 2025</div>
+                    <div class="edu-card-desc">
+                        Advanced my expertise through studies in machine learning and artificial intelligence, embedded
+                        systems, and &nbsp;web application development. Gained practical knowledge in computer networking,
+                        operating systems, database systems, and microcontroller programming (MIPS), alongside
+                        engineering laws, and entrepreneurship.
+                    </div>
+                    <div class="edu-card-school">Malawi University of Business and Applied Sciences</div>
+                    <div class="edu-card-location">Chichiri, Blantyre</div>
                 </div>
-                <div class="process-title">UI/UX Design</div>
-                <div class="process-desc">Designing intuitive, user-centered interfaces with a focus on usability, aesthetics, and seamless experience.</div>
-            </div>
-            <div class="process-card">
-                <div class="process-top">
-                    <div class="process-number">03</div>
-                    <div class="process-dots"><span style="background: var(--muted-dots);"></span><span style="background: var(--muted-dots);"></span><span style="background: var(--muted-dots);"></span></div>
+
+                <!-- Degree -->
+                <div class="we-card">
+                    <div class="edu-card-title">Degree in Electronics and computer Engineering</div>
+                    <div class="edu-card-years">2020 &nbsp; 2024</div>
+                    <div class="edu-card-desc">
+                        Completed foundational studies in computing, digital and linear electronics, and electrical science.
+                        &nbsp;Developed strong analytical skills through advanced mathematics, including calculus and numerical
+                        methods, alongside training in software development processes, lifecycle, and requirements engineering
+                    </div>
+                    <div class="edu-card-school">Malawi University of Business and Applied Sciences</div>
+                    <div class="edu-card-location">Chichiri, Blantyre</div>
                 </div>
-                <div class="process-title">Implement</div>
-                <div class="process-desc">Developing scalable and high-performance solutions, followed by testing, optimization, and deployment</div>
+
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="services">
-        <div class="section-label"><span class="dot"></span>Services</div>
-        <div class="services-heading">The Right Skills, In One Place to<br>Build <span class="muted">What You Need</span></div>
-
-        <div class="services-grid">
-
-            <!-- UI/UX Design -->
-            <div class="svc-card">
-                <div class="svc-img"><img src="assets/images/services/ui_ux.png" alt="UI/UX Design"></div>
-                <div class="svc-text">
-                    <div class="svc-title">UI/UX Design</div>
-                    <div class="svc-desc">I craft intuitive interfaces and seamless user experiences, turning complex workflows into delightful, easy-to-use products.</div>
+        <section id="processes">
+            <div class="section-label"><span class="dot"></span>Process</div>
+            <div class="processes-grid">
+                <div class="process-card">
+                    <div class="process-top">
+                        <div class="process-number">01</div>
+                        <div class="process-dots"><span style="background: var(--muted-dots);" ></span><span></span><span></span></div>
+                    </div>
+                    <div class="process-title">Discover</div>
+                    <div class="process-desc">Understanding your goals, requirements, and target users through research and clear communication.</div>
+                </div>
+                <div class="process-card">
+                    <div class="process-top">
+                        <div class="process-number">02</div>
+                        <div class="process-dots"><span style="background: var(--muted-dots);"></span><span style="background: var(--muted-dots);"></span><span></span></div>
+                    </div>
+                    <div class="process-title">UI/UX Design</div>
+                    <div class="process-desc">Designing intuitive, user-centered interfaces with a focus on usability, aesthetics, and seamless experience.</div>
+                </div>
+                <div class="process-card">
+                    <div class="process-top">
+                        <div class="process-number">03</div>
+                        <div class="process-dots"><span style="background: var(--muted-dots);"></span><span style="background: var(--muted-dots);"></span><span style="background: var(--muted-dots);"></span></div>
+                    </div>
+                    <div class="process-title">Implement</div>
+                    <div class="process-desc">Developing scalable and high-performance solutions, followed by testing, optimization, and deployment</div>
                 </div>
             </div>
+        </section>
 
-            <!-- Web Development -->
-            <div class="svc-card">
-                <div class="svc-img"><img src="assets/images/services/web_development.png" alt="Web Development"></div>
-                <div class="svc-text">
-                    <div class="svc-title">Web Development</div>
-                    <div class="svc-desc">Fast, accessible, and SEO-friendly websites built with modern frameworks and clean, maintainable code.</div>
+        <section id="services">
+            <div class="section-label"><span class="dot"></span>Services</div>
+            <div class="services-heading">The Right Skills, In One Place to<br>Build <span class="muted">What You Need</span></div>
+
+            <div class="services-grid">
+
+                <!-- UI/UX Design -->
+                <div class="svc-card">
+                    <div class="svc-img"><img src="assets/images/services/ui_ux.png" alt="UI/UX Design"></div>
+                    <div class="svc-text">
+                        <div class="svc-title">UI/UX Design</div>
+                        <div class="svc-desc">I craft intuitive interfaces and seamless user experiences, turning complex workflows into delightful, easy-to-use products.</div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- App Development -->
-            <div class="svc-card">
-                <div class="svc-img"><img src="assets/images/services/app_development.png" alt="App Development"></div>
-                <div class="svc-text">
-                    <div class="svc-title">App Development</div>
-                    <div class="svc-desc">Cross-platform mobile apps from concept to deployment — Flutter, React Native, and native Android development.</div>
+                <!-- Web Development -->
+                <div class="svc-card">
+                    <div class="svc-img"><img src="assets/images/services/web_development.png" alt="Web Development"></div>
+                    <div class="svc-text">
+                        <div class="svc-title">Web Development</div>
+                        <div class="svc-desc">Fast, accessible, and SEO-friendly websites built with modern frameworks and clean, maintainable code.</div>
+                    </div>
                 </div>
-            </div>
 
-        </div>
-    </section>
-
-    <section id="skills">
-        <div class="section-label"><span class="dot"></span>All Skills</div>
-
-        <div class="skills-grid">
-
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <span class="skill-card-number">01</span>
-                    <div class="skill-card-icon"><img src="assets/images/skills/ui_ux.svg" alt="UI/UX Design"></div>
+                <!-- App Development -->
+                <div class="svc-card">
+                    <div class="svc-img"><img src="assets/images/services/app_development.png" alt="App Development"></div>
+                    <div class="svc-text">
+                        <div class="svc-title">App Development</div>
+                        <div class="svc-desc">Cross-platform mobile apps from concept to deployment — Flutter, React Native, and native Android development.</div>
+                    </div>
                 </div>
-                <div class="skill-card-title">UI/UX design</div>
-                <div class="skill-card-desc">Designing intuitive, modern interfaces user flows, wireframes, and polished UI that feels smooth, clear, and conversion-focused.</div>
-            </div>
 
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <span class="skill-card-number">02</span>
-                    <div class="skill-card-icon"><img src="assets/images/skills/graphic_design.svg" alt="Graphic Design"></div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="section-label"><span class="dot"></span>All Skills</div>
+
+            <div class="skills-grid">
+
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <span class="skill-card-number">01</span>
+                        <div class="skill-card-icon"><img src="assets/images/skills/ui_ux.svg" alt="UI/UX Design"></div>
+                    </div>
+                    <div class="skill-card-title">UI/UX design</div>
+                    <div class="skill-card-desc">Designing intuitive, modern interfaces user flows, wireframes, and polished UI that feels smooth, clear, and conversion-focused.</div>
                 </div>
-                <div class="skill-card-title">Graphic design</div>
-                <div class="skill-card-desc">Creating compelling visual content including logos, posters, marketing materials, and brand assets that communicate effectively.</div>
-            </div>
 
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <span class="skill-card-number">03</span>
-                    <div class="skill-card-icon"><img src="assets/images/skills/app_development.svg" alt="App Development"></div>
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <span class="skill-card-number">02</span>
+                        <div class="skill-card-icon"><img src="assets/images/skills/graphic_design.svg" alt="Graphic Design"></div>
+                    </div>
+                    <div class="skill-card-title">Graphic design</div>
+                    <div class="skill-card-desc">Creating compelling visual content including logos, posters, marketing materials, and brand assets that communicate effectively.</div>
                 </div>
-                <div class="skill-card-title">App development</div>
-                <div class="skill-card-desc">Building cross-platform mobile applications from concept to deployment using Flutter, React Native, and native Android development.</div>
-            </div>
 
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <span class="skill-card-number">04</span>
-                    <div class="skill-card-icon"><img src="assets/images/skills/web_developement.svg" alt="Web Development"></div>
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <span class="skill-card-number">03</span>
+                        <div class="skill-card-icon"><img src="assets/images/skills/app_development.svg" alt="App Development"></div>
+                    </div>
+                    <div class="skill-card-title">App development</div>
+                    <div class="skill-card-desc">Building cross-platform mobile applications from concept to deployment using Flutter, React Native, and native Android development.</div>
                 </div>
-                <div class="skill-card-title">Web development</div>
-                <div class="skill-card-desc">Crafting fast, accessible, and SEO-friendly websites with modern frameworks, clean code, and responsive layouts.</div>
-            </div>
 
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <span class="skill-card-number">05</span>
-                    <div class="skill-card-icon"><img src="assets/images/skills/ai_and_machine_learning.svg" alt="AI and Machine Learning"></div>
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <span class="skill-card-number">04</span>
+                        <div class="skill-card-icon"><img src="assets/images/skills/web_developement.svg" alt="Web Development"></div>
+                    </div>
+                    <div class="skill-card-title">Web development</div>
+                    <div class="skill-card-desc">Crafting fast, accessible, and SEO-friendly websites with modern frameworks, clean code, and responsive layouts.</div>
                 </div>
-                <div class="skill-card-title">AI and Machine learning</div>
-                <div class="skill-card-desc">Integrating intelligent features using machine learning models, natural language processing, and data-driven decision making.</div>
-            </div>
 
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <span class="skill-card-number">06</span>
-                    <div class="skill-card-icon"><img src="assets/images/skills/iot.svg" alt="IOT & Embedded Systems"></div>
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <span class="skill-card-number">05</span>
+                        <div class="skill-card-icon"><img src="assets/images/skills/ai_and_machine_learning.svg" alt="AI and Machine Learning"></div>
+                    </div>
+                    <div class="skill-card-title">AI and Machine learning</div>
+                    <div class="skill-card-desc">Integrating intelligent features using machine learning models, natural language processing, and data-driven decision making.</div>
                 </div>
-                <div class="skill-card-title">IOT &amp; Embedded systems</div>
-                <div class="skill-card-desc">Designing and programming connected devices, sensor networks, and embedded firmware for smart hardware solutions.</div>
-            </div>
 
-            <!-- Cyber Security skill commented out as requested -->
-            <!--
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <span class="skill-card-number">07</span>
-                    <div class="skill-card-icon"><img src="assets/images/skills/cyber_security.svg" alt="Cyber Security"></div>
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <span class="skill-card-number">06</span>
+                        <div class="skill-card-icon"><img src="assets/images/skills/iot.svg" alt="IOT & Embedded Systems"></div>
+                    </div>
+                    <div class="skill-card-title">IOT &amp; Embedded systems</div>
+                    <div class="skill-card-desc">Designing and programming connected devices, sensor networks, and embedded firmware for smart hardware solutions.</div>
                 </div>
-                <div class="skill-card-title">Cyber Security</div>
-                <div class="skill-card-desc">Implementing secure architectures, vulnerability assessments, and best practices to protect applications and data from threats.</div>
-            </div>
-            -->
 
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <span class="skill-card-number">08</span>
-                    <div class="skill-card-icon"><img src="assets/images/skills/3d_modeling.svg" alt="3D Modeling"></div>
+                <!-- Cyber Security skill commented out as requested -->
+                <!--
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <span class="skill-card-number">07</span>
+                        <div class="skill-card-icon"><img src="assets/images/skills/cyber_security.svg" alt="Cyber Security"></div>
+                    </div>
+                    <div class="skill-card-title">Cyber Security</div>
+                    <div class="skill-card-desc">Implementing secure architectures, vulnerability assessments, and best practices to protect applications and data from threats.</div>
                 </div>
-                <div class="skill-card-title">3d Modeling</div>
-                <div class="skill-card-desc">Creating detailed 3D assets, environments, and product visualizations for games, apps, and marketing presentations.</div>
-            </div>
+                -->
 
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <span class="skill-card-number">09</span>
-                    <div class="skill-card-icon"><img src="assets/images/skills/motion_graphics.svg" alt="Motion Graphics"></div>
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <span class="skill-card-number">08</span>
+                        <div class="skill-card-icon"><img src="assets/images/skills/3d_modeling.svg" alt="3D Modeling"></div>
+                    </div>
+                    <div class="skill-card-title">3d Modeling</div>
+                    <div class="skill-card-desc">Creating detailed 3D assets, environments, and product visualizations for games, apps, and marketing presentations.</div>
                 </div>
-                <div class="skill-card-title">Motion Graphics</div>
-                <div class="skill-card-desc">Producing dynamic animations, video effects, and motion design for engaging digital content and storytelling.</div>
+
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <span class="skill-card-number">09</span>
+                        <div class="skill-card-icon"><img src="assets/images/skills/motion_graphics.svg" alt="Motion Graphics"></div>
+                    </div>
+                    <div class="skill-card-title">Motion Graphics</div>
+                    <div class="skill-card-desc">Producing dynamic animations, video effects, and motion design for engaging digital content and storytelling.</div>
+                </div>
+
             </div>
+        </section>
 
-        </div>
-    </section>
+        <section id="why-choose-me">
+            <div class="wcm-heading">Many Reasons why you<br>Should <span class="muted">Choose Me</span></div>
+            <div class="wcm-wrapper">
 
-    <section id="why-choose-me">
-        <div class="wcm-heading">Many Reasons why you<br>Should <span class="muted">Choose Me</span></div>
-        <div class="wcm-wrapper">
+                <!-- Row 1: 3 cards -->
+                <div class="wcm-row-top">
 
-            <!-- Row 1: 3 cards -->
-            <div class="wcm-row-top">
-
-                <!-- Popular Services -->
-                <div class="wcm-card wcm-popular">
-                    <div class="wcm-card-title">Popular Services</div>
-                    <div class="wcm-card-desc">End-to-end product design and development</div>
-                    <div class="wcm-popular-marquees">
-                        <!-- First line: moves left -->
-                        <div class="wcm-icon-marquee">
-                            <div class="wcm-icon-track">
-                                <div class="wcm-icon-group">
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/android_logo.svg" alt="Android"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/expo.svg" alt="Expo"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/figma_logo.svg" alt="Figma"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/framer.svg" alt="Framer"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/postman.svg" alt="Postman"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/vite.svg" alt="Vite"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/webflow.svg" alt="Webflow"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/wordpress.svg" alt="WordPress"></div>
+                    <!-- Popular Services -->
+                    <div class="wcm-card wcm-popular">
+                        <div class="wcm-card-title">Popular Services</div>
+                        <div class="wcm-card-desc">End-to-end product design and development</div>
+                        <div class="wcm-popular-marquees">
+                            <!-- First line: moves left -->
+                            <div class="wcm-icon-marquee">
+                                <div class="wcm-icon-track">
+                                    <div class="wcm-icon-group">
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/android_logo.svg" alt="Android"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/expo.svg" alt="Expo"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/figma_logo.svg" alt="Figma"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/framer.svg" alt="Framer"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/postman.svg" alt="Postman"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/vite.svg" alt="Vite"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/webflow.svg" alt="Webflow"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/wordpress.svg" alt="WordPress"></div>
+                                    </div>
+                                    <div class="wcm-icon-group" aria-hidden="true">
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/android_logo.svg" alt="Android"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/expo.svg" alt="Expo"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/figma_logo.svg" alt="Figma"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/framer.svg" alt="Framer"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/postman.svg" alt="Postman"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/vite.svg" alt="Vite"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/webflow.svg" alt="Webflow"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/wordpress.svg" alt="WordPress"></div>
+                                    </div>
                                 </div>
-                                <div class="wcm-icon-group" aria-hidden="true">
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/android_logo.svg" alt="Android"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/expo.svg" alt="Expo"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/figma_logo.svg" alt="Figma"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/framer.svg" alt="Framer"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/postman.svg" alt="Postman"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/vite.svg" alt="Vite"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/webflow.svg" alt="Webflow"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/first_line/wordpress.svg" alt="WordPress"></div>
+                            </div>
+                            <!-- Second line: moves right -->
+                            <div class="wcm-icon-marquee">
+                                <div class="wcm-icon-track-rtl">
+                                    <div class="wcm-icon-group">
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/docker.svg" alt="Docker"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/firebase.svg" alt="Firebase"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/git.svg" alt="Git"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/github.svg" alt="GitHub"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/node_js.svg" alt="Node.js"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/superbase.svg" alt="Supabase"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/tailwind.svg" alt="Tailwind"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/varcel.svg" alt="Vercel"></div>
+                                    </div>
+                                    <div class="wcm-icon-group" aria-hidden="true">
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/docker.svg" alt="Docker"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/firebase.svg" alt="Firebase"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/git.svg" alt="Git"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/github.svg" alt="GitHub"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/node_js.svg" alt="Node.js"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/superbase.svg" alt="Supabase"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/tailwind.svg" alt="Tailwind"></div>
+                                        <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/varcel.svg" alt="Vercel"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Second line: moves right -->
-                        <div class="wcm-icon-marquee">
-                            <div class="wcm-icon-track-rtl">
-                                <div class="wcm-icon-group">
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/docker.svg" alt="Docker"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/firebase.svg" alt="Firebase"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/git.svg" alt="Git"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/github.svg" alt="GitHub"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/node_js.svg" alt="Node.js"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/superbase.svg" alt="Supabase"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/tailwind.svg" alt="Tailwind"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/varcel.svg" alt="Vercel"></div>
-                                </div>
-                                <div class="wcm-icon-group" aria-hidden="true">
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/docker.svg" alt="Docker"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/firebase.svg" alt="Firebase"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/git.svg" alt="Git"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/github.svg" alt="GitHub"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/node_js.svg" alt="Node.js"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/superbase.svg" alt="Supabase"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/tailwind.svg" alt="Tailwind"></div>
-                                    <div class="wcm-icon-item"><img src="assets/images/choose_me/second_line/varcel.svg" alt="Vercel"></div>
-                                </div>
+                    </div>
+
+                    <!-- Robust Products (dark card) -->
+                    <div class="wcm-card wcm-robust">
+                        <div class="wcm-card-title">Robust products</div>
+                        <div class="wcm-card-img"><img src="assets/images/choose_me/robust.png" alt="Robust Products"></div>
+                    </div>
+
+                    <!-- Vast Knowledge -->
+                    <div class="wcm-card wcm-vast">
+                        <div class="wcm-card-title">Vast Knowledge</div>
+                        <div class="wcm-card-desc">Broad expertise across design and development</div>
+                        <div class="wcm-card-img"><img src="assets/images/choose_me/vast_knowledge.svg" alt="Vast Knowledge"></div>
+                    </div>
+
+                </div>
+
+                <!-- Row 2: 2 cards -->
+                <div class="wcm-row-bottom">
+
+                    <!-- Fast Execution -->
+                    <div class="wcm-card wcm-fast">
+                        <div class="wcm-card-title">Fast Execution</div>
+                        <div class="wcm-card-desc">Delivering high-quality work on tight timelines</div>
+                        <div class="wcm-card-img"><img src="assets/images/choose_me/fast_execution.png" alt="Fast Execution"></div>
+                    </div>
+
+                    <!-- Collaboration -->
+                    <div class="wcm-card wcm-collab">
+                        <div class="wcm-card-title">Collaboration</div>
+                        <div class="wcm-card-desc">Clear communication and partnership throughout projects</div>
+                        <div class="wcm-card-img">
+                            <img class="collab-img-left"  src="assets/images/choose_me/collaboration_1.png" alt="Collaboration 1">
+                            <img class="collab-img-right" src="assets/images/choose_me/collaboration_2.png" alt="Collaboration 2">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools-section" class="tools-section">
+            <!-- Floating tool icons -->
+            <div class="tools-float-icon"><img src="assets/images/choose_me/tools/figma.svg" alt="Figma"></div>
+            <div class="tools-float-icon"><img src="assets/images/choose_me/tools/illustrator.svg" alt="Illustrator"></div>
+            <div class="tools-float-icon"><img src="assets/images/choose_me/tools/blender.svg" alt="Blender"></div>
+            <div class="tools-float-icon"><img src="assets/images/choose_me/tools/android_studio.svg" alt="Android Studio"></div>
+            <div class="tools-float-icon"><img src="assets/images/choose_me/tools/after_effects.svg" alt="After Effects"></div>
+            <div class="tools-float-icon"><img src="assets/images/choose_me/tools/expo.svg" alt="Expo"></div>
+            <div class="tools-float-icon"><img src="assets/images/choose_me/tools/photoshop.svg" alt="Photoshop"></div>
+            <div class="tools-float-icon"><img src="assets/images/choose_me/tools/vscode.svg" alt="VS Code"></div>
+            <!-- Center text -->
+            <div class="tools-center-text">
+                <h2>A Collection of Tools I Use to Bring<span class="muted"> Ideas to Life</span></h2>
+                <p>Designing &amp; Developing — Meet the Tools That Make It Happen</p>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <div class="section-label"><span class="dot"></span>About me</div>
+        <section id="about-me" class="about-me-section">
+
+
+            <div class="about-me-heading">
+                <h2>Building experiences that<br>solve <span class="muted">real problems</span></h2>
+            </div>
+
+            <!-- Bio card -->
+            <div class="about-me-bio">
+                <div class="about-me-img">
+                    <img src="assets/images/about_me/twambi.png" alt="Twambi">
+                </div>
+                <div class="about-me-text">
+                    <p><strong>I'm Twambi a full-stack software developer and Electronics &amp; Computer Engineering Graduate</strong> at MUBAS, building technology that actually matters.</p>
+                    <p></p>
+                    <p><strong>By day, I craft mobile and web experiences at Tech265, a Malawian IT company</strong>. My work spans the full stack, from clean, intuitive frontends to robust backend systems.</p>
+                    <p></p>
+
+                    <p><strong>My academic journey in Electronics and Computer Science</strong> has sharpened more than just my coding skills, it has given me a deep appreciation for how hardware and software intersect to solve real-world problems.</p>
+                    <p></p>
+
+                    <p><strong>That curiosity drives everything I build.</strong> Beyond the day job, I'm passionate about renewable energy, IoT, and sustainable technology.</p>
+                </div>
+            </div>
+
+            <!-- Stats row -->
+            <div class="about-me-stats">
+                <div class="about-me-stat">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="about-me-stat">
+                    <div class="stat-number">4+</div>
+                    <div class="stat-label">Years of experience</div>
+                </div>
+                <div class="about-me-stat">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Customer satisfaction</div>
+                </div>
+            </div>
+
+            <!-- Bottom bar: avatars + stars + marquee -->
+            <div class="about-me-bottom">
+                <div class="about-me-clients">
+                    <div class="about-me-avatars">
+                        <img src="assets/images/about_me/person_1.png" alt="Client 1">
+                        <img src="assets/images/about_me/person_2.png" alt="Client 2">
+                        <img src="assets/images/about_me/person_3.png" alt="Client 3">
+                        <img src="assets/images/about_me/person_4.png" alt="Client 4">
+                    </div>
+                    <div class="about-me-clients-info">
+                        <div class="about-me-stars">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span class="star-empty">★</span>
+                        </div>
+                        <div class="about-me-clients-label"><strong>10+</strong> clients satisfied</div>
+                    </div>
+                </div>
+                <div class="about-marquee-wrap">
+                    <div class="about-marquee-track">
+                        <div class="about-marquee-group">
+                            <span class="about-marquee-item">Tech 265</span>
+                            <span class="about-marquee-item">Fast kwacha</span>
+                            <span class="about-marquee-item">JPI</span>
+                            <span class="about-marquee-item">GreenTech</span>
+                            <span class="about-marquee-item">Influencer Malawi</span>
+                        </div>
+                        <div class="about-marquee-group">
+                            <span class="about-marquee-item">Tech 265</span>
+                            <span class="about-marquee-item">Fast kwacha</span>
+                            <span class="about-marquee-item">JPI</span>
+                            <span class="about-marquee-item">GreenTech</span>
+                            <span class="about-marquee-item">Influencer Malawi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <div class="section-label"><span class="dot"></span>Testimonials</div>
+        <section id="testimonials" class="testimonials-section">
+            <div class="testimonials-heading">
+                <h2>Hear what other people<br>say <span class="muted">about me</span></h2>
+            </div>
+
+            <div class="testimonials-cards-wrap">
+                <div class="testimonials-cards-track">
+                    <!-- Group 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-top-row">
+                            <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+                            <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                        </div>
+                        <p class="testimonial-text">An exceptional developer who truly understands both design and functionality. The attention to detail in UI/UX and the quality of the final product exceeded expectations.</p>
+                        <div class="testimonial-person">
+                            <img src="assets/images/testimonial_faq/john.jpg" alt="John Makungwa">
+                            <div class="testimonial-person-info">
+                                <span class="name">John Makungwa</span>
+                                <span class="role">CEO of Tech 265</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-top-row">
+                            <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+                            <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                        </div>
+                        <p class="testimonial-text">Delivers a seamless mobile application with impressive performance and a polished user experience. Communication was clear, and every milestone was met</p>
+                        <div class="testimonial-person">
+                            <img src="assets/images/testimonial_faq/jose.jpg" alt="Joseph Justin">
+                            <div class="testimonial-person-info">
+                                <span class="name">Joseph Justin</span>
+                                <span class="role">CEO of Green Tech</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-top-row">
+                            <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+                            <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                        </div>
+                        <p class="testimonial-text">A rare combination of technical expertise and design thinking. The ability to translate complex ideas into intuitive interfaces is outstanding</p>
+                        <div class="testimonial-person">
+                            <img src="assets/images/testimonial_faq/thom.jpg" alt="Thomson Thawani">
+                            <div class="testimonial-person-info">
+                                <span class="name">Thomson Thawani</span>
+                                <span class="role">Visual Designer at Tech265</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Group 2 (duplicate for marquee) -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-top-row">
+                            <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+                            <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                        </div>
+                        <p class="testimonial-text">An exceptional developer who truly understands both design and functionality. The attention to detail in UI/UX and the quality of the final product exceeded expectations.</p>
+                        <div class="testimonial-person">
+                            <img src="assets/images/testimonial_faq/john.jpg" alt="John Makungwa">
+                            <div class="testimonial-person-info">
+                                <span class="name">John Makungwa</span>
+                                <span class="role">CEO of Tech 265</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-top-row">
+                            <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+                            <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                        </div>
+                        <p class="testimonial-text">Delivers a seamless mobile application with impressive performance and a polished user experience. Communication was clear, and every milestone was met</p>
+                        <div class="testimonial-person">
+                            <img src="assets/images/testimonial_faq/jose.jpg" alt="Joseph Justin">
+                            <div class="testimonial-person-info">
+                                <span class="name">Joseph Justin</span>
+                                <span class="role">CEO of Green Tech</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-top-row">
+                            <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+                            <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                        </div>
+                        <p class="testimonial-text">A rare combination of technical expertise and design thinking. The ability to translate complex ideas into intuitive interfaces is outstanding</p>
+                        <div class="testimonial-person">
+                            <img src="assets/images/testimonial_faq/thom.jpg" alt="Thomson Thawani">
+                            <div class="testimonial-person-info">
+                                <span class="name">Thomson Thawani</span>
+                                <span class="role">Visual Designer at Tech265</span>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Robust Products (dark card) -->
-                <div class="wcm-card wcm-robust">
-                    <div class="wcm-card-title">Robust products</div>
-                    <div class="wcm-card-img"><img src="assets/images/choose_me/robust.png" alt="Robust Products"></div>
+        <!-- FAQ Section -->
+        <div class="section-label"><span class="dot"></span>FAQ</div>
+        <section id="faq" class="faq-section">
+            <div class="faq-layout">
+                <div class="faq-left">
+                    <h2>Frequent Asked<br><span class="muted">Questions</span></h2>
+                    <p>Answers to common questions about my work, processes, services and how I work</p>
+                    <a href="#contact" class="btn" style="display:inline-flex;">Contact me <span style="margin-left:6px;">+</span></a>
                 </div>
-
-                <!-- Vast Knowledge -->
-                <div class="wcm-card wcm-vast">
-                    <div class="wcm-card-title">Vast Knowledge</div>
-                    <div class="wcm-card-desc">Broad expertise across design and development</div>
-                    <div class="wcm-card-img"><img src="assets/images/choose_me/vast_knowledge.svg" alt="Vast Knowledge"></div>
-                </div>
-
-            </div>
-
-            <!-- Row 2: 2 cards -->
-            <div class="wcm-row-bottom">
-
-                <!-- Fast Execution -->
-                <div class="wcm-card wcm-fast">
-                    <div class="wcm-card-title">Fast Execution</div>
-                    <div class="wcm-card-desc">Delivering high-quality work on tight timelines</div>
-                    <div class="wcm-card-img"><img src="assets/images/choose_me/fast_execution.png" alt="Fast Execution"></div>
-                </div>
-
-                <!-- Collaboration -->
-                <div class="wcm-card wcm-collab">
-                    <div class="wcm-card-title">Collaboration</div>
-                    <div class="wcm-card-desc">Clear communication and partnership throughout projects</div>
-                    <div class="wcm-card-img">
-                        <img class="collab-img-left"  src="assets/images/choose_me/collaboration_1.png" alt="Collaboration 1">
-                        <img class="collab-img-right" src="assets/images/choose_me/collaboration_2.png" alt="Collaboration 2">
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Tools Section -->
-    <section id="tools-section" class="tools-section">
-        <!-- Floating tool icons -->
-        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/figma.svg" alt="Figma"></div>
-        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/illustrator.svg" alt="Illustrator"></div>
-        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/blender.svg" alt="Blender"></div>
-        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/android_studio.svg" alt="Android Studio"></div>
-        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/after_effects.svg" alt="After Effects"></div>
-        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/expo.svg" alt="Expo"></div>
-        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/photoshop.svg" alt="Photoshop"></div>
-        <div class="tools-float-icon"><img src="assets/images/choose_me/tools/vscode.svg" alt="VS Code"></div>
-        <!-- Center text -->
-        <div class="tools-center-text">
-            <h2>A Collection of Tools I Use to Bring<span class="muted"> Ideas to Life</span></h2>
-            <p>Designing &amp; Developing — Meet the Tools That Make It Happen</p>
-        </div>
-    </section>
-
-    <!-- About Me Section -->
-    <div class="section-label"><span class="dot"></span>About me</div>
-    <section id="about-me" class="about-me-section">
-
-
-        <div class="about-me-heading">
-            <h2>Building experiences that<br>solve <span class="muted">real problems</span></h2>
-        </div>
-
-        <!-- Bio card -->
-        <div class="about-me-bio">
-            <div class="about-me-img">
-                <img src="assets/images/about_me/twambi.png" alt="Twambi">
-            </div>
-            <div class="about-me-text">
-                <p><strong>I'm Twambi a full-stack software developer and Electronics &amp; Computer Engineering Graduate</strong> at MUBAS, building technology that actually matters.</p>
-                <p></p>
-                <p><strong>By day, I craft mobile and web experiences at Tech265, a Malawian IT company</strong>. My work spans the full stack, from clean, intuitive frontends to robust backend systems.</p>
-                <p></p>
-
-                <p><strong>My academic journey in Electronics and Computer Science</strong> has sharpened more than just my coding skills, it has given me a deep appreciation for how hardware and software intersect to solve real-world problems.</p>
-                <p></p>
-
-                <p><strong>That curiosity drives everything I build.</strong> Beyond the day job, I'm passionate about renewable energy, IoT, and sustainable technology.</p>
-            </div>
-        </div>
-
-        <!-- Stats row -->
-        <div class="about-me-stats">
-            <div class="about-me-stat">
-                <div class="stat-number">25+</div>
-                <div class="stat-label">Projects Completed</div>
-            </div>
-            <div class="about-me-stat">
-                <div class="stat-number">4+</div>
-                <div class="stat-label">Years of experience</div>
-            </div>
-            <div class="about-me-stat">
-                <div class="stat-number">99%</div>
-                <div class="stat-label">Customer satisfaction</div>
-            </div>
-        </div>
-
-        <!-- Bottom bar: avatars + stars + marquee -->
-        <div class="about-me-bottom">
-            <div class="about-me-clients">
-                <div class="about-me-avatars">
-                    <img src="assets/images/about_me/person_1.png" alt="Client 1">
-                    <img src="assets/images/about_me/person_2.png" alt="Client 2">
-                    <img src="assets/images/about_me/person_3.png" alt="Client 3">
-                    <img src="assets/images/about_me/person_4.png" alt="Client 4">
-                </div>
-                <div class="about-me-clients-info">
-                    <div class="about-me-stars">
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span class="star-empty">★</span>
-                    </div>
-                    <div class="about-me-clients-label"><strong>10+</strong> clients satisfied</div>
-                </div>
-            </div>
-            <div class="about-marquee-wrap">
-                <div class="about-marquee-track">
-                    <div class="about-marquee-group">
-                        <span class="about-marquee-item">Tech 265</span>
-                        <span class="about-marquee-item">Fast kwacha</span>
-                        <span class="about-marquee-item">JPI</span>
-                        <span class="about-marquee-item">GreenTech</span>
-                        <span class="about-marquee-item">Influencer Malawi</span>
-                    </div>
-                    <div class="about-marquee-group">
-                        <span class="about-marquee-item">Tech 265</span>
-                        <span class="about-marquee-item">Fast kwacha</span>
-                        <span class="about-marquee-item">JPI</span>
-                        <span class="about-marquee-item">GreenTech</span>
-                        <span class="about-marquee-item">Influencer Malawi</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <div class="section-label"><span class="dot"></span>Testimonials</div>
-    <section id="testimonials" class="testimonials-section">
-        <div class="testimonials-heading">
-            <h2>Hear what other people<br>say <span class="muted">about me</span></h2>
-        </div>
-
-        <div class="testimonials-cards-wrap">
-            <div class="testimonials-cards-track">
-                <!-- Group 1 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-top-row">
-                        <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
-                        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                    </div>
-                    <p class="testimonial-text">An exceptional developer who truly understands both design and functionality. The attention to detail in UI/UX and the quality of the final product exceeded expectations.</p>
-                    <div class="testimonial-person">
-                        <img src="assets/images/testimonial_faq/john.jpg" alt="John Makungwa">
-                        <div class="testimonial-person-info">
-                            <span class="name">John Makungwa</span>
-                            <span class="role">CEO of Tech 265</span>
+                <div class="faq-right">
+                    <div class="faq-item">
+                        <div class="faq-item-header">
+                            <span>1. Are you available for freelance or full-time work?</span>
+                            <span class="faq-plus">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I am currently working at Tech 265, but I'm open to freelance opportunities and collaborations on interesting projects.</p>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-top-row">
-                        <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
-                        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                    </div>
-                    <p class="testimonial-text">Delivers a seamless mobile application with impressive performance and a polished user experience. Communication was clear, and every milestone was met</p>
-                    <div class="testimonial-person">
-                        <img src="assets/images/testimonial_faq/jose.jpg" alt="Joseph Justin">
-                        <div class="testimonial-person-info">
-                            <span class="name">Joseph Justin</span>
-                            <span class="role">CEO of Green Tech</span>
+                    <div class="faq-item">
+                        <div class="faq-item-header">
+                            <span>2. Where are you based and do you work remotely?</span>
+                            <span class="faq-plus">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I am based in Malawi and available to work both locally and remotely with clients worldwide.</p>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-top-row">
-                        <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
-                        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                    </div>
-                    <p class="testimonial-text">A rare combination of technical expertise and design thinking. The ability to translate complex ideas into intuitive interfaces is outstanding</p>
-                    <div class="testimonial-person">
-                        <img src="assets/images/testimonial_faq/thom.jpg" alt="Thomson Thawani">
-                        <div class="testimonial-person-info">
-                            <span class="name">Thomson Thawani</span>
-                            <span class="role">Visual Designer at Tech265</span>
+                    <div class="faq-item">
+                        <div class="faq-item-header">
+                            <span>3. How can I contact you?</span>
+                            <span class="faq-plus">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can reach me via email or through the contact form on this portfolio. I'm also available on professional platforms like LinkedIn.</p>
                         </div>
                     </div>
-                </div>
-                <!-- Group 2 (duplicate for marquee) -->
-                <div class="testimonial-card">
-                    <div class="testimonial-top-row">
-                        <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
-                        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                    </div>
-                    <p class="testimonial-text">An exceptional developer who truly understands both design and functionality. The attention to detail in UI/UX and the quality of the final product exceeded expectations.</p>
-                    <div class="testimonial-person">
-                        <img src="assets/images/testimonial_faq/john.jpg" alt="John Makungwa">
-                        <div class="testimonial-person-info">
-                            <span class="name">John Makungwa</span>
-                            <span class="role">CEO of Tech 265</span>
+                    <div class="faq-item">
+                        <div class="faq-item-header">
+                            <span>4. What technologies do you specialize in?</span>
+                            <span class="faq-plus">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I specialize in Flutter, React, and Django, with experience in Android development (Java/XML), UI/UX design, API integration, and embedded systems.</p>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-top-row">
-                        <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
-                        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                    </div>
-                    <p class="testimonial-text">Delivers a seamless mobile application with impressive performance and a polished user experience. Communication was clear, and every milestone was met</p>
-                    <div class="testimonial-person">
-                        <img src="assets/images/testimonial_faq/jose.jpg" alt="Joseph Justin">
-                        <div class="testimonial-person-info">
-                            <span class="name">Joseph Justin</span>
-                            <span class="role">CEO of Green Tech</span>
+                    <div class="faq-item">
+                        <div class="faq-item-header">
+                            <span>5. How do you charge (hourly or per project)?</span>
+                            <span class="faq-plus">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I typically charge per project depending on the scope and complexity, but hourly rates can also be arranged for ongoing work.</p>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-top-row">
-                        <img class="quote-icon" src="assets/images/testimonial_faq/comma.svg" alt="quote">
-                        <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                    </div>
-                    <p class="testimonial-text">A rare combination of technical expertise and design thinking. The ability to translate complex ideas into intuitive interfaces is outstanding</p>
-                    <div class="testimonial-person">
-                        <img src="assets/images/testimonial_faq/thom.jpg" alt="Thomson Thawani">
-                        <div class="testimonial-person-info">
-                            <span class="name">Thomson Thawani</span>
-                            <span class="role">Visual Designer at Tech265</span>
+                    <div class="faq-item">
+                        <div class="faq-item-header">
+                            <span>6. How long does it take to complete a project?</span>
+                            <span class="faq-plus">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Project timelines vary based on requirements, but I always aim to deliver efficiently while maintaining high quality. Clear timelines are provided after discussing project details.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FAQ Section -->
-    <div class="section-label"><span class="dot"></span>FAQ</div>
-    <section id="faq" class="faq-section">
-        <div class="faq-layout">
-            <div class="faq-left">
-                <h2>Frequent Asked<br><span class="muted">Questions</span></h2>
-                <p>Answers to common questions about my work, processes, services and how I work</p>
-                <a href="#contact" class="btn" style="display:inline-flex;">Contact me <span style="margin-left:6px;">+</span></a>
-            </div>
-            <div class="faq-right">
-                <div class="faq-item">
-                    <div class="faq-item-header">
-                        <span>1. Are you available for freelance or full-time work?</span>
-                        <span class="faq-plus">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>I am currently working at Tech 265, but I'm open to freelance opportunities and collaborations on interesting projects.</p>
-                    </div>
+        <!-- Quote Section -->
+        <section class="quote-section">
+            <img class="quote-icon-large start-quote" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+            <p class="quote-text"><strong>Great things in Business </strong><span class="muted">are never done by one person.</span><span></span> <br><strong> They're done by a skilled </strong><span class="muted">Team of people.</span></p>
+            <span class="quote-author">~ Steve Jobs</span>
+            <img class="quote-icon-large end-quote" src="assets/images/testimonial_faq/comma.svg" alt="quote">
+            <a href="mailto:twambililemusukwa@gmail.com" class="btn btn-outline" style="margin-top:28px;">Lets work together <span style="margin-left:6px;">→</span></a>
+        </section>
+
+        <section id="contact">
+            <div class="section-label"><span class="dot"></span>Contact</div>
+            <form id="contact-form">
+                <div class="row-2">
+                    <input type="text" id="contact-name" placeholder="Full name" required>
+                    <input type="email" id="contact-email" placeholder="Email" required>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-item-header">
-                        <span>2. Where are you based and do you work remotely?</span>
-                        <span class="faq-plus">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>I am based in Malawi and available to work both locally and remotely with clients worldwide.</p>
-                    </div>
+                <input type="text" id="contact-subject" placeholder="Subject">
+                <textarea id="contact-message" placeholder="Your message"></textarea>
+                <div class="submit-row">
+                    <button type="submit" class="btn">Submit</button>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-item-header">
-                        <span>3. How can I contact you?</span>
-                        <span class="faq-plus">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>You can reach me via email or through the contact form on this portfolio. I'm also available on professional platforms like LinkedIn.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-item-header">
-                        <span>4. What technologies do you specialize in?</span>
-                        <span class="faq-plus">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>I specialize in Flutter, React, and Django, with experience in Android development (Java/XML), UI/UX design, API integration, and embedded systems.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-item-header">
-                        <span>5. How do you charge (hourly or per project)?</span>
-                        <span class="faq-plus">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>I typically charge per project depending on the scope and complexity, but hourly rates can also be arranged for ongoing work.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-item-header">
-                        <span>6. How long does it take to complete a project?</span>
-                        <span class="faq-plus">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Project timelines vary based on requirements, but I always aim to deliver efficiently while maintaining high quality. Clear timelines are provided after discussing project details.</p>
-                    </div>
+            </form>
+        </section>
+
+        <!-- ===== GALLERY CAROUSEL ===== -->
+<!--        <div class="carousel-title services-heading">Random <span class="muted">Pictures</span></div>-->
+        <section id="gallery-carousel" class="carousel-section">
+            <div class="carousel-perspective">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- cards injected by JS -->
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        <!-- ===== END CAROUSEL ===== -->
 
-    <!-- Quote Section -->
-    <section class="quote-section">
-        <img class="quote-icon-large start-quote" src="assets/images/testimonial_faq/comma.svg" alt="quote">
-        <p class="quote-text"><strong>Great things in Business </strong><span class="muted">are never done by one person.</span><span></span> <br><strong> They're done by a skilled </strong><span class="muted">Team of people.</span></p>
-        <span class="quote-author">~ Steve Jobs</span>
-        <img class="quote-icon-large end-quote" src="assets/images/testimonial_faq/comma.svg" alt="quote">
-        <a href="mailto:twambililemusukwa@gmail.com" class="btn btn-outline" style="margin-top:28px;">Lets work together <span style="margin-left:6px;">→</span></a>
-    </section>
-
-    <section id="contact">
-        <div class="section-label"><span class="dot"></span>Contact</div>
-        <form id="contact-form">
-            <div class="row-2">
-                <input type="text" id="contact-name" placeholder="Full name" required>
-                <input type="email" id="contact-email" placeholder="Email" required>
-            </div>
-            <input type="text" id="contact-subject" placeholder="Subject">
-            <textarea id="contact-message" placeholder="Your message"></textarea>
-            <div class="submit-row">
-                <button type="submit" class="btn">Submit</button>
-            </div>
-        </form>
-    </section>
-
-    <!-- ===== GALLERY CAROUSEL ===== -->
-    <section id="gallery-carousel" class="carousel-section">
-        <div class="carousel-perspective">
-            <div class="carousel-track" id="carouselTrack">
-                <!-- cards injected by JS -->
-            </div>
-        </div>
-    </section>
-    <!-- ===== END CAROUSEL ===== -->
-
-</div>
+    </div>
 </main>
 
 <footer class="app-footer">
-  <div class="footer-container">
-    <div class="footer-top">
-      <div class="footer-left">
-        <div class="footer-title">Do You have<br>any questions?</div>
-        <div class="footer-sub">Feel free to email me</div>
-        <div class="footer-email">twambililemusukwa@gmail.com</div>
-        <div class="footer-socials">
-          <a href="https://www.linkedin.com/in/twambi-musukwa-088403271/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" style="width:28px; height: 28px" class="footer-social"><img src="assets/images/footer/linkedin.svg" alt="LinkedIn" /></a>
-          <a href="https://web.facebook.com/twambilile.musukwa.3" aria-label="Facebook" target="_blank" rel="noopener noreferrer" style="width:25px; height: 25px" class="footer-social"><img src="assets/images/footer/facebook.svg" alt="Facebook" /></a>
-          <a href="https://www.instagram.com/twambi_boi" aria-label="Instagram" target="_blank" rel="noopener noreferrer" style="width:25px; height: 25px" class="footer-social"><img src="assets/images/footer/instagram.svg" alt="Instagram" /></a>
-          <a href="https://x.com/influx_ix" aria-label="X" target="_blank" rel="noopener noreferrer" style="width:21px; height: 21px; margin-top: 2px" class="footer-social"><img src="assets/images/footer/twitter_x.svg" alt="X" /></a>
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-left">
+                <div class="footer-title">Do You have<br>any questions?</div>
+                <div class="footer-sub">Feel free to email me</div>
+                <div class="footer-email">twambililemusukwa@gmail.com</div>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/twambi-musukwa-088403271/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" style="width:28px; height: 28px" class="footer-social"><img src="assets/images/footer/linkedin.svg" alt="LinkedIn" /></a>
+                    <a href="https://web.facebook.com/twambilile.musukwa.3" aria-label="Facebook" target="_blank" rel="noopener noreferrer" style="width:25px; height: 25px" class="footer-social"><img src="assets/images/footer/facebook.svg" alt="Facebook" /></a>
+                    <a href="https://www.instagram.com/twambi_boi" aria-label="Instagram" target="_blank" rel="noopener noreferrer" style="width:25px; height: 25px" class="footer-social"><img src="assets/images/footer/instagram.svg" alt="Instagram" /></a>
+                    <a href="https://x.com/influx_ix" aria-label="X" target="_blank" rel="noopener noreferrer" style="width:21px; height: 21px; margin-top: 2px" class="footer-social"><img src="assets/images/footer/twitter_x.svg" alt="X" /></a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-contact-title">Contact me</div>
+                <div class="footer-contact-phone">+265 99-588-64-98</div>
+                <div class="footer-contact-phone">+265 88-485-08-93</div>
+                <div class="footer-location-title">Location</div>
+                <div class="footer-location">Lilongwe,Malawi</div>
+            </div>
         </div>
-      </div>
-      <div class="footer-right">
-        <div class="footer-contact-title">Contact me</div>
-        <div class="footer-contact-phone">+265 99-588-64-98</div>
-        <div class="footer-contact-phone">+265 88-485-08-93</div>
-        <div class="footer-location-title">Location</div>
-        <div class="footer-location">Lilongwe,Malawi</div>
-      </div>
+        <div class="footer-divider"></div>
+        <div class="footer-copyright">© 2026 Twambi. All rights reserved</div>
+        <div class="footer-svg-bg">
+            <img src="assets/images/footer/twambi_footer.svg" alt="Twambi" />
+            <span class="footer-dot"></span>
+        </div>
+        <div class="footer-bottom-bar">
+            Made with <span class="footer-heart">♥</span> by <span class="footer-author">Twambi</span> Thank you <span class="footer-scroll">For scrolling</span>
+        </div>
     </div>
-    <div class="footer-divider"></div>
-    <div class="footer-copyright">© 2026 Twambi. All rights reserved</div>
-    <div class="footer-svg-bg">
-      <img src="assets/images/footer/twambi_footer.svg" alt="Twambi" />
-      <span class="footer-dot"></span>
-    </div>
-    <div class="footer-bottom-bar">
-      Made with <span class="footer-heart">♥</span> by <span class="footer-author">Twambi</span> Thank you <span class="footer-scroll">For scrolling</span>
-    </div>
-  </div>
 </footer>
 
 <script>
@@ -3480,24 +3500,24 @@
 <!--<footer id="app-footer"></footer>-->
 
 <script>
-  // If the page is opened with a hash (e.g., index.html#about), perform a smooth scroll to the target
-  document.addEventListener('DOMContentLoaded', function() {
-    try {
-      var hash = window.location.hash || '';
-      if (hash) {
-        var id = hash.slice(1);
-        var el = document.getElementById(id);
-        if (el) {
-          // Small timeout to ensure layout and fixed header sizing are applied
-          setTimeout(function() {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 50);
+    // If the page is opened with a hash (e.g., index.html#about), perform a smooth scroll to the target
+    document.addEventListener('DOMContentLoaded', function() {
+        try {
+            var hash = window.location.hash || '';
+            if (hash) {
+                var id = hash.slice(1);
+                var el = document.getElementById(id);
+                if (el) {
+                    // Small timeout to ensure layout and fixed header sizing are applied
+                    setTimeout(function() {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 50);
+                }
+            }
+        } catch (e) {
+            // ignore errors
         }
-      }
-    } catch (e) {
-      // ignore errors
-    }
-  });
+    });
 </script>
 <!-- GSAP + SplitType CDN -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
@@ -3506,773 +3526,774 @@
 <script>gsap.registerPlugin(ScrollTrigger);</script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
 
-    // ── SplitType: split heading into individual words ──────────────────
-    const headingEl = document.getElementById('hero-heading');
-    const split = new SplitType(headingEl, { types: 'words' });
+        // ── SplitType: split heading into individual words ──────────────────
+        const headingEl = document.getElementById('hero-heading');
+        const split = new SplitType(headingEl, { types: 'words' });
 
-    // Hide all words initially (GSAP will animate them in)
-    gsap.set(split.words, { opacity: 0, y: 46, filter: 'blur(14px)' });
+        // Hide all words initially (GSAP will animate them in)
+        gsap.set(split.words, { opacity: 0, y: 46, filter: 'blur(14px)' });
 
-    // Hide all other hero elements before timeline starts
-    gsap.set('.avatar-wrap',   { opacity: 0.5, y: 60, scale:0.8  });
-    gsap.set('#hero-greeting', { opacity: 0, y: 20,      });
-    gsap.set('#hero-sub',      { opacity: 0, y: 20,      filter: 'blur(8px)'  });
-    gsap.set(['#hero-btn-1', '#hero-btn-2'], { opacity: 0, y: 24 });
-    gsap.set('.hero-lets-chat',        { opacity: 0, y: 20 });
-    gsap.set('.hero-proj-marquee-wrap', { opacity: 0, y: 50,  filter: 'blur(14px)' });
+        // Hide all other hero elements before timeline starts
+        gsap.set('.avatar-wrap',   { opacity: 0.5, y: 60, scale:0.8  });
+        gsap.set('#hero-greeting', { opacity: 0, y: 20,      });
+        gsap.set('#hero-sub',      { opacity: 0, y: 20,      filter: 'blur(8px)'  });
+        gsap.set(['#hero-btn-1', '#hero-btn-2'], { opacity: 0, y: 24 });
+        gsap.set('.hero-lets-chat',        { opacity: 0, y: 20 });
+        gsap.set('.hero-proj-marquee-wrap', { opacity: 0, y: 50,  filter: 'blur(14px)' });
 
-    // ── Timeline ────────────────────────────────────────────────────────
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-    // 1. Avatar — scale + fade + unblur
-    tl.to('.avatar-wrap', {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.5,
-    });
-
-    // 2. Greeting tag — rise + fade + unblur
-    tl.to('#hero-greeting', {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      duration: 0.35,
-    },
-        '-=0.4'
-    );
-
-    // 3. Heading words — staggered rise + fade + unblur
-    tl.to(split.words, {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      duration: 0.9,
-      stagger: 0.08,
-    }, '+=0.03');
-
-    // 4. Subtitle — rise + fade + unblur, starts after last word finishes
-    tl.to('#hero-sub', {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      duration: 0.5,
-    }, '-=0.45');
-
-    // 5. Buttons + lets-chat — rise + fade, staggered
-    tl.to(['#hero-btn-1', '#hero-btn-2'], {
-      opacity: 1,
-      y: 0,
-      duration: 0.25,
-      ease: 'power3.out',
-    }, '-=0.2');
-
-    // lets-chat SVG slides up alongside the buttons
-    tl.to('.hero-lets-chat', {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-      ease: 'power3.out',
-    }, '+=0.39'); // starts 0.1s after buttons begin
-
-    // 6. Project cards marquee — slides up after buttons/lets-chat settle
-    tl.to('.hero-proj-marquee-wrap', {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      duration: 0.7,
-      ease: 'power3.out',
-    }, '-=0.00');
-
-    // 7. Pills — last to appear, fade + scale pop, then release CSS wander animations
-    gsap.set('.hero-pill', { scale: 0.7 });
-    tl.to('.hero-pill', {
-      opacity: 1,
-      scale: 1,
-      duration: 0.6,
-      ease: 'back.out(1.6)',
-      stagger: 0.15,
-      onComplete: function () {
-        document.querySelectorAll('.hero-pill').forEach(function (pill) {
-          pill.style.animationPlayState = 'running';
-        });
-      },
-    }, '+=0.1');
-
-
-  });
-</script>
-<script>
-  // ── Framer-style slide-text button hover — works on any .btn-slide ──
-  (function () {
-    const DURATION = 0.45;
-    const EASE = 'power2.out';
-
-    document.querySelectorAll('.btn-slide').forEach(function (btn) {
-      const def  = btn.querySelector('.btn-slide-default');
-      const dup  = btn.querySelector('.btn-slide-hover');
-      if (!def || !dup) return;
-
-      // make sure hover span starts below
-      gsap.set(dup, { y: '100%' });
-
-      btn.addEventListener('mouseenter', function () {
-        gsap.to(def,  { y: '-100%', duration: DURATION, ease: EASE });
-        gsap.to(dup,  { y:    '0%', duration: DURATION, ease: EASE });
-      });
-
-      btn.addEventListener('mouseleave', function () {
-        gsap.to(def,  { y:    '0%', duration: DURATION, ease: EASE });
-        gsap.to(dup,  { y:  '100%', duration: DURATION, ease: EASE });
-      });
-    });
-  })();
-</script>
-<script>
-  // ── Project cards — staggered scroll reveal (all cards across every section) ──
-  (function () {
-    const allCards = document.querySelectorAll('.card');
-    if (!allCards.length) return;
-
-    // Set all cards to their hidden start state immediately
-    // gsap.set(allCards, { opacity: 0, scale:1, y: 200 });
-    //
-    // allCards.forEach(function (card, i) {
-    //   gsap.to(card, {
-    //     opacity: 1,
-    //     y: 0,
-    //     scale:1,
-    //     duration: 1,
-    //       ease: 'power3.out',
-    //       scrollTrigger: {
-    //       trigger: card,
-    //       start: 'top 96%',
-    //       once: true,
-    //     },
-    //
-    //   });
-    // });
-
-    // Re-run ScrollTrigger refresh when extra-projects is shown
-    // so newly visible cards animate in correctly
-    const showMoreBtn = document.getElementById('show-more-projects');
-    if (showMoreBtn) {
-      showMoreBtn.addEventListener('click', function () {
-        // Small delay to let the display:block paint before ScrollTrigger measures
-        setTimeout(function () {
-          ScrollTrigger.refresh();
-        }, 50);
-      });
-    }
-  })();
-</script>
-<script>
-  // ── Experience & Education cards — slide in from right on scroll ──────
-  (function () {
-    const weCards = document.querySelectorAll('#work .we-card, #education .we-card');
-    if (!weCards.length) return;
-
-    // Also animate the section headings
-    const weHeadings = document.querySelectorAll('#work .about-me-heading, #education .about-me-heading');
-
-    // Set initial state — pushed to the right, invisible
-    gsap.set(weCards,    { opacity: 0, x: 24 });
-    gsap.set(weHeadings, { opacity: 0, x: 20 });
-
-    // Headings slide in first, then cards follow per-entry
-    weHeadings.forEach(function (heading) {
-      gsap.to(heading, {
-        opacity: 1,
-        x: 0,
-        duration: 0.7,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: heading,
-          start: 'top 85%',
-          once: true,
-        },
-      });
-    });
-
-    // Each card slides in from the right with a subtle stagger per section
-    weCards.forEach(function (card, i) {
-      // Find the index of the card within its own parent so stagger resets per section
-      const siblings = card.parentElement.querySelectorAll('.we-card');
-      const localIndex = Array.from(siblings).indexOf(card);
-
-      gsap.to(card, {
-        opacity: 1,
-        x: 0,
-        duration: 1,
-        ease: 'power3.out',
-        delay: localIndex * 0.12,
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 90%',
-          once: true,
-        },
-      });
-    });
-  })();
-</script>
-<script>
-  // ── Process cards — staggered slide up on scroll ──────────────────────
-  (function () {
-    const processGrid = document.querySelector('.processes-grid');
-    if (!processGrid) return;
-
-    const cards = processGrid.querySelectorAll('.process-card');
-    if (!cards.length) return;
-
-    gsap.set(cards, { opacity: 0, y: 40 });
-
-    gsap.to(cards, {
-      opacity: 1,
-      y: 0,
-      duration: 0.85,
-      ease: 'power3.out',
-      stagger: 0.12,
-      scrollTrigger: {
-        trigger: processGrid,
-        start: 'top 90%',
-        once: true,
-      },
-    });
-  })();
-
-  // ── Service cards — staggered slide up on scroll ───────────────────────
-  (function () {
-    const servicesGrid = document.querySelector('.services-grid');
-    if (!servicesGrid) return;
-
-    const cards = servicesGrid.querySelectorAll('.svc-card');
-    if (!cards.length) return;
-
-    gsap.set(cards, { opacity: 0, y: 40 });
-
-    gsap.to(cards, {
-      opacity: 1,
-      y: 0,
-      duration: 0.85,
-      ease: 'power3.out',
-      stagger: 0.12,
-      scrollTrigger: {
-        trigger: servicesGrid,
-        start: 'top 90%',
-        once: true,
-      },
-    });
-  })();
-</script>
-<script>
-  // ── Skill cards — staggered fade-up on scroll ─────────────────────────
-  (function () {
-    const skillCards = document.querySelectorAll('.skill-card');
-    if (!skillCards.length) return;
-
-    gsap.set(skillCards, { opacity: 0, y: 50 });
-
-    skillCards.forEach(function (card, i) {
-      gsap.to(card, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: 'power3.out',
-        delay: (i % 2) * 0.12,   // stagger within each row (2-col grid)
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 92%',
-          once: true,
-        },
-      });
-    });
-  })();
-</script>
-<script>
-  // ── Two-tone section headings — whole-element fade-up on scroll ───────
-  (function () {
-    const headingSelectors = [
-      '.services-heading',
-      '.wcm-heading',
-      '.tools-center-text h2',
-      '.about-me-heading h2',
-      '.testimonials-heading h2',
-      '.faq-left h2',
-    ];
-
-    const els = headingSelectors
-      .map(function (sel) { return document.querySelector(sel); })
-      .filter(Boolean);
-
-    // Set all hidden upfront
-    gsap.set(els, { opacity: 0, y: 32 });
-
-    // Each heading animates as one whole element when it enters the viewport
-    els.forEach(function (el) {
-      gsap.to(el, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 90%',
-          once: true,
-        },
-      });
-    });
-  })();
-</script>
-<script>
-  // ── Why Choose Me bento grid — fade up on scroll ────────────────────
-  (function () {
-    const wrapper = document.querySelector('.wcm-wrapper');
-    if (!wrapper) return;
-    gsap.set(wrapper, { opacity: 0, y: 72 });
-    gsap.to(wrapper, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: wrapper,
-        start: 'top 95%',
-        once: true,
-      },
-    });
-  })();
-</script>
-<script>
-  // ── Tools section subtext — fade up on scroll ─────────────────────────
-  (function () {
-    const sub = document.querySelector('.tools-center-text p');
-    if (!sub) return;
-    gsap.set(sub, { opacity: 0, y: 24 });
-    gsap.to(sub, {
-      opacity: 1,
-      y: 0,
-      duration: 0.9,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: sub,
-        start: 'top 85%',
-        once: true,
-      },
-    });
-  })();
-</script>
-<script>
-  // ── About Me bio — image from left, text from right ───────────────────
-  (function () {
-    const img  = document.querySelector('.about-me-img');
-    const text = document.querySelector('.about-me-text');
-    if (!img || !text) return;
-
-    gsap.set(img,  { opacity: 0, x: -26 });
-    gsap.set(text, { opacity: 0, x:  26 });
-
-    const trigger = { trigger: document.querySelector('.about-me-bio'), start: 'top 82%', once: true };
-
-    gsap.to(img, {
-      opacity: 1, x: 0,
-      duration: 1, ease: 'power3.out',
-      scrollTrigger: trigger,
-    });
-    gsap.to(text, {
-      opacity: 1, x: 0,
-      duration: 0.9, ease: 'power3.out',
-      delay: 0.2,
-      scrollTrigger: trigger,
-    });
-  })();
-</script>
-<script>
-  // ── Testimonials marquee — fade up on scroll ──────────────────────────
-  (function () {
-    const wrap = document.querySelector('.testimonials-cards-wrap');
-    if (!wrap) return;
-    gsap.set(wrap, { opacity: 0, y: 50 });
-    gsap.to(wrap, {
-      opacity: 1, y: 0,
-      duration: 0.9, ease: 'power3.out',
-      scrollTrigger: { trigger: wrap, start: 'top 95%', once: true },
-    });
-  })();
-
-  // ── Gallery carousel — blur + fade up on scroll ──────────────────────
-  (function () {
-    const section = document.querySelector('#gallery-carousel');
-    if (!section) return;
-    gsap.set(section, { opacity: 0, y: 70, filter: 'blur(14px)' });
-    gsap.to(section, {
-      opacity: 1, y: 0, filter: 'blur(0px)',
-      duration: 1.2, ease: 'power3.out',
-      scrollTrigger: { trigger: section, start: 'top 95%', once: true },
-    });
-  })();
-
-  // ── FAQ — all driven by the heading's ScrollTrigger ──────────────────
-  (function () {
-    const heading = document.querySelector('.faq-left h2');
-    const faqSub  = document.querySelector('.faq-left p');
-    const faqBtn  = document.querySelector('.faq-left .btn');
-    const items   = document.querySelectorAll('.faq-item');
-    if (!heading) return;
-
-    gsap.set([faqSub, faqBtn].filter(Boolean), { opacity: 0, y: 30 });
-    gsap.set(items, { opacity: 0, y: 40 });
-
-    ScrollTrigger.create({
-      trigger: heading,
-      start: 'top 85%',
-      once: true,
-      onEnter: function () {
+        // ── Timeline ────────────────────────────────────────────────────────
         const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-        // Subtext and button follow the heading with a small delay
-        if (faqSub) tl.to(faqSub, { opacity: 1, y: 0, duration: 0.6 }, '+=0.1');
-        if (faqBtn) tl.to(faqBtn, { opacity: 1, y: 0, duration: 0.55 }, '-=0.3');
-
-        // FAQ items start at the very beginning of the timeline (position 0)
-        // so they animate simultaneously with the heading, staggered
-        if (items.length) {
-          tl.to(items, {
-            opacity: 1, y: 0,
-            duration: 0.6,
-            stagger: 0.09,
-          }, 0);
-        }
-      },
-    });
-  })();
-</script>
-<script>
-  // ── About Me counters — count up on scroll ────────────────────────────
-  (function () {
-    const counters = [
-      { selector: '.about-me-stat:nth-child(1) .stat-number', target: 25, suffix: '+' },
-      { selector: '.about-me-stat:nth-child(2) .stat-number', target: 4,  suffix: '+' },
-      { selector: '.about-me-stat:nth-child(3) .stat-number', target: 99, suffix: '%' },
-    ];
-
-    counters.forEach(function (c) {
-      const el = document.querySelector(c.selector);
-      if (!el) return;
-
-      const obj = { val: 0 };
-
-      gsap.to(obj, {
-        val: c.target,
-        duration: 2,
-        ease: 'power3.out',
-        onUpdate: function () {
-          el.textContent = Math.round(obj.val) + c.suffix;
-        },
-
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 80%',
-          once: true,
-        },
-      });
-    });
-  })();
-</script>
-<script>
-  // ── Footer — staggered fade-up on scroll ──────────────────────────────
-  (function () {
-    const footer = document.querySelector('.app-footer');
-    if (!footer) return;
-
-    const phoneEls = Array.from(footer.querySelectorAll('.footer-contact-phone'));
-
-    const els = [
-      footer.querySelector('.footer-title'),
-      footer.querySelector('.footer-sub'),
-      footer.querySelector('.footer-email'),
-      footer.querySelector('.footer-socials'),
-      footer.querySelector('.footer-contact-title'),
-      ...phoneEls,
-      footer.querySelector('.footer-location-title'),
-      footer.querySelector('.footer-location'),
-      footer.querySelector('.footer-divider'),
-      footer.querySelector('.footer-copyright'),
-      footer.querySelector('.footer-svg-bg'),
-      footer.querySelector('.footer-bottom-bar'),
-    ].filter(Boolean);
-
-    gsap.set(els, { opacity: 0, y: 36 });
-
-    ScrollTrigger.create({
-      trigger: footer,
-      start: 'top 90%',
-      once: true,
-      onEnter: function () {
-        gsap.to(els, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          stagger: 0.11,
-        });
-      },
-    });
-  })();
-</script>
-<script>
-  // ── Collaboration images — scroll-driven converge / diverge ───────────
-  // Left image starts pushed left, right image pushed right.
-  // Scrolling down brings them together; scrolling back pulls them apart.
-  // Parent has overflow:hidden so nothing bleeds outside the card.
-  (function () {
-    const imgLeft  = document.querySelector('.collab-img-left');
-    const imgRight = document.querySelector('.collab-img-right');
-    const trigger  = document.querySelector('.wcm-collab');
-    if (!imgLeft || !imgRight || !trigger) return;
-
-    // Initial pushed-apart state
-    gsap.set(imgLeft,  { x: '-40%' });
-    gsap.set(imgRight, { x:  '40%' });
-
-    gsap.to(imgLeft,  {
-      x: '0%',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: trigger,
-        start: 'top 85%',
-        end:   'top 20%',
-        scrub: 1.4,
-      },
-    });
-
-    gsap.to(imgRight, {
-      x: '0%',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: trigger,
-        start: 'top 85%',
-        end:   'top 20%',
-        scrub: 1.4,
-      },
-    });
-  })();
-</script>
-<script>
-  // ── Quote section — staggered blur-slide-up words (mirrors hero heading) ──
-  (function () {
-    const section    = document.querySelector('.quote-section');
-    const quoteEl    = document.querySelector('.quote-section .quote-text');
-    const authorEl   = document.querySelector('.quote-section .quote-author');
-    const startMark  = document.querySelector('.quote-section .start-quote');
-    const endMark    = document.querySelector('.quote-section .end-quote');
-    const ctaBtn     = document.querySelector('.quote-section .btn-outline');
-    if (!section || !quoteEl) return;
-
-    // Split quote text into words
-    const split = new SplitType(quoteEl, { types: 'words' });
-
-    // ── Initial hidden states ────────────────────────────────────────
-    gsap.set(split.words, { opacity: 0, y: 44, filter: 'blur(14px)' });
-    gsap.set(startMark,   { opacity: 0, scale: 0.4, transformOrigin: 'top left'   });
-    gsap.set(endMark,     { opacity: 0, scale: 0.4, transformOrigin: 'bottom right' });
-    if (authorEl) gsap.set(authorEl, { opacity: 0, y: 20, filter: 'blur(6px)' });
-    if (ctaBtn)   gsap.set(ctaBtn,   { opacity: 0, y: 20 });
-
-    // ── ScrollTrigger timeline ───────────────────────────────────────
-    ScrollTrigger.create({
-      trigger: section,
-      start: 'top 80%',
-      once: true,
-      onEnter: function () {
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-        // 1. Opening quote mark — scale pop in
-        tl.to(startMark, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.55,
-          ease: 'back.out(1.8)',
+        // 1. Avatar — scale + fade + unblur
+        tl.to('.avatar-wrap', {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.5,
         });
 
-        // 2. Quote words — staggered blur + rise (same as hero heading)
+        // 2. Greeting tag — rise + fade + unblur
+        tl.to('#hero-greeting', {
+                opacity: 1,
+                y: 0,
+                filter: 'blur(0px)',
+                duration: 0.35,
+            },
+            '-=0.4'
+        );
+
+        // 3. Heading words — staggered rise + fade + unblur
         tl.to(split.words, {
-          opacity: 1,
-          y: 0,
-          filter: 'blur(0px)',
-          duration: 0.75,
-          stagger: 0.055,
-        }, '-=0.15');
-
-        // 3. Author line — fades up after last word settles
-        if (authorEl) {
-          tl.to(authorEl, {
             opacity: 1,
             y: 0,
             filter: 'blur(0px)',
-            duration: 0.55,
-          }, '-=0.2');
-        }
+            duration: 0.9,
+            stagger: 0.08,
+        }, '+=0.03');
 
-        // 4. Closing quote mark — scale pop in, mirrored timing
-        tl.to(endMark, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.55,
-          ease: 'back.out(1.8)',
-        }, '-=0.4');
+        // 4. Subtitle — rise + fade + unblur, starts after last word finishes
+        tl.to('#hero-sub', {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            duration: 0.5,
+        }, '-=0.45');
 
-        // 5. CTA button — gentle rise after everything settles
-        if (ctaBtn) {
-          tl.to(ctaBtn, {
+        // 5. Buttons + lets-chat — rise + fade, staggered
+        tl.to(['#hero-btn-1', '#hero-btn-2'], {
+            opacity: 1,
+            y: 0,
+            duration: 0.25,
+            ease: 'power3.out',
+        }, '-=0.2');
+
+        // lets-chat SVG slides up alongside the buttons
+        tl.to('.hero-lets-chat', {
             opacity: 1,
             y: 0,
             duration: 0.5,
-          }, '-=0.1');
-        }
-      },
+            ease: 'power3.out',
+        }, '+=0.39'); // starts 0.1s after buttons begin
+
+        // 6. Project cards marquee — slides up after buttons/lets-chat settle
+        tl.to('.hero-proj-marquee-wrap', {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            duration: 0.7,
+            ease: 'power3.out',
+        }, '-=0.00');
+
+        // 7. Pills — last to appear, fade + scale pop, then release CSS wander animations
+        gsap.set('.hero-pill', { scale: 0.7 });
+        tl.to('.hero-pill', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            ease: 'back.out(1.6)',
+            stagger: 0.15,
+            onComplete: function () {
+                document.querySelectorAll('.hero-pill').forEach(function (pill) {
+                    pill.style.animationPlayState = 'running';
+                });
+            },
+        }, '+=0.1');
+
+
     });
-  })();
+</script>
+<script>
+    // ── Framer-style slide-text button hover — works on any .btn-slide ──
+    (function () {
+        const DURATION = 0.45;
+        const EASE = 'power2.out';
+
+        document.querySelectorAll('.btn-slide').forEach(function (btn) {
+            const def  = btn.querySelector('.btn-slide-default');
+            const dup  = btn.querySelector('.btn-slide-hover');
+            if (!def || !dup) return;
+
+            // make sure hover span starts below
+            gsap.set(dup, { y: '100%' });
+
+            btn.addEventListener('mouseenter', function () {
+                gsap.to(def,  { y: '-100%', duration: DURATION, ease: EASE });
+                gsap.to(dup,  { y:    '0%', duration: DURATION, ease: EASE });
+            });
+
+            btn.addEventListener('mouseleave', function () {
+                gsap.to(def,  { y:    '0%', duration: DURATION, ease: EASE });
+                gsap.to(dup,  { y:  '100%', duration: DURATION, ease: EASE });
+            });
+        });
+    })();
+</script>
+<script>
+    // ── Project cards — staggered scroll reveal (all cards across every section) ──
+    (function () {
+        const allCards = document.querySelectorAll('.card');
+        if (!allCards.length) return;
+
+        // Set all cards to their hidden start state immediately
+        // gsap.set(allCards, { opacity: 0, scale:1, y: 200 });
+        //
+        // allCards.forEach(function (card, i) {
+        //   gsap.to(card, {
+        //     opacity: 1,
+        //     y: 0,
+        //     scale:1,
+        //     duration: 1,
+        //       ease: 'power3.out',
+        //       scrollTrigger: {
+        //       trigger: card,
+        //       start: 'top 96%',
+        //       once: true,
+        //     },
+        //
+        //   });
+        // });
+
+        // Re-run ScrollTrigger refresh when extra-projects is shown
+        // so newly visible cards animate in correctly
+        const showMoreBtn = document.getElementById('show-more-projects');
+        if (showMoreBtn) {
+            showMoreBtn.addEventListener('click', function () {
+                // Small delay to let the display:block paint before ScrollTrigger measures
+                setTimeout(function () {
+                    ScrollTrigger.refresh();
+                }, 50);
+            });
+        }
+    })();
+</script>
+<script>
+    // ── Experience & Education cards — slide in from right on scroll ──────
+    (function () {
+        const weCards = document.querySelectorAll('#work .we-card, #education .we-card');
+        if (!weCards.length) return;
+
+        // Also animate the section headings
+        const weHeadings = document.querySelectorAll('#work .about-me-heading, #education .about-me-heading');
+
+        // Set initial state — pushed to the right, invisible
+        gsap.set(weCards,    { opacity: 0, x: 24 });
+        gsap.set(weHeadings, { opacity: 0, x: 20 });
+
+        // Headings slide in first, then cards follow per-entry
+        weHeadings.forEach(function (heading) {
+            gsap.to(heading, {
+                opacity: 1,
+                x: 0,
+                duration: 0.7,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: heading,
+                    start: 'top 85%',
+                    once: true,
+                },
+            });
+        });
+
+        // Each card slides in from the right with a subtle stagger per section
+        weCards.forEach(function (card, i) {
+            // Find the index of the card within its own parent so stagger resets per section
+            const siblings = card.parentElement.querySelectorAll('.we-card');
+            const localIndex = Array.from(siblings).indexOf(card);
+
+            gsap.to(card, {
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: 'power3.out',
+                delay: localIndex * 0.12,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 90%',
+                    once: true,
+                },
+            });
+        });
+    })();
+</script>
+<script>
+    // ── Process cards — staggered slide up on scroll ──────────────────────
+    (function () {
+        const processGrid = document.querySelector('.processes-grid');
+        if (!processGrid) return;
+
+        const cards = processGrid.querySelectorAll('.process-card');
+        if (!cards.length) return;
+
+        gsap.set(cards, { opacity: 0, y: 40 });
+
+        gsap.to(cards, {
+            opacity: 1,
+            y: 0,
+            duration: 0.85,
+            ease: 'power3.out',
+            stagger: 0.12,
+            scrollTrigger: {
+                trigger: processGrid,
+                start: 'top 90%',
+                once: true,
+            },
+        });
+    })();
+
+    // ── Service cards — staggered slide up on scroll ───────────────────────
+    (function () {
+        const servicesGrid = document.querySelector('.services-grid');
+        if (!servicesGrid) return;
+
+        const cards = servicesGrid.querySelectorAll('.svc-card');
+        if (!cards.length) return;
+
+        gsap.set(cards, { opacity: 0, y: 40 });
+
+        gsap.to(cards, {
+            opacity: 1,
+            y: 0,
+            duration: 0.85,
+            ease: 'power3.out',
+            stagger: 0.12,
+            scrollTrigger: {
+                trigger: servicesGrid,
+                start: 'top 90%',
+                once: true,
+            },
+        });
+    })();
+</script>
+<script>
+    // ── Skill cards — staggered fade-up on scroll ─────────────────────────
+    (function () {
+        const skillCards = document.querySelectorAll('.skill-card');
+        if (!skillCards.length) return;
+
+        gsap.set(skillCards, { opacity: 0, y: 50 });
+
+        skillCards.forEach(function (card, i) {
+            gsap.to(card, {
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                ease: 'power3.out',
+                delay: (i % 2) * 0.12,   // stagger within each row (2-col grid)
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 92%',
+                    once: true,
+                },
+            });
+        });
+    })();
+</script>
+<script>
+    // ── Two-tone section headings — whole-element fade-up on scroll ───────
+    (function () {
+        const headingSelectors = [
+            '.services-heading',
+            '.wcm-heading',
+            '.tools-center-text h2',
+            '.about-me-heading h2',
+            '.testimonials-heading h2',
+            '.faq-left h2',
+            '.carousel-title',
+        ];
+
+        const els = headingSelectors
+            .map(function (sel) { return document.querySelector(sel); })
+            .filter(Boolean);
+
+        // Set all hidden upfront
+        gsap.set(els, { opacity: 0, y: 32 });
+
+        // Each heading animates as one whole element when it enters the viewport
+        els.forEach(function (el) {
+            gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 90%',
+                    once: true,
+                },
+            });
+        });
+    })();
+</script>
+<script>
+    // ── Why Choose Me bento grid — fade up on scroll ────────────────────
+    (function () {
+        const wrapper = document.querySelector('.wcm-wrapper');
+        if (!wrapper) return;
+        gsap.set(wrapper, { opacity: 0, y: 72 });
+        gsap.to(wrapper, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: wrapper,
+                start: 'top 95%',
+                once: true,
+            },
+        });
+    })();
+</script>
+<script>
+    // ── Tools section subtext — fade up on scroll ─────────────────────────
+    (function () {
+        const sub = document.querySelector('.tools-center-text p');
+        if (!sub) return;
+        gsap.set(sub, { opacity: 0, y: 24 });
+        gsap.to(sub, {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: sub,
+                start: 'top 85%',
+                once: true,
+            },
+        });
+    })();
+</script>
+<script>
+    // ── About Me bio — image from left, text from right ───────────────────
+    (function () {
+        const img  = document.querySelector('.about-me-img');
+        const text = document.querySelector('.about-me-text');
+        if (!img || !text) return;
+
+        gsap.set(img,  { opacity: 0, x: -26 });
+        gsap.set(text, { opacity: 0, x:  26 });
+
+        const trigger = { trigger: document.querySelector('.about-me-bio'), start: 'top 82%', once: true };
+
+        gsap.to(img, {
+            opacity: 1, x: 0,
+            duration: 1, ease: 'power3.out',
+            scrollTrigger: trigger,
+        });
+        gsap.to(text, {
+            opacity: 1, x: 0,
+            duration: 0.9, ease: 'power3.out',
+            delay: 0.2,
+            scrollTrigger: trigger,
+        });
+    })();
+</script>
+<script>
+    // ── Testimonials marquee — fade up on scroll ──────────────────────────
+    (function () {
+        const wrap = document.querySelector('.testimonials-cards-wrap');
+        if (!wrap) return;
+        gsap.set(wrap, { opacity: 0, y: 50 });
+        gsap.to(wrap, {
+            opacity: 1, y: 0,
+            duration: 0.9, ease: 'power3.out',
+            scrollTrigger: { trigger: wrap, start: 'top 95%', once: true },
+        });
+    })();
+
+    // ── Gallery carousel — blur + fade up on scroll ──────────────────────
+    (function () {
+        const section = document.querySelector('#gallery-carousel');
+        if (!section) return;
+        gsap.set(section, { opacity: 0, y: 70, filter: 'blur(14px)' });
+        gsap.to(section, {
+            opacity: 1, y: 0, filter: 'blur(0px)',
+            duration: 1.2, ease: 'power3.out',
+            scrollTrigger: { trigger: section, start: 'top 95%', once: true },
+        });
+    })();
+
+    // ── FAQ — all driven by the heading's ScrollTrigger ──────────────────
+    (function () {
+        const heading = document.querySelector('.faq-left h2');
+        const faqSub  = document.querySelector('.faq-left p');
+        const faqBtn  = document.querySelector('.faq-left .btn');
+        const items   = document.querySelectorAll('.faq-item');
+        if (!heading) return;
+
+        gsap.set([faqSub, faqBtn].filter(Boolean), { opacity: 0, y: 30 });
+        gsap.set(items, { opacity: 0, y: 40 });
+
+        ScrollTrigger.create({
+            trigger: heading,
+            start: 'top 85%',
+            once: true,
+            onEnter: function () {
+                const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+                // Subtext and button follow the heading with a small delay
+                if (faqSub) tl.to(faqSub, { opacity: 1, y: 0, duration: 0.6 }, '+=0.1');
+                if (faqBtn) tl.to(faqBtn, { opacity: 1, y: 0, duration: 0.55 }, '-=0.3');
+
+                // FAQ items start at the very beginning of the timeline (position 0)
+                // so they animate simultaneously with the heading, staggered
+                if (items.length) {
+                    tl.to(items, {
+                        opacity: 1, y: 0,
+                        duration: 0.6,
+                        stagger: 0.09,
+                    }, 0);
+                }
+            },
+        });
+    })();
+</script>
+<script>
+    // ── About Me counters — count up on scroll ────────────────────────────
+    (function () {
+        const counters = [
+            { selector: '.about-me-stat:nth-child(1) .stat-number', target: 25, suffix: '+' },
+            { selector: '.about-me-stat:nth-child(2) .stat-number', target: 4,  suffix: '+' },
+            { selector: '.about-me-stat:nth-child(3) .stat-number', target: 99, suffix: '%' },
+        ];
+
+        counters.forEach(function (c) {
+            const el = document.querySelector(c.selector);
+            if (!el) return;
+
+            const obj = { val: 0 };
+
+            gsap.to(obj, {
+                val: c.target,
+                duration: 2,
+                ease: 'power3.out',
+                onUpdate: function () {
+                    el.textContent = Math.round(obj.val) + c.suffix;
+                },
+
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 80%',
+                    once: true,
+                },
+            });
+        });
+    })();
+</script>
+<script>
+    // ── Footer — staggered fade-up on scroll ──────────────────────────────
+    (function () {
+        const footer = document.querySelector('.app-footer');
+        if (!footer) return;
+
+        const phoneEls = Array.from(footer.querySelectorAll('.footer-contact-phone'));
+
+        const els = [
+            footer.querySelector('.footer-title'),
+            footer.querySelector('.footer-sub'),
+            footer.querySelector('.footer-email'),
+            footer.querySelector('.footer-socials'),
+            footer.querySelector('.footer-contact-title'),
+            ...phoneEls,
+            footer.querySelector('.footer-location-title'),
+            footer.querySelector('.footer-location'),
+            footer.querySelector('.footer-divider'),
+            footer.querySelector('.footer-copyright'),
+            footer.querySelector('.footer-svg-bg'),
+            footer.querySelector('.footer-bottom-bar'),
+        ].filter(Boolean);
+
+        gsap.set(els, { opacity: 0, y: 40 }); //36
+
+        ScrollTrigger.create({
+            trigger: footer,
+            start: 'top 90%',
+            once: true,
+            onEnter: function () {
+                gsap.to(els, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    stagger: 0.11,
+                });
+            },
+        });
+    })();
+</script>
+<script>
+    // ── Collaboration images — scroll-driven converge / diverge ───────────
+    // Left image starts pushed left, right image pushed right.
+    // Scrolling down brings them together; scrolling back pulls them apart.
+    // Parent has overflow:hidden so nothing bleeds outside the card.
+    (function () {
+        const imgLeft  = document.querySelector('.collab-img-left');
+        const imgRight = document.querySelector('.collab-img-right');
+        const trigger  = document.querySelector('.wcm-collab');
+        if (!imgLeft || !imgRight || !trigger) return;
+
+        // Initial pushed-apart state
+        gsap.set(imgLeft,  { x: '-40%' });
+        gsap.set(imgRight, { x:  '40%' });
+
+        gsap.to(imgLeft,  {
+            x: '0%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: trigger,
+                start: 'top 85%',
+                end:   'top 20%',
+                scrub: 1.4,
+            },
+        });
+
+        gsap.to(imgRight, {
+            x: '0%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: trigger,
+                start: 'top 85%',
+                end:   'top 20%',
+                scrub: 1.4,
+            },
+        });
+    })();
+</script>
+<script>
+    // ── Quote section — staggered blur-slide-up words (mirrors hero heading) ──
+    (function () {
+        const section    = document.querySelector('.quote-section');
+        const quoteEl    = document.querySelector('.quote-section .quote-text');
+        const authorEl   = document.querySelector('.quote-section .quote-author');
+        const startMark  = document.querySelector('.quote-section .start-quote');
+        const endMark    = document.querySelector('.quote-section .end-quote');
+        const ctaBtn     = document.querySelector('.quote-section .btn-outline');
+        if (!section || !quoteEl) return;
+
+        // Split quote text into words
+        const split = new SplitType(quoteEl, { types: 'words' });
+
+        // ── Initial hidden states ────────────────────────────────────────
+        gsap.set(split.words, { opacity: 0, y: 44, filter: 'blur(14px)' });
+        gsap.set(startMark,   { opacity: 0, scale: 0.4, transformOrigin: 'top left'   });
+        gsap.set(endMark,     { opacity: 0, scale: 0.4, transformOrigin: 'bottom right' });
+        if (authorEl) gsap.set(authorEl, { opacity: 0, y: 20, filter: 'blur(6px)' });
+        if (ctaBtn)   gsap.set(ctaBtn,   { opacity: 0, y: 20 });
+
+        // ── ScrollTrigger timeline ───────────────────────────────────────
+        ScrollTrigger.create({
+            trigger: section,
+            start: 'top 80%',
+            once: true,
+            onEnter: function () {
+                const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+                // 1. Opening quote mark — scale pop in
+                tl.to(startMark, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.55,
+                    ease: 'back.out(1.8)',
+                });
+
+                // 2. Quote words — staggered blur + rise (same as hero heading)
+                tl.to(split.words, {
+                    opacity: 1,
+                    y: 0,
+                    filter: 'blur(0px)',
+                    duration: 0.75,
+                    stagger: 0.055,
+                }, '-=0.15');
+
+                // 3. Author line — fades up after last word settles
+                if (authorEl) {
+                    tl.to(authorEl, {
+                        opacity: 1,
+                        y: 0,
+                        filter: 'blur(0px)',
+                        duration: 0.55,
+                    }, '-=0.2');
+                }
+
+                // 4. Closing quote mark — scale pop in, mirrored timing
+                tl.to(endMark, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.55,
+                    ease: 'back.out(1.8)',
+                }, '-=0.4');
+
+                // 5. CTA button — gentle rise after everything settles
+                if (ctaBtn) {
+                    tl.to(ctaBtn, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.5,
+                    }, '-=0.1');
+                }
+            },
+        });
+    })();
 </script>
 
 <script>
-  // ── Project cards — inner device image smooth rise + fade ───────────
-  (function () {
-    const images = document.querySelectorAll('.projects .card-media img');
-    if (!images.length) return;
+    // ── Project cards — inner device image smooth rise + fade ───────────
+    (function () {
+        const images = document.querySelectorAll('.projects .card-media img');
+        if (!images.length) return;
 
-    const isMobile = window.matchMedia('(max-width: 640px)').matches;
-    gsap.set(images, { opacity: 0, y: isMobile ? 24 : 40, scale:  isMobile ? 0.85 :0.8 });
+        const isMobile = window.matchMedia('(max-width: 640px)').matches;
+        gsap.set(images, { opacity: 0, y: isMobile ? 24 : 40, scale:  isMobile ? 0.85 :0.8 });
 
-    images.forEach(function (img) {
-      gsap.to(img, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: .92,
-        ease: 'expo.out',
-        scrollTrigger: {
-          trigger: img,
-          start: 'top 92%',
-          once: true,
-        },
-        clearProps: 'transform,opacity',
-      });
-    });
-  })();
+        images.forEach(function (img) {
+            gsap.to(img, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: .92,
+                ease: 'expo.out',
+                scrollTrigger: {
+                    trigger: img,
+                    start: 'top 92%',
+                    once: true,
+                },
+                clearProps: 'transform,opacity',
+            });
+        });
+    })();
 </script>
 
 <!-- ===== GALLERY CAROUSEL ===== -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/Draggable.min.js"></script>
 <script>
-(function () {
-    gsap.registerPlugin(Draggable);
+    (function () {
+        gsap.registerPlugin(Draggable);
 
-    const IMAGES = [
-        'assets/images/my_pictures/1.jpeg',
-        'assets/images/my_pictures/2.jpeg',
-        'assets/images/my_pictures/3.jpeg',
-        'assets/images/my_pictures/4.jpeg',
-        'assets/images/my_pictures/5.jpeg',
-        'assets/images/my_pictures/6.jpeg',
-        'assets/images/my_pictures/7.jpeg',
-        'assets/images/my_pictures/8.jpeg',
-        'assets/images/my_pictures/9.jpeg',
-        'assets/images/my_pictures/10.jpeg',
-        'assets/images/my_pictures/11.jpeg',
-        'assets/images/my_pictures/12.jpeg',
-        'assets/images/my_pictures/13.jpeg',
-        'assets/images/my_pictures/14.jpeg',
-        'assets/images/my_pictures/15.jpeg',
-        'assets/images/my_pictures/16.jpeg',
-        'assets/images/my_pictures/17.jpeg',
-        'assets/images/my_pictures/18.jpeg',
-        'assets/images/my_pictures/19.jpeg',
-    ];
+        const IMAGES = [
+            'assets/images/my_pictures/1.jpeg',
+            'assets/images/my_pictures/2.jpeg',
+            'assets/images/my_pictures/3.jpeg',
+            'assets/images/my_pictures/4.jpeg',
+            'assets/images/my_pictures/5.jpeg',
+            'assets/images/my_pictures/6.jpeg',
+            'assets/images/my_pictures/7.jpeg',
+            'assets/images/my_pictures/8.jpeg',
+            'assets/images/my_pictures/9.jpeg',
+            'assets/images/my_pictures/10.jpeg',
+            'assets/images/my_pictures/11.jpeg',
+            'assets/images/my_pictures/12.jpeg',
+            'assets/images/my_pictures/13.jpeg',
+            'assets/images/my_pictures/14.jpeg',
+            'assets/images/my_pictures/15.jpeg',
+            'assets/images/my_pictures/16.jpeg',
+            'assets/images/my_pictures/17.jpeg',
+            'assets/images/my_pictures/18.jpeg',
+            'assets/images/my_pictures/19.jpeg',
+        ];
 
-    const track = document.getElementById('carouselTrack');
-    if (!track) return;
+        const track = document.getElementById('carouselTrack');
+        if (!track) return;
 
-    const isMob  = window.matchMedia('(max-width:640px)').matches;
-    const CARD_W = isMob ? 160 : 240;
-    const GAP    = 16;
-    const STEP   = CARD_W + GAP;
+        const isMob  = window.matchMedia('(max-width:640px)').matches;
+        const CARD_W = isMob ? 160 : 240;
+        const GAP    = 16;
+        const STEP   = CARD_W + GAP;
 
-    // 3 sets of cards for seamless loop
-    const allSrc = [...IMAGES, ...IMAGES, ...IMAGES];
+        // 3 sets of cards for seamless loop
+        const allSrc = [...IMAGES, ...IMAGES, ...IMAGES];
 
-    allSrc.forEach(function (src, i) {
-        const label = String((i % IMAGES.length) + 1).padStart(2, '0');
+        allSrc.forEach(function (src, i) {
+            const label = String((i % IMAGES.length) + 1).padStart(2, '0');
 
-        const card = document.createElement('div');
-        card.className = 'c-card';
+            const card = document.createElement('div');
+            card.className = 'c-card';
 
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = 'Photo ' + label;
-        img.loading = 'lazy';
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = 'Photo ' + label;
+            img.loading = 'lazy';
 
-        const overlay = document.createElement('div');
-        overlay.className = 'c-overlay';
+            const overlay = document.createElement('div');
+            overlay.className = 'c-overlay';
 
-        card.appendChild(img);
-        card.appendChild(overlay);
-        track.appendChild(card);
-    });
+            card.appendChild(img);
+            card.appendChild(overlay);
+            track.appendChild(card);
+        });
 
-    const setLen = IMAGES.length;
-    const setW   = setLen * STEP;
-    const trackW = allSrc.length * STEP;
-    track.style.width = trackW + 'px';
+        const setLen = IMAGES.length;
+        const setW   = setLen * STEP;
+        const trackW = allSrc.length * STEP;
+        track.style.width = trackW + 'px';
 
-    // Start at middle set
-    let xPos = -setW;
-    gsap.set(track, { x: xPos });
-
-    // ── Auto-scroll ───────────────────────────────────────────────────
-    const SPEED = isMob ? 0.45 : 0.7;
-    let paused = false;
-
-    gsap.ticker.add(function () {
-        if (paused) return;
-        xPos -= SPEED;
-        if (xPos <= -setW * 2) xPos += setW;
+        // Start at middle set
+        let xPos = -setW;
         gsap.set(track, { x: xPos });
-    });
 
-    // ── Draggable ─────────────────────────────────────────────────────
-    let dragStartX = 0;
+        // ── Auto-scroll ───────────────────────────────────────────────────
+        const SPEED = isMob ? 0.45 : 0.7;
+        let paused = false;
 
-    Draggable.create(track, {
-        type: 'x',
-        inertia: false,
-        onPress: function () {
-            paused = true;
-            dragStartX = xPos;
-        },
-        onDrag: function () {
-            xPos = dragStartX + (this.x - this.startX);
-            while (xPos > -setW)     xPos -= setW;
-            while (xPos < -setW * 2) xPos += setW;
+        gsap.ticker.add(function () {
+            if (paused) return;
+            xPos -= SPEED;
+            if (xPos <= -setW * 2) xPos += setW;
             gsap.set(track, { x: xPos });
-        },
-        onRelease: function () {
-            const vel = this.getVelocity();
-            gsap.to({ v: 0 }, {
-                v: 1,
-                duration: 0.7,
-                ease: 'power2.out',
-                onUpdate: function () {
-                    xPos += vel * 0.006 * (1 - this.progress());
-                    while (xPos > -setW)     xPos -= setW;
-                    while (xPos < -setW * 2) xPos += setW;
-                    gsap.set(track, { x: xPos });
-                },
-                onComplete: function () { paused = false; },
-            });
-        },
-    });
-})();
+        });
+
+        // ── Draggable ─────────────────────────────────────────────────────
+        let dragStartX = 0;
+
+        Draggable.create(track, {
+            type: 'x',
+            inertia: false,
+            onPress: function () {
+                paused = true;
+                dragStartX = xPos;
+            },
+            onDrag: function () {
+                xPos = dragStartX + (this.x - this.startX);
+                while (xPos > -setW)     xPos -= setW;
+                while (xPos < -setW * 2) xPos += setW;
+                gsap.set(track, { x: xPos });
+            },
+            onRelease: function () {
+                const vel = this.getVelocity();
+                gsap.to({ v: 0 }, {
+                    v: 1,
+                    duration: 0.7,
+                    ease: 'power2.out',
+                    onUpdate: function () {
+                        xPos += vel * 0.006 * (1 - this.progress());
+                        while (xPos > -setW)     xPos -= setW;
+                        while (xPos < -setW * 2) xPos += setW;
+                        gsap.set(track, { x: xPos });
+                    },
+                    onComplete: function () { paused = false; },
+                });
+            },
+        });
+    })();
 </script>
 <!-- ===== END CAROUSEL ===== -->

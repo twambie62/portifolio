@@ -373,6 +373,196 @@
       }
     }
 
+    /* ===== Case Study (courier style) ===== */
+    .cs-wrap {
+      max-width: 720px;
+      margin: 72px auto 80px;
+      padding: 0;
+    }
+    .cs-section {
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid #ebebeb;
+    }
+    .cs-section--last {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .cs-h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #141414;
+      margin: 0 0 36px;
+      line-height: 1.2;
+    }
+    .cs-h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #141414;
+      margin: 0 0 16px;
+      letter-spacing: -0.01em;
+    }
+    .cs-p {
+      font-size: 0.97rem;
+      color: #4a4a4a;
+      line-height: 1.8;
+      margin: 0 0 14px;
+    }
+    .cs-p--label {
+      font-weight: 600;
+      color: #141414;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    .cs-highlight {
+      color: #141414;
+      font-weight: 500;
+    }
+    .cs-list {
+      margin: 0 0 14px 0;
+      padding-left: 20px;
+    }
+    .cs-list li {
+      font-size: 0.97rem;
+      color: #4a4a4a;
+      line-height: 1.8;
+      margin-bottom: 4px;
+    }
+    .cs-list--pain li::marker { color: #f97316; }
+    .cs-callout {
+      background: #f5f5f5;
+      border-left: 3px solid #141414;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      font-size: 0.95rem;
+      color: #2f2f2f;
+      line-height: 1.7;
+      margin-top: 20px;
+    }
+    .cs-callout--success {
+      border-left-color: #22c55e;
+      background: #f0fdf4;
+    }
+    .cs-tag {
+      display: inline-flex;
+      align-items: center;
+      background: #ebebeb;
+      color: #2f2f2f;
+      border-radius: 6px;
+      padding: 2px 9px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      margin: 2px 2px;
+    }
+    .cs-tag--green { background: #dcfce7; color: #166534; }
+    .cs-tag--blue  { background: #dbeafe; color: #1e40af; }
+    .cs-tag--orange{ background: #ffedd5; color: #9a3412; }
+    .cs-meta-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #f7f7f7;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+    .cs-meta-item {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+    }
+    .cs-meta-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #a0a0a0;
+      min-width: 120px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .cs-meta-value {
+      font-size: 0.97rem;
+      color: #141414;
+      font-weight: 500;
+    }
+    .cs-persona {
+      background: #f7f7f7;
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .cs-persona-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .cs-persona-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #141414;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .cs-persona-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #141414;
+    }
+    .cs-persona-role {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 2px;
+    }
+    .cs-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 16px;
+    }
+    .cs-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 20px;
+    }
+    .cs-flow-step {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #f7f7f7;
+      border-radius: 10px;
+      padding: 13px 18px;
+      font-size: 0.95rem;
+      color: #2f2f2f;
+      line-height: 1.5;
+    }
+    .cs-flow-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #a0a0a0;
+      min-width: 26px;
+      letter-spacing: 0.04em;
+    }
+    .cs-flow-arrow {
+      text-align: center;
+      color: #d0d0d0;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 2px 0;
+      margin-left: 30px;
+    }
+    @media (max-width: 640px) {
+      .cs-wrap { margin-top: 48px; }
+      .cs-two-col { grid-template-columns: 1fr; }
+    }
+    /* ===== END Case Study ===== */
+
         /* ===== Header hero video ===== */
         .header-hero-video {
             background: #F0F0F0;
@@ -523,6 +713,185 @@
       <div class="kwacha-body"></div>
     </div>
   </div>
+
+  <!-- ===== CASE STUDY ===== -->
+  <div class="cs-wrap">
+
+    <!-- My Role -->
+    <div class="cs-section">
+      <h2 class="cs-h2">Case Study</h2>
+      <h3 class="cs-h3">My Role</h3>
+      <div class="cs-meta-row">
+        <div class="cs-meta-item"><span class="cs-meta-label">Role</span><span class="cs-meta-value">UI/UX Designer &amp; Developer</span></div>
+        <div class="cs-meta-item"><span class="cs-meta-label">Responsibilities</span><span class="cs-meta-value">Research, ideation, user flow planning, UI design and Developer</span></div>
+      </div>
+      <p class="cs-p">I designed the user experience, created the visual interface, structured the screens, and implemented the app using React Native. My work covered key modules such as <span class="cs-highlight">movies, music, videos, events, ticket selection, payment options, and user navigation</span>.</p>
+    </div>
+
+    <!-- Problem -->
+    <div class="cs-section">
+      <h3 class="cs-h3">Problem</h3>
+      <p class="cs-p">The Malawian entertainment industry has many artists, event organizers, filmmakers, and content creators, but users often discover content and events through <span class="cs-highlight">scattered platforms</span> such as social media, WhatsApp posters, radio promotions, and word of mouth.</p>
+      <p class="cs-p cs-p--label">Key challenges identified:</p>
+      <ul class="cs-list">
+        <li>Users struggle to find music, videos, movies, and events in one place.</li>
+        <li>Event ticket sales are often <strong>handled manually</strong> or through fragmented payment methods.</li>
+        <li>Local artists and creators lack a centralized platform to showcase and monetize content.</li>
+        <li>Users have limited access to structured entertainment content from Malawi.</li>
+        <li>Event organizers need a more convenient way to promote events and sell tickets digitally.</li>
+      </ul>
+      <div class="cs-callout">The main product challenge was to design a platform that <strong>combined streaming, discovery, ticketing, and payment</strong> without making the experience feel overloaded.</div>
+    </div>
+
+    <!-- Solution -->
+    <div class="cs-section">
+      <h3 class="cs-h3">Solution &amp; Objectives</h3>
+      <p class="cs-p">The solution was a mobile entertainment platform that brings together <span class="cs-highlight">music, videos, events, movies, and ticket purchasing</span> in one app.</p>
+      <p class="cs-p cs-p--label">The main objectives were to:</p>
+      <ul class="cs-list">
+        <li>Allow users to browse and watch video content.</li>
+        <li>Enable users to discover and stream music.</li>
+        <li>Showcase movies and entertainment content with rich detail pages.</li>
+        <li>Promote events and allow users to buy tickets online.</li>
+        <li>Support multiple ticket categories — <span class="cs-tag">Single</span> <span class="cs-tag">Couple</span> <span class="cs-tag cs-tag--blue">VIP</span>.</li>
+        <li>Provide local payment options: <strong>Airtel Money</strong>, <strong>TNM Mpamba</strong>, and card payments.</li>
+        <li>Create a dark and modern entertainment feel suitable for streaming content.</li>
+        <li>Build a scalable interface that could support more content categories in future.</li>
+      </ul>
+    </div>
+
+    <!-- Persona -->
+    <div class="cs-section">
+      <h3 class="cs-h3">Target User Persona</h3>
+      <div class="cs-persona">
+        <div class="cs-persona-header">
+          <div class="cs-persona-avatar">CP</div>
+          <div>
+            <div class="cs-persona-name">Chisomo Phiri</div>
+            <div class="cs-persona-role">Student &amp; entertainment lover · Lilongwe, Malawi · Age 24</div>
+          </div>
+        </div>
+        <p class="cs-p">Chisomo enjoys discovering Malawian music, watching music videos, attending concerts, and following local artists. She often finds event posters on WhatsApp or Facebook but sometimes struggles to confirm ticket prices, payment options, and event details.</p>
+        <div class="cs-two-col">
+          <div>
+            <p class="cs-p cs-p--label">Goals</p>
+            <ul class="cs-list">
+              <li>Discover new Malawian music and videos.</li>
+              <li>Watch entertainment content in one app.</li>
+              <li>Find upcoming events easily.</li>
+              <li>Buy tickets without physically visiting a selling point.</li>
+              <li>Support local artists and creators.</li>
+              <li>Access event details such as date, time, venue, and price.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="cs-p cs-p--label">Pain Points</p>
+            <ul class="cs-list cs-list--pain">
+              <li>Event information is scattered across social media.</li>
+              <li>Ticket buying can be inconvenient and manual.</li>
+              <li>Hard to find one reliable platform for local entertainment.</li>
+              <li>Payment methods are not always clear.</li>
+              <li>Local content discovery is often unstructured.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Workflow -->
+    <div class="cs-section">
+      <h3 class="cs-h3">User Workflow</h3>
+      <p class="cs-p">The app workflow was designed around <span class="cs-highlight">entertainment discovery and quick access</span> to actions such as watching, listening, and buying tickets.</p>
+      <div class="cs-flow">
+        <div class="cs-flow-step"><span class="cs-flow-num">01</span><span>Open the app and <strong>log in or sign up</strong></span></div>
+        <div class="cs-flow-arrow">↓</div>
+        <div class="cs-flow-step"><span class="cs-flow-num">02</span><span>Land on main entertainment sections through <strong>bottom navigation</strong></span></div>
+        <div class="cs-flow-arrow">↓</div>
+        <div class="cs-flow-step"><span class="cs-flow-num">03</span><span>Browse <strong>movies, videos, music, or events</strong></span></div>
+        <div class="cs-flow-arrow">↓</div>
+        <div class="cs-flow-step"><span class="cs-flow-num">04</span><span>Select a video or movie to <strong>view details and watch content</strong></span></div>
+        <div class="cs-flow-arrow">↓</div>
+        <div class="cs-flow-step"><span class="cs-flow-num">05</span><span>Open the events section and <strong>choose an event</strong></span></div>
+        <div class="cs-flow-arrow">↓</div>
+        <div class="cs-flow-step"><span class="cs-flow-num">06</span><span>Select <strong>ticket category</strong> and payment method</span></div>
+        <div class="cs-flow-arrow">↓</div>
+        <div class="cs-flow-step"><span class="cs-flow-num">07</span><span>Complete payment and receive <strong>ticket confirmation</strong></span></div>
+      </div>
+    </div>
+
+    <!-- Wireframe & Structure -->
+    <div class="cs-section">
+      <h3 class="cs-h3">Wireframe &amp; Structure</h3>
+      <p class="cs-p">The structure was built around four main content areas: <span class="cs-highlight">Movies, Music, Tickets, and Account</span>.</p>
+      <p class="cs-p cs-p--label">Key screens included:</p>
+      <ul class="cs-list">
+        <li><strong>Login &amp; signup screens</strong> — User account access and onboarding.</li>
+        <li><strong>Movies screen</strong> — Content listing page for movie and video discovery.</li>
+        <li><strong>Video details screen</strong> — Streaming interface with controls, creator details, and related content.</li>
+        <li><strong>Music screen</strong> — Track listing with album art, artist names, duration, and quick actions.</li>
+        <li><strong>Events screen</strong> — Upcoming events with posters, dates, locations, and ticket purchase buttons.</li>
+        <li><strong>Movie details screen</strong> — Rating, genre, description, and cast.</li>
+        <li><strong>Payment screens</strong> — Bottom-sheet and full-page flows for video access and ticket purchases.</li>
+      </ul>
+    </div>
+
+    <!-- UI Design Direction -->
+    <div class="cs-section">
+      <h3 class="cs-h3">UI Design Direction</h3>
+      <p class="cs-p">The UI used a bold entertainment interface with a strong focus on <span class="cs-highlight">content, contrast, and action</span>.</p>
+      <p class="cs-p cs-p--label">Key design decisions:</p>
+      <ul class="cs-list">
+        <li><strong>Dark theme</strong> for video, movies, music, and event browsing — cinematic feel.</li>
+        <li><strong>Red accent colour</strong> for key actions: Watch Now, Buy Ticket, Buy Now.</li>
+        <li><strong>Bottom navigation</strong> for quick movement between Movies, Music, Tickets, and Account.</li>
+        <li>Large <strong>media thumbnails</strong> to make content visually engaging.</li>
+        <li>Clear <strong>event cards</strong> showing date, time, venue, and ticket CTA.</li>
+        <li><strong>Payment bottom sheets</strong> to keep users in context during checkout.</li>
+        <li><strong>Local payment options</strong> — Airtel Money and TNM Mpamba — for Malawian relevance.</li>
+      </ul>
+      <div class="cs-callout">The design needed to feel <strong>modern enough for streaming</strong>, but still simple enough for everyday users.</div>
+    </div>
+
+    <!-- Results -->
+    <div class="cs-section">
+      <h3 class="cs-h3">Results</h3>
+      <p class="cs-p">The project resulted in a <span class="cs-highlight">working React Native mobile app</span> design and implementation for Akometsi Company.</p>
+      <p class="cs-p cs-p--label">The final product demonstrated how Akometsi could:</p>
+      <ul class="cs-list">
+        <li>Centralize Malawian music, videos, movies, and events in one app.</li>
+        <li>Give users a smoother way to discover local entertainment.</li>
+        <li>Help artists and creators reach wider audiences.</li>
+        <li>Support event organizers with <strong>online ticket selling</strong>.</li>
+        <li>Reduce manual ticket sales through in-app payment options.</li>
+        <li>Create a stronger digital entertainment brand for the Malawian market.</li>
+      </ul>
+      <div class="cs-callout cs-callout--success">The project proved that local entertainment platforms can be designed with the <strong>same level of polish and structure</strong> as global streaming and ticketing apps.</div>
+    </div>
+
+    <!-- Challenges -->
+    <div class="cs-section">
+      <h3 class="cs-h3">Challenges</h3>
+      <p class="cs-p">One of the biggest challenges was combining several product experiences into one app: <span class="cs-highlight">music, videos, movies, events, payments, and ticketing</span>. Each section had different user needs, so the interface had to remain simple while supporting multiple actions.</p>
+      <ul class="cs-list">
+        <li>Designing an entertainment experience that did not feel cluttered.</li>
+        <li>Balancing dark media screens with clear payment flows.</li>
+        <li>Creating a consistent design system across music, video, movie, and ticket sections.</li>
+        <li>Structuring ticket categories and payment options in a simple way.</li>
+        <li>Implementing the designed screens in React Native while <strong>maintaining original visual quality</strong>.</li>
+        <li>Making the app feel local through payment methods while keeping a <strong>modern global feel</strong>.</li>
+      </ul>
+    </div>
+
+    <!-- Reflection -->
+    <div class="cs-section cs-section--last">
+      <h3 class="cs-h3">Reflection</h3>
+      <p class="cs-p">Akometsi helped me grow as both a <span class="cs-highlight">product designer and mobile developer</span>. It challenged me to think beyond static screens and consider how design decisions translate into real implementation.</p>
+      <p class="cs-p">The biggest lesson was that entertainment platforms need more than beautiful visuals. They need <strong>clear content structure, simple navigation, fast access to actions, and trust in the payment journey</strong>.</p>
+      <p class="cs-p">Working on both the UI/UX and React Native implementation helped me understand the full product process — from idea and interface design to building usable screens. It also strengthened my ability to design for Malawi's creative industry, where platforms must support <strong>artists, event organizers, and audiences</strong> at the same time.</p>
+    </div>
+
+  </div>
+  <!-- ===== END CASE STUDY ===== -->
 </main>
 <!--<footer id="app-footer"></footer>-->
 <script src="../assets/app_shared.js"></script>

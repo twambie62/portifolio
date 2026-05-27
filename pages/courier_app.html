@@ -130,6 +130,81 @@
             .overview-title { font-size: 1.3rem; margin-bottom: 16px; margin-top: 28px; }
         }
         /* ===== END OVERVIEW ===== */
+
+        /* ===== TOPBAR (match akometsi_app) ===== */
+        .kwacha-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            margin: 40px 6px 18px;
+        }
+        .kwacha-topbar .circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            border: 1px solid #e3e3e3;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.18s, border-color 0.08s;
+            cursor: pointer;
+        }
+        .kwacha-topbar .arrow {
+            width: 22px;
+            height: 22px;
+            color: #2f2f2f;
+            transition: color 0.18s;
+            display: inline-block;
+        }
+        .kwacha-topbar .arrow svg { width: 100%; height: 100%; display: block; }
+        .kwacha-topbar .project-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #6f6f6f;
+            transition: color 0.18s;
+            cursor: pointer;
+        }
+        .kwacha-topbar .top-tag {
+            margin-left: auto;
+            border: 1px solid #e3e3e3;
+            background: transparent;
+            color: #6f6f6f;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        .kwacha-topbar .top-tag:hover,
+        .kwacha-topbar .top-tag:focus {
+            color: #141414;
+            border-color: #d0d0d0;
+            outline: none;
+        }
+        .kwacha-topbar .circle:hover,
+        .kwacha-topbar .circle:focus,
+        .kwacha-topbar.hovering .circle {
+            background: #141414;
+            border-color: transparent;
+        }
+        .kwacha-topbar .circle:hover .arrow,
+        .kwacha-topbar .circle:focus .arrow,
+        .kwacha-topbar.hovering .circle .arrow {
+            color: #fff;
+        }
+        .kwacha-topbar .circle:focus { outline: 2px solid rgba(0,0,0,0.06); }
+        .kwacha-topbar .project-text:hover,
+        .kwacha-topbar .project-text:focus,
+        .kwacha-topbar.hovering .project-text {
+            color: #141414;
+        }
+        /* ===== END TOPBAR ===== */
+
         /* ===== Header hero video ===== */
         .header-hero-video {
             background: #F0F0F0;
@@ -233,142 +308,217 @@
         }
         .kwacha-card.span {
             grid-column: 1 / -1;
-            height: 420px;
+            height: 460px;
         }
-        @media (max-width: 640px) {
-            /* stacked layout on small screens: keep padding so edges match card spacing */
-            .kwacha-main {
-                display: flex;
-                flex-direction: column;
-                gap: 18px;
-                padding: 0 12px;
-                box-sizing: border-box;
-            }
-
-            /* make the top image area fill the content width on small screens,
-               keep internal padding like the cards and ensure the img stays fully visible */
-            .kwacha-main-img {
-                width: 100%;
-                max-width: 100%;
-                margin: 0 auto;
-                padding: 20px;            /* similar padding to card-media on mobile */
-                box-sizing: border-box;
-                height: auto;             /* allow height to size to content */
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 14px;      /* match card radius */
-                background: #F7F7F7;      /* keep grey background on small screens */
-                overflow: hidden;
-            }
-            .kwacha-main-img img {
-                width: 100%;
-                height: auto;             /* ensure whole image is visible (contain behavior) */
-                object-fit: contain;
-                border-radius: 12px;      /* small inner rounding for visual match */
-                display: block;
-            }
-
-
-            .kwacha-card { height: 380px; }
-            .kwacha-card .kwacha-media { height: 380px; padding: 32px; }
-            .kwacha-card .kwacha-media::before { inset: 10px; border-radius: 12px; }
-            .kwacha-card .kwacha-media img { border-radius: 12px; }
-            .kwacha-card.span { grid-column: auto; height: 360px; }
-
-            /* reduced spacing between grid images on mobile */
-            .kwacha-grid {
-                gap: 0px;
-                row-gap: 8px;/* previously 24px; tightened for mobile */
-                /*margin-bottom: 20px;*/
-            }
+        /* Last card fills its container fully — no grey bg, no padding */
+        .kwacha-card.full-fill .kwacha-media {
+            padding: 0;
+            height: 100%;
+        }
+        .kwacha-card.full-fill .kwacha-media::before {
+            display: none;
+        }
+        .kwacha-card.full-fill .kwacha-media img {
+            object-fit: cover;
+            border-radius: 14px;
         }
 
-        /* Top bar above title (as seen in top_bar.png) */
-        .kwacha-topbar {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 12px;
-            margin: 40px 6px 18px;
-            /* removed: cursor: pointer; */
+        /* ===== CASE STUDY STYLES ===== */
+        .cs-wrap {
+            max-width: 720px;
+            margin: 72px auto 80px;
+            padding: 0;
         }
-        .kwacha-topbar .circle {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            border: 1px solid #e3e3e3;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.18s, border-color 0.08s;
-            cursor: pointer; /* only the interactive circle shows pointer */
+        .cs-section {
+            margin-bottom: 56px;
+            padding-bottom: 56px;
+            border-bottom: 1px solid #ebebeb;
         }
-        /* Ionicon sizing/color for rounded-stroke arrow */
-        .kwacha-topbar .arrow {
-            width: 22px;
-            height: 22px;
+        .cs-section--last {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .cs-h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #141414;
+            margin: 0 0 36px;
+            line-height: 1.2;
+        }
+        .cs-h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #141414;
+            margin: 0 0 16px;
+            letter-spacing: -0.01em;
+        }
+        .cs-p {
+            font-size: 0.97rem;
+            color: #4a4a4a;
+            line-height: 1.8;
+            margin: 0 0 14px;
+        }
+        .cs-p--label {
+            font-weight: 600;
+            color: #141414;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .cs-highlight {
+            color: #141414;
+            font-weight: 500;
+        }
+        .cs-list {
+            margin: 0 0 14px 0;
+            padding-left: 20px;
+        }
+        .cs-list li {
+            font-size: 0.97rem;
+            color: #4a4a4a;
+            line-height: 1.8;
+            margin-bottom: 4px;
+        }
+        .cs-list--pain li::marker { color: #f97316; }
+        .cs-callout {
+            background: #f5f5f5;
+            border-left: 3px solid #141414;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            font-size: 0.95rem;
             color: #2f2f2f;
-            transition: color 0.18s;
-            display: inline-block;
+            line-height: 1.7;
+            margin-top: 20px;
         }
-        /* ensure the inner SVG scales to the CSS size */
-        .kwacha-topbar .arrow svg { width: 100%; height: 100%; display: block; }
-
-        .kwacha-topbar .project-text {
-            font-size: 1.0rem;
-            font-weight: 500;
-            color: #6f6f6f;
-            transition: color 0.18s;
-            cursor: pointer; /* text is interactive */
+        .cs-callout--success {
+            border-left-color: #22c55e;
+            background: #f0fdf4;
         }
-
-        /* NEW: bordered-only tag placed at the far right of the top bar */
-        .kwacha-topbar .top-tag {
-            margin-left: auto;                  /* push to the far end */
-            border: 1px solid #e3e3e3;          /* border only, keep same border color */
-            background: transparent;            /* no background */
-            color: #6f6f6f;                     /* muted text color */
-            border-radius: 8px;
-            padding: 6px 10px;
-            font-size: 13px;
-            font-weight: 500;
+        /* Status tags */
+        .cs-tag {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            box-sizing: border-box;
-            cursor: pointer; /* tag is interactive */
+            background: #ebebeb;
+            color: #2f2f2f;
+            border-radius: 6px;
+            padding: 2px 9px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin: 2px 2px;
         }
-        .kwacha-topbar .top-tag:hover,
-        .kwacha-topbar .top-tag:focus {
+        .cs-tag--green { background: #dcfce7; color: #166534; }
+        .cs-tag--blue  { background: #dbeafe; color: #1e40af; }
+        .cs-tag--orange{ background: #ffedd5; color: #9a3412; }
+        /* Role meta row */
+        .cs-meta-row {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #f7f7f7;
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 18px;
+        }
+        .cs-meta-item {
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+        }
+        .cs-meta-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #a0a0a0;
+            min-width: 120px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .cs-meta-value {
+            font-size: 0.97rem;
             color: #141414;
-            border-color: #d0d0d0;
-            outline: none;
+            font-weight: 500;
         }
-
-        /* NEW: only change visuals when the circle or the text are hovered/focused.
-           JS toggles the .hovering class on the container so both elements update together.
-           Note: avoid using .kwacha-topbar:hover so hovering empty space in the row won't trigger changes. */
-        .kwacha-topbar .circle:hover,
-        .kwacha-topbar .circle:focus,
-        .kwacha-topbar.hovering .circle {
+        /* Persona card */
+        .cs-persona {
+            background: #f7f7f7;
+            border-radius: 16px;
+            padding: 24px;
+        }
+        .cs-persona-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .cs-persona-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
             background: #141414;
-            border-color: transparent; /* makes the grey border disappear visually */
-        }
-        .kwacha-topbar .circle:hover .arrow,
-        .kwacha-topbar .circle:focus .arrow,
-        .kwacha-topbar.hovering .circle .arrow {
             color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
-        .kwacha-topbar .circle:focus { outline: 2px solid rgba(0,0,0,0.06); }
-
-        .kwacha-topbar .project-text:hover,
-        .kwacha-topbar .project-text:focus,
-        .kwacha-topbar.hovering .project-text {
+        .cs-persona-name {
+            font-size: 1rem;
+            font-weight: 700;
             color: #141414;
         }
+        .cs-persona-role {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 2px;
+        }
+        .cs-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 16px;
+        }
+        @media (max-width: 640px) {
+            .cs-two-col { grid-template-columns: 1fr; }
+            .cs-wrap { margin-top: 48px; }
+        }
+        /* User flow */
+        .cs-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 20px;
+        }
+        .cs-flow-step {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #f7f7f7;
+            border-radius: 10px;
+            padding: 13px 18px;
+            font-size: 0.95rem;
+            color: #2f2f2f;
+            line-height: 1.5;
+        }
+        .cs-flow-num {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #a0a0a0;
+            min-width: 26px;
+            letter-spacing: 0.04em;
+        }
+        .cs-flow-arrow {
+            text-align: center;
+            color: #d0d0d0;
+            font-size: 1rem;
+            line-height: 1;
+            padding: 2px 0;
+            margin-left: 30px;
+        }
+        /* ===== END CASE STUDY ===== */
+    </style>
+</head>
 
-        /* Remove any previous rules that targeted .kwacha-topbar:hover ... (they are replaced above) */
 
     </style>
 </head>
@@ -376,7 +526,7 @@
 <header id="app-header"></header>
 <main class="container">
     <div class="kwacha-topbar">
-        <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back">
+        <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back" onclick="history.back()" onkeydown="if(event.key==='Enter'||event.key===' ')history.back()">
             <!-- plain left arrow icon (no circle) — the surrounding .circle provides the circular container -->
             <ion-icon name="arrow-back-outline" class="arrow" aria-hidden="true" title="Back"></ion-icon>
         </div>
@@ -435,6 +585,13 @@
 
     <div class="kwacha-grid">
         <!-- 1. Remove the second image (group_color.png) -->
+
+        <div class="kwacha-card">
+            <div class="kwacha-media">
+                <img src="../assets/images/portifolio/courier/home_live_tracking.png" alt="Courier App Login Notification" />
+            </div>
+            <div class="kwacha-body"></div>
+        </div>
         <div class="kwacha-card">
             <div class="kwacha-media">
                 <img src="../assets/images/portifolio/courier/login_notification.png" alt="Courier App Login Notification" />
@@ -454,13 +611,196 @@
             <div class="kwacha-body"></div>
         </div>
         <!-- 2. Move the first image (group.png) to the last position -->
-        <div class="kwacha-card">
+        <div class="kwacha-card span full-fill">
             <div class="kwacha-media">
                 <img src="../assets/images/portifolio/courier/group.png" alt="Courier App Group" />
             </div>
             <div class="kwacha-body"></div>
         </div>
     </div>
+
+    <!-- ===== CASE STUDY ===== -->
+    <div class="cs-wrap">
+
+        <!-- Project Overview -->
+        <div class="cs-section">
+            <h2 class="cs-h2">Case Study</h2>
+            <h3 class="cs-h3">Project Overview</h3>
+            <p class="cs-p"><strong>Smart Courier App</strong> is a mobile app concept designed for <span class="cs-highlight">CTS Courier</span>, a Malawian courier company. The prototype was created as part of a pitch to help the company improve its parcel handling, delivery visibility, customer communication, and overall service reliability.</p>
+            <p class="cs-p">At the time, the company was facing service challenges such as <span class="cs-highlight">lost packages</span>, <span class="cs-highlight">misplaced parcels</span>, <span class="cs-highlight">delayed deliveries</span>, broken items, poor tracking visibility, and limited customer communication. The goal of this concept was to show how a digital courier system could help CTS modernise its delivery experience for both internal teams and customers.</p>
+            <p class="cs-p">The app allows users to track parcels in real time, view delivery progress, receive notifications, make payments, and access package details directly from their phones.</p>
+        </div>
+
+        <!-- My Role -->
+        <div class="cs-section">
+            <h3 class="cs-h3">My Role</h3>
+            <div class="cs-meta-row">
+                <div class="cs-meta-item"><span class="cs-meta-label">Role</span><span class="cs-meta-value">UI/UX Designer</span></div>
+                <div class="cs-meta-item"><span class="cs-meta-label">Responsibilities</span><span class="cs-meta-value">Research, ideation, user flow planning, UI design and prototyping</span></div>
+            </div>
+            <p class="cs-p">I worked on understanding the company's delivery challenges, identifying user pain points, mapping the parcel tracking journey, and designing a clean mobile experience that could support both customers and courier operations.</p>
+        </div>
+
+        <!-- Problem -->
+        <div class="cs-section">
+            <h3 class="cs-h3">Problem</h3>
+            <p class="cs-p">CTS Courier had a <span class="cs-highlight">manual and unreliable</span> parcel tracking experience. Customers had limited visibility after sending a package, which created frustration and mistrust.</p>
+            <p class="cs-p cs-p--label">Key problems identified:</p>
+            <ul class="cs-list">
+                <li>Customers could not easily track where their parcels were.</li>
+                <li>Packages were sometimes <strong>lost, misplaced, delayed, or damaged</strong>.</li>
+                <li>Customers had to call or physically follow up for delivery updates.</li>
+                <li>Payment and delivery confirmation were not well integrated.</li>
+                <li>The company lacked a modern digital touchpoint to improve trust and accountability.</li>
+            </ul>
+            <div class="cs-callout">The main UX challenge was to design a simple courier experience that made customers feel <strong>informed, in control, and confident</strong> that their parcel was being handled properly.</div>
+        </div>
+
+        <!-- Solution -->
+        <div class="cs-section">
+            <h3 class="cs-h3">Solution &amp; Objectives</h3>
+            <p class="cs-p">The solution was a mobile app prototype that introduced a more <span class="cs-highlight">transparent parcel tracking and delivery experience</span>.</p>
+            <p class="cs-p cs-p--label">The main objectives were to:</p>
+            <ul class="cs-list">
+                <li>Allow customers to track parcels using a <strong>package number</strong>.</li>
+                <li>Show <strong>real-time parcel movement</strong> from departure to destination.</li>
+                <li>Provide delivery status updates — <span class="cs-tag">Waiting</span> <span class="cs-tag">In Transit</span> <span class="cs-tag">At Station</span> <span class="cs-tag">Delayed</span> <span class="cs-tag">Delivered</span>.</li>
+                <li>Send <strong>notifications</strong> for important delivery milestones.</li>
+                <li>Allow users to pay through <strong>Airtel Money</strong>, <strong>TNM Mpamba</strong>, or card.</li>
+                <li>Reduce customer uncertainty by showing package details, delivery timelines, and current location.</li>
+                <li>Help CTS improve accountability and reduce complaints caused by lost or delayed packages.</li>
+            </ul>
+        </div>
+
+        <!-- Persona -->
+        <div class="cs-section">
+            <h3 class="cs-h3">Target User Persona</h3>
+            <div class="cs-persona">
+                <div class="cs-persona-header">
+                    <div class="cs-persona-avatar">TB</div>
+                    <div>
+                        <div class="cs-persona-name">Thandiwe Banda</div>
+                        <div class="cs-persona-role">Small business owner · Lilongwe, Malawi · Age 29</div>
+                    </div>
+                </div>
+                <p class="cs-p">Thandiwe regularly sends clothing items and small business packages between Lilongwe, Blantyre, and other districts. She depends on courier services to keep her customers happy, but she often becomes frustrated when she cannot track her parcels or confirm delivery on time.</p>
+                <div class="cs-two-col">
+                    <div>
+                        <p class="cs-p cs-p--label">Goals</p>
+                        <ul class="cs-list">
+                            <li>Track parcels without calling the courier office.</li>
+                            <li>Know when a package has arrived or is delayed.</li>
+                            <li>Pay for courier services quickly.</li>
+                            <li>Receive proof that a package has been delivered.</li>
+                            <li>Avoid losing customer trust because of courier delays.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="cs-p cs-p--label">Pain Points</p>
+                        <ul class="cs-list cs-list--pain">
+                            <li>No real-time parcel visibility.</li>
+                            <li>Delayed communication from courier staff.</li>
+                            <li>Fear of packages being misplaced or damaged.</li>
+                            <li>Wasting time following up through phone calls.</li>
+                            <li>Lack of clear delivery confirmation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Workflow -->
+        <div class="cs-section">
+            <h3 class="cs-h3">User Workflow</h3>
+            <p class="cs-p">The workflow was designed to be simple and familiar, especially for users who may not be highly technical.</p>
+            <div class="cs-flow">
+                <div class="cs-flow-step"><span class="cs-flow-num">01</span><span>Log in using <strong>email or phone number</strong></span></div>
+                <div class="cs-flow-arrow">↓</div>
+                <div class="cs-flow-step"><span class="cs-flow-num">02</span><span>Land on home screen and <strong>search for a package number</strong></span></div>
+                <div class="cs-flow-arrow">↓</div>
+                <div class="cs-flow-step"><span class="cs-flow-num">03</span><span>View <strong>package status</strong> — Waiting · Transit · Destination · Delivered</span></div>
+                <div class="cs-flow-arrow">↓</div>
+                <div class="cs-flow-step"><span class="cs-flow-num">04</span><span>Open <strong>live tracking</strong> to see parcel movement on the map</span></div>
+                <div class="cs-flow-arrow">↓</div>
+                <div class="cs-flow-step"><span class="cs-flow-num">05</span><span>Receive <strong>notifications</strong> when parcel status changes</span></div>
+                <div class="cs-flow-arrow">↓</div>
+                <div class="cs-flow-step"><span class="cs-flow-num">06</span><span>Select <strong>payment method</strong> and complete payment</span></div>
+                <div class="cs-flow-arrow">↓</div>
+                <div class="cs-flow-step"><span class="cs-flow-num">07</span><span>Continue tracking until <strong>delivery confirmed</strong></span></div>
+            </div>
+        </div>
+
+        <!-- Wireframe & Structure -->
+        <div class="cs-section">
+            <h3 class="cs-h3">Wireframe &amp; Structure</h3>
+            <p class="cs-p">Before creating the final UI, the app structure was planned around the most important courier actions: <span class="cs-highlight">tracking, payment, notifications, and package details</span>.</p>
+            <p class="cs-p cs-p--label">Core screens:</p>
+            <ul class="cs-list">
+                <li><strong>Login screen</strong> — Simple account access using email or phone number.</li>
+                <li><strong>Home screen</strong> — Package search, delivery categories, and recent package cards.</li>
+                <li><strong>Live tracking screen</strong> — Map-based parcel movement with tracking details.</li>
+                <li><strong>Notifications screen</strong> — Delivery updates grouped by today and yesterday.</li>
+                <li><strong>Payment screen</strong> — Package summary and payment method selection.</li>
+            </ul>
+            <p class="cs-p">The wireframe approach focused on making the app easy to scan. Important parcel information such as package number, route, status, and delivery progress was kept visible and easy to understand.</p>
+        </div>
+
+        <!-- UI Design Direction -->
+        <div class="cs-section">
+            <h3 class="cs-h3">UI Design Direction</h3>
+            <p class="cs-p">The visual design used a clean logistics-inspired interface with a <span class="cs-highlight">strong green accent colour</span> to represent movement, delivery, progress, and trust.</p>
+            <p class="cs-p cs-p--label">Design choices:</p>
+            <ul class="cs-list">
+                <li>Soft rounded cards for package information.</li>
+                <li><strong>Progress indicators</strong> to show delivery stage.</li>
+                <li>Status colours to separate <span class="cs-tag cs-tag--green">Delivered</span> <span class="cs-tag cs-tag--blue">In Transit</span> <span class="cs-tag cs-tag--orange">Delayed</span> <span class="cs-tag">Started Off</span> packages.</li>
+                <li>A <strong>map-based tracking screen</strong> for better delivery visibility.</li>
+                <li>Simple <strong>local payment options</strong> — Airtel Money and TNM Mpamba.</li>
+                <li>Clear notification cards to help users understand parcel updates quickly.</li>
+            </ul>
+            <div class="cs-callout">The interface was intentionally kept <strong>light, simple, and practical</strong> — courier users mainly need speed, clarity, and trust.</div>
+        </div>
+
+        <!-- Results -->
+        <div class="cs-section">
+            <h3 class="cs-h3">Results</h3>
+            <p class="cs-p">Since this was a concept/prototype created for pitching, the main result was a clear product vision showing how CTS Courier could digitalise its delivery service.</p>
+            <p class="cs-p cs-p--label">The prototype demonstrated how the company could:</p>
+            <ul class="cs-list">
+                <li>Reduce customer complaints caused by <strong>poor parcel visibility</strong>.</li>
+                <li>Improve customer trust through <strong>real-time tracking</strong>.</li>
+                <li>Create a better <strong>delivery confirmation process</strong>.</li>
+                <li>Make payments easier through <strong>mobile money integration</strong>.</li>
+                <li>Improve accountability across parcel movement stages.</li>
+                <li>Present itself as a more <strong>modern and reliable courier service</strong>.</li>
+            </ul>
+            <div class="cs-callout cs-callout--success">The design successfully translated a real business problem into a practical mobile product concept.</div>
+        </div>
+
+        <!-- Challenges -->
+        <div class="cs-section">
+            <h3 class="cs-h3">Challenges</h3>
+            <p class="cs-p">One of the main challenges was designing for a courier environment where many processes may still be <span class="cs-highlight">manual or semi-digital</span>. The app had to feel modern while still being realistic for a Malawian courier company.</p>
+            <ul class="cs-list">
+                <li>Simplifying complex delivery stages into clear customer-facing statuses.</li>
+                <li>Designing tracking screens that felt useful without overwhelming users.</li>
+                <li>Balancing customer needs with internal courier operations.</li>
+                <li>Making payment options feel <strong>familiar and locally relevant</strong>.</li>
+                <li>Creating a polished prototype that could communicate value quickly during a business pitch.</li>
+            </ul>
+        </div>
+
+        <!-- Reflection -->
+        <div class="cs-section cs-section--last">
+            <h3 class="cs-h3">Reflection</h3>
+            <p class="cs-p">This project helped me think beyond visual design and focus more on how <span class="cs-highlight">product design can solve operational problems</span>. The biggest lesson was that a courier app is not just about tracking parcels — it is about <strong>trust, accountability, communication, and customer confidence</strong>.</p>
+            <p class="cs-p">Through this concept, I learned how to turn service weaknesses into product opportunities. Lost packages, poor updates, and delayed communication became design opportunities for real-time tracking, delivery notifications, payment integration, and clearer package visibility.</p>
+            <p class="cs-p">The project also strengthened my ability to design for local business contexts in Malawi, where digital products must be <strong>simple, practical, and directly connected to business improvement</strong>.</p>
+        </div>
+
+    </div>
+    <!-- ===== END CASE STUDY ===== -->
+
 </main>
 <!--<footer id="app-footer"></footer>-->
 <script src="../assets/app_shared.js"></script>
