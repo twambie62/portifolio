@@ -2222,6 +2222,74 @@
             }
             .nav a { padding: 6px 12px; }
         }
+
+        /* ===== GALLERY CAROUSEL ===== */
+        .carousel-section {
+            width: 100%;
+            overflow: hidden;
+            padding: 80px 0 100px;
+            position: relative;
+            background: transparent;
+        }
+        .carousel-perspective {
+            perspective: 1200px;
+            perspective-origin: 50% 50%;
+            width: 100%;
+            overflow: hidden;
+            cursor: grab;
+            user-select: none;
+        }
+        .carousel-perspective:active { cursor: grabbing; }
+        .carousel-track {
+            display: flex;
+            align-items: center;
+            will-change: transform;
+            gap: 20px;
+            padding: 40px 0;
+            /* width is set by JS */
+        }
+        .c-card {
+            flex-shrink: 0;
+            width: 240px;
+            aspect-ratio: 3 / 4;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            will-change: transform;
+            transform-style: preserve-3d;
+            transform-origin: center center;
+            transition: box-shadow 0.3s;
+        }
+        .c-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+        }
+        .c-card .c-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%);
+            pointer-events: none;
+        }
+        .c-card .c-label {
+            position: absolute;
+            bottom: 16px;
+            left: 18px;
+            color: #fff;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            pointer-events: none;
+            font-family: 'Inter', sans-serif;
+        }
+        @media (max-width: 640px) {
+            .c-card { width: 170px; }
+            .carousel-section { padding: 48px 0 64px; }
+        }
+        /* ===== END GALLERY CAROUSEL ===== */
+
     </style>
 </head>
 <body>
@@ -3224,6 +3292,17 @@
             </div>
         </form>
     </section>
+
+    <!-- ===== 3D COVERFLOW CAROUSEL ===== -->
+    <section id="gallery-carousel" class="carousel-section">
+        <div class="carousel-perspective">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- cards injected by JS -->
+            </div>
+        </div>
+    </section>
+    <!-- ===== END CAROUSEL ===== -->
+
 </div>
 </main>
 
@@ -4029,4 +4108,162 @@
   })();
 </script>
 
+<!-- ===== 3D COVERFLOW CAROUSEL ===== -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/Draggable.min.js"></script>
+<script>
+(function () {
+    gsap.registerPlugin(Draggable);
 
+    const IMAGES = [
+        'assets/images/my_pictures/1.jpeg',
+        'assets/images/my_pictures/2.jpeg',
+        'assets/images/my_pictures/3.jpeg',
+        'assets/images/my_pictures/4.jpeg',
+        'assets/images/my_pictures/5.jpeg',
+        'assets/images/my_pictures/6.jpeg',
+        'assets/images/my_pictures/7.jpeg',
+        'assets/images/my_pictures/8.jpeg',
+        'assets/images/my_pictures/9.jpeg',
+        'assets/images/my_pictures/10.jpeg',
+        'assets/images/my_pictures/11.jpeg',
+        'assets/images/my_pictures/12.jpeg',
+        'assets/images/my_pictures/13.jpeg',
+        'assets/images/my_pictures/14.jpeg',
+        'assets/images/my_pictures/15.jpeg',
+        'assets/images/my_pictures/16.jpeg',
+        'assets/images/my_pictures/17.jpeg',
+        'assets/images/my_pictures/18.jpeg',
+        'assets/images/my_pictures/19.jpeg',
+    ];
+
+    const LABELS = IMAGES.map(function (_, i) {
+        return String(i + 1).padStart(2, '0');
+    });
+
+    const track    = document.getElementById('carouselTrack');
+    if (!track) return;
+
+    const isMob    = window.matchMedia('(max-width:640px)').matches;
+    const CARD_W   = isMob ? 170 : 240;
+    const GAP      = 20;
+    const STEP     = CARD_W + GAP;
+
+    // Build 3 sets of cards for seamless loop
+    const allSrc = [...IMAGES, ...IMAGES, ...IMAGES];
+    const allLbl = [...LABELS, ...LABELS, ...LABELS];
+
+    allSrc.forEach(function (src, i) {
+        const card = document.createElement('div');
+        card.className = 'c-card';
+
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = 'Photo ' + allLbl[i];
+        img.loading = 'lazy';
+
+        const overlay = document.createElement('div');
+        overlay.className = 'c-overlay';
+
+        const label = document.createElement('div');
+        label.className = 'c-label';
+        label.textContent = allLbl[i];
+
+        card.appendChild(img);
+        card.appendChild(overlay);
+        card.appendChild(label);
+        track.appendChild(card);
+    });
+
+    const cards    = Array.from(track.querySelectorAll('.c-card'));
+    const total    = cards.length;
+    const setLen   = IMAGES.length;                     // 19
+    const setW     = setLen * STEP;                     // width of one full set
+    const trackW   = total * STEP;
+    track.style.width = trackW + 'px';
+
+    // Start in the middle set so we can loop both directions
+    let xPos = -setW;
+    gsap.set(track, { x: xPos });
+
+    // ── 3D tilt per card ─────────────────────────────────────────────
+    const MAX_ROTATE = 48;    // degrees at far edge
+    const MAX_SCALE  = 0.72;  // scale at far edge
+    const SPREAD     = 5;     // cards away from center that reach max tilt
+
+    function updateCardStyles() {
+        const cx = window.innerWidth / 2;
+        cards.forEach(function (card) {
+            const rect  = card.getBoundingClientRect();
+            const cardCx = rect.left + rect.width / 2;
+            const dist   = (cardCx - cx) / (window.innerWidth * 0.5);   // -1 … +1
+            const clamp  = Math.max(-1, Math.min(1, dist));
+            const rotY   = clamp * MAX_ROTATE;
+            const scale  = 1 - Math.abs(clamp) * (1 - MAX_SCALE);
+            const tz     = -Math.abs(clamp) * 120;                       // push back
+            gsap.set(card, {
+                rotationY: rotY,
+                scale: scale,
+                z: tz,
+                transformPerspective: 1200,
+                transformOrigin: 'center center',
+                force3D: true,
+            });
+        });
+    }
+
+    // ── Auto-scroll using GSAP ticker ────────────────────────────────
+    const SPEED = isMob ? 0.4 : 0.55;   // px per ticker frame
+    let paused  = false;
+
+    gsap.ticker.add(function () {
+        if (paused) return;
+        xPos -= SPEED;
+        // Seamless loop: once we've shifted a full set width, snap back
+        if (xPos <= -setW * 2) xPos += setW;
+        gsap.set(track, { x: xPos });
+        updateCardStyles();
+    });
+
+    // ── Draggable ────────────────────────────────────────────────────
+    let dragStartX = 0;
+
+    Draggable.create(track, {
+        type: 'x',
+        inertia: false,
+        onPress: function () {
+            paused = true;
+            dragStartX = xPos;
+        },
+        onDrag: function () {
+            xPos = dragStartX + (this.x - this.startX);
+            // normalise into the middle set range
+            while (xPos > -setW)        xPos -= setW;
+            while (xPos < -setW * 2)    xPos += setW;
+            gsap.set(track, { x: xPos });
+            updateCardStyles();
+        },
+        onRelease: function () {
+            // resume auto-scroll after 1.2 s of inertia-like glide
+            const vel = this.getVelocity();
+            gsap.to({ v: 0 }, {
+                v: 1,
+                duration: 0.8,
+                ease: 'power2.out',
+                onUpdate: function () {
+                    xPos += vel * 0.008 * (1 - this.progress());
+                    while (xPos > -setW)     xPos -= setW;
+                    while (xPos < -setW * 2) xPos += setW;
+                    gsap.set(track, { x: xPos });
+                    updateCardStyles();
+                },
+                onComplete: function () { paused = false; },
+            });
+        },
+    });
+
+    // Initial tilt pass after images paint
+    requestAnimationFrame(updateCardStyles);
+    window.addEventListener('resize', updateCardStyles);
+})();
+</script>
+<!-- ===== END CAROUSEL ===== -->
