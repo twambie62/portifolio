@@ -2484,6 +2484,25 @@
         <section id="projects">
             <div class="section-label"><span class="dot"></span>My Projects</div>
             <div class="projects">
+
+                <a href="pages/bp_app.html" class="card-link">
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/blood_pressure_app.png');">
+                            <img src="assets/images/portifolio/blood_pressure/home.png" alt="Blood Pressure Project">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Blood Pressure App (Case study)</div>
+                            <div class="card-desc">Remote blood pressure monitoring system connected to Arduino ESP-32 for real-time patient tracking.</div>
+                            <div class="card-tags">
+                                <span>UI/UX</span>
+                                <span>App Design</span>
+                                <span>App Development</span>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+
                 <a href="pages/kwacha_wise.html" class="card-link">
                     <article class="card">
                         <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/fin_tech_app.png');">
@@ -2501,22 +2520,7 @@
                     </article>
                 </a>
 
-                <a href="pages/bp_app.html" class="card-link">
-                    <article class="card">
-                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/blood_pressure_app.png');">
-                            <img src="assets/images/portifolio/blood_pressure/home.png" alt="Blood Pressure Project">
-                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Blood Pressure App</div>
-                            <div class="card-desc">Remote blood pressure monitoring system connected to Arduino ESP-32 for real-time patient tracking.</div>
-                            <div class="card-tags">
-                                <span>UI/UX</span>
-                                <span>App Design</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
+
 
                 <a href="pages/influencer_malawi.html" class="card-link">
                 <article class="card">
@@ -3931,14 +3935,14 @@
             .filter(Boolean);
 
         // Set all hidden upfront
-        gsap.set(els, { opacity: 0, y: 32 });
+        gsap.set(els, { opacity: 0, y: 72 });
 
         // Each heading animates as one whole element when it enters the viewport
         els.forEach(function (el) {
             gsap.to(el, {
                 opacity: 1,
                 y: 0,
-                duration: 1,
+                duration: 0.8,
                 ease: 'power3.out',
                 scrollTrigger: {
                     trigger: el,
@@ -4137,7 +4141,7 @@
                 gsap.to(els, {
                     opacity: 1,
                     y: 0,
-                    duration: 0.8,
+                    duration: 0.7,
                     ease: 'power3.out',
                     stagger: 0.11,
                 });
