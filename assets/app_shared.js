@@ -158,7 +158,7 @@ function renderFooter() {
             footerEl.querySelector('.footer-bottom-bar'),
         ].filter(Boolean);
 
-        gsap.set(els, { opacity: 0, y: 36 });
+        gsap.set(els, { opacity: 0, y: 38 });
 
         ScrollTrigger.create({
             trigger: footerEl,
@@ -167,7 +167,7 @@ function renderFooter() {
             onEnter: function () {
                 gsap.to(els, {
                     opacity: 1, y: 0,
-                    duration: .8,
+                    duration: .7,
                     ease: 'power3.out',
                     stagger: 0.11,
                 });
