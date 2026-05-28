@@ -167,7 +167,7 @@ function renderFooter() {
             onEnter: function () {
                 gsap.to(els, {
                     opacity: 1, y: 0,
-                    duration: .7,
+                    duration: .6,
                     ease: 'power3.out',
                     stagger: 0.11,
                 });
