@@ -1,10 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Influencer Malawi</title>
+    <link rel="icon" href="../assets/images/about_me/me.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Ionicons: rounded / stroked icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="../assets/app_shared.css">
+    <style>
+        /* prevent any unwanted horizontal scrolling */
+        html, body {
+
+
+            overflow-x: hidden; }
+
+        /* ===== HEADER — smart_apps style ===== */
+        .header-row-1 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: start;
+            margin-top: 80px;
+            margin-bottom: 28px;
+        }
+        .header-title {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.22;
+            color: #141414;
+        }
+        .header-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+        .header-tags span {
+            background: #ededed;
+            color: #2f2f2f;
+            border-radius: 6px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .header-row-3 {
+            display: block;
+            margin-bottom: 48px;
+        }
+        .header-description {
+            font-size: 1.08rem;
+            font-weight: 400;
+            color: #4a4a4a;
+            line-height: 1.85;
+        }
+        @media (max-width: 640px) {
+            .header-row-1 { grid-template-columns: 1fr; gap: 18px; margin-top: 40px; }
+            .header-tags { justify-content: flex-start; }
+        }
+        /* ===== END HEADER ===== */
+
+        /* ===== OVERVIEW SECTION ===== */
+        .proj-meta-card {
+            border-top: 1px solid #e3e3e3;
+            border-bottom: 1px solid #e3e3e3;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            overflow: hidden;
+            margin-bottom: 32px;
+            margin-top: 40px;
+        }
+        .proj-meta-col {
+            padding: 20px 16px;
+            margin-top: 14px;
+            margin-bottom: 14px;
+            margin-left: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-right: 1px solid #e3e3e3;
+            box-sizing: border-box;
+        }
+        .proj-meta-col:last-child { border-right: none; }
+        .proj-meta-label {
+            font-size: 0.88rem;
+            font-weight: 400;
+            color: #a0a0a0;
+            line-height: 1.5;
+        }
+        .proj-meta-value {
+            font-size: 0.96rem;
+            font-weight: 400;
+            color: #141414;
+            line-height: 1.3;
+        }
+        .overview-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #141414;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            margin-top: 48px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 640px) {
+            .proj-meta-card {
+                grid-template-columns: 1fr;
+                border-radius: 0px;
+                padding: 0px;
+            }
+            .proj-meta-col {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                text-align: left;
+                border-right: none;
+                border-bottom: 1px solid #e3e3e3;
+                padding: 16px 0px;
+                gap: 8px;
+                margin-top: 0;
+                margin-bottom: 0;
+                margin-left: 0px;
+            }
+            .proj-meta-label { margin-left: 16px; }
+            .proj-meta-value { margin-right: 16px; text-align: right; }
+            .proj-meta-col:last-child { border-bottom: none; }
+            .overview-title { font-size: 1.15rem; margin-bottom: 16px; margin-top: 28px; }
+        }
+        /* ===== END OVERVIEW ===== */
+        /* ensure the grid below uses the same two-column sizing so edges line up */
+        .kwacha-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            column-gap: 20px;
+            row-gap: 24px;
+            /*margin-right: 24px;*/
+            /*margin-left: 24px;*/
+            margin-bottom: 32px;
+        }
+        @media (min-width: 641px) {
+            .kwacha-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .kwacha-card {
+
+            background: transparent;
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            /* removed shadow so images have no visible shadow */
+            box-shadow: none;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
+            height: 480px;
+            align-items: stretch;
+        }
+
+        .kwacha-card .kwacha-media {
+            padding: 36px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 480px;
+            flex-shrink: 0;
+            background: transparent;
+        }
+        .kwacha-card .kwacha-media::before {
+            content: "";
+            position: absolute;
+            inset: 0px;
+            border-radius: 14px;
+            background: #E8E8E8;
+            z-index: 1;
+            /* ensure placeholder has no shadow */
+            box-shadow: none;
+        }
+        .kwacha-card .kwacha-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center center;
+            border-radius: 14px;
+            display: block;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.6s cubic-bezier(0,0,0.2,1);
+            background: transparent;
+            /* explicitly remove any image shadows */
+            box-shadow: none;
+        }
+        .kwacha-card:hover .kwacha-media img { transform: scale(1.06); }
+        .kwacha-card .kwacha-body {
+            padding: 12px 14px;
+            display: none; /* hide body/title area as requested */
+            flex: 1 1 auto;
+        }
+        .kwacha-card.span {
+            grid-column: 1 / -1;
+            /*height: 420px;*/
+        }
+        @media (max-width: 640px) {
+            /* stacked layout on small screens: keep padding so edges match card spacing */
+            .kwacha-main {
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+                padding: 0 12px;
+                box-sizing: border-box;
+            }
+
+            /* make the top image area fill the content width on small screens,
+               keep internal padding like the cards and ensure the img stays fully visible */
+            .kwacha-main-img {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
+                padding: 20px;            /* similar padding to card-media on mobile */
+                box-sizing: border-box;
+                height: auto;             /* allow height to size to content */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 14px;      /* match card radius */
+                background: #E8E8E8;      /* keep grey background on small screens */
+                overflow: hidden;
+            }
+            .kwacha-main-img img {
+                width: 100%;
+                height: auto;             /* ensure whole image is visible (contain behavior) */
+                object-fit: contain;
+                border-radius: 12px;      /* small inner rounding for visual match */
+                display: block;
+            }
+
+
+            .kwacha-card { height: 380px; }
+            .kwacha-card .kwacha-media { height: 380px; padding: 32px; }
+            .kwacha-card .kwacha-media::before { inset: 10px; border-radius: 12px; }
+            .kwacha-card .kwacha-media img { border-radius: 12px; }
+            .kwacha-card.span { grid-column: auto; height: 360px; }
+
+            /* reduced spacing between grid images on mobile */
+            .kwacha-grid {
+                gap: 0px;
+                row-gap: 8px/* previously 24px; tightened for mobile */
+                /*margin-bottom: 20px;*/
+            }
+        }
+
+        /* Top bar above title (as seen in top_bar.png) */
+        .kwacha-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            margin: 40px 6px 18px;
+            /* removed: cursor: pointer; */
+        }
+        .kwacha-topbar .circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            border: 1px solid #e3e3e3;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.18s, border-color 0.08s;
+            cursor: pointer; /* only the interactive circle shows pointer */
+        }
+        /* Ionicon sizing/color for rounded-stroke arrow */
+        .kwacha-topbar .arrow {
+            width: 22px;
+            height: 22px;
+            color: #2f2f2f;
+            transition: color 0.18s;
+            display: inline-block;
+        }
+        /* ensure the inner SVG scales to the CSS size */
+        .kwacha-topbar .arrow svg { width: 100%; height: 100%; display: block; }
+
+        .kwacha-topbar .project-text {
+            font-size: 1.0rem;
+            font-weight: 500;
+            color: #6f6f6f;
+            transition: color 0.18s;
+            cursor: pointer; /* text is interactive */
+        }
+
+        /* NEW: bordered-only tag placed at the far right of the top bar */
+        .kwacha-topbar .top-tag {
+            margin-left: auto;                  /* push to the far end */
+            border: 1px solid #e3e3e3;          /* border only, keep same border color */
+            background: transparent;            /* no background */
+            color: #6f6f6f;                     /* muted text color */
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-sizing: border-box;
+            cursor: pointer; /* tag is interactive */
+        }
+        .kwacha-topbar .top-tag:hover,
+        .kwacha-topbar .top-tag:focus {
+            color: #141414;
+            border-color: #d0d0d0;
+            outline: none;
+        }
+
+        /* NEW: only change visuals when the circle or the text are hovered/focused.
+           JS toggles the .hovering class on the container so both elements update together.
+           Note: avoid using .kwacha-topbar:hover so hovering empty space in the row won't trigger changes. */
+        .kwacha-topbar .circle:hover,
+        .kwacha-topbar .circle:focus,
+        .kwacha-topbar.hovering .circle {
+            background: #141414;
+            border-color: transparent; /* makes the grey border disappear visually */
+        }
+        .kwacha-topbar .circle:hover .arrow,
+        .kwacha-topbar .circle:focus .arrow,
+        .kwacha-topbar.hovering .circle .arrow {
+            color: #fff;
+        }
+        .kwacha-topbar .circle:focus { outline: 2px solid rgba(0,0,0,0.06); }
+
+        .kwacha-topbar .project-text:hover,
+        .kwacha-topbar .project-text:focus,
+        .kwacha-topbar.hovering .project-text {
+            color: #141414;
+        }
+
+        /* Remove any previous rules that targeted .kwacha-topbar:hover ... (they are replaced above) */
+
+    </style>
 </head>
 <body>
+<header id="app-header"></header>
+
+<!-- Page transition overlay -->
+<div id="page-overlay"></div>
+
+<main class="container" data-barba="wrapper">
+    <div data-barba="container" data-barba-namespace="kwacha-wise">
+        <div class="kwacha-topbar">
+            <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back" onclick="history.back()" onkeydown="if(event.key==='Enter'||event.key===' ')history.back()">
+                <ion-icon name="arrow-back-outline" class="arrow" aria-hidden="true" title="Back"></ion-icon>
+            </div>
+            <span class="project-text" tabindex="0">Projects</span>
+            <div class="top-tag" tabindex="0">Design</div>
+        </div>
+
+        <!-- Row 1: Title left, Tags right -->
+        <div class="header-row-1">
+            <div class="header-title">Influencer Malawi App</div>
+            <div class="header-tags">
+                <span>Influencer</span>
+                <span>Brand Collaboration</span>
+                <span>AppDesign</span>
+                <span>UI/UX</span>
+                <span>Figma</span>
+                <span>React Native</span>
+            </div>
+        </div>
+
+        <!-- Header hero image full width -->
+        <div class="header-hero-img" style="margin-bottom:24px; background:#F0F0F0; border-radius:20px; height:460px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+            <img src="../assets/images/portifolio/influencer_malawi/walkthrough.png"
+                 alt="Influencer Malawi Hero"
+                 style="width:100%; height:100%; padding:36px; display:block; box-sizing:border-box; object-fit:contain;" />
+        </div>
+
+        <!-- Overview meta section -->
+        <div class="proj-meta-card">
+            <div class="proj-meta-col">
+                <span class="proj-meta-label">Role</span>
+                <span class="proj-meta-value">Designer & Developer</span>
+            </div>
+            <div class="proj-meta-col">
+                <span class="proj-meta-label">Client</span>
+                <span class="proj-meta-value">Tech265</span>
+            </div>
+            <div class="proj-meta-col">
+                <span class="proj-meta-label">Platform</span>
+                <span class="proj-meta-value">iOS / Android</span>
+            </div>
+            <div class="proj-meta-col">
+                <span class="proj-meta-label">Year</span>
+                <span class="proj-meta-value">2026</span>
+            </div>
+        </div>
+
+        <div class="overview-title">Overview</div>
+
+        <!-- Description full width -->
+        <div class="header-row-3">
+            <div class="header-description">
+                Influencer Malawi is a mobile platform that connects influencers and brands for seamless collaboration and marketing campaigns. The app allows brands to discover and reach out to local influencers, while influencers can manage partnerships, track campaigns, and grow their presence — all in one place.
+            </div>
+        </div>
+
+        <div class="kwacha-grid">
+            <div class="kwacha-card">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/influencer_malawi/walkthrough.png" alt="Walkthrough" />
+                </div>
+                <div class="kwacha-body"></div>
+            </div>
+
+            <div class="kwacha-card">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/influencer_malawi/login.png" alt="Login" />
+                </div>
+                <div class="kwacha-body"></div>
+            </div>
+
+            <div class="kwacha-card">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/influencer_malawi/creating_account.png" alt="Creating Account" />
+                </div>
+                <div class="kwacha-body"></div>
+            </div>
+
+            <div class="kwacha-card">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/influencer_malawi/home.png" alt="Home" />
+                </div>
+                <div class="kwacha-body"></div>
+            </div>
+
+            <div class="kwacha-card">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/influencer_malawi/influencer.png" alt="Influencer" />
+                </div>
+                <div class="kwacha-body"></div>
+            </div>
+
+            <div class="kwacha-card">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/influencer_malawi/campaigns.png" alt="Campaigns" />
+                </div>
+                <div class="kwacha-body"></div>
+            </div>
+
+            <div class="kwacha-card">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/influencer_malawi/transactions.png" alt="Transactions" />
+                </div>
+                <div class="kwacha-body"></div>
+            </div>
+            <div class="kwacha-card">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/influencer_malawi/creating_campaign.png" alt="Transactions" />
+                </div>
+                <div class="kwacha-body"></div>
+            </div>
+
+            <div class="kwacha-card ">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/influencer_malawi/app_store_1.png" alt="App Store 1" />
+                </div>
+                <div class="kwacha-body"></div>
+            </div>
+
+            <div class="kwacha-card ">
+                <div class="kwacha-media">
+                    <img src="../assets/images/portifolio/influencer_malawi/app_store_2.png" alt="App Store 2" />
+                </div>
+                <div class="kwacha-body"></div>
+            </div>
+        </div>
+    </div><!-- /#barba-container -->
+</main>
+<!--<footer id="app-footer"></footer>-->
+<script src="../assets/app_shared.js"></script>
+
+<!-- GSAP for entrance animations -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // ── Topbar hover state ──────────────────────────────────────────────
+        (function () {
+            const topbar = document.querySelector('.kwacha-topbar');
+            if (!topbar) return;
+            const circle = topbar.querySelector('.circle');
+            const text   = topbar.querySelector('.project-text');
+
+            function setHover()   { topbar.classList.add('hovering'); }
+            function clearHover() { topbar.classList.remove('hovering'); }
+
+            [circle, text].forEach(el => {
+                if (!el) return;
+                el.addEventListener('mouseenter', setHover);
+                el.addEventListener('mouseleave', clearHover);
+                el.addEventListener('focus',      setHover);
+                el.addEventListener('blur',       clearHover);
+            });
+        })();
+
+        // ── Topbar navigation ───────────────────────────────────────────────
+        (function () {
+            const topbar = document.querySelector('.kwacha-topbar');
+            if (!topbar) return;
+            const circle = topbar.querySelector('.circle');
+            const text   = topbar.querySelector('.project-text');
+            const target = '../index.html';
+
+            function goHome(e) {
+                if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
+                window.location.href = target;
+            }
+            function keyActivate(e) {
+                if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                    e.preventDefault();
+                    goHome(e);
+                }
+            }
+            [circle, text].forEach(el => {
+                if (!el) return;
+                el.addEventListener('click',   goHome);
+                el.addEventListener('keydown', keyActivate);
+            });
+        })();
+
+        // ── Figma link ──────────────────────────────────────────────────────
+        const figmaLink = document.getElementById('figma-link');
+        if (figmaLink) {
+            figmaLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.open('https://www.figma.com/', '_blank');
+            });
+        }
+
+        // ── Entrance animation: right → left fade-in, staggered ────────────
+        // Each element starts off to the right (x: 60) and invisible,
+        // then smoothly slides left into place while fading in.
+        const targets = [
+            document.querySelector('.kwacha-topbar'),
+            document.querySelector('.header-row-1'),
+            document.querySelector('.header-hero-img'),
+            document.querySelector('.proj-meta-card'),
+            document.querySelector('.overview-title'),
+            document.querySelector('.header-row-3'),
+        ].filter(Boolean);
+
+        gsap.set(targets, { opacity: 0, x: 60 });
+
+        gsap.to(targets, {
+            opacity: 1,
+            x: 0,
+            duration: 0.75,
+            ease: 'power3.out',
+            stagger: 0.14,
+            delay: 0.1,
+        });
+
+        // Tags inside header-row-1 get their own tighter stagger for extra polish
+        const tags = document.querySelectorAll('.header-tags span');
+        if (tags.length) {
+            gsap.set(tags, { opacity: 0, x: 40 });
+            gsap.to(tags, {
+                opacity: 1,
+                x: 0,
+                duration: 0.55,
+                ease: 'power3.out',
+                stagger: 0.07,
+                delay: 0.35,
+            });
+        }
+
+    });
+</script>
+<footer id="app-footer"></footer>
 
 </body>
 </html>
