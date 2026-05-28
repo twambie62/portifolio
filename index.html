@@ -1082,6 +1082,8 @@
             overflow: hidden;
             background: #E8E8E8;
             /*margin: 10px;*/
+            padding: 10px;
+            /*margin-bottom: 12px;*/
             flex-shrink: 0;
             /*border-radius: var(--radius);*/
         }
@@ -1119,6 +1121,30 @@
                 grid-template-columns: 1fr;
                 gap: 12px;
                 padding: 0 4px 0 24px;
+            }
+
+            .svc-img {
+                /*width: 9%;*/
+                aspect-ratio: 4 / 3;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                background: #E8E8E8;
+                /*margin: 10px;*/
+                /*padding: 10px;*/
+                margin-bottom: 2px;
+                flex-shrink: 0;
+                /*border-radius: var(--radius);*/
+            }
+            .svc-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                display: block;
+                /*margin: 10px;*/
+                /*padding: 40px;*/
+                box-sizing: border-box;
             }
         }
 
@@ -3580,7 +3606,7 @@
             opacity: 1,
             y: 0,
             filter: 'blur(0px)',
-            duration: 0.5,
+            duration: 0.45,
         }, '-=0.45');
 
         // 5. Buttons + lets-chat — rise + fade, staggered
@@ -4173,11 +4199,11 @@
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                duration: .92,
+                duration: .9,
                 ease: 'expo.out',
                 scrollTrigger: {
                     trigger: img,
-                    start: 'top 92%',
+                    start: 'top 95%',
                     once: true,
                 },
                 clearProps: 'transform,opacity',
