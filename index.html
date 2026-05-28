@@ -2207,7 +2207,24 @@
         }
         input:focus, textarea:focus { border-color: #b7b7b7; }
         textarea { min-height: 180px; resize: vertical; }
-        .submit-row { display: flex; justify-content: flex-end; }
+        .submit-row { display: flex; justify-content: flex-end; gap: 12px; align-items: center; }
+        .contact-alt-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #25D366; color: #fff; border: none;
+            border-radius: 12px; padding: 12px 20px; font-size: 14px;
+            font-weight: 600; font-family: inherit; cursor: pointer;
+            transition: opacity 0.2s, transform 0.15s;
+            text-decoration: none;
+        }
+        .contact-alt-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+        .contact-alt-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+        .contact-success {
+            display: none; align-items: center; gap: 10px;
+            background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px;
+            padding: 14px 18px; font-size: 14px; color: #166534; margin-top: 12px;
+        }
+        .contact-success.visible { display: flex; }
+        .contact-success svg { width: 20px; height: 20px; flex-shrink: 0; }
         /* Footer */
         .socials {
             display: flex;
@@ -3332,9 +3349,17 @@
                     <input type="email" id="contact-email" placeholder="Email" required>
                 </div>
                 <input type="text" id="contact-subject" placeholder="Subject">
-                <textarea id="contact-message" placeholder="Your message"></textarea>
+                <textarea id="contact-message" placeholder="Your message" required></textarea>
                 <div class="submit-row">
-                    <button type="submit" class="btn">Submit</button>
+                    <a class="contact-alt-btn" id="whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.570-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.118 1.524 5.847L.057 23.882l6.186-1.443A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.374l-.36-.213-3.724.868.936-3.604-.234-.37A9.818 9.818 0 112 12c0-5.42 4.398-9.818 9.818-9.818S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+                        WhatsApp
+                    </a>
+                    <button type="submit" class="btn" id="contact-submit">Send Message</button>
+                </div>
+                <div class="contact-success" id="contact-success">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Your email client has opened with your message. Hit send to reach me!
                 </div>
             </form>
         </section>
@@ -3512,16 +3537,66 @@
     document.querySelectorAll('.faq-item').forEach(function(item) {
         item.addEventListener('click', function() {
             const isOpen = item.classList.contains('open');
-            // Close all items
-            document.querySelectorAll('.faq-item').forEach(function(i) {
-                i.classList.remove('open');
-            });
-            // Open clicked if it was closed
-            if (!isOpen) {
-                item.classList.add('open');
-            }
+            document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+            if (!isOpen) item.classList.add('open');
         });
     });
+
+    // ── Contact form — opens email client with all fields pre-filled ──
+    (function () {
+        const form     = document.getElementById('contact-form');
+        const waBtn    = document.getElementById('whatsapp-btn');
+        const success  = document.getElementById('contact-success');
+        const MY_EMAIL = 'twambililemusukwa@gmail.com';
+        const WA_NUMBER = '265884950893'; // +265 99 588 64 98 (no + or spaces)
+
+        // Build WhatsApp link dynamically as the user types
+        function updateWaLink() {
+            const name    = (document.getElementById('contact-name').value   || '').trim();
+            const subject = (document.getElementById('contact-subject').value|| '').trim();
+            const message = (document.getElementById('contact-message').value|| '').trim();
+            const parts = [];
+            if (name)    parts.push('Hi, I\'m ' + name + '.');
+            if (subject) parts.push('Subject: ' + subject);
+            if (message) parts.push(message);
+            const text = parts.length ? parts.join('\n') : 'Hi Twambi, I found your portfolio and would like to get in touch.';
+            waBtn.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
+        }
+
+        ['contact-name','contact-email','contact-subject','contact-message'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener('input', updateWaLink);
+        });
+        updateWaLink(); // set default on load
+
+        // Submit → compose mailto and open email client
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name    = document.getElementById('contact-name').value.trim();
+            const email   = document.getElementById('contact-email').value.trim();
+            const subject = document.getElementById('contact-subject').value.trim() || 'Portfolio Contact';
+            const message = document.getElementById('contact-message').value.trim();
+
+            const body = [
+                'Name: ' + name,
+                'Email: ' + email,
+                '',
+                message
+            ].join('\n');
+
+            const mailto = 'mailto:' + MY_EMAIL
+                + '?subject=' + encodeURIComponent(subject)
+                + '&body='    + encodeURIComponent(body);
+
+            window.location.href = mailto;
+
+            // Show success feedback
+            if (success) {
+                success.classList.add('visible');
+                setTimeout(function() { success.classList.remove('visible'); }, 6000);
+            }
+        });
+    })();
 </script>
 <!--<script src="/assets/app_shared.js"></script>-->
 
