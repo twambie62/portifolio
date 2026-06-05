@@ -1035,17 +1035,27 @@
 
         @media (max-width: 900px) {
             .processes-grid { grid-template-columns: repeat(2, 1fr); margin: 18px 48px 0; }
+            .processes-grid > .process-card:nth-child(1),
+            .processes-grid > .process-card:nth-child(2),
+            .processes-grid > .process-card:nth-child(3) { grid-column: span 1; }
+            .processes-grid > .process-card:nth-child(4) { grid-column: span 1; }
+            .processes-grid > .process-card:nth-child(5) { grid-column: span 1; }
         }
         @media (max-width: 640px) {
             .we-cards { padding-left: 0; padding-right: 0; }
             .we-card { padding: 18px 0; }
             .processes-grid {
-                margin: 18px 4px 0;
-                padding-left: 24px;
+                margin: 18px 16px 0;
+                padding-left: 0;
                 padding-right: 0;
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
+            .processes-grid > .process-card:nth-child(1),
+            .processes-grid > .process-card:nth-child(2),
+            .processes-grid > .process-card:nth-child(3),
+            .processes-grid > .process-card:nth-child(4),
+            .processes-grid > .process-card:nth-child(5) { grid-column: 1 / -1; }
             .process-card { padding: 18px 16px 16px; }
             .process-number { font-size: 2rem; }
         }
