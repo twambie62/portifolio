@@ -136,6 +136,38 @@
         }
         /* ===== END OVERVIEW ===== */
 
+        /* Phone video frame — iPhone 16 Pro aspect ratio (~9:19.5) */
+        .phone-video-wrap {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        .phone-frame {
+            width: 220px;
+            aspect-ratio: 9 / 19.5;
+            border-radius: 40px;
+            overflow: hidden;
+            border: 8px solid #e3e3e3;
+        }
+        .phone-frame video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 24px;
+        }
+        @media (max-width: 640px) {
+            .phone-frame {
+                width: 240px;
+                border-radius: 34px;
+            }
+            .phone-frame video {
+                border-radius: 24px;
+            }
+        }
+
         /* ===== Header hero video ===== */
         .header-hero-video {
             background: #F0F0F0;
@@ -732,6 +764,20 @@
         <div class="header-row-3">
             <div class="header-description">
                 Influencer Malawi is a mobile platform that connects influencers and brands for seamless collaboration and marketing campaigns. The app allows brands to discover and reach out to local influencers, while influencers can manage partnerships, track campaigns, and grow their presence — all in one place.
+            </div>
+        </div>
+
+        <!-- Phone videos -->
+        <div class="phone-video-wrap">
+            <div class="phone-frame">
+                <video controls muted playsinline>
+                    <source src="../assets/images/portifolio/influencer_malawi/influencer_1.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="phone-frame">
+                <video controls muted playsinline>
+                    <source src="../assets/images/portifolio/influencer_malawi/influencer_2.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
 
