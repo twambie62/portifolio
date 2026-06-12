@@ -655,7 +655,9 @@
         .projects {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 14px; /*20px*/
+            row-gap: 14px; /*20px*/
+            column-gap: 16px;
+            /*gap: 14px;*/
             margin: 12px -160px 20px;
             padding:  2px;
         }
@@ -783,7 +785,7 @@
 
         /* Card body */
         .card-body {
-            padding: 12px 16px 16px;
+            padding: 12px 4px 16px;
             display: flex;
             flex-direction: column;
             gap: 6px;
@@ -829,7 +831,7 @@
             .card-media img { border-radius: 10px; }
             .card-arrow { top: 14px; right: 14px; width: 32px; height: 32px; }
             .card-arrow i { font-size: 14px; }
-            .card-body { padding: 10px 12px 14px; }
+            .card-body { padding: 10px 4px 14px; }
             .card-title { font-size: 0.95rem; }
             .card-desc { font-size: 0.78rem; -webkit-line-clamp: 2; }
             .card-tags span { font-size: 10px; padding: 3px 8px; }
@@ -2538,22 +2540,7 @@
                     </article>
                 </a>
 
-                <a href="pages/kwacha_wise.html" class="card-link">
-                    <article class="card">
-                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/fin_tech_app.png');">
-                            <img src="assets/images/portifolio/fintech/home_mockup.png" alt="Fintech App">
-                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Fintech App</div>
-                            <div class="card-desc">A modern personal finance analytics experience with income tracking, expenditure insights, and clean dashboard.</div>
-                            <div class="card-tags">
-                                <span>UI/UX</span>
-                                <span>App Design</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
+
 
 
 
@@ -2600,6 +2587,22 @@
                         <div class="card-body">
                             <div class="card-title">Movie App (Case study)</div>
                             <div class="card-desc">A streaming platform with movie details, video player, and group viewing features in dark mode.</div>
+                            <div class="card-tags">
+                                <span>UI/UX</span>
+                                <span>App Design</span>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+                <a href="pages/kwacha_wise.html" class="card-link">
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/fin_tech_app.png');">
+                            <img src="assets/images/portifolio/fintech/home_mockup.png" alt="Fintech App">
+                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Fintech App</div>
+                            <div class="card-desc">A modern personal finance analytics experience with income tracking, expenditure insights, and clean dashboard.</div>
                             <div class="card-tags">
                                 <span>UI/UX</span>
                                 <span>App Design</span>
@@ -2658,6 +2661,7 @@
                         </div>
                     </article>
                 </a>
+
 
                 <a href="pages/smart_apps.html" class="card-link">
                     <article class="card">
@@ -3162,11 +3166,11 @@
             <div class="about-me-stats">
                 <div class="about-me-stat">
                     <div class="stat-number">25+</div>
-                    <div class="stat-label">Products Designed</div>
+                    <div class="stat-label">Products Delivered</div>
                 </div>
                 <div class="about-me-stat">
                     <div class="stat-number">4+</div>
-                    <div class="stat-label">Years in Design</div>
+                    <div class="stat-label">Years in Development</div>
                 </div>
                 <div class="about-me-stat">
                     <div class="stat-number">99%</div>
@@ -4126,8 +4130,8 @@
     // ── About Me counters — count up on scroll ────────────────────────────
     (function () {
         const counters = [
-            { selector: '.about-me-stat:nth-child(1) .stat-number', target: 20, suffix: '+' },
-            { selector: '.about-me-stat:nth-child(2) .stat-number', target: 3,  suffix: '+' },
+            { selector: '.about-me-stat:nth-child(1) .stat-number', target: 25, suffix: '+' },
+            { selector: '.about-me-stat:nth-child(2) .stat-number', target: 5,  suffix: '+' },
             { selector: '.about-me-stat:nth-child(3) .stat-number', target: 99, suffix: '%' },
         ];
 
