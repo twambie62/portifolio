@@ -17,7 +17,7 @@ header, footer {
 /* ── Nav (matches index.html exactly) ── */
 header {
     position: fixed;
-    top: 32px;
+    top: 30px;
     left: 0;
     right: 0;
     z-index: 1000;
