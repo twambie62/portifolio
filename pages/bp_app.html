@@ -370,6 +370,13 @@
         }
 
         /* Wrapper that groups both action buttons and pushes them to the far right */
+        .kwacha-topbar .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Wrapper that groups both action buttons and pushes them to the far right */
         .kwacha-topbar .top-right-actions {
             margin-left: auto;
             display: inline-flex;
@@ -579,11 +586,14 @@
 <header id="app-header"></header>
 <main class="container">
     <div class="kwacha-topbar">
-        <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back" onclick="history.back()" onkeydown="if(event.key==='Enter'||event.key===' ')history.back()">
-            <!-- plain left arrow icon (no circle) — the surrounding .circle provides the circular container -->
-            <ion-icon name="arrow-back-outline" class="arrow" aria-hidden="true" title="Back"></ion-icon>
+        <div class="topbar-left">
+            <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back" onclick="history.back()" onkeydown="if(event.key==='Enter'||event.key===' ')history.back()">
+                <!-- plain left arrow icon (no circle) — the surrounding .circle provides the circular container -->
+                <ion-icon name="arrow-back-outline" class="arrow" aria-hidden="true" title="Back"></ion-icon>
+            </div>
+            <span class="project-text" tabindex="0">Projects</span>
         </div>
-        <span class="project-text" tabindex="0">Projects</span>
+        </div><!-- /.topbar-left -->
         <!-- Action buttons aligned to the far right -->
         <div class="top-right-actions">
             <a class="top-tag" href="https://github.com/twambie62/blood_pressure_app" target="_blank" rel="noopener noreferrer">
