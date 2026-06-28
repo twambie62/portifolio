@@ -1084,8 +1084,8 @@
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-            margin: 0 0 56px;
+            gap: 20px;
+            margin: 48px 0 56px;
             padding: 0 92px;
         }
 
@@ -1093,7 +1093,7 @@
         .svc-card {
             border-radius: var(--radius);
             overflow: hidden;
-            background: var(--card);
+            /*background: var(--card);*/
             display: flex;
             flex-direction: column;
             align-items: stretch;
@@ -1102,30 +1102,31 @@
         /* Image on top */
         .svc-img {
             /*width: 9%;*/
-            aspect-ratio: 4 / 3;
+            aspect-ratio: 1 / 0.9;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            background: #E8E8E8;
+            background: #F2F2F2;
+            /*background: var(--card);*/
             /*margin: 10px;*/
-            padding: 10px;
+            padding: 2px 12px 2px;
             /*margin-bottom: 12px;*/
             flex-shrink: 0;
-            /*border-radius: var(--radius);*/
+            border-radius: var(--radius);
         }
         .svc-img img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             display: block;
-            padding: 28px;
+            padding: 20px;
             box-sizing: border-box;
         }
 
         /* Text below */
         .svc-text {
-            padding: 18px 20px 22px;
+            padding: 18px 4px 22px;
             display: flex;
             flex-direction: column;
             gap: 6px;
@@ -2436,8 +2437,10 @@
                     <div id="hero-greeting" class="chip"><span class="available-dot dot--online"></span>Hi I am Twambi</div>
                 </div>
 <!--                <h1 id="hero-heading">I'm a UI/UX Designer<br>who also builds.</h1>-->
-                <h1 id="hero-heading"> I'm a web and app developer,<br>
-                    and a UI/UX designer.</h1>
+<!--                <h1 id="hero-heading"> I'm a web and app developer,<br>-->
+<!--                    and a UI/UX designer.</h1>-->
+                <h1 id="hero-heading"> I'm a Product Designer and<br>
+                    Software Developer.</h1>
 
                 <p id="hero-sub" class="sub">
 
@@ -2892,13 +2895,13 @@
 
         <section id="services">
             <div class="section-label"><span class="dot"></span>Services</div>
-            <div class="services-heading">Design-first, Built to<br> Work<span class="muted"> Intuitively.</span></div>
+            <div class="services-heading">The Right Skills, in One Place to<br> Build<span class="muted"> What You Need</span></div>
 
             <div class="services-grid">
 
                 <!-- UI/UX Design -->
                 <div class="svc-card">
-                    <div class="svc-img"><img src="assets/images/services/ui_ux.png" alt="UI/UX Design"></div>
+                    <div class="svc-img"><img src="assets/images/services/ui_ux_2.svg" alt="UI/UX Design"></div>
                     <div class="svc-text">
                         <div class="svc-title">UI/UX Design</div>
                         <div class="svc-desc">I craft intuitive interfaces and seamless user experiences, turning complex workflows into delightful, easy-to-use products.</div>
@@ -2907,7 +2910,7 @@
 
                 <!-- Web Development -->
                 <div class="svc-card">
-                    <div class="svc-img"><img src="assets/images/services/web_development.png" alt="Web Development"></div>
+                    <div class="svc-img"><img src="assets/images/services/web_development_2.svg" alt="Web Development"></div>
                     <div class="svc-text">
                         <div class="svc-title">Web Development</div>
                         <div class="svc-desc">Fast, accessible, and SEO-friendly websites built with modern frameworks and clean, maintainable code.</div>
@@ -2916,7 +2919,7 @@
 
                 <!-- App Development -->
                 <div class="svc-card">
-                    <div class="svc-img"><img src="assets/images/services/app_development.png" alt="App Development"></div>
+                    <div class="svc-img"><img src="assets/images/services/app_development_2.svg" alt="App Development"></div>
                     <div class="svc-text">
                         <div class="svc-title">App Development</div>
                         <div class="svc-desc">Cross-platform mobile apps from concept to deployment — Flutter, React Native, and native Android development.</div>
@@ -3175,7 +3178,7 @@
                 </div>
                 <div class="about-me-stat">
                     <div class="stat-number">4+</div>
-                    <div class="stat-label">Years in Design &<br> Development</div>
+                    <div class="stat-label">Years of Experience</div>
                 </div>
                 <div class="about-me-stat">
                     <div class="stat-number">99%</div>
