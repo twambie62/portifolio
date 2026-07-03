@@ -25,6 +25,13 @@
             --border: #E3E3E3;
             --radius: 16px;
             --radius-small: 8px;
+
+            --grey-text: #c9c9c9;
+            --black-text: #111111;
+            --pill-yellow: #f9d94a;
+            --toggle-mint: #a9e8d8;
+            --toggle-red: #e2503b;
+            --toggle-orange: #f7913c;
         }
         * { box-sizing: border-box; }
         body {
@@ -678,8 +685,8 @@
         @media (max-width: 960px) {
             .projects {
                 padding: 0 20px;
-                margin: 12px 0 40px;
-                /*grid-template-columns: repeat(2, 1fr);*/
+                margin: 12px -12px 0px 0;
+                grid-template-columns: repeat(1, 1fr);
             }
 
             .hero-proj-card img {
@@ -1151,7 +1158,7 @@
                 align-content: center;
                 justify-content: center;
                 padding: 0 4px 4px 24px;
-                margin-left: -14px;
+                margin-left: -13px;
 
             }
 
@@ -2391,6 +2398,350 @@
         }
         /* ===== END GALLERY CAROUSEL ===== */
 
+        /* Spacer sections so you can actually scroll and see the effect */
+        .spacer {
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ddd;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ---------- HERO SECTION ---------- */
+        .hero-intro {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 260px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro-text {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            font-size: clamp(22px, 3.4vw, 38px);
+            font-weight: 700;
+            line-height: 1.5;
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+
+        /*.word {*/
+        /*    color: var(--grey-text);*/
+        /*    transition: none; !* animated via GSAP, not CSS *!*/
+        /*}*/
+
+        /* Toggle switch (mint -> red gradient, or red -> orange gradient) */
+        .toggle {
+            display: inline-flex;
+            align-items: center;
+            width: 58px;
+            height: 30px;
+            border-radius: 999px;
+            padding: 0px;
+            vertical-align: middle;
+            margin: 0 4px;
+            position: relative;
+            top: -2px;
+        }
+
+        .toggle-mint-red {
+            width: 108px;
+
+            /*background: linear-gradient(90deg, var(--toggle-mint) 0%, var(--toggle-red) 100%);*/
+            justify-content: flex-end;
+        }
+
+        .toggle-red-orange {
+            width: 108px;
+            /*background: linear-gradient(90deg, var(--toggle-red) 0%, var(--toggle-orange) 100%);*/
+            justify-content: flex-end;
+        }
+
+        .toggle-knob {
+            width: 24px;
+            height: 24px;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+        }
+
+        @media (max-width: 768px) {
+            .spacer {
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #ddd;
+                font-size: 14px;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+            }
+            .intro-text {
+                position: relative;
+                z-index: 2;
+                text-align: center;
+                font-size: clamp(22px, 3.4vw, 38px);
+                font-weight: 700;
+                line-height: 1.8;
+                max-width: 1100px;
+                margin: 0 auto;
+            }
+            .toggle {
+                display: inline-flex;
+                align-items: center;
+                width: 58px;
+                height: 30px;
+                border-radius: 999px;
+                padding: 0px;
+                vertical-align: middle;
+                margin: 0 4px;
+                position: relative;
+                top: -2px;
+            }
+
+            .toggle-mint-red {
+                width: 72px;
+
+                /*background: linear-gradient(90deg, var(--toggle-mint) 0%, var(--toggle-red) 100%);*/
+                justify-content: flex-end;
+            }
+
+            .toggle-red-orange {
+                width: 68px;
+                /*background: linear-gradient(90deg, var(--toggle-red) 0%, var(--toggle-orange) 100%);*/
+                justify-content: flex-end;
+            }
+
+            .highlight-pill {
+                display: inline-block;
+                background: #FFCC33;/*var(--dot);*/
+                color: #111;
+                padding: -20px 8px;
+                border-radius: 999px;
+                font-weight: 500;
+            }
+
+        }
+
+        /* Highlighted "enterprise" pill */
+        .highlight-pill {
+            display: inline-block;
+            background: #FFCC33;/*var(--dot);*/
+            color: #111;
+            padding: 0px 12px;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        .words {
+            color: var(--grey-text);
+            transition: none; /* animated via GSAP, not CSS */
+        }
+
+        .emoji {
+            display: inline-block;
+        }
+
+        /* ---------- POLAROID IMAGES ---------- */
+        .polaroid {
+            position: absolute;
+            width: 150px;
+            height: 190px;
+            background: #fff;
+            border-radius: 17px;
+            padding: 4px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.17);
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 13px;
+            display: block;
+        }
+
+        .polaroid-1 { /* top-left */
+            top: 4%;
+            left: 6%;
+            transform: rotate(-10deg);
+        }
+
+        .polaroid-2 { /* top-right */
+            top: 2%;
+            right: 6%;
+            transform: rotate(9deg);
+        }
+
+        .polaroid-3 { /* bottom-left */
+            bottom: 4%;
+            left: 10%;
+            transform: rotate(-7deg);
+        }
+
+        .polaroid-4 { /* bottom-right */
+            bottom: 2%;
+            right: 10%;
+            transform: rotate(8deg);
+        }
+
+        @media (max-width: 768px) {
+            .polaroid {
+                width: 96px;
+                height: 122px;
+                border-radius: 12px;
+                padding: 3px;
+            }
+            .polaroid img {
+                border-radius: 10px;
+            }
+            .hero-intro { padding: 140px 20px; }
+            .polaroid-1 { top: -2%; left: 0%; }
+            .polaroid-2 { top: -4%; right: 0%; }
+            .polaroid-3 { bottom: -2%; left: 0%; }
+            .polaroid-4 { bottom: -4%; right: 0%; }
+        }
+
+        /* ===== Header ===== */
+        .projects-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .projects-badge {
+            /*display: inline-flex;*/
+            align-items: center;
+            margin-top: 54px;
+            margin-bottom: -24px;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 3px;
+            background: #f5a623; /* swap for your electric lime if you want */
+        }
+
+        .projects-title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 24px;
+        }
+
+        .title-muted {
+            color: #BFBFBF;
+        }
+
+        /* ===== Filter bar ===== */
+        .filter-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 24px;
+            padding: 6px 7px;
+            border-radius: 999px;
+            background: #FAFAFA;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 1px solid #E6E6EB;
+            /*margin-right: 0px;*/
+            /*margin-left: 4px;*/
+        }
+
+        .filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 999px;
+            background: transparent;
+            color: #8a8a8a;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:first-child{
+            padding: 10px 28px;
+        }
+
+        .filter-btn i {
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            color: #333;
+        }
+
+        .filter-btn.active {
+            background: #fff;
+            color: #111;
+            border: 1px solid #E6E6E6;
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .filter-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* ===== Grid + card transition ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 40px 40px;
+        }
+
+        @media (max-width: 680px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .filter-bar {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                padding: 6px;
+                border-radius: 999px;
+                background: #f4f4f4;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                max-width: 100%;
+                overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; /* Firefox */
+                margin-right: 0px;
+                margin-left: 4px;
+            }
+        }
+
+        .card-link {
+            display: block;
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .card-link.card-hidden {
+            opacity: 0;
+            transform: scale(0.92) translateY(14px);
+            pointer-events: none;
+        }
+
     </style>
 </head>
 <body>
@@ -2528,193 +2879,269 @@
                 </div>
             </div>
         </section>
+        <div class="spacer"></div>
 
+        <section class="hero-intro">
 
-        <section id="projects">
-            <div class="section-label"><span class="dot"></span>My Projects</div>
-            <div class="projects">
-
-                <a href="pages/bp_app.html" class="card-link">
-                    <article class="card">
-                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/blood_pressure_app.png');">
-                            <img src="assets/images/portifolio/blood_pressure/home.png" alt="Blood Pressure Project">
-                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Blood Pressure App (Case study)</div>
-                            <div class="card-desc">Remote blood pressure monitoring system connected to Arduino ESP-32 for real-time patient tracking.</div>
-                            <div class="card-tags">
-                                <span>UI/UX</span>
-                                <span>App Design</span>
-                                <span>App Development</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-
-
-
-
-                <a href="pages/influencer_malawi.html" class="card-link">
-                <article class="card">
-                    <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/influencer_malawi_app.png');">
-                        <img src="assets/images/portifolio/influencer_malawi/onboarding_profile.png" alt="Influencer Malawi App">
-                        <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">Influencer Malawi App (Case study)</div>
-                        <div class="card-desc">A platform connecting influencers with brands for collaboration and marketing campaigns.</div>
-                        <div class="card-tags">
-                            <span>UI/UX</span>
-                            <span>App Design</span>
-                        </div>
-                    </div>
-                </article>
-                </a>
-
-                <a href="pages/courier_app.html" class="card-link">
-                    <article class="card">
-                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/courier_app.png');">
-                            <img src="assets/images/portifolio/courier/home_live_tracking.png" alt="Courier App">
-                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Courier App (Case study)</div>
-                            <div class="card-desc">Live tracking courier application with real-time delivery updates and payment integration.</div>
-                            <div class="card-tags">
-                                <span>UI/UX</span>
-                                <span>App Design</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="pages/akometsi_app.html" class="card-link">
-                    <article class="card">
-                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/movie_app.png');">
-                            <img src="assets/images/portifolio/akometsi/home_movie_details_dark.png" alt="Movie App">
-                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Movie App (Case study)</div>
-                            <div class="card-desc">A streaming platform with movie details, video player, and group viewing features in dark mode.</div>
-                            <div class="card-tags">
-                                <span>UI/UX</span>
-                                <span>App Design</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-                <a href="pages/kwacha_wise.html" class="card-link">
-                    <article class="card">
-                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/fin_tech_app.png');">
-                            <img src="assets/images/portifolio/fintech/home_mockup.png" alt="Fintech App">
-                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Fintech App</div>
-                            <div class="card-desc">A modern personal finance analytics experience with income tracking, expenditure insights, and clean dashboard.</div>
-                            <div class="card-tags">
-                                <span>UI/UX</span>
-                                <span>App Design</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="pages/smart_home.html" class="card-link">
-                    <article class="card">
-                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/smart_home_app.png');">
-                            <img src="assets/images/portifolio/smart_home/main_screen_home.png" alt="Smart Home App">
-                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Smart Home App</div>
-                            <div class="card-desc">IoT-based smart home control system with room management, automation, and device settings.</div>
-                            <div class="card-tags">
-                                <span>UI/UX</span>
-                                <span>App Design</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="pages/notes_app.html" class="card-link">
-                    <article class="card">
-                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/notes_app.png');">
-                            <img src="assets/images/portifolio/notes/home_onboarding.png" alt="Notes App">
-                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Notes App</div>
-                            <div class="card-desc">A personal management app for notes, habits, and finance tracking with clean onboarding.</div>
-                            <div class="card-tags">
-                                <span>UI/UX</span>
-                                <span>App Design</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="pages/notes_website.html" class="card-link">
-                    <article class="card">
-                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/track_it_website.png');">
-                            <img src="assets/images/portifolio/notes_website/track_it_main_image.png" alt="Track it Website">
-                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Track it Website</div>
-                            <div class="card-desc">A landing page for a personal productivity, finance and task management mobile application.</div>
-                            <div class="card-tags">
-                                <span>UI/UX</span>
-                                <span>Web Design</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-
-                <a href="pages/smart_apps.html" class="card-link">
-                    <article class="card">
-                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/smart_apps_website.png');">
-                            <img src="assets/images/portifolio/smart_apps/hero_section_2_2.png" alt="Smart Apps Website">
-                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Smart Apps Website</div>
-                            <div class="card-desc">A technology company website showcasing web hosting, services, and company information.</div>
-                            <div class="card-tags">
-                                <span>UI/UX</span>
-                                <span>Web Design</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="pages/smart_apps_redesign.html" class="card-link">
-                    <article class="card">
-                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/smart_apps_redesign.png');">
-                            <img src="assets/images/portifolio/smart_apps/hero_section_redesign.png" alt="Smart Apps Redesign">
-                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Smart Apps Redesign</div>
-                            <div class="card-desc">A fresh redesign of the Smart Apps website with modernized hero section and improved UX.</div>
-                            <div class="card-tags">
-                                <span>UI/UX</span>
-                                <span>Web Design</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
+            <div class="polaroid polaroid-1">
+                <img src="./assets/images/my_pictures/9.jpeg" alt="Outdoor team photo">
+            </div>
+            <div class="polaroid polaroid-2">
+                <img src="./assets/images/my_pictures/1.jpeg" alt="Professional headshot">
+            </div>
+            <div class="polaroid polaroid-3">
+                <img src="./assets/images/middle_section/me.png" alt="Casual workspace photo">
+            </div>
+            <div class="polaroid polaroid-4">
+                <img src="./assets/images/my_pictures/4.jpeg" alt="Mobile selfie">
             </div>
 
-            <div style="display: flex; justify-content: center; margin-top: 24px;">
-                <button id="show-more-projects" class="btn btn-grey" style="padding: 12px 28px; font-size: 16px;">Show More <i class="ri-arrow-down-line"></i></button>
-            </div>
-            <div id="extra-projects" style="display: none; margin-top: 22px;">
-                <div class="projects" style="justify-content: center;">
+            <p class="intro-text">
+                <span class="words">Helping</span>
+                <span class="words">startups</span>
+                <span class="toggle toggle-mint-red"><img src="./assets/images/middle_section/switch.png" alt="Mobile selfie"></span>
+                <span class="words">build</span>
+                <span class="words">scalable</span>
+                <span class="highlight-pill word">enterprise</span>
+                <span class="words">products</span>
+                <span class="emoji words">⛅</span>
+                <span class="words">from</span>
+                <span class="words">0→1</span>
+                <span class="words">&amp;</span>
+                <span class="words">beyond.</span>
+                <span class="words">4+</span>
+                <span class="words">years</span>
+                <span class="words">Across</span>
+                <span class="words">B2B,</span>
+                <span class="words">B2C,</span>
+                <span class="words">SaaS,</span>
+                <span class="words">E-commerce</span>
+                <span class="words">and</span>
+                <span class="toggle toggle-red-orange"><img src="./assets/images/middle_section/gradient_bg.png" alt="Mobile selfie"></span>
+                <span class="words">Health.</span>
+            </p>
+
+        </section>
+
+<!--        <div class="spacer">end</div>-->
+
+        <section id="projects" >
+
+            <div>
+
+                <div class="projects-header">
+                    <div class="projects-badge">
+                        <div class="section-label" ><span class="dot"></span>My Projects</div>
+
+                    </div>
+                    <h2 class="projects-title">Selected <span class="title-muted">Work</span></h2>
+
+                    <div class="filter-bar">
+                        <button  class="filter-btn active" data-filter="all">
+                            <i class="ri-grid-fill"></i>
+                            <span >  All  </span>
+                        </button>
+                        <button class="filter-btn" data-filter="ui-design">
+                            <i class="ri-palette-line"></i>
+                            <span>UI Design</span>
+                        </button>
+                        <button class="filter-btn" data-filter="case-study">
+                            <i class="ri-book-open-line"></i>
+                            <span>Case study</span>
+                        </button>
+                        <button class="filter-btn" data-filter="software">
+                            <i class="ri-code-s-slash-line"></i>
+                            <span>Software</span>
+                        </button>
+                        <button class="filter-btn" data-filter="poster">
+                            <i class="ri-image-2-line"></i>
+                            <span>Poster</span>
+                        </button>
+                        <button class="filter-btn" data-filter="electronics">
+                            <i class="ri-cpu-line"></i>
+                            <span>Electronics</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="projects" id="projectsGrid">
+
+                    <a href="pages/bp_app.html" class="card-link" data-category="ui-design case-study software electronics">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/blood_pressure_app.png');">
+                                <img src="assets/images/portifolio/blood_pressure/home.png" alt="Blood Pressure Project">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Blood Pressure App (Case study)</div>
+                                <div class="card-desc">Remote blood pressure monitoring system connected to Arduino ESP-32 for real-time patient tracking.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>App Development</span>
+                                    <span>Case Study</span>
+                                    <span>Electronics</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="pages/influencer_malawi.html" class="card-link" data-category="ui-design case-study software">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/influencer_malawi_app.png');">
+                                <img src="assets/images/portifolio/influencer_malawi/onboarding_profile.png" alt="Influencer Malawi App">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Influencer Malawi App (Case study)</div>
+                                <div class="card-desc">A platform connecting influencers with brands for collaboration and marketing campaigns.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>App Development</span>
+                                    <span>Case Study</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="pages/courier_app.html" class="card-link" data-category="ui-design case-study">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/courier_app.png');">
+                                <img src="assets/images/portifolio/courier/home_live_tracking.png" alt="Courier App">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Courier App (Case study)</div>
+                                <div class="card-desc">Live tracking courier application with real-time delivery updates and payment integration.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>App Design</span>
+                                    <span>Case Study</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="pages/akometsi_app.html" class="card-link" data-category="ui-design case-study software">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/movie_app.png');">
+                                <img src="assets/images/portifolio/akometsi/home_movie_details_dark.png" alt="Movie App">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Movie App (Case study)</div>
+                                <div class="card-desc">A streaming platform with movie details, video player, and group viewing features in dark mode.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>App Development</span>
+                                    <span>Case Study</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="pages/kwacha_wise.html" class="card-link" data-category="ui-design ">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/fin_tech_app.png');">
+                                <img src="assets/images/portifolio/fintech/home_mockup.png" alt="Fintech App">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Fintech App</div>
+                                <div class="card-desc">A modern personal finance analytics experience with income tracking, expenditure insights, and clean dashboard.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>App Design</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="pages/smart_home.html" class="card-link" data-category="ui-design case-study software electronics">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/smart_home_app.png');">
+                                <img src="assets/images/portifolio/smart_home/main_screen_home.png" alt="Smart Home App">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Smart Home App</div>
+                                <div class="card-desc">IoT-based smart home control system with room management, automation, and device settings.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>App Development</span>
+                                    <span>Electronics</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="pages/notes_app.html" class="card-link" data-category="ui-design software">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/notes_app.png');">
+                                <img src="assets/images/portifolio/notes/home_onboarding.png" alt="Notes App">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Notes App</div>
+                                <div class="card-desc">A personal management app for notes, habits, and finance tracking with clean onboarding.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>Web Development</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="pages/notes_website.html" class="card-link" data-category="ui-design ">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/track_it_website.png');">
+                                <img src="assets/images/portifolio/notes_website/track_it_main_image.png" alt="Track it Website">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Track it Website</div>
+                                <div class="card-desc">A landing page for a personal productivity, finance and task management mobile application.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>Web Design</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="pages/smart_apps.html" class="card-link" data-category="ui-design ">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/smart_apps_website.png');">
+                                <img src="assets/images/portifolio/smart_apps/hero_section_2_2.png" alt="Smart Apps Website">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Smart Apps Website</div>
+                                <div class="card-desc">A technology company website showcasing web hosting, services, and company information.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>Web Design</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="pages/smart_apps_redesign.html" class="card-link" data-category="ui-design ">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/smart_apps_redesign.png');">
+                                <img src="assets/images/portifolio/smart_apps/hero_section_redesign.png" alt="Smart Apps Redesign">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Smart Apps Redesign</div>
+                                <div class="card-desc">A fresh redesign of the Smart Apps website with modernized hero section and improved UX.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>Web Design</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                    <a class="card-link" data-category="poster">
                     <article class="card">
                         <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/courier_app.png');">
                             <img src="assets/images/portifolio/posters/courier_poster.png" alt="Courier App Poster">
@@ -2729,6 +3156,8 @@
                             </div>
                         </div>
                     </article>
+                        </a>
+                    <a class="card-link" data-category="poster">
                     <article class="card">
                         <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/fin_tech_app.png');">
                             <img src="assets/images/portifolio/posters/kwacha_pos_poster.png" alt="Kwacha POS poster">
@@ -2743,24 +3172,35 @@
                             </div>
                         </div>
                     </article>
-                    <article class="card">
-                        <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/influencer_malawi_app.png');">
-                            <img src="assets/images/portifolio/posters/testimonial.jpg" alt="Testimonial">
-                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Influencer Malawi Testimonial</div>
-                            <div class="card-desc">Testimonial graphic design for Influencer Malawi platform.</div>
-                            <div class="card-tags">
-                                <span>Graphic Design</span>
-                                <span>Poster Design</span>
-                            </div>
-                        </div>
-                    </article>
+                    </a>
+
                 </div>
-                <div style="display: flex; justify-content: center; margin-top: 24px;">
-                    <button id="show-less-projects" class="btn btn-grey" style="padding: 12px 28px; font-size: 16px;">Show Less <i class="ri-arrow-up-line"></i></button>
+            </div>
+
+<!--            <div style="display: flex; justify-content: center; margin-top: 24px;">-->
+<!--                <button id="show-more-projects" class="btn btn-grey" style="padding: 12px 28px; font-size: 16px;">Show More <i class="ri-arrow-down-line"></i></button>-->
+<!--            </div>-->
+            <div id="extra-projects" style="display: none; margin-top: 22px;">
+                <div class="projects" style="justify-content: center;">
+
+<!--                    <article class="card">-->
+<!--                        <div class="card-media" style="&#45;&#45;card-bg-img: url('assets/images/projects/backgrounds/influencer_malawi_app.png');">-->
+<!--                            <img src="assets/images/portifolio/posters/testimonial.jpg" alt="Testimonial">-->
+<!--                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="card-title">Influencer Malawi Testimonial</div>-->
+<!--                            <div class="card-desc">Testimonial graphic design for Influencer Malawi platform.</div>-->
+<!--                            <div class="card-tags">-->
+<!--                                <span>Graphic Design</span>-->
+<!--                                <span>Poster Design</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </article>-->
                 </div>
+<!--                <div style="display: flex; justify-content: center; margin-top: 24px;">-->
+<!--                    <button id="show-less-projects" class="btn btn-grey" style="padding: 12px 28px; font-size: 16px;">Show Less <i class="ri-arrow-up-line"></i></button>-->
+<!--                </div>-->
             </div>
         </section>
 
@@ -4464,5 +4904,127 @@
             },
         });
     })();
+</script>
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Each polaroid gets its own "settled" rotation (read from CSS) and a
+    // slightly wilder starting rotation/scale so the reveal has somewhere to travel from.
+    const polaroids = document.querySelectorAll(".polaroid");
+
+    const startState = {
+        ".polaroid-1": { rotate: -35, x: -30, y: -20 },
+        ".polaroid-2": { rotate: 30,  x: 30,  y: -20 },
+        ".polaroid-3": { rotate: -25, x: -30, y: 20  },
+        ".polaroid-4": { rotate: 28,  x: 30,  y: 20  }
+    };
+
+    const endRotation = {
+        ".polaroid-1": -10,
+        ".polaroid-2": 9,
+        ".polaroid-3": -7,
+        ".polaroid-4": 8
+    };
+
+    polaroids.forEach(el => {
+        const key = "." + el.classList[1];
+        gsap.set(el, {
+            opacity: 0,
+            scale: 0.6,
+            rotate: startState[key].rotate,
+            x: startState[key].x,
+            y: startState[key].y
+        });
+    });
+
+    function revealImages() {
+        polaroids.forEach((el, i) => {
+            const key = "." + el.classList[1];
+            gsap.to(el, {
+                opacity: 1,
+                scale: 1,
+                rotate: endRotation[key],
+                x: 0,
+                y: 0,
+                duration: 0.9,
+                delay: i * 0.12,
+                ease: "back.out(1.6)",
+                overwrite: true
+            });
+        });
+    }
+
+    function hideImages() {
+        polaroids.forEach((el, i) => {
+            const key = "." + el.classList[1];
+            gsap.to(el, {
+                opacity: 0,
+                scale: 0.6,
+                rotate: startState[key].rotate,
+                x: startState[key].x,
+                y: startState[key].y,
+                duration: 0.5,
+                ease: "power2.in",
+                overwrite: true
+            });
+        });
+    }
+
+    // Text color reveal, scrubbed with scroll. Once it completes going forward,
+    // the images pop in. Scrolling back up past the start hides them again.
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: ".intro-text",
+            start: "top 52%",
+            end: "bottom 64%",
+            scrub: 0.6,
+            onLeave: revealImages,        // scrolled past the end, moving down
+            onEnterBack: hideImages       // scrolled back above the start, moving up
+        }
+    })
+        .to(".words", {
+            color: "#1A1A1A",
+            stagger: 0.4,
+            ease: "none"
+        });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.card-link');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (btn.classList.contains('active')) return;
+
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                // Step 1: fade out everything currently visible
+                projectCards.forEach(card => card.classList.add('card-hidden'));
+
+                // Step 2: after fade-out completes, swap display + fade matching cards back in (staggered)
+                setTimeout(() => {
+                    let visibleIndex = 0;
+
+                    projectCards.forEach(card => {
+                        gsap.getTweensOf(".projects .card-media img").forEach(tween => tween.progress(1));
+                        const categories = (card.dataset.category || '').split(' ');
+                        const shouldShow = filter === 'all' || categories.includes(filter);
+
+                        card.style.display = shouldShow ? '' : 'none';
+
+                        if (shouldShow) {
+                            setTimeout(() => {
+                                card.classList.remove('card-hidden');
+                            }, visibleIndex * 60);
+                            visibleIndex++;
+                        }
+                    });
+                }, 400);
+            });
+        });
+    });
 </script>
 <!-- ===== END CAROUSEL ===== -->
