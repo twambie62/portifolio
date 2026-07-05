@@ -9,6 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/app_shared.css">
     <style>
         :root {
@@ -44,6 +50,15 @@
             background: var(--bg2);
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             color: var(--text);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            /*font-family: 'Zilla Slab', serif;*/
+            /*letter-spacing: 0.013em;*/
+            /*font-weight: 700;*/
+        }
+        .heading-slab {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
         }
         a { color: inherit; text-decoration: none; }
         img { max-width: 100%; display: block; }
@@ -3069,7 +3084,7 @@
                         </article>
                     </a>
 
-                    <a href="pages/smart_home.html" class="card-link" data-category="ui-design case-study software electronics">
+                    <a href="pages/smart_home.html" class="card-link" data-category="ui-design software electronics">
                         <article class="card">
                             <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/smart_home_app.png');">
                                 <img src="assets/images/portifolio/smart_home/main_screen_home.png" alt="Smart Home App">
@@ -3087,7 +3102,7 @@
                         </article>
                     </a>
 
-                    <a href="pages/notes_app.html" class="card-link" data-category="ui-design software">
+                    <a href="pages/notes_app.html" class="card-link" data-category="ui-design ">
                         <article class="card">
                             <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/notes_app.png');">
                                 <img src="assets/images/portifolio/notes/home_onboarding.png" alt="Notes App">
@@ -3098,13 +3113,13 @@
                                 <div class="card-desc">A personal management app for notes, habits, and finance tracking with clean onboarding.</div>
                                 <div class="card-tags">
                                     <span>UI/UX</span>
-                                    <span>Web Development</span>
+                                    <span>App Design</span>
                                 </div>
                             </div>
                         </article>
                     </a>
 
-                    <a href="pages/notes_website.html" class="card-link" data-category="ui-design ">
+                    <a href="pages/notes_website.html" class="card-link" data-category="ui-design software">
                         <article class="card">
                             <div class="card-media" style="--card-bg-img: url('assets/images/projects/backgrounds/track_it_website.png');">
                                 <img src="assets/images/portifolio/notes_website/track_it_main_image.png" alt="Track it Website">
@@ -3116,6 +3131,8 @@
                                 <div class="card-tags">
                                     <span>UI/UX</span>
                                     <span>Web Design</span>
+                                    <span>Web Development</span>
+
                                 </div>
                             </div>
                         </article>
@@ -3957,18 +3974,18 @@
     setActive();
 
     // Show more/less
-    const showMoreBtn = document.getElementById('show-more-projects');
-    const showLessBtn = document.getElementById('show-less-projects');
-    const extraProjects = document.getElementById('extra-projects');
-
-    showMoreBtn.addEventListener('click', function() {
-        extraProjects.style.display = 'block';
-        showMoreBtn.style.display = 'none';
-    });
-    showLessBtn.addEventListener('click', function() {
-        extraProjects.style.display = 'none';
-        showMoreBtn.style.display = 'inline-flex';
-    });
+    // const showMoreBtn = document.getElementById('show-more-projects');
+    // const showLessBtn = document.getElementById('show-less-projects');
+    // const extraProjects = document.getElementById('extra-projects');
+    //
+    // showMoreBtn.addEventListener('click', function() {
+    //     extraProjects.style.display = 'block';
+    //     showMoreBtn.style.display = 'none';
+    // });
+    // showLessBtn.addEventListener('click', function() {
+    //     extraProjects.style.display = 'none';
+    //     showMoreBtn.style.display = 'inline-flex';
+    // });
 
     // Hamburger menu
     const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -4443,6 +4460,8 @@
             '.testimonials-heading h2',
             '.faq-left h2',
             '.carousel-title',
+            '.projects-title',
+            '.filter-bar',
         ];
 
         const els = headingSelectors
@@ -5058,5 +5077,7 @@
             });
         });
     });
+
+
 </script>
 <!-- ===== END CAROUSEL ===== -->
