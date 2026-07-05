@@ -18,9 +18,7 @@
         /* prevent any unwanted horizontal scrolling */
         html, body { overflow-x: hidden; }
 
-        /* ===== HEADER — matches new_header.png ===== */
-
-        /* Row 1: title left, tags right */
+        /* ===== HEADER — smart_apps style ===== */
         .header-row-1 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -50,50 +48,6 @@
             font-weight: 500;
             white-space: nowrap;
         }
-
-        /* Row 2: 2-column image area — left image sets the height, right boxes match it */
-        .header-row-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 24px;
-            align-items: stretch;
-        }
-        .header-left {
-            display: flex;
-        }
-        .header-left .header-cell {
-            width: 100%;
-            flex: 1;
-        }
-        /* Right column: flex column that stretches to match left image height */
-        .header-right {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .header-right .header-cell {
-            flex: 1;
-        }
-        .header-cell {
-            background: #F0F0F0;
-            border-radius: 14px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 18px;
-            box-sizing: border-box;
-        }
-        .header-cell img {
-            width: 40%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 10px;
-            display: block;
-        }
-
-        /* Row 3: description full width */
         .header-row-3 {
             display: block;
             margin-bottom: 48px;
@@ -104,38 +58,10 @@
             color: #4a4a4a;
             line-height: 1.85;
         }
-
-        /* Mobile: stack everything */
         @media (max-width: 640px) {
-            .header-row-1 {
-                grid-template-columns: 1fr;
-                gap: 18px;
-                margin-top: 40px;
-            }
-            .header-tags {
-                justify-content: flex-start;
-            }
-            .header-row-2 {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            .header-left .header-cell {
-                aspect-ratio: 16 / 10;
-            }
-            .header-right {
-                flex-direction: row;
-                gap: 10px;
-            }
-            .header-right .header-cell {
-                flex: 1;
-                aspect-ratio: 1 / 1;
-            }
-            .header-row-3 {
-                grid-template-columns: 1fr;
-                gap: 18px;
-            }
+            .header-row-1 { grid-template-columns: 1fr; gap: 18px; margin-top: 40px; }
+            .header-tags { justify-content: flex-start; }
         }
-
         /* ===== END HEADER ===== */
 
         /* ===== OVERVIEW SECTION ===== */
@@ -194,51 +120,244 @@
             .overview-title { font-size: 1.15rem; margin-bottom: 16px; margin-top: 28px; }
         }
         /* ===== END OVERVIEW ===== */
+        /* ensure the grid below uses the same two-column sizing so edges line up */
+        .kwacha-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            column-gap: 24px;
+            row-gap: 28px;
 
-        /* Prevent the first grid card from scaling on hover */
-        .kwacha-grid .kwacha-card:first-child:hover .kwacha-media img {
-            transform: none !important;
+            margin-bottom: 32px;
         }
-        .kwacha-grid .kwacha-card:first-child .kwacha-media img {
-            transition: none !important;
-        }
-
-        /* Force the grid card itself to size to its content */
-        .kwacha-grid .kwacha-card:first-child {
-            height: auto !important;
-            overflow: visible;
+        @media (min-width: 641px) {
+            .kwacha-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
-        #first-grid-media {
+        .kwacha-card {
+
+            background: transparent;
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            /* removed shadow so images have no visible shadow */
+            box-shadow: none;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
+            height: 480px;
+            align-items: stretch;
+        }
+
+        .kwacha-card .kwacha-media {
             padding: 36px;
             box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            display: block;
-            background: #F0F0F0;
-            height: auto !important;
+            height: 480px;
+            flex-shrink: 0;
+            background: transparent;
+        }
+        .kwacha-card .kwacha-media::before {
+            content: "";
+            position: absolute;
+            inset: 0px;
             border-radius: 14px;
-            overflow: visible;
+            background: #F7F7F7;
+            z-index: 1;
+            /* ensure placeholder has no shadow */
+            box-shadow: none;
         }
-        #first-grid-media::before {
-            display: none;
-        }
-        #first-grid-media img {
+        .kwacha-card .kwacha-media img {
             width: 100%;
-            height: auto !important;
+            height: 100%;
             object-fit: contain;
             object-position: center center;
-            border-radius: 10px;
+            border-radius: 14px;
             display: block;
             position: relative;
             z-index: 2;
-            transition: none !important;
+            transition: transform 0.6s cubic-bezier(0,0,0.2,1);
             background: transparent;
+            /* explicitly remove any image shadows */
             box-shadow: none;
         }
-        @media (max-width: 640px) {
-            #first-grid-media { padding: 20px !important; }
-            #first-grid-media img { border-radius: 8px !important; }
+        .kwacha-card:hover .kwacha-media img { transform: scale(1.06); }
+        .kwacha-card .kwacha-body {
+            padding: 12px 14px;
+            display: none; /* hide body/title area as requested */
+            flex: 1 1 auto;
         }
+        .kwacha-card.span {
+            grid-column: 1 / -1;
+            height: 420px;
+        }
+        @media (max-width: 640px) {
+            /* stacked layout on small screens: keep padding so edges match card spacing */
+            .kwacha-main {
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+                padding: 0 12px;
+                box-sizing: border-box;
+            }
+
+            /* make the top image area fill the content width on small screens,
+               keep internal padding like the cards and ensure the img stays fully visible */
+            .kwacha-main-img {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
+                padding: 20px;            /* similar padding to card-media on mobile */
+                box-sizing: border-box;
+                height: auto;             /* allow height to size to content */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 14px;      /* match card radius */
+                background: #F7F7F7;      /* keep grey background on small screens */
+                overflow: hidden;
+            }
+            .kwacha-main-img img {
+                width: 100%;
+                height: auto;             /* ensure whole image is visible (contain behavior) */
+                object-fit: contain;
+                border-radius: 12px;      /* small inner rounding for visual match */
+                display: block;
+            }
+
+
+            .kwacha-card { height: 380px; }
+            .kwacha-card .kwacha-media { height: 380px; padding: 32px; }
+            .kwacha-card .kwacha-media::before { inset: 10px; border-radius: 12px; }
+            .kwacha-card .kwacha-media img { border-radius: 12px; }
+            /*.kwacha-card.span { grid-column: auto; height: 360px; }*/
+
+            /* reduced spacing between grid images on mobile */
+            .kwacha-grid {
+                gap: 0px;
+                row-gap: 8px;
+                /* previously 24px; tightened for mobile */
+                /*margin-bottom: 20px;*/
+            }
+        }
+
+        /* Top bar above title (as seen in top_bar.png) */
+        .kwacha-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            margin: 40px 6px 18px;
+            /* removed: cursor: pointer; */
+        }
+        .kwacha-topbar .circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            border: 1px solid #e3e3e3;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.18s, border-color 0.08s;
+            cursor: pointer; /* only the interactive circle shows pointer */
+        }
+        /* Ionicon sizing/color for rounded-stroke arrow */
+        .kwacha-topbar .arrow {
+            width: 22px;
+            height: 22px;
+            color: #2f2f2f;
+            transition: color 0.18s;
+            display: inline-block;
+        }
+        /* ensure the inner SVG scales to the CSS size */
+        .kwacha-topbar .arrow svg { width: 100%; height: 100%; display: block; }
+
+        .kwacha-topbar .project-text {
+            font-size: 1.0rem;
+            font-weight: 500;
+            color: #6f6f6f;
+            transition: color 0.18s;
+            cursor: pointer; /* text is interactive */
+        }
+
+        /* NEW: bordered-only tag placed at the far right of the top bar */
+        .kwacha-topbar .top-tag {
+            margin-left: auto;                  /* push to the far end */
+            border: 1px solid #e3e3e3;          /* border only, keep same border color */
+            background: transparent;            /* no background */
+            color: #6f6f6f;                     /* muted text color */
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-sizing: border-box;
+            cursor: pointer; /* tag is interactive */
+        }
+        .kwacha-topbar .top-tag:hover,
+        .kwacha-topbar .top-tag:focus {
+            color: #141414;
+            border-color: #d0d0d0;
+            outline: none;
+        }
+
+        /* NEW: only change visuals when the circle or the text are hovered/focused.
+           JS toggles the .hovering class on the container so both elements update together.
+           Note: avoid using .kwacha-topbar:hover so hovering empty space in the row won't trigger changes. */
+        .kwacha-topbar .circle:hover,
+        .kwacha-topbar .circle:focus,
+        .kwacha-topbar.hovering .circle {
+            background: #141414;
+            border-color: transparent; /* makes the grey border disappear visually */
+        }
+        .kwacha-topbar .circle:hover .arrow,
+        .kwacha-topbar .circle:focus .arrow,
+        .kwacha-topbar.hovering .circle .arrow {
+            color: #fff;
+        }
+        .kwacha-topbar .circle:focus { outline: 2px solid rgba(0,0,0,0.06); }
+
+        .kwacha-topbar .project-text:hover,
+        .kwacha-topbar .project-text:focus,
+        .kwacha-topbar.hovering .project-text {
+            color: #141414;
+        }
+
+        /* Remove any previous rules that targeted .kwacha-topbar:hover ... (they are replaced above) */
+
+        /* ===== Header hero video ===== */
+        .header-hero-video {
+            background: #F0F0F0;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            height: auto;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .header-hero-video video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: inherit;
+        }
+        @media (max-width: 640px) {
+            .header-hero-video {
+                aspect-ratio: 16 / 9;
+                height: auto;
+                border-radius: 14px;
+            }
+        }
+
     </style>
 </head>
 <body>
