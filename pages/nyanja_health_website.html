@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blood Pressure App</title>
+  <link rel="icon" href="../assets/images/about_me/me.png" type="image/png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- Ionicons: rounded / stroked icons -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <link rel="stylesheet" href="../assets/app_shared.css">
+  <style>
+    /* prevent any unwanted horizontal scrolling */
+    html, body { overflow-x: hidden; }
+
+    /* ===== HEADER — matches new_header.png ===== */
+
+    /* Row 1: title left, tags right */
+    .header-row-1 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+      margin-top: 80px;
+      margin-bottom: 28px;
+    }
+    .header-title {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.22;
+      color: #141414;
+    }
+    .header-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    .header-tags span {
+      background: #ededed;
+      color: #2f2f2f;
+      border-radius: 6px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* Row 2: 2-column image area — left image sets the height, right boxes match it */
+    .header-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 24px;
+      align-items: stretch;
+    }
+    .header-left {
+      display: flex;
+    }
+    .header-left .header-cell {
+      width: 100%;
+      flex: 1;
+    }
+    /* Right column: flex column that stretches to match left image height */
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .header-right .header-cell {
+      flex: 1;
+    }
+    .header-cell {
+      background: #F0F0F0;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      box-sizing: border-box;
+    }
+    .header-cell img {
+      width: 40%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+      display: block;
+    }
+
+    /* Row 3: description full width */
+    .header-row-3 {
+      display: block;
+      margin-bottom: 48px;
+    }
+    .header-description {
+      font-size: 1.08rem;
+      font-weight: 400;
+      color: #4a4a4a;
+      line-height: 1.85;
+    }
+    .header-side {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .header-links-label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #141414;
+      margin-bottom: 4px;
+    }
+    .header-link-icons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .header-link-icons a { display: inline-flex; }
+    .header-link-icons img { width: 28px; height: 28px; }
+    .header-disclaimer {
+      font-size: 0.82rem;
+      color: rgb(160,160,160);
+      line-height: 1.5;
+    }
+    .header-disclaimer strong { color: #141414; font-weight: 600; }
+
+    /* Mobile: stack everything */
+    @media (max-width: 640px) {
+      .header-row-1 { grid-template-columns: 1fr; gap: 18px; margin-top: 40px; }
+      .header-tags { justify-content: flex-start; }
+      .header-row-2 { grid-template-columns: 1fr; gap: 10px; }
+      .header-left .header-cell { aspect-ratio: 16 / 10; }
+      .header-right { flex-direction: row; gap: 10px; }
+      .header-right .header-cell { flex: 1; aspect-ratio: 1 / 1; }
+    }
+
+    /* ===== OVERVIEW SECTION ===== */
+    .proj-meta-card {
+      border-top: 1px solid #e3e3e3;
+      border-bottom: 1px solid #e3e3e3;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      overflow: hidden;
+      margin-bottom: 32px;
+      margin-top: 40px;
+    }
+    .proj-meta-col {
+      padding: 20px 16px;
+      margin-top: 14px;
+      margin-bottom: 14px;
+      margin-left: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-right: 1px solid #e3e3e3;
+      box-sizing: border-box;
+    }
+    .proj-meta-col:last-child { border-right: none; }
+    .proj-meta-label {
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: #a0a0a0;
+      line-height: 1.5;
+    }
+    .proj-meta-value {
+      font-size: 0.96rem;
+      font-weight: 400;
+      color: #141414;
+      line-height: 1.3;
+    }
+    .overview-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #141414;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-top: 48px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 640px) {
+      .proj-meta-card { grid-template-columns: 1fr; border-radius: 0px; padding: 0px; }
+      .proj-meta-col {
+        flex-direction: row; align-items: center; justify-content: space-between;
+        text-align: left; border-right: none; border-bottom: 1px solid #e3e3e3;
+        padding: 16px 0px; gap: 8px; margin-top: 0; margin-bottom: 0; margin-left: 0px;
+      }
+      .proj-meta-label { margin-left: 16px; }
+      .proj-meta-value { margin-right: 16px; text-align: right; }
+      .proj-meta-col:last-child { border-bottom: none; }
+      .overview-title { font-size: 1.15rem; margin-bottom: 16px; margin-top: 28px; }
+    }
+    /* ===== END OVERVIEW ===== */
+
+    /* --- added: ensure header main image and grid-first image show visible grey padding on mobile --- */
+    @media (max-width: 640px) {
+      .header-main-img {
+        padding: 48px !important;
+        box-sizing: border-box !important;
+        border-radius: 14px !important;
+        background: #F0F0F0 !important;
+        display: block;
+        width: 100%;
+      }
+
+      /* Keep the first grid media padded so the grey ::before placeholder is visible */
+      #first-grid-media {
+        padding: 48px ;
+        box-sizing: border-box !important;
+      }
+      #first-grid-media::before {
+        inset: -16px !important;
+        border-radius: 12px !important;
+        background: #F7F7F7 !important;
+      }
+      #first-grid-media img {
+        border-radius: 12px !important;
+      }
+    }
+
+    /* ===== END HEADER ===== */
+
+    /* ensure the grid below uses the same two-column sizing so edges line up */
+    .kwacha-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      column-gap: 24px;
+      row-gap: 14px;
+      margin-bottom: 32px;
+    }
+    @media (min-width: 641px) {
+      .kwacha-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .kwacha-card {
+
+      background: transparent;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      /* removed shadow so images have no visible shadow */
+      box-shadow: none;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+      height: 480px;
+      align-items: stretch;
+    }
+
+    .kwacha-card .kwacha-media {
+      padding: 36px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 420px;
+      flex-shrink: 0;
+      background: transparent;
+    }
+
+    /* Make the FIRST grid card grow to the natural image height:
+       - card becomes auto height
+       - its media container becomes auto height and removes interior padding so the image can show at full natural height
+       - image uses width:100% / height:auto so the container expands to match */
+    .kwacha-grid .kwacha-card:first-child {
+      height: auto; /* allow the card to grow with its content */
+    }
+    .kwacha-grid .kwacha-card:first-child .kwacha-media,
+    #first-grid-media {
+      height: auto !important;
+      padding: 36px !important; /* match other cards' inner padding */
+      box-sizing: border-box;
+      position: relative; /* ensure ::before positions correctly */
+      display: block;
+    }
+    /* ensure the first media has the same grey placeholder as other cards */
+    .kwacha-grid .kwacha-card:first-child .kwacha-media::before,
+    #first-grid-media::before {
+      content: "";
+      position: absolute;
+      inset: 12px; /* same inset used for other card-media placeholders */
+      border-radius: 14px;
+      background: #F7F7F7;
+      z-index: 1;
+    }
+    #first-grid-media img,
+    .kwacha-grid .kwacha-card:first-child .kwacha-media img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 14px;
+      position: relative;
+      z-index: 2; /* ensure image sits above the grey placeholder */
+    }
+
+    /* mobile: preserve auto-growing behavior and respect page padding */
+    @media (max-width: 640px) {
+      /*.kwacha-grid .kwacha-card:first-child { height: auto; }*/
+      /*.kwacha-grid .kwacha-card:first-child .kwacha-media,*/
+      /*#first-grid-media { padding: 8px !important; }*/
+      /*#first-grid-media img { border-radius: 80px; }*/
+    }
+
+    /* Top bar above title (as seen in top_bar.png) */
+    .kwacha-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      margin: 40px 6px 18px;
+      /* removed: cursor: pointer; */
+    }
+    .kwacha-topbar .circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      border: 1px solid #e3e3e3;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s, border-color 0.08s;
+      cursor: pointer; /* only the interactive circle shows pointer */
+    }
+    /* Ionicon sizing/color for rounded-stroke arrow */
+    .kwacha-topbar .arrow {
+      width: 22px;
+      height: 22px;
+      color: #2f2f2f;
+      transition: color 0.18s;
+      display: inline-block;
+    }
+    /* ensure the inner SVG scales to the CSS size */
+    .kwacha-topbar .arrow svg { width: 100%; height: 100%; display: block; }
+
+    .kwacha-topbar .project-text {
+      font-size: 1.0rem;
+      font-weight: 500;
+      color: #6f6f6f;
+      transition: color 0.18s;
+      cursor: pointer; /* text is interactive */
+    }
+
+    /* Wrapper that groups action buttons and pushes them to the far right */
+    .kwacha-topbar .top-right-actions {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* NEW: bordered-only tag placed at the far right of the top bar */
+    .kwacha-topbar .top-tag {
+      border: 1px solid #e3e3e3;          /* border only, keep same border color */
+      background: transparent;            /* no background */
+      color: #6f6f6f;                     /* muted text color */
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 13px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-sizing: border-box;
+      /*cursor: pointer; !* tag is interactive *!*/
+    }
+    .kwacha-topbar .top-tag:hover,
+    .kwacha-topbar .top-tag:focus {
+      color: #141414;
+      border-color: #d0d0d0;
+      outline: none;
+    }
+
+    /* NEW: only change visuals when the circle or the text are hovered/focused.
+       JS toggles the .hovering class on the container so both elements update together.
+       Note: avoid using .kwacha-topbar:hover so hovering empty space in the row won't trigger changes. */
+    .kwacha-topbar .circle:hover,
+    .kwacha-topbar .circle:focus,
+    .kwacha-topbar.hovering .circle {
+      background: #141414;
+      border-color: transparent; /* makes the grey border disappear visually */
+    }
+    .kwacha-topbar .circle:hover .arrow,
+    .kwacha-topbar .circle:focus .arrow,
+    .kwacha-topbar.hovering .circle .arrow {
+      color: #fff;
+    }
+    .kwacha-topbar .circle:focus { outline: 2px solid rgba(0,0,0,0.06); }
+
+    .kwacha-topbar .project-text:hover,
+    .kwacha-topbar .project-text:focus,
+    .kwacha-topbar.hovering .project-text {
+      color: #141414;
+    }
+
+    .kwacha-card {
+      background: transparent;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: none; /* images have no visible shadow */
+      cursor: pointer;
+      transition: box-shadow 0.2s; /* keep small transition for shadow only */
+      height: auto; /* allow card to grow with its content (image) */
+      align-items: stretch;
+    }
+
+    .kwacha-card .kwacha-media {
+      padding: 36px;          /* same inner padding as other pages */
+      box-sizing: border-box;
+      display: block;         /* let media size to content */
+      position: relative;
+      height: auto !important; /* allow media to grow to the image height */
+      background: transparent;
+    }
+
+    .kwacha-card .kwacha-media::before {
+      content: "";
+      position: absolute;
+      inset: 0px;
+      border-radius: 14px;
+      background: #F7F7F7;
+      z-index: 1;
+      /* ensure placeholder has no shadow */
+      box-shadow: none;
+    }
+    .kwacha-card .kwacha-media img {
+      width: 100%;
+      height: auto;               /* natural image height controls container */
+      object-fit: contain;        /* ensure whole image visible */
+      object-position: center center;
+      border-radius: 14px;
+      display: block;
+      position: relative;
+      z-index: 2;
+      transition: none !important; /* disable transform transition for natural growth */
+      background: transparent;
+      box-shadow: none;           /* explicitly remove any image shadows */
+    }
+    .phone-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 24px;
+    }
+
+    .kwacha-card .kwacha-media img {
+      width: 100%;
+      height: auto;               /* natural image height controls container */
+      object-fit: contain;        /* ensure whole image visible */
+      object-position: center center;
+      border-radius: 14px;
+      display: block;
+      position: relative;
+      z-index: 2;
+      transition: none !important; /* disable transform transition for natural growth */
+      background: transparent;
+      box-shadow: none;           /* explicitly remove any image shadows */
+    }
+    @media (max-width: 640px) {
+
+      /*.kwacha-card { height: auto; }*/
+      .kwacha-card .kwacha-media { padding: 20px; }
+      .kwacha-card .kwacha-media::before { inset: 10px; border-radius: 12px; }
+      .kwacha-card .kwacha-media img { border-radius: 12px; }
+      /*.kwacha-card.span { grid-column: auto; height: 360px; }*/
+
+      .kwacha-grid {
+        gap: 0;
+      }
+    }
+
+    /* Prevent the first grid card from scaling on hover */
+    .kwacha-grid .kwacha-card:hover .kwacha-media img {
+      transform: none !important;
+    }
+
+
+
+    /* Remove transform transition for the first image so it won't animate */
+    .kwacha-grid .kwacha-card .kwacha-media img {
+      transition: none !important;
+    }
+
+    .kwacha-grid .kwacha-card .kwacha-media img {
+      transition: none !important;
+    }
+
+
+
+  </style>
+</head>
+<body>
+<header id="app-header"></header>
+<main class="container">
+  <div class="kwacha-topbar">
+    <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back">
+      <!-- plain left arrow icon (no circle) — the surrounding .circle provides the circular container -->
+      <ion-icon name="arrow-back-outline" class="arrow" aria-hidden="true" title="Back"></ion-icon>
+    </div>
+    <span class="project-text" tabindex="0">Projects</span>
+    <!-- Action buttons aligned to the far right -->
+    <!--        <div class="top-right-actions">-->
+    <!--            <a class="top-tag" href="https://track-it-website-2.vercel.app/" target="_blank" rel="noopener noreferrer">-->
+    <!--                <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>-->
+    <!--                View Website-->
+    <!--            </a>-->
+    <!--            <a class="top-tag" href="https://github.com/twambie62/track-it-website-2" target="_blank" rel="noopener noreferrer">-->
+    <!--                <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>-->
+    <!--                View Code-->
+    <!--            </a>-->
+    <!--        </div>-->
+  </div>
+
+  <!-- Row 1: Title left, Tags right -->
+  <div class="header-row-1">
+    <div class="header-title">Nyanja health Research Institute Website<br></div>
+    <div class="header-tags">
+      <span>UI/UX Design</span>
+      <span>Web Design</span>
+      <span>Figma</span>
+      <span>Product Design</span>
+      <span>Landing Page</span>
+    </div>
+  </div>
+
+  <!-- Header image spanning full width -->
+  <div class="header-hero-img" style="max-width:1200px; margin:0 auto 24px;">
+    <img class="header-main-img" src="../assets/images/portifolio/nyanja_health/hero_section.png"
+         alt="Track It Landing Page"
+         style="width:100%; padding:48px; display:block; border-radius:20px; background:#F0F0F0; box-sizing:border-box;" />
+  </div>
+
+  <!-- Overview meta section -->
+  <div class="proj-meta-card">
+    <div class="proj-meta-col">
+      <span class="proj-meta-label">Role</span>
+      <span class="proj-meta-value">UI Designer & Developer</span>
+    </div>
+    <div class="proj-meta-col">
+      <span class="proj-meta-label">Client</span>
+      <span class="proj-meta-value">Nyanja Health Research</span>
+    </div>
+    <div class="proj-meta-col">
+      <span class="proj-meta-label">Platform</span>
+      <span class="proj-meta-value">Web</span>
+    </div>
+    <div class="proj-meta-col">
+      <span class="proj-meta-label">Year</span>
+      <span class="proj-meta-value">2026</span>
+    </div>
+  </div>
+
+  <div class="overview-title">Overview</div>
+
+  <!-- Row 3: Description full width -->
+  <div class="header-row-3">
+    <div class="header-description">
+      A website for a health research institute focused on grant-funded scientific work. The design emphasizes credibility, transparency, and impact, with a clean, professional layout built to support fundraising and engage researchers, partners, and investors.    </div>
+  </div>
+  <div class="overview-title">UI Designs</div>
+  <!-- Grid with images from notes_website, one column -->
+  <div class="kwacha-grid" style="grid-template-columns:1fr;">
+    <div class="kwacha-card">
+      <div class="kwacha-media" >
+        <img  src="../assets/images/portifolio/nyanja_health/landing_page.png" alt="Track It Landing Page" />
+      </div>
+      <div class="kwacha-body"></div>
+    </div>
+    <div class="kwacha-card">
+      <div class="kwacha-media" >
+        <img  src="../assets/images/portifolio/nyanja_health/about.png" alt="Track It Landing Page" />
+      </div>
+      <div class="kwacha-body"></div>
+    </div>
+    <div class="kwacha-card">
+      <div class="kwacha-media" >
+        <img  src="../assets/images/portifolio/nyanja_health/parterns.png" alt="Track It Landing Page" />
+      </div>
+      <div class="kwacha-body"></div>
+    </div>
+    <div class="kwacha-card">
+      <div class="kwacha-media" >
+        <img  src="../assets/images/portifolio/nyanja_health/research.png" alt="Track It Landing Page" />
+      </div>
+      <div class="kwacha-body"></div>
+    </div>
+    <div class="kwacha-card">
+      <div class="kwacha-media" >
+        <img  src="../assets/images/portifolio/nyanja_health/research_details.png" alt="Track It Landing Page" />
+      </div>
+      <div class="kwacha-body"></div>
+    </div>
+    <div class="kwacha-card">
+      <div class="kwacha-media" >
+        <img  src="../assets/images/portifolio/nyanja_health/fundraising.png" alt="Track It Landing Page" />
+      </div>
+      <div class="kwacha-body"></div>
+    </div>
+    <div class="kwacha-card">
+      <div class="kwacha-media" >
+        <img  src="../assets/images/portifolio/nyanja_health/Internships.png" alt="Track It Landing Page" />
+      </div>
+      <div class="kwacha-body"></div>
+    </div>
+  </div>
+
+</main>
+<!--<footer id="app-footer"></footer>-->
+<script src="../assets/app_shared.js"></script>
+
+<!-- GSAP for entrance animations -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    // ── Topbar hover state ──────────────────────────────────────────────
+    (function () {
+      const topbar = document.querySelector('.kwacha-topbar');
+      if (!topbar) return;
+      const circle = topbar.querySelector('.circle');
+      const text   = topbar.querySelector('.project-text');
+      function setHover()   { topbar.classList.add('hovering'); }
+      function clearHover() { topbar.classList.remove('hovering'); }
+      [circle, text].forEach(el => {
+        if (!el) return;
+        el.addEventListener('mouseenter', setHover);
+        el.addEventListener('mouseleave', clearHover);
+        el.addEventListener('focus',      setHover);
+        el.addEventListener('blur',       clearHover);
+      });
+    })();
+
+    // ── Topbar navigation ───────────────────────────────────────────────
+    (function () {
+      const topbar = document.querySelector('.kwacha-topbar');
+      if (!topbar) return;
+      const circle = topbar.querySelector('.circle');
+      const text   = topbar.querySelector('.project-text');
+      const target = '../index.html';
+      function goHome(e) {
+        if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
+        window.location.href = target;
+      }
+      function keyActivate(e) {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+          e.preventDefault(); goHome(e);
+        }
+      }
+      [circle, text].forEach(el => {
+        if (!el) return;
+        el.addEventListener('click',   goHome);
+        el.addEventListener('keydown', keyActivate);
+      });
+    })();
+
+    // ── Figma / GitHub links ────────────────────────────────────────────
+    const figmaLink = document.getElementById('figma-link');
+    if (figmaLink) {
+      figmaLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.open('https://www.figma.com/', '_blank');
+      });
+    }
+    const githubLink = document.getElementById('github-link');
+    if (githubLink) {
+      githubLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.open('https://github.com/', '_blank');
+      });
+    }
+
+    // ── Grid height sync ────────────────────────────────────────────────
+    const img   = document.getElementById('first-grid-img');
+    const media = document.getElementById('first-grid-media');
+    if (img && media) {
+      function syncHeight() { media.style.height = img.offsetHeight + 'px'; }
+      if (img.complete) { syncHeight(); } else { img.onload = syncHeight; }
+      window.addEventListener('resize', syncHeight);
+    }
+
+    // ── Entrance animation: right → left fade-in, staggered ────────────
+    const targets = [
+      document.querySelector('.kwacha-topbar'),
+      document.querySelector('.header-row-1'),
+      document.querySelector('.header-hero-img'),
+      document.querySelector('.proj-meta-card'),
+      document.querySelector('.overview-title'),
+      document.querySelector('.header-row-3'),
+    ].filter(Boolean);
+
+    gsap.set(targets, { opacity: 0, x: 60 });
+    gsap.to(targets, {
+      opacity: 1, x: 0, duration: 0.75,
+      ease: 'power3.out', stagger: 0.14, delay: 0.1,
+    });
+
+    // Tag chips stagger
+    const tags = document.querySelectorAll('.header-tags span');
+    if (tags.length) {
+      gsap.set(tags, { opacity: 0, x: 40 });
+      gsap.to(tags, {
+        opacity: 1, x: 0, duration: 0.55,
+        ease: 'power3.out', stagger: 0.07, delay: 0.35,
+      });
+    }
+
+  });
+</script>
+<footer id="app-footer"></footer>
+
+</body>
+</html>
