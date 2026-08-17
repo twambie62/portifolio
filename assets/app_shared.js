@@ -304,7 +304,7 @@ function renderFooter() {
       <div class="footer-right">
         <div class="footer-contact-title">Contact me</div>
         <div class="footer-contact-phone">+265 99-588-64-98</div>
-        <div class="footer-contact-phone">+265 88-485-08-93</div>
+        <div class="footer-contact-phone">+265 88-495-08-93</div>
         <div class="footer-location-title">Location</div>
         <div class="footer-location">Lilongwe,Malawi</div>
       </div>
