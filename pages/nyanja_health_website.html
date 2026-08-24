@@ -303,10 +303,10 @@
 
     /* mobile: preserve auto-growing behavior and respect page padding */
     @media (max-width: 640px) {
-      /*.kwacha-grid .kwacha-card:first-child { height: auto; }*/
-      /*.kwacha-grid .kwacha-card:first-child .kwacha-media,*/
-      /*#first-grid-media { padding: 8px !important; }*/
-      /*#first-grid-media img { border-radius: 80px; }*/
+      .kwacha-grid .kwacha-card:first-child { height: auto; }
+      .kwacha-grid .kwacha-card:first-child .kwacha-media,
+      #first-grid-media { padding: 12px !important; }
+      #first-grid-media img { border-radius: 12px; }
     }
 
     /* Top bar above title (as seen in top_bar.png) */
@@ -369,7 +369,7 @@
       align-items: center;
       gap: 8px;
       box-sizing: border-box;
-      /*cursor: pointer; !* tag is interactive *!*/
+      cursor: pointer; /* tag is interactive */
     }
     .kwacha-topbar .top-tag:hover,
     .kwacha-topbar .top-tag:focus {
@@ -479,7 +479,7 @@
       }
     }
 
-    /* Prevent the first grid card from scaling on hover */
+     /*Prevent the first grid card from scaling on hover */
     .kwacha-grid .kwacha-card:hover .kwacha-media img {
       transform: none !important;
     }
@@ -487,10 +487,6 @@
 
 
     /* Remove transform transition for the first image so it won't animate */
-    .kwacha-grid .kwacha-card .kwacha-media img {
-      transition: none !important;
-    }
-
     .kwacha-grid .kwacha-card .kwacha-media img {
       transition: none !important;
     }
@@ -525,7 +521,7 @@
   <div class="header-row-1">
     <div class="header-title">Nyanja health Research Institute Website<br></div>
     <div class="header-tags">
-      <span>UI/UX Design</span>
+      <span>UI/UX Design & Developer</span>
       <span>Web Design</span>
       <span>Figma</span>
       <span>Product Design</span>
@@ -534,21 +530,21 @@
   </div>
 
   <!-- Header image spanning full width -->
-  <div class="header-hero-img" style="margin:0 auto 0px;">
+  <div class="header-hero-img" style="max-width:1200px; margin:0 auto 24px;">
     <img class="header-main-img" src="../assets/images/portifolio/nyanja_health/hero_section.png"
          alt="Track It Landing Page"
-         style="width:100%; padding:0px; display:block; border-radius:20px; background:#F0F0F0; box-sizing:border-box;" />
+         style="width:100%; padding:48px; display:block; border-radius:20px; background:#F0F0F0; box-sizing:border-box;" />
   </div>
 
   <!-- Overview meta section -->
   <div class="proj-meta-card">
     <div class="proj-meta-col">
       <span class="proj-meta-label">Role</span>
-      <span class="proj-meta-value">UI Designer & Developer</span>
+      <span class="proj-meta-value">UI Designer</span>
     </div>
     <div class="proj-meta-col">
       <span class="proj-meta-label">Client</span>
-      <span class="proj-meta-value">Nyanja Health Research</span>
+      <span class="proj-meta-value">Nyanja Health Institute</span>
     </div>
     <div class="proj-meta-col">
       <span class="proj-meta-label">Platform</span>
@@ -565,14 +561,15 @@
   <!-- Row 3: Description full width -->
   <div class="header-row-3">
     <div class="header-description">
-      A website for a health research institute focused on grant-funded scientific work. The design emphasizes credibility, transparency, and impact, with a clean, professional layout built to support fundraising and engage researchers, partners, and investors.    </div>
+      A landing page for a B2B lead-generation and appointment-setting agency. The design emphasizes trust, credibility, and a clear value proposition, with a clean, professional layout built to convert visiting prospects into qualified leads.
+    </div>
   </div>
   <div class="overview-title">UI Designs</div>
   <!-- Grid with images from notes_website, one column -->
   <div class="kwacha-grid" style="grid-template-columns:1fr;">
     <div class="kwacha-card">
-      <div class="kwacha-media" >
-        <img  src="../assets/images/portifolio/nyanja_health/landing_page.png" alt="Track It Landing Page" />
+      <div class="kwacha-media" id="first-grid-media">
+        <img id="first-grid-img" src="../assets/images/portifolio/nyanja_health/landing_page.png" alt="Track It Landing Page" />
       </div>
       <div class="kwacha-body"></div>
     </div>
@@ -610,8 +607,10 @@
       <div class="kwacha-media" >
         <img  src="../assets/images/portifolio/nyanja_health/Internships.png" alt="Track It Landing Page" />
       </div>
-      <div class="kwacha-body"></div>
+<!--      <div class="kwacha-body"></div>-->
     </div>
+  </div>
+
   </div>
 
 </main>
