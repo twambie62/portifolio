@@ -1,0 +1,14 @@
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node
+node_modules/
+
+# Local refactor tooling (screenshots, comparison scripts)
+.refactor/
