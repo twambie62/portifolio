@@ -141,8 +141,6 @@
             grid-template-columns: 1fr;
             column-gap: 20px;
             row-gap: 24px;
-            /*margin-right: 24px;*/
-            /*margin-left: 24px;*/
             margin-bottom: 32px;
         }
         @media (min-width: 641px) {
@@ -209,7 +207,6 @@
         }
         .kwacha-card.span {
             grid-column: 1 / -1;
-            /*height: 420px;*/
         }
         @media (max-width: 640px) {
             /* stacked layout on small screens: keep padding so edges match card spacing */
@@ -256,7 +253,6 @@
             .kwacha-grid {
                 gap: 0px;
                 row-gap: 8px/* previously 24px; tightened for mobile */
-                /*margin-bottom: 20px;*/
             }
         }
 
@@ -267,7 +263,6 @@
             justify-content: flex-start;
             gap: 12px;
             margin: 40px 6px 18px;
-            /* removed: cursor: pointer; */
         }
         .kwacha-topbar .circle {
             width: 36px;
@@ -354,8 +349,7 @@
 <!-- Page transition overlay -->
 <div id="page-overlay"></div>
 
-<main class="container" data-barba="wrapper">
-<div data-barba="container" data-barba-namespace="kwacha-wise">
+<main class="container">
     <div class="kwacha-topbar">
         <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back" onclick="history.back()" onkeydown="if(event.key==='Enter'||event.key===' ')history.back()">
             <!-- plain left arrow icon (no circle) — the surrounding .circle provides the circular container -->
@@ -432,12 +426,6 @@
         </div>
 
         <!-- stats_group remains and spans both columns -->
-<!--        <div class="kwacha-card span">-->
-<!--            <div class="kwacha-media">-->
-<!--                <img src="../assets/images/portifolio/fintech/stats_group.png" alt="Stats Group" />-->
-<!--            </div>-->
-<!--            <div class="kwacha-body"></div>-->
-<!--        </div>-->
 
         <!-- analytics_2 (original second) moved to be just before the final appended image -->
         <div class="kwacha-card">
@@ -455,13 +443,11 @@
             <div class="kwacha-body"></div>
         </div>
     </div>
-</div><!-- /#barba-container -->
 </main>
-<!--<footer id="app-footer"></footer>-->
 <script src="../assets/app_shared.js"></script>
 
 <!-- GSAP for entrance animations -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 

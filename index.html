@@ -3,18 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Twambi — UI/UX Designer</title><link rel="icon" href="assets/images/about_me/me.png" type="image/png">
+    <title>Twambi — UI/UX Designer</title>
+    <link rel="icon" href="assets/images/about_me/me.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/app_shared.css">
     <style>
         :root {
@@ -52,9 +46,6 @@
             color: var(--text);
         }
         h1, h2, h3, h4, h5, h6 {
-            /*font-family: 'Zilla Slab', serif;*/
-            /*letter-spacing: 0.013em;*/
-            /*font-weight: 700;*/
         }
         .heading-slab {
             font-family: 'Roboto Slab', serif;
@@ -71,7 +62,6 @@
             right: 0;
             z-index: 100;
 
-            /*padding: 12px 0;*/
             pointer-events: auto;
         }
         header > .container {
@@ -83,10 +73,6 @@
         }
         .nav {
             background: var(--bg);
-            /*background: rgba(255, 255, 255, 0.8);*/
-            /*backdrop-filter: blur(24px);*/
-            /*-webkit-backdrop-filter: blur(24px);*/
-            /*border: 1px solid rgba(255, 255, 255, 0.8);*/
             border: 1px solid var(--border);
 
             border-radius: 14px;
@@ -221,8 +207,6 @@
         .hero {
             text-align: center;
             padding: 28px 0 56px;
-            /*overflow: hidden;*/
-            /*width: 100%;*/
             position: relative; /* needed for pill absolute positioning */
         }
         /* Floating pill badges */
@@ -362,8 +346,6 @@
             border-radius: 50%;
             overflow: hidden;
             margin-left: 0px;
-            /*border: 4px solid var(--card);*/
-            /*box-shadow: 0 12px 30px rgba(0,0,0,0.08);*/
             position: relative;
             z-index: 1;
         }
@@ -492,7 +474,6 @@
                 position: absolute;
                 /* on mobile, anchor left of the Contact me button */
                 left: -60px;
-                /*right: auto;*/
                 bottom: -52px;
                 width: 140px;
             }
@@ -605,7 +586,6 @@
             transform: translateX(-50%);
             width: min(1300px, 100vw);
             height: 616px; /* hero ~420px + half marquee height ~140px */
-            /*width: 8000px;*/
             pointer-events: none;
             z-index: 0;
             display: block;
@@ -660,14 +640,10 @@
             animation: marquee 58s linear infinite;
             will-change: transform;
         }
-        /*.hero-proj-marquee-wrap:hover .hero-proj-track { animation-play-state: paused; }*/
         .hero-proj-card {
             flex: 0 0 auto;
             border-radius: 18px;
             overflow: hidden;
-            /*border: 1px solid var(--border);*/
-            /*box-shadow: 0 6px 20px rgba(0,0,0,0.06);*/
-            /*background: var(--card);*/
         }
         .hero-proj-card img {
             height: 320px;
@@ -719,7 +695,6 @@
             grid-template-columns: 1fr;
             row-gap: 14px; /*20px*/
             column-gap: 16px;
-            /*gap: 14px;*/
             margin: 12px -160px 20px;
             padding:  2px;
         }
@@ -753,13 +728,10 @@
 
         /* Card */
         .card {
-            /*border: 1px solid #EDEDED;*/
-            /*background: #FAFAFA;*/
             border-radius: var(--radius);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            /*box-shadow: 0 8px 24px rgba(0,0,0,0.05);*/
             transition: box-shadow 0.25s, transform 0.25s;
             cursor: pointer;
         }
@@ -779,10 +751,8 @@
             background: transparent;
             height: 430px;
             overflow: hidden;
-            /*cursor: default;*/
         }
         .card-media:hover {
-            /*cursor: none;*/
         }
         .card-media::before {
             content: "";
@@ -819,8 +789,6 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            /*background: var(--bg);*/
-            /*border: 1px solid var(--border);*/
             display: flex;
             align-items: center;
             justify-content: center;
@@ -881,7 +849,6 @@
         .card-tags span {
             border: 1px solid #D9D9D9;
 
-            /*background: #ededed; color: #2f2f2f;*/
             color: #343434;
             border-radius: 6px;
             padding: 4px 10px;
@@ -926,7 +893,6 @@
             flex-direction: column;
             gap: 6px;
             max-width: 100%;
-            /*border-bottom: 1px solid var(--border);*/
         }
         .we-card:last-child {
             border-bottom: none;
@@ -942,7 +908,6 @@
             flex-shrink: 0;
             aspect-ratio: 1 / 1;
             max-width: 44px;
-            /*max-height: 44px;*/
             border-radius: 8px;
             overflow: hidden;
             background: var(--bg);
@@ -1112,7 +1077,6 @@
             margin-bottom: 4px;
         }
         .process-number {
-            /*font-family: 'IBM Plex Mono', 'Menlo', 'Consolas', monospace;*/
             font-family: "Inter", sans-serif;
             font-weight: 700;
             font-size: 2.6rem;
@@ -1122,8 +1086,6 @@
             opacity: 0.35;
             font-variant-numeric: slashed-zero tabular-nums;
             font-feature-settings: "zero" 1, "tnum" 1;
-            /*font-variant-numeric: slashed-zero;*/
-            /*font-feature-settings: "zero" 1;*/
         }
         .process-dots {
             display: flex;
@@ -1137,7 +1099,6 @@
             background: var(--border);
         }
         .process-dots span:last-child {
-            /*background: var(--muted);*/
         }
         .process-title {
             font-size: 0.95rem;
@@ -1164,7 +1125,6 @@
             .we-cards { padding-left: 0; padding-right: 0; }
             .section-separator{padding-right: 200px}
             .we-card { padding: 18px 0; }
-            /*.we-card-logo-box { max-width: 64px; border-radius: 8px; }*/
             .we-card-top { gap: 10px; }
             .processes-grid {
                 margin: 18px 16px 0;
@@ -1205,7 +1165,6 @@
         .svc-card {
             border-radius: var(--radius);
             overflow: hidden;
-            /*background: var(--card);*/
             display: flex;
             flex-direction: column;
             align-items: stretch;
@@ -1213,17 +1172,13 @@
 
         /* Image on top */
         .svc-img {
-            /*width: 9%;*/
             aspect-ratio: 1 / 0.9;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             background: #F2F2F2;
-            /*background: var(--card);*/
-            /*margin: 10px;*/
             padding: 2px 12px 2px;
-            /*margin-bottom: 12px;*/
             flex-shrink: 0;
             border-radius: var(--radius);
         }
@@ -1268,31 +1223,23 @@
                 align-content: center;
                 justify-content: center;
                 padding: 0 12px 4px 12px;
-                /*margin-left: -20px;*/
 
             }
 
             .svc-img {
-                /*width: 9%;*/
                 aspect-ratio: 4 / 3;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 overflow: hidden;
-                /*background: #E8E8E8;*/
-                /*margin: 10px;*/
-                /*padding: 10px;*/
                 margin-bottom: 2px;
                 flex-shrink: 0;
-                /*border-radius: var(--radius);*/
             }
             .svc-img img {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
                 display: block;
-                /*margin: 10px;*/
-                /*padding: 40px;*/
                 box-sizing: border-box;
             }
         }
@@ -1350,8 +1297,6 @@
             font-size: 2.6rem;
             font-weight: 600;
             color: #CCCCCC;
-            /*color: //var(--muted);*/
-            /*opacity: 0.35;*/
             line-height: 1;
 
             letter-spacing: -0.04em;
@@ -1498,7 +1443,6 @@
         }
         .wcm-icon-marquee {
             width: 100%;
-            /*overflow: hidden;*/
             position: relative;
         }
         .wcm-icon-marquee::before,
@@ -1630,13 +1574,11 @@
         /* ===== TOOLS SECTION — floating icons around centered text ===== */
         .tools-section {
             position: relative;
-            /*min-height: 432px;*/
             min-height: 492px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 64px 56px;
-            /*overflow: hidden;*/
         }
         .tools-center-text {
             text-align: center;
@@ -1772,7 +1714,6 @@
                 box-shadow: 0 2px 15px rgba(0,0,0,0.08);
             }
             .wcm-vast .wcm-card-img {
-                /*padding: 8px 8px 0px 8px;*/
             }
         }
 
@@ -1819,7 +1760,6 @@
         .about-me-img img {
             padding-top: 20px;
             width: 60%;
-            /*height: 50%;*/
             object-fit: cover;
             display: block;
             border-radius: 8px;
@@ -2078,7 +2018,6 @@
             cursor: grabbing;
         }
         .testimonials-cards-wrap:hover .testimonials-cards-track {
-            /*animation-play-state: paused;*/
         }
         @keyframes testimonialMarquee {
             from { transform: translateX(0); }
@@ -2253,7 +2192,6 @@
         }
 
         .quote-section .quote-icon-large.start-quote {
-            /*transform: rotate(180deg);*/
             margin-top: 16px;
             margin-bottom: 8px;
             align-self: flex-start;
@@ -2542,9 +2480,6 @@
             margin: 0 auto;
         }
 
-        /*.word {*/
-        /*    color: var(--grey-text);*/
-        /*    transition: none; !* animated via GSAP, not CSS *!*/
         /*}*/
 
         /* Toggle switch (mint -> red gradient, or red -> orange gradient) */
@@ -2564,13 +2499,11 @@
         .toggle-mint-red {
             width: 108px;
 
-            /*background: linear-gradient(90deg, var(--toggle-mint) 0%, var(--toggle-red) 100%);*/
             justify-content: flex-end;
         }
 
         .toggle-red-orange {
             width: 108px;
-            /*background: linear-gradient(90deg, var(--toggle-red) 0%, var(--toggle-orange) 100%);*/
             justify-content: flex-end;
         }
 
@@ -2619,13 +2552,11 @@
             .toggle-mint-red {
                 width: 72px;
 
-                /*background: linear-gradient(90deg, var(--toggle-mint) 0%, var(--toggle-red) 100%);*/
                 justify-content: flex-end;
             }
 
             .toggle-red-orange {
                 width: 72px;
-                /*background: linear-gradient(90deg, var(--toggle-red) 0%, var(--toggle-orange) 100%);*/
                 justify-content: flex-end;
             }
 
@@ -2728,7 +2659,6 @@
         }
 
         .projects-badge {
-            /*display: inline-flex;*/
             align-items: center;
             margin-top: 54px;
             margin-bottom: -24px;
@@ -2742,8 +2672,6 @@
         }
 
         .projects-title {
-            /*font-size: 36px;*/
-            /*font-weight: 700;*/
             color: #111;
             margin-bottom: 24px;
             font-size: clamp(1.8rem, 2.5vw + 0.5rem, 2rem);
@@ -2766,8 +2694,6 @@
             flex-wrap: wrap;
             justify-content: center;
             border: 1px solid #E6E6EB;
-            /*margin-right: 0px;*/
-            /*margin-left: 4px;*/
         }
 
         .filter-btn {
@@ -2884,7 +2810,6 @@
         }
 
         .cursor-follower-leave {
-            /*position: fixed;*/
             left: -8px;
             top: -5px;
 
@@ -2916,7 +2841,6 @@
             font-size: 9px;
             font-weight: 600;
 
-            /*color: #fff;*/
 
             opacity: 0;
             white-space: nowrap;
@@ -2926,13 +2850,10 @@
 
 
         .cursor-follower-enter {
-            /*position: fixed;*/
             left: -24px;
             top: -24px;
             width: 60px;
             height: 60px;
-            /*mix-blend-mode: normal;*/
-            /*background: #000;*/
 
 
 
@@ -2948,9 +2869,7 @@
 
             border-radius: 50%;
 
-            /*background: #fff;*/
 
-            /*mix-blend-mode: difference;*/
 
             transition: none;
         }
@@ -2981,11 +2900,8 @@
         }
 
         .section-separator {
-            /*width: 100%;*/
             height: 1px;
-            /*background: var(--border);*/
             margin-left: 52px;
-            /*margin: 40px 0;*/
             border-bottom: 1px solid var(--border);
         }
 
@@ -3048,7 +2964,7 @@
 <!-- Page transition overlay -->
 <div id="page-overlay"></div>
 
-<main id="home" class="container" data-barba="wrapper">
+<main id="home" class="container">
     <div >
         <!-- Hero vertical lines wrapper: covers hero + projects marquee and fades at the marquee end -->
         <div class="hero-lines-wrap">
@@ -3066,9 +2982,6 @@
                     </div>
                     <div id="hero-greeting" class="chip"><span class="available-dot dot--online"></span>Hi I am Twambi</div>
                 </div>
-                <!--                <h1 id="hero-heading">I'm a UI/UX Designer<br>who also builds.</h1>-->
-                <!--                <h1 id="hero-heading"> I'm a web and app developer,<br>-->
-                <!--                    and a UI/UX designer.</h1>-->
                 <h1 id="hero-heading"> I'm a Product Designer and<br>
                     Software Developer.</h1>
 
@@ -3198,7 +3111,6 @@
 
         </section>
 
-        <!--        <div class="spacer">end</div>-->
 
         <section id="projects" style="margin-bottom: 40px;" >
 
@@ -3530,30 +3442,10 @@
                 </div>
             </div>
 
-            <!--            <div style="display: flex; justify-content: center; margin-top: 24px;">-->
-            <!--                <button id="show-more-projects" class="btn btn-grey" style="padding: 12px 28px; font-size: 16px;">Show More <i class="ri-arrow-down-line"></i></button>-->
-            <!--            </div>-->
             <div id="extra-projects" style="display: none; margin-top: 22px;">
                 <div class="projects" style="justify-content: center;">
 
-                    <!--                    <article class="card">-->
-                    <!--                        <div class="card-media" style="&#45;&#45;card-bg-img: url('assets/images/projects/backgrounds/influencer_malawi_app.png');">-->
-                    <!--                            <img src="assets/images/portifolio/posters/testimonial.jpg" alt="Testimonial">-->
-                    <!--                            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>-->
-                    <!--                        </div>-->
-                    <!--                        <div class="card-body">-->
-                    <!--                            <div class="card-title">Influencer Malawi Testimonial</div>-->
-                    <!--                            <div class="card-desc">Testimonial graphic design for Influencer Malawi platform.</div>-->
-                    <!--                            <div class="card-tags">-->
-                    <!--                                <span>Graphic Design</span>-->
-                    <!--                                <span>Poster Design</span>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                    </article>-->
                 </div>
-                <!--                <div style="display: flex; justify-content: center; margin-top: 24px;">-->
-                <!--                    <button id="show-less-projects" class="btn btn-grey" style="padding: 12px 28px; font-size: 16px;">Show Less <i class="ri-arrow-up-line"></i></button>-->
-                <!--                </div>-->
             </div>
         </section>
 
@@ -3568,8 +3460,6 @@
                         <div class="we-card-headtext">
                             <div class="we-card-header">
                                 <span class="we-card-company">Tech265 &mdash; Full-Stack Developer & UI/UX Designer</span>
-<!--                                <span class="we-card-sep"></span>-->
-<!--                                <span class="we-card-role"></span>-->
                             </div>
                             <div class="we-card-date">Dec 2025 - Jun 2026</div>
                         </div>
@@ -3590,8 +3480,6 @@
                         <div class="we-card-headtext">
                             <div class="we-card-header">
                                 <span class="we-card-company">iMoSyS &mdash; UI/UX Designer & Mobile Developer</span>
-<!--                                <span class="we-card-sep">&mdash;</span>-->
-<!--                                <span class="we-card-role">UI/UX Designer & Mobile Developer</span>-->
                             </div>
                             <div class="we-card-date">Jun 2024 - Nov 2024</div>
                         </div>
@@ -3753,97 +3641,9 @@
             </div>
         </section>
 
-        <!-- <section id="skills">
-            <div class="section-label"><span class="dot"></span>All Skills</div>
 
-            <div class="skills-grid">
 
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <span class="skill-card-number">01</span>
-                        <div class="skill-card-icon"><img src="assets/images/skills/ui_ux.svg" alt="UI/UX Design"></div>
-                    </div>
-                    <div class="skill-card-title">UI/UX design</div>
-                    <div class="skill-card-desc">Designing intuitive, modern interfaces user flows, wireframes, and polished UI that feels smooth, clear, and conversion-focused.</div>
-                </div>
 
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <span class="skill-card-number">02</span>
-                        <div class="skill-card-icon"><img src="assets/images/skills/graphic_design.svg" alt="Graphic Design"></div>
-                    </div>
-                    <div class="skill-card-title">Graphic design</div>
-                    <div class="skill-card-desc">Creating compelling visual content including logos, posters, marketing materials, and brand assets that communicate effectively.</div>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <span class="skill-card-number">03</span>
-                        <div class="skill-card-icon"><img src="assets/images/skills/app_development.svg" alt="App Development"></div>
-                    </div>
-                    <div class="skill-card-title">App development</div>
-                    <div class="skill-card-desc">Building cross-platform mobile applications from concept to deployment using Flutter, React Native, and native Android development.</div>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <span class="skill-card-number">04</span>
-                        <div class="skill-card-icon"><img src="assets/images/skills/web_developement.svg" alt="Web Development"></div>
-                    </div>
-                    <div class="skill-card-title">Web development</div>
-                    <div class="skill-card-desc">Crafting fast, accessible, and SEO-friendly websites with modern frameworks, clean code, and responsive layouts.</div>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <span class="skill-card-number">05</span>
-                        <div class="skill-card-icon"><img src="assets/images/skills/ai_and_machine_learning.svg" alt="Interaction Design"></div>
-                    </div>
-                    <div class="skill-card-title">Interaction Design</div>
-                    <div class="skill-card-desc">Crafting meaningful micro-interactions, animations, and prototypes that make digital products feel intuitive and responsive to user actions.</div>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-card-header">
-                        <span class="skill-card-number">06</span>
-                        <div class="skill-card-icon"><img src="assets/images/skills/iot.svg" alt="Design Systems"></div>
-                    </div>
-                    <div class="skill-card-title">Design Systems</div>
-                    <div class="skill-card-desc">Building scalable, consistent component libraries and design tokens that align design and engineering teams across large product surfaces.</div>
-                </div>
-
-                 Cyber Security skill commented out as requested -->
-        <!--
-        <div class="skill-card">
-            <div class="skill-card-header">
-                <span class="skill-card-number">07</span>
-                <div class="skill-card-icon"><img src="assets/images/skills/cyber_security.svg" alt="Cyber Security"></div>
-            </div>
-            <div class="skill-card-title">Cyber Security</div>
-            <div class="skill-card-desc">Implementing secure architectures, vulnerability assessments, and best practices to protect applications and data from threats.</div>
-        </div>
-        -->
-
-        <!--                <div class="skill-card">-->
-        <!--                    <div class="skill-card-header">-->
-        <!--                        <span class="skill-card-number">08</span>-->
-        <!--                        <div class="skill-card-icon"><img src="assets/images/skills/3d_modeling.svg" alt="3D Modeling"></div>-->
-        <!--                    </div>-->
-        <!--                    <div class="skill-card-title">3d Modeling</div>-->
-        <!--                    <div class="skill-card-desc">Creating detailed 3D assets, environments, and product visualizations for games, apps, and marketing presentations.</div>-->
-        <!--                </div>-->
-
-        <!--                <div class="skill-card">-->
-        <!--                    <div class="skill-card-header">-->
-        <!--                        <span class="skill-card-number">09</span>-->
-        <!--                        <div class="skill-card-icon"><img src="assets/images/skills/motion_graphics.svg" alt="Motion Graphics"></div>-->
-        <!--                    </div>-->
-        <!--                    <div class="skill-card-title">Motion Graphics</div>-->
-        <!--                    <div class="skill-card-desc">Producing dynamic animations, video effects, and motion design for engaging digital content and storytelling.</div>-->
-        <!--                </div>-->
-
-        <!--            </div>-->
-        <!--        </section>-->
 
         <section id="why-choose-me">
             <div class="wcm-heading">Many Reasons why you<br>Should <span class="muted">Choose Me</span></div>
@@ -4279,7 +4079,6 @@
         </section>
 
         <!-- ===== GALLERY CAROUSEL ===== -->
-        <!--        <div class="carousel-title services-heading">Random <span class="muted">Pictures</span></div>-->
         <section id="gallery-carousel" class="carousel-section">
             <div class="carousel-title services-heading">Random <span class="muted">Pictures</span></div>
 
@@ -4355,19 +4154,6 @@
     window.addEventListener('scroll', setActive);
     setActive();
 
-    // Show more/less
-    // const showMoreBtn = document.getElementById('show-more-projects');
-    // const showLessBtn = document.getElementById('show-less-projects');
-    // const extraProjects = document.getElementById('extra-projects');
-    //
-    // showMoreBtn.addEventListener('click', function() {
-    //     extraProjects.style.display = 'block';
-    //     showMoreBtn.style.display = 'none';
-    // });
-    // showLessBtn.addEventListener('click', function() {
-    //     extraProjects.style.display = 'none';
-    //     showMoreBtn.style.display = 'inline-flex';
-    // });
 
     // Hamburger menu
     const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -4522,9 +4308,7 @@
         });
     })();
 </script>
-<!--<script src="/assets/app_shared.js"></script>-->
 
-<!--<footer id="app-footer"></footer>-->
 
 <script>
     // If the page is opened with a hash (e.g., index.html#about), perform a smooth scroll to the target
@@ -4547,9 +4331,9 @@
     });
 </script>
 <!-- GSAP + SplitType CDN -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/split-type"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
 <script>gsap.registerPlugin(ScrollTrigger);</script>
 
 <script>
@@ -4675,44 +4459,6 @@
                 gsap.to(dup,  { y:  '100%', duration: DURATION, ease: EASE });
             });
         });
-    })();
-</script>
-<script>
-    // ── Project cards — staggered scroll reveal (all cards across every section) ──
-    (function () {
-        const allCards = document.querySelectorAll('.card');
-        if (!allCards.length) return;
-
-        // Set all cards to their hidden start state immediately
-        // gsap.set(allCards, { opacity: 0, scale:1, y: 200 });
-        //
-        // allCards.forEach(function (card, i) {
-        //   gsap.to(card, {
-        //     opacity: 1,
-        //     y: 0,
-        //     scale:1,
-        //     duration: 1,
-        //       ease: 'power3.out',
-        //       scrollTrigger: {
-        //       trigger: card,
-        //       start: 'top 96%',
-        //       once: true,
-        //     },
-        //
-        //   });
-        // });
-
-        // Re-run ScrollTrigger refresh when extra-projects is shown
-        // so newly visible cards animate in correctly
-        const showMoreBtn = document.getElementById('show-more-projects');
-        if (showMoreBtn) {
-            showMoreBtn.addEventListener('click', function () {
-                // Small delay to let the display:block paint before ScrollTrigger measures
-                setTimeout(function () {
-                    ScrollTrigger.refresh();
-                }, 50);
-            });
-        }
     })();
 </script>
 <script>
@@ -5214,7 +4960,7 @@
 </script>
 
 <!-- ===== GALLERY CAROUSEL ===== -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/Draggable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/Draggable.min.js"></script>
 <script>
     (function () {
         gsap.registerPlugin(Draggable);
@@ -5487,7 +5233,6 @@
         });
     })();
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <script>
     const cursor = document.querySelector(".cursor-follower");
