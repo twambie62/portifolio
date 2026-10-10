@@ -111,11 +111,11 @@ function renderFooter() {
         <div class="footer-sub">Feel free to email me</div>
         <div class="footer-email">twambililemusukwa@gmail.com</div>
         <div class="footer-socials">
-          <a href="https://www.linkedin.com/in/twambi-musukwa-088403271/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" style="width:28px; height: 28px" class="footer-social"><img src="${base}assets/images/footer/linkedin.svg" alt="LinkedIn" /></a>
+          <a href="https://www.linkedin.com/in/twambi-musukwa-088403271/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" style="width:28px; height: 28px" class="footer-social"><img src="${base}assets/shared/footer/linkedin.svg" alt="LinkedIn" /></a>
           <a href="https://www.behance.net/twambilmusukwa" aria-label="Behance" target="_blank" rel="noopener noreferrer" style="width:25px; height: 25px; text-decoration:none;" class="footer-social"><i class="ri-behance-fill" style="font-size:25px; color:#2f2f2f;"></i></a>
         
           <a href="https://github.com/twambie62" aria-label="GitHub" target="_blank" rel="noopener noreferrer" style="width:25px; height: 25px; text-decoration:none;" class="footer-social"><i class="ri-github-fill" style="font-size:25px; color:#2f2f2f;"></i></a>
-          <a href="https://www.instagram.com/twambi_boi" aria-label="Instagram" target="_blank" rel="noopener noreferrer" style="width:25px; height: 25px" class="footer-social"><img src="${base}assets/images/footer/instagram.svg" alt="Instagram" /></a>
+          <a href="https://www.instagram.com/twambi_boi" aria-label="Instagram" target="_blank" rel="noopener noreferrer" style="width:25px; height: 25px" class="footer-social"><img src="${base}assets/shared/footer/instagram.svg" alt="Instagram" /></a>
         </div>
       </div>
       <div class="footer-right">
@@ -129,7 +129,7 @@ function renderFooter() {
     <div class="footer-divider"></div>
     <div class="footer-copyright">© 2026 Twambi. All rights reserved</div>
     <div class="footer-svg-bg">
-      <img src="${base}assets/images/footer/twambi_footer.svg" alt="Twambi" />
+      <img src="${base}assets/shared/footer/twambi-wordmark.svg" alt="Twambi" />
       <span class="footer-dot"></span>
     </div>
     <div class="footer-bottom-bar">
