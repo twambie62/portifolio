@@ -1,5 +1,6 @@
 // ── Footer — staggered fade-up on scroll ──────────────────────────────
 (function () {
+    gsap.registerPlugin(ScrollTrigger);
     const footer = document.querySelector('.app-footer');
     if (!footer) return;
 

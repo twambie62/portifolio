@@ -1,4 +1,5 @@
-// Smooth scroll and active state
+// Home page nav: smooth scroll to sections and highlight the current one.
+// The header itself (and the mobile menu) is rendered by js/shared/layout.js.
 const links = document.querySelectorAll('.nav-links a');
 const sections = [...document.querySelectorAll('main section')];
 
@@ -21,26 +22,3 @@ links.forEach(link => link.addEventListener('click', e => {
 }));
 window.addEventListener('scroll', setActive);
 setActive();
-
-
-// Hamburger menu
-const hamburgerBtn = document.getElementById('hamburger-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-hamburgerBtn.addEventListener('click', function() {
-    const isOpen = mobileMenu.classList.toggle('open');
-    hamburgerBtn.classList.toggle('active', isOpen);
-    hamburgerBtn.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-});
-// Close mobile menu when a link is clicked
-document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        mobileMenu.classList.remove('open');
-        hamburgerBtn.classList.remove('active');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-    });
-});

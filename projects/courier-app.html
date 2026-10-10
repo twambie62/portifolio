@@ -13,7 +13,7 @@
     <!-- Ionicons: rounded / stroked icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <link rel="stylesheet" href="../assets/app_shared.css">
+    <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/project.css">
     <style>
         @media (max-width: 640px) {
@@ -373,10 +373,14 @@
     <!-- ===== END CASE STUDY ===== -->
 
 </main>
-<script src="../assets/app_shared.js"></script>
+<footer id="app-footer" class="app-footer"></footer>
+<script src="../js/shared/layout.js"></script>
 
 <!-- GSAP for entrance animations -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="../js/shared/slide-buttons.js"></script>
+<script src="../js/shared/footer-reveal.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -470,7 +474,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 </script>
-<footer id="app-footer"></footer>
 
 </body>
 </html>
