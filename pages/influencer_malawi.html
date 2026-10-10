@@ -374,6 +374,7 @@
             align-items: center;
             gap: 8px;
             box-sizing: border-box;
+            text-decoration: none;
             cursor: pointer; /* tag is interactive */
         }
         .kwacha-topbar .top-tag:hover,
@@ -715,7 +716,20 @@
                 <ion-icon name="arrow-back-outline" class="arrow" aria-hidden="true" title="Back"></ion-icon>
             </div>
             <span class="project-text" tabindex="0">Projects</span>
-            <div class="top-tag" tabindex="0">Design</div>
+            <a class="top-tag" id="playstore-link" href="https://play.google.com/store/apps/details?id=com.influencermalawi.app" target="_blank" rel="noopener noreferrer">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M3.609 1.814 13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893 2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198 2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658 16.802 8.99l-2.303 2.303-8.635-8.635z"/></svg>
+                View on Play Store
+            </a>
+            <script>
+                // On Android, open the Play Store app directly (falls back to the web page if it isn't installed)
+                (function () {
+                    if (!/Android/i.test(navigator.userAgent)) return;
+                    const link = document.getElementById('playstore-link');
+                    const web = link.href;
+                    link.href = 'intent://details?id=com.influencermalawi.app#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=' + encodeURIComponent(web) + ';end';
+                    link.removeAttribute('target');
+                })();
+            </script>
         </div>
 
         <!-- Row 1: Title left, Tags right -->
