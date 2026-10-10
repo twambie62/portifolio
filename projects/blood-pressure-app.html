@@ -13,92 +13,36 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="../assets/app_shared.css">
+    <link rel="stylesheet" href="../css/project.css">
     <style>
-        /* prevent any unwanted horizontal scrolling */
-        html, body { overflow-x: hidden; }
-        .container { width: min(1080px, 94vw); margin: 0 auto; }
-        /* ===== HEADER — matches new_header.png ===== */
-
-        /* Row 1: title left, tags right */
-        .header-row-1 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            align-items: start;
-            margin-top: 80px;
-            margin-bottom: 28px;
+        .container {
+            width: min(1080px, 94vw);
+            margin: 0 auto;
         }
-        .header-title {
-            font-size: 2rem;
-            font-weight: 700;
-            line-height: 1.22;
-            color: #141414;
-        }
-        .header-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: flex-end;
-        }
-        .header-tags span {
-            background: #ededed;
-            color: #2f2f2f;
-            border-radius: 6px;
-            padding: 6px 16px;
-            font-size: 13px;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
-        /* Row 2: 2-column image area — fixed height so it never becomes too tall */
         .header-row-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 24px;
-            align-items: stretch;
-            height: 372px; /* comfortable fixed height on desktop */
+            height: 372px;
         }
         .header-left {
-            display: flex;
             min-height: 0;
         }
         .header-left .header-cell {
-            width: 100%;
-            flex: 1;
             min-height: 0;
         }
-        /* Right column: flex column that stretches to match left height */
         .header-right {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
             min-height: 0;
         }
         .header-right .header-cell {
-            flex: 1;
             padding: 0;
             box-sizing: border-box;
             min-height: 0;
         }
         .header-cell {
-            background: #F0F0F0;
-            border-radius: 14px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 18px;
             box-sizing: border-box;
         }
         .header-cell img {
-            width: 40%;
             height: 100%;
-            object-fit: contain;
-            border-radius: 10px;
-            display: block;
         }
-
         .header-right .header-cell img {
             width: 100%;
             height: 100%;
@@ -110,20 +54,8 @@
             padding: 0;
             position: relative;
         }
-        .header-left .header-cell video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            border-radius: inherit;
-            background: transparent;
-        }
-
         @media (max-width: 640px) {
             .header-row-2 {
-                grid-template-columns: 1fr;
                 height: auto;
             }
             .header-left .header-cell {
@@ -133,87 +65,14 @@
                 position: relative;
             }
             .header-right {
-                flex-direction: row;
-                gap: 10px;
-                height: 240px; /* taller image on mobile */
-            }
-            .header-right .header-cell {
-                flex: 1;
+                height: 240px;
             }
         }
-
-        /* Row 3: description left, links+disclaimer right */
-        .header-row-3 {
-            display: block;
-            margin-bottom: 48px;
-        }
-        .header-description{
-            font-size: 1.08rem;
-            font-weight: 400;
-            color: #4a4a4a;
-            line-height: 1.85;
-        }
-        .header-side {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-        .header-links-label {
-            font-weight: 600;
-            font-size: 1rem;
-            color: #141414;
-            margin-bottom: 4px;
-        }
-        .header-link-icons {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        .header-link-icons a {
-            display: inline-flex;
-        }
-        .header-link-icons img {
-            width: 28px;
-            height: 28px;
-        }
-        .header-disclaimer {
-            font-size: 0.82rem;
-            color: rgb(160,160,160);
-            line-height: 1.5;
-        }
-        .header-disclaimer strong {
-            color: #141414;
-            font-weight: 600;
-        }
-
-        /* Mobile: stack everything */
-        @media (max-width: 640px) {
-            .header-row-1 {
-                grid-template-columns: 1fr;
-                gap: 18px;
-                margin-top: 40px;
-            }
-            .header-tags {
-                justify-content: flex-start;
-            }
-        }
-
-        /* ===== END HEADER ===== */
-
-        /* ensure the grid below uses the same two-column sizing so edges line up */
-        .kwacha-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+        .screen-grid {
             column-gap: 28px;
             row-gap: 32px;
             margin-bottom: 0;
         }
-        @media (min-width: 641px) {
-            .kwacha-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
         .case-study-col {
             display: flex;
             flex-direction: column;
@@ -238,341 +97,99 @@
                 border-radius: 0 0 12px 12px;
             }
         }
-
-        .kwacha-card {
-
-            background: transparent;
-            border-radius: 14px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            /* removed shadow so images have no visible shadow */
-            box-shadow: none;
-            cursor: pointer;
-            transition: box-shadow 0.2s, transform 0.2s;
-            height: 480px;
-            align-items: stretch;
-        }
-
-        .kwacha-card .kwacha-media {
-            padding: 36px;
-            box-sizing: border-box;
-            display: flex;
+        .screen-card .screen-media {
             align-items: center;
             justify-content: center;
-            position: relative;
-            height: 480px;
             flex-shrink: 0;
-            background: transparent;
         }
-        .kwacha-card .kwacha-media::before {
-            content: "";
-            position: absolute;
-            inset: 0px;
-            border-radius: 14px;
-            background: #F7F7F7;
-            z-index: 1;
-            /* ensure placeholder has no shadow */
-            box-shadow: none;
+        .screen-card:hover .screen-media img {
+            transform: scale(1.06);
         }
-        .kwacha-card .kwacha-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center center;
-            border-radius: 14px;
-            display: block;
-            position: relative;
-            z-index: 2;
-            transition: transform 0.6s cubic-bezier(0,0,0.2,1);
-            background: transparent;
-            /* explicitly remove any image shadows */
-            box-shadow: none;
-        }
-        .kwacha-card:hover .kwacha-media img { transform: scale(1.06); }
-        .kwacha-card .kwacha-body {
+        .screen-card .screen-body {
             padding: 12px 14px;
-            display: none; /* hide body/title area as requested */
+            display: none;
             flex: 1 1 auto;
         }
-        /* Full-bleed cards: make the media container responsible for rounded corners and clipping
-           so that when the inner img scales it won't show square edges. */
-        .kwacha-card.full-bleed .kwacha-media {
-            padding: 0 !important;
-            border-radius: 14px;
-            overflow: hidden;
-        }
-        .kwacha-card.full-bleed .kwacha-media::before {
+        .screen-card.full-bleed .screen-media {
             border-radius: 14px;
         }
-        .kwacha-card.full-bleed .kwacha-media img {
-            border-radius: 0; /* container handles the rounding */
+        .screen-card.full-bleed .screen-media::before {
+            border-radius: 14px;
+        }
+        .screen-card.full-bleed .screen-media img {
+            border-radius: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
-        .kwacha-card.span {
-            grid-column: 1 / -1;
+        .screen-card.span {
             height: 480px;
         }
         @media (max-width: 640px) {
-            .kwacha-card { height: 380px; }
-            .kwacha-card .kwacha-media {height: 380px;  padding: 32px; }
-            .kwacha-card .kwacha-media::before { inset: 10px; border-radius: 12px; }
-            .kwacha-card .kwacha-media img { border-radius: 12px; }
-            .kwacha-card.span { grid-column: auto; height: 380px; }
-
-            .kwacha-grid {
-                row-gap: 8px;/* previously 24px; tightened for mobile */
-
+            .screen-card {
+                height: 380px;
+            }
+            .screen-card .screen-media {
+                height: 380px;
+                padding: 32px;
+            }
+            .screen-card .screen-media::before {
+                inset: 10px;
+                border-radius: 12px;
+            }
+            .screen-card .screen-media img {
+                border-radius: 12px;
+            }
+            .screen-card.span {
+                grid-column: auto;
+                height: 380px;
+            }
+            .screen-grid {
+                row-gap: 8px;
             }
         }
-
-        /* Top bar above title (as seen in top_bar.png) */
-        .kwacha-topbar {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 12px;
-            margin: 40px 6px 18px;
-        }
-        .kwacha-topbar .circle {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            border: 1px solid #e3e3e3;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.18s, border-color 0.08s;
-            cursor: pointer; /* only the interactive circle shows pointer */
-        }
-        /* Ionicon sizing/color for rounded-stroke arrow */
-        .kwacha-topbar .arrow {
-            width: 22px;
-            height: 22px;
-            color: #2f2f2f;
-            transition: color 0.18s;
-            display: inline-block;
-        }
-        /* ensure the inner SVG scales to the CSS size */
-        .kwacha-topbar .arrow svg { width: 100%; height: 100%; display: block; }
-
-        .kwacha-topbar .project-text {
-            font-size: 1.0rem;
-            font-weight: 500;
-            color: #6f6f6f;
-            transition: color 0.18s;
-            cursor: pointer; /* text is interactive */
-        }
-
-        /* Wrapper that groups both action buttons and pushes them to the far right */
-        .kwacha-topbar .topbar-left {
+        .project-topbar .topbar-left {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-
-        /* Wrapper that groups both action buttons and pushes them to the far right */
-        .kwacha-topbar .top-right-actions {
-            margin-left: auto;
-            display: inline-flex;
-            align-items: center;
+        .project-topbar .top-right-actions {
             gap: 11px;
         }
-
         @media (max-width: 560px) {
-            .kwacha-topbar {
+            .project-topbar {
                 align-items: flex-start;
             }
-            .kwacha-topbar .top-right-actions {
+            .project-topbar .top-right-actions {
                 flex-direction: column;
                 align-items: flex-end;
                 gap: 8px;
             }
         }
-
-        /* NEW: bordered-only tag placed at the far right of the top bar */
-        .kwacha-topbar .top-tag {
-            border: 1px solid #e3e3e3;          /* border only, keep same border color */
-            background: transparent;            /* no background */
-            color: #6f6f6f;                     /* muted text color */
-            border-radius: 8px;
-            padding: 6px 10px;
-            font-size: 13px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-sizing: border-box;
-            cursor: pointer; /* tag is interactive */
-        }
-        .kwacha-topbar .top-tag:hover,
-        .kwacha-topbar .top-tag:focus {
-            color: #141414;
-            border-color: #d0d0d0;
-            outline: none;
-        }
-
-        /* NEW: only change visuals when the circle or the text are hovered/focused.
-           JS toggles the .hovering class on the container so both elements update together.
-           Note: avoid using .kwacha-topbar:hover so hovering empty space in the row won't trigger changes. */
-        .kwacha-topbar .circle:hover,
-        .kwacha-topbar .circle:focus,
-        .kwacha-topbar.hovering .circle {
-            background: #141414;
-            border-color: transparent; /* makes the grey border disappear visually */
-        }
-        .kwacha-topbar .circle:hover .arrow,
-        .kwacha-topbar .circle:focus .arrow,
-        .kwacha-topbar.hovering .circle .arrow {
-            color: #fff;
-        }
-        .kwacha-topbar .circle:focus { outline: 2px solid rgba(0,0,0,0.06); }
-
-        .kwacha-topbar .project-text:hover,
-        .kwacha-topbar .project-text:focus,
-        .kwacha-topbar.hovering .project-text {
-            color: #141414;
-        }
-
-        /* Remove any previous rules that targeted .kwacha-topbar:hover ... (they are replaced above) */
-
-        /* Phone video frame — iPhone 16 Pro aspect ratio (~9:19.5) */
-        .phone-video-wrap {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 48px;
-        }
         .phone-frame {
             width: 212px;
-            aspect-ratio: 9 / 19.5;
-            border-radius: 40px;
-            overflow: hidden;
-            border: 8px solid #e3e3e3;
-        }
-        .phone-frame video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            border-radius: 24px;
         }
         @media (max-width: 640px) {
             .phone-frame {
                 width: 240px;
-                border-radius: 34px;
             }
             .phone-frame video {
                 border-radius: 24px;
             }
-        }
-
-        /* ===== OVERVIEW SECTION ===== */
-        .proj-meta-card {
-            border-top: 1px solid #e3e3e3;
-            border-bottom: 1px solid #e3e3e3;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            overflow: hidden;
-            margin-bottom: 32px;
-            margin-top: 40px;
-        }
-        .proj-meta-col {
-            padding: 20px 16px;
-            margin-top: 14px;
-            margin-bottom: 14px;
-            margin-left: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            border-right: 1px solid #e3e3e3;
-            box-sizing: border-box;
-        }
-        .proj-meta-col:last-child {
-            border-right: none;
-        }
-        .proj-meta-label {
-            font-size: 0.88rem;
-            font-weight: 400;
-            color: #a0a0a0;
-            line-height: 1.5;
-        }
-        .proj-meta-value {
-
-
-            font-size: 0.96rem;
-            font-weight: 400;
-            color: #141414;
-            line-height: 1.3;
-        }
-        .overview-title {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: #141414;
-            line-height: 1.25;
-            letter-spacing: -0.01em;
-            margin-top: 48px;
-            margin-bottom: 20px;
-        }
-
-        /* Mobile: switch to horizontal rows */
-        @media (max-width: 640px) {
             .proj-meta-card {
-                grid-template-columns: 1fr;
-                border-radius: 0px;
                 padding: 0px 0px;
             }
-            .proj-meta-col {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                text-align: left;
-                border-right: none;
-                border-bottom: 1px solid #e3e3e3;
-                padding: 16px 0px;
-                gap: 8px;
-                margin-top: 0;
-                margin-bottom: 0;
-                margin-left: 0px;
-            }
-
-            .proj-meta-label {
-                margin-left: 16px;
-            }
-            .proj-meta-value {
-                margin-right: 16px;
-            }
-            .proj-meta-col:last-child {
-                border-bottom: none;
-            }
-
-
             .proj-meta-value {
                 text-align: right;
             }
-            .overview-title {
-                font-size: 1.15rem;
-                margin-bottom: 16px;
-                margin-top: 28px;
-
-            }
         }
-        /* ===== END OVERVIEW ===== */
-
-        /* Indent the overview block 50px each side on desktop only */
-        @media (min-width: 641px) {
-            .overview-indent {
-            }
-        }
-
     </style>
 </head>
 <body>
 <header id="app-header"></header>
 <main class="container">
-    <div class="kwacha-topbar">
+    <div class="project-topbar">
         <div class="topbar-left">
             <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back" onclick="history.back()" onkeydown="if(event.key==='Enter'||event.key===' ')history.back()">
                 <!-- plain left arrow icon (no circle) — the surrounding .circle provides the circular container -->
@@ -666,54 +283,54 @@
             </div>
         </div>
         <div class="overview-title">UI Designs</div>
-        <div class="kwacha-grid">
-            <div class="kwacha-card">
-                <div class="kwacha-media">
+        <div class="screen-grid">
+            <div class="screen-card">
+                <div class="screen-media">
                     <img src="../assets/projects/blood-pressure-app/screens/login-signin.png" alt="Login Sign In" />
                 </div>
-                <div class="kwacha-body"></div>
+                <div class="screen-body"></div>
             </div>
-            <div class="kwacha-card">
-                <div class="kwacha-media">
+            <div class="screen-card">
+                <div class="screen-media">
                     <img src="../assets/projects/blood-pressure-app/screens/home.png" alt="Blood Pressure Home" />
                 </div>
-                <div class="kwacha-body"></div>
+                <div class="screen-body"></div>
             </div>
 
-            <div class="kwacha-card">
-                <div class="kwacha-media">
+            <div class="screen-card">
+                <div class="screen-media">
                     <img src="../assets/projects/blood-pressure-app/screens/chat-messages.png" alt="Chat Messages 2" />
                 </div>
-                <div class="kwacha-body"></div>
+                <div class="screen-body"></div>
             </div>
 
-            <div class="kwacha-card">
-                <div class="kwacha-media">
+            <div class="screen-card">
+                <div class="screen-media">
                     <img src="../assets/projects/blood-pressure-app/screens/home-messages.png" alt="Home Messages" />
                 </div>
-                <div class="kwacha-body"></div>
+                <div class="screen-body"></div>
             </div>
 
-            <div class="kwacha-card span">
-                <div class="kwacha-media">
+            <div class="screen-card span">
+                <div class="screen-media">
                     <img src="../assets/projects/blood-pressure-app/screens/stats-appointments.png" alt="Stats Appointments" />
                 </div>
-                <div class="kwacha-body"></div>
+                <div class="screen-body"></div>
             </div>
 
-            <div class="kwacha-card full-bleed">
-                <div class="kwacha-media" style="padding:0;">
+            <div class="screen-card full-bleed">
+                <div class="screen-media" style="padding:0;">
                     <img src="../assets/projects/blood-pressure-app/screens/bp-system-3.jpg" alt="BP System 3" style="width:100%; height:100%; object-fit:cover; display:block;" />
                 </div>
-                <div class="kwacha-body"></div>
+                <div class="screen-body"></div>
             </div>
-            <div class="kwacha-card full-bleed">
-                <div class="kwacha-media" style="padding:0;">
+            <div class="screen-card full-bleed">
+                <div class="screen-media" style="padding:0;">
                     <img src="../assets/projects/blood-pressure-app/screens/bp-system-2.jpg" alt="BP System 2" style="width:100%; height:100%; object-fit:cover; display:block;" />
                 </div>
-                <div class="kwacha-body"></div>
+                <div class="screen-body"></div>
             </div>
-        </div><!-- /.kwacha-grid -->
+        </div><!-- /.screen-grid -->
 
         <!-- Case Study -->
         <h2 class="overview-title" style="margin-top: 48px; margin-bottom: 0;">Case Study</h2>
@@ -753,7 +370,7 @@
 
         // ── Topbar hover state ──────────────────────────────────────────────
         (function () {
-            const topbar = document.querySelector('.kwacha-topbar');
+            const topbar = document.querySelector('.project-topbar');
             if (!topbar) return;
             const circle = topbar.querySelector('.circle');
             const text   = topbar.querySelector('.project-text');
@@ -770,7 +387,7 @@
 
         // ── Topbar navigation ───────────────────────────────────────────────
         (function () {
-            const topbar = document.querySelector('.kwacha-topbar');
+            const topbar = document.querySelector('.project-topbar');
             if (!topbar) return;
             const circle = topbar.querySelector('.circle');
             const text   = topbar.querySelector('.project-text');
@@ -796,7 +413,7 @@
         const heroRow2  = document.querySelector('.header-row-2');
 
         const targets = [
-            document.querySelector('.kwacha-topbar'),
+            document.querySelector('.project-topbar'),
             document.querySelector('.header-row-1'),
             document.querySelector('.proj-meta-card'),
             document.querySelector('.overview-title'),

@@ -14,510 +14,79 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="../assets/app_shared.css">
+    <link rel="stylesheet" href="../css/project.css">
     <style>
-        /* prevent any unwanted horizontal scrolling */
-        html, body { overflow-x: hidden; }
-
-        /* ===== HEADER — smart_apps style ===== */
-        .header-row-1 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            align-items: start;
-            margin-top: 80px;
-            margin-bottom: 28px;
-        }
-        .header-title {
-            font-size: 2rem;
-            font-weight: 700;
-            line-height: 1.22;
-            color: #141414;
-        }
-        .header-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: flex-end;
-        }
-        .header-tags span {
-            background: #ededed;
-            color: #2f2f2f;
-            border-radius: 6px;
-            padding: 6px 16px;
-            font-size: 13px;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-        .header-row-3 {
-            display: block;
-            margin-bottom: 48px;
-        }
-        .header-description {
-            font-size: 1.08rem;
-            font-weight: 400;
-            color: #4a4a4a;
-            line-height: 1.85;
-
-
-        }
         @media (max-width: 640px) {
-            .header-row-1 { grid-template-columns: 1fr; gap: 18px; margin-top: 40px; }
-            .header-tags { justify-content: flex-start; }
-        }
-
-        /* ===== OVERVIEW SECTION ===== */
-        .proj-meta-card {
-            border-top: 1px solid #e3e3e3;
-            border-bottom: 1px solid #e3e3e3;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            overflow: hidden;
-            margin-bottom: 32px;
-            margin-top: 40px;
-        }
-        .proj-meta-col {
-            padding: 20px 16px;
-            margin-top: 14px;
-            margin-bottom: 14px;
-            margin-left: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            border-right: 1px solid #e3e3e3;
-            box-sizing: border-box;
-        }
-        .proj-meta-col:last-child { border-right: none; }
-        .proj-meta-label {
-            font-size: 0.88rem;
-            font-weight: 400;
-            color: #a0a0a0;
-            line-height: 1.5;
-        }
-        .proj-meta-value {
-            font-size: 0.96rem;
-            font-weight: 400;
-            color: #141414;
-            line-height: 1.3;
-        }
-        .overview-title {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: #141414;
-            line-height: 1.25;
-            letter-spacing: -0.01em;
-            margin-top: 48px;
-            margin-bottom: 20px;
-        }
-        @media (max-width: 640px) {
-            .proj-meta-card {
-                grid-template-columns: 1fr;
-                border-radius: 0px;
-                padding: 0px;
+            .proj-meta-value {
+                text-align: right;
             }
-            .proj-meta-col {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                text-align: left;
-                border-right: none;
-                border-bottom: 1px solid #e3e3e3;
-                padding: 16px 0px;
-                gap: 8px;
-                margin-top: 0;
-                margin-bottom: 0;
-                margin-left: 0px;
-            }
-            .proj-meta-label { margin-left: 16px; }
-            .proj-meta-value { margin-right: 16px; text-align: right; }
-            .proj-meta-col:last-child { border-bottom: none; }
-            .overview-title { font-size: 1.15rem; margin-bottom: 16px; margin-top: 28px; }
         }
-        /* ===== END OVERVIEW ===== */
-
-        /* ===== TOPBAR (match akometsi_app) ===== */
-        .kwacha-topbar {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 12px;
-            margin: 40px 6px 18px;
-        }
-        .kwacha-topbar .circle {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            border: 1px solid #e3e3e3;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.18s, border-color 0.08s;
-            cursor: pointer;
-        }
-        .kwacha-topbar .arrow {
-            width: 22px;
-            height: 22px;
-            color: #2f2f2f;
-            transition: color 0.18s;
-            display: inline-block;
-        }
-        .kwacha-topbar .arrow svg { width: 100%; height: 100%; display: block; }
-        .kwacha-topbar .project-text {
+        .project-topbar .project-text {
             font-size: 1rem;
-            font-weight: 500;
-            color: #6f6f6f;
-            transition: color 0.18s;
-            cursor: pointer;
         }
-        .kwacha-topbar .top-tag {
+        .project-topbar .top-tag {
             margin-left: auto;
-            border: 1px solid #e3e3e3;
-            background: transparent;
-            color: #6f6f6f;
-            border-radius: 8px;
-            padding: 6px 10px;
-            font-size: 13px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-sizing: border-box;
-            cursor: pointer;
         }
-        .kwacha-topbar .top-tag:hover,
-        .kwacha-topbar .top-tag:focus {
-            color: #141414;
-            border-color: #d0d0d0;
-            outline: none;
-        }
-        .kwacha-topbar .circle:hover,
-        .kwacha-topbar .circle:focus,
-        .kwacha-topbar.hovering .circle {
-            background: #141414;
-            border-color: transparent;
-        }
-        .kwacha-topbar .circle:hover .arrow,
-        .kwacha-topbar .circle:focus .arrow,
-        .kwacha-topbar.hovering .circle .arrow {
-            color: #fff;
-        }
-        .kwacha-topbar .circle:focus { outline: 2px solid rgba(0,0,0,0.06); }
-        .kwacha-topbar .project-text:hover,
-        .kwacha-topbar .project-text:focus,
-        .kwacha-topbar.hovering .project-text {
-            color: #141414;
-        }
-        /* ===== END TOPBAR ===== */
-
-        /* ===== Header hero video ===== */
         .header-hero-video {
-            background: #F0F0F0;
-            border-radius: 20px;
-            overflow: hidden;
-            aspect-ratio: 16 / 9;
             height: auto;
-            margin-bottom: 24px;
-
-
-            position: relative;
-        }
-        .header-hero-video video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            border-radius: inherit;
         }
         @media (max-width: 640px) {
             .header-hero-video {
                 aspect-ratio: 16 / 9;
                 height: auto;
-                border-radius: 14px;
             }
         }
-        /* ===== END HEADER ===== */
-        /* ensure the grid below uses the same two-column sizing so edges line up */
-        .kwacha-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+        .screen-grid {
             column-gap: 20px;
             row-gap: 24px;
             margin-bottom: 0px;
         }
-        @media (min-width: 641px) {
-            .kwacha-grid {
-                grid-template-columns: repeat(2, 1fr);
-
-
-            }
-        }
-
-        .kwacha-card {
-
-            background: transparent;
-            border-radius: 14px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            /* removed shadow so images have no visible shadow */
-            box-shadow: none;
-            cursor: pointer;
-            transition: box-shadow 0.2s, transform 0.2s;
-            height: 480px;
-            align-items: stretch;
-        }
-
-        .kwacha-card .kwacha-media {
-            padding: 36px;
-            box-sizing: border-box;
-            display: flex;
+        .screen-card .screen-media {
             align-items: center;
             justify-content: center;
-            position: relative;
-            height: 480px;
-            background: transparent;
         }
-        .kwacha-card .kwacha-media::before {
-            content: "";
-            position: absolute;
-            inset: 0px;
-            border-radius: 14px;
+        .screen-card .screen-media::before {
             background: #E6E6E6;
-            z-index: 1;
-            /* ensure placeholder has no shadow */
-            box-shadow: none;
         }
-        .kwacha-card .kwacha-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center center;
-            border-radius: 14px;
-            display: block;
-            position: relative;
-            z-index: 2;
-            transition: transform 0.6s cubic-bezier(0,0,0.2,1);
-            background: transparent;
-            /* explicitly remove any image shadows */
-            box-shadow: none;
+        .screen-card:hover .screen-media img {
+            transform: scale(1.06);
         }
-        .kwacha-card:hover .kwacha-media img { transform: scale(1.06); }
-        .kwacha-card .kwacha-body {
+        .screen-card .screen-body {
             padding: 12px 14px;
-            display: none; /* hide body/title area as requested */
+            display: none;
             flex: 1 1 auto;
         }
-        .kwacha-card.span {
-            grid-column: 1 / -1;
+        .screen-card.span {
             height: 460px;
         }
-        /* Last card fills its container fully — no grey bg, no padding */
-        .kwacha-card.full-fill .kwacha-media {
+        .screen-card.full-fill .screen-media {
             padding: 0;
             height: 100%;
         }
-        .kwacha-card.full-fill .kwacha-media::before {
+        .screen-card.full-fill .screen-media::before {
             display: none;
         }
-        .kwacha-card.full-fill .kwacha-media img {
+        .screen-card.full-fill .screen-media img {
             object-fit: cover;
             border-radius: 14px;
         }
-
-        /* ===== CASE STUDY STYLES ===== */
-        .cs-wrap {
-            max-width: 800px;
-            margin: 72px auto 80px;
-            padding: 0;
-        }
-        .cs-section {
-            margin-bottom: 64px;
-            padding-bottom: 64px;
-            border-bottom: 1px solid #ebebeb;
-        }
-        .cs-section--last {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        .cs-h2 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: #141414;
-            margin: 0 0 40px;
-            line-height: 1.2;
-        }
-        .cs-h3 {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: #141414;
-            margin: 0 0 20px;
-            letter-spacing: -0.01em;
-        }
-        .cs-p {
-            font-size: 1.08rem;
-            color: #4a4a4a;
-            line-height: 1.8;
-            margin: 0 0 16px;
-        }
-        .cs-p--label {
-            font-weight: 600;
-            color: #141414;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        .cs-highlight {
-            color: #141414;
-            font-weight: 500;
-        }
-        .cs-list {
-            margin: 0 0 14px 0;
-            padding-left: 20px;
-        }
         .cs-list li {
-            font-size: 1.08rem;
-            color: #4a4a4a;
-            line-height: 1.6;
             margin-bottom: 6px;
-        }
-        .cs-list--pain li::marker { color: #f97316; }
-        .cs-callout {
-            background: #f5f5f5;
-            border-left: 3px solid #141414;
-            border-radius: 0 10px 10px 0;
-            padding: 16px 22px;
-            font-size: 1.05rem;
-            color: #2f2f2f;
-            line-height: 1.8;
-            margin-top: 20px;
         }
         .cs-callout--success {
             border-left-color: #22c55e;
             background: #f0fdf4;
         }
-        /* Status tags */
-        .cs-tag {
-            display: inline-flex;
-            align-items: center;
-            background: #ebebeb;
-            color: #2f2f2f;
-            border-radius: 6px;
-            padding: 2px 9px;
-            font-size: 0.82rem;
-            font-weight: 500;
-            margin: 2px 2px;
-        }
-        .cs-tag--green { background: #dcfce7; color: #166534; }
-        .cs-tag--blue  { background: #dbeafe; color: #1e40af; }
-        .cs-tag--orange{ background: #ffedd5; color: #9a3412; }
-        /* Role meta row */
-        .cs-meta-row {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            background: #f7f7f7;
-            border-radius: 12px;
-            padding: 18px 20px;
-            margin-bottom: 18px;
-        }
-        .cs-meta-item {
-            display: flex;
-            gap: 12px;
-            align-items: baseline;
-        }
-        .cs-meta-label {
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: #a0a0a0;
-            min-width: 120px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-        .cs-meta-value {
-            font-size: 1.05rem;
-            color: #141414;
-            font-weight: 500;
-        }
-        /* Persona card */
         .cs-persona {
-            background: #f7f7f7;
-            border-radius: 16px;
             padding: 24px;
         }
-        .cs-persona-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-        .cs-persona-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #141414;
-            color: #fff;
-            font-size: 1rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .cs-persona-name {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #141414;
-        }
         .cs-persona-role {
-            font-size: 0.85rem;
-            color: #888;
             margin-top: 2px;
         }
-        .cs-two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-top: 16px;
-        }
-        @media (max-width: 640px) {
-            .cs-two-col { grid-template-columns: 1fr; }
-            .cs-wrap { margin-top: 48px; }
-        }
-        /* User flow */
-        .cs-flow {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            margin-top: 20px;
-        }
         .cs-flow-step {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            background: #f7f7f7;
-            border-radius: 10px;
             padding: 15px 20px;
             font-size: 1.05rem;
-            color: #2f2f2f;
-            line-height: 1.5;
         }
-        .cs-flow-num {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #a0a0a0;
-            min-width: 26px;
-            letter-spacing: 0.04em;
-        }
-        .cs-flow-arrow {
-            text-align: center;
-            color: #d0d0d0;
-            font-size: 1rem;
-            line-height: 1;
-            padding: 2px 0;
-            margin-left: 30px;
-        }
-        /* ===== END CASE STUDY ===== */
     </style>
 </head>
 
@@ -527,7 +96,7 @@
 <body>
 <header id="app-header"></header>
 <main class="container">
-    <div class="kwacha-topbar">
+    <div class="project-topbar">
         <div class="circle" aria-hidden="false" role="button" tabindex="0" title="Back" onclick="history.back()" onkeydown="if(event.key==='Enter'||event.key===' ')history.back()">
             <!-- plain left arrow icon (no circle) — the surrounding .circle provides the circular container -->
             <ion-icon name="arrow-back-outline" class="arrow" aria-hidden="true" title="Back"></ion-icon>
@@ -585,39 +154,39 @@
         </div>
     </div>
     <div class="overview-title">UI Designs</div>
-    <div class="kwacha-grid">
+    <div class="screen-grid">
         <!-- 1. Remove the second image (group_color.png) -->
 
-        <div class="kwacha-card">
-            <div class="kwacha-media">
+        <div class="screen-card">
+            <div class="screen-media">
                 <img src="../assets/projects/courier-app/screens/home-live-tracking.png" alt="Courier App Login Notification" />
             </div>
-            <div class="kwacha-body"></div>
+            <div class="screen-body"></div>
         </div>
-        <div class="kwacha-card">
-            <div class="kwacha-media">
+        <div class="screen-card">
+            <div class="screen-media">
                 <img src="../assets/projects/courier-app/screens/login-notification.png" alt="Courier App Login Notification" />
             </div>
-            <div class="kwacha-body"></div>
+            <div class="screen-body"></div>
         </div>
-        <div class="kwacha-card">
-            <div class="kwacha-media">
+        <div class="screen-card">
+            <div class="screen-media">
                 <img src="../assets/projects/courier-app/screens/payment-notification.png" alt="Courier App Payment Notification" />
             </div>
-            <div class="kwacha-body"></div>
+            <div class="screen-body"></div>
         </div>
-        <div class="kwacha-card">
-            <div class="kwacha-media">
+        <div class="screen-card">
+            <div class="screen-media">
                 <img src="../assets/projects/courier-app/screens/phones-mockup.png" alt="Courier App Phones Mockup" />
             </div>
-            <div class="kwacha-body"></div>
+            <div class="screen-body"></div>
         </div>
         <!-- 2. Move the first image (group.png) to the last position -->
-        <div class="kwacha-card span full-fill">
-            <div class="kwacha-media">
+        <div class="screen-card span full-fill">
+            <div class="screen-media">
                 <img src="../assets/projects/courier-app/screens/group.png" alt="Courier App Group" />
             </div>
-            <div class="kwacha-body"></div>
+            <div class="screen-body"></div>
         </div>
     </div>
 
@@ -813,7 +382,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ── Topbar hover state ──────────────────────────────────────────────
   (function () {
-    const topbar = document.querySelector('.kwacha-topbar');
+    const topbar = document.querySelector('.project-topbar');
     if (!topbar) return;
     const circle = topbar.querySelector('.circle');
     const text   = topbar.querySelector('.project-text');
@@ -830,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ── Topbar navigation ───────────────────────────────────────────────
   (function () {
-    const topbar = document.querySelector('.kwacha-topbar');
+    const topbar = document.querySelector('.project-topbar');
     if (!topbar) return;
     const circle = topbar.querySelector('.circle');
     const text   = topbar.querySelector('.project-text');
@@ -865,7 +434,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const heroWrap  = document.querySelector('.header-hero-video');
 
   const targets = [
-    document.querySelector('.kwacha-topbar'),
+    document.querySelector('.project-topbar'),
     document.querySelector('.header-row-1'),
     document.querySelector('.proj-meta-card'),
     document.querySelector('.overview-title'),
