@@ -588,6 +588,10 @@ body {
     align-items: center;
     gap: 8px;
 }
+/* Action buttons (View Website / Code / Behance / Play Store); icons are added by js/project.js */
+.project-topbar a.top-tag {
+    text-decoration: none;
+}
 .cs-meta-item {
     display: flex;
     gap: 12px;
