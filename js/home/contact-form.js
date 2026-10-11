@@ -4,7 +4,7 @@
     const waBtn    = document.getElementById('whatsapp-btn');
     const success  = document.getElementById('contact-success');
     const MY_EMAIL = 'twambililemusukwa@gmail.com';
-    const WA_NUMBER = '265884950893'; // +265 99 588 64 98 (no + or spaces)
+    const WA_NUMBER = '265884950893'; // +265 884 950 893 (no + or spaces)
 
     // Build WhatsApp link dynamically as the user types
     function updateWaLink() {
