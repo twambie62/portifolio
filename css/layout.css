@@ -1,6 +1,15 @@
 /* Shared by every page: colour tokens, header + nav + mobile menu, footer.
    Loaded first; css/home.css or css/project.css follow. */
 
+/* <img width height> attributes are there so the browser can reserve space before
+   the image loads. Without this they would also fix the image's size; with it they
+   only give the aspect ratio. :where() keeps it at zero specificity, so every other
+   rule still wins. */
+:where(img) {
+    width: auto;
+    height: auto;
+}
+
 :root {
     --bg: #ffffff;
     --bg2: #ffffff;
