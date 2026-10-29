@@ -7,10 +7,13 @@
     <link rel="icon" href="assets/shared/me.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+    <!-- CONTACT (new): JetBrains Mono added for the contact section. Old link:
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/contact.css"> <!-- CONTACT (new) — remove to revert -->
 </head>
 <body>
 <div class="cursor-follower">
@@ -1091,6 +1094,94 @@
             </a>
         </section>
 
+        <!-- ===== CONTACT (new) — styles: css/contact.css, script: js/home/contact.js =====
+             TO REVERT: delete this section, uncomment the "CONTACT (old)" section below it,
+             and swap the commented contact link/script tags in <head> and at the end of <body>. -->
+        <section id="contact">
+            <div class="contact-card">
+                <canvas class="contact-gl" id="contactGL" aria-hidden="true"></canvas>
+
+                <div class="contact-inner">
+                    <!-- Left -->
+                    <div class="contact-intro">
+                        <div class="contact-intro-top">
+                            <span class="contact-eyebrow">Contact</span>
+                            <h2>Let's start something great together.</h2>
+                            <p>Pick a time for a quick call, or send a message. Freelance, full-time or just an idea — all welcome.</p>
+                        </div>
+                        <div class="contact-details">
+                            <a class="contact-mail" href="mailto:twambililemusukwa@gmail.com">twambililemusukwa@gmail.com</a>
+                            <span class="contact-loc">Lilongwe, Malawi · GMT+2</span>
+                            <div class="contact-socials">
+                                <a href="https://www.linkedin.com/in/twambi-musukwa-088403271/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+                                <a href="https://github.com/twambie62" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                                <a id="contactWhatsApp" href="https://wa.me/265884950893" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right -->
+                    <div class="contact-panel">
+                        <div class="contact-tabs" role="tablist" aria-label="Contact options">
+                            <button type="button" role="tab" id="contactTabBook" aria-selected="true" aria-controls="contactPaneBook">Book a call</button>
+                            <button type="button" role="tab" id="contactTabMsg" aria-selected="false" aria-controls="contactPaneMsg">Send a message</button>
+                        </div>
+
+                        <div class="contact-book" id="contactPaneBook" role="tabpanel" aria-labelledby="contactTabBook">
+                            <div class="contact-book-head">
+                                <div>
+                                    <span class="contact-book-title">30-min intro call</span>
+                                    <span class="contact-book-sub">Google Meet or Zoom · Free</span>
+                                </div>
+                                <div class="contact-month-nav">
+                                    <button type="button" id="contactPrevMonth" aria-label="Previous month"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+                                    <span id="contactMonthLabel"></span>
+                                    <button type="button" id="contactNextMonth" aria-label="Next month"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+                                </div>
+                            </div>
+
+                            <div class="contact-book-body">
+                                <div class="contact-cal">
+                                    <div class="contact-dow" aria-hidden="true"><span>MO</span><span>TU</span><span>WE</span><span>TH</span><span>FR</span><span>SA</span><span>SU</span></div>
+                                    <div class="contact-days" id="contactDays"></div>
+                                    <span class="contact-legend"><i></i>Available days</span>
+                                </div>
+                                <div class="contact-slots-col">
+                                    <span class="contact-day-label" id="contactDayLabel"></span>
+                                    <span class="contact-tz">Times in CAT (GMT+2)</span>
+                                    <div class="contact-slots" id="contactSlots"></div>
+                                </div>
+                            </div>
+
+                            <a class="contact-confirm is-disabled" id="contactConfirm" href="https://calendly.com/twambililemusukwa/30min" target="_blank" rel="noopener noreferrer"><span id="contactConfirmLabel">Pick a time to continue</span> <span class="arr" aria-hidden="true">→</span></a>
+                        </div>
+
+                        <form class="contact-msg" id="contactPaneMsg" role="tabpanel" aria-labelledby="contactTabMsg" hidden>
+                            <div class="contact-msg-row">
+                                <label>Name<input class="contact-inp" type="text" name="name" placeholder="Jane Banda" autocomplete="name" required></label>
+                                <label>Email<input class="contact-inp" type="email" name="email" placeholder="jane@company.com" autocomplete="email" required></label>
+                            </div>
+                            <label>What's it about?
+                                <select class="contact-inp" name="topic">
+                                    <option>Freelance project</option>
+                                    <option>Full-time role</option>
+                                    <option>Collaboration</option>
+                                    <option>Just saying hi</option>
+                                </select>
+                            </label>
+                            <label>Message<textarea class="contact-inp" name="message" rows="6" placeholder="Project, timeline, budget — whatever you've got…" required></textarea></label>
+                            <!-- spam honeypot: hidden from people, bots fill it in -->
+                            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+                            <button type="submit" class="contact-send" id="contactSend">Send message →</button>
+                            <div class="contact-status" id="contactStatus" role="status" aria-live="polite" hidden></div>
+                            <span class="contact-note">Usually replies within 24 hours</span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT (old) — kept for easy revert; uses css/home.css "Contact" rules + js/home/contact-form.js =====
         <section id="contact">
             <div class="section-label"><span class="dot"></span>Contact</div>
             <form id="contact-form">
@@ -1135,6 +1226,7 @@
 
 
         </section>
+        ===== END CONTACT (old) ===== -->
 
         <!-- ===== GALLERY CAROUSEL ===== -->
         <section id="gallery-carousel" class="carousel-section">
@@ -1157,7 +1249,8 @@
 <script src="js/home/nav.js"></script>
 <script src="js/home/testimonials-drag.js"></script>
 <script src="js/home/faq.js"></script>
-<script src="js/home/contact-form.js"></script>
+<!-- CONTACT (old): <script src="js/home/contact-form.js"></script> -->
+<script src="js/home/contact.js"></script> <!-- CONTACT (new) -->
 
 
 <script src="js/home/hash-scroll.js"></script>
