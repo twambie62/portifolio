@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact section — design reference (Version B)</title>
+<!--
+  DESIGN REFERENCE ONLY — standalone version of "Version B" from the design canvas.
+  Vanilla HTML/CSS/JS, no dependencies. Port it into the portfolio's existing
+  contact section; keep the look, adapt class names / fonts to the site's system.
+
+  PLACEHOLDERS to replace:  [your email]  [your-handle]  [your-link]
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#0B0B0C;
+    --accent:#FF7A2F;
+    --accent-hover:#FF9A5C;
+    --ink:#0B0B0C;
+    --glass:rgba(12,9,13,.62);
+    --line:rgba(255,255,255,.12);
+    --muted:rgba(255,255,255,.75);
+    --radius-card:32px;
+    --radius-panel:24px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:#fff;font-family:Inter,sans-serif}
+
+  .contact{padding:96px clamp(16px,4vw,64px)}
+
+  /* ---------- Gradient card ---------- */
+  .contact-card{
+    position:relative;overflow:hidden;max-width:1240px;margin:0 auto;
+    border-radius:var(--radius-card);
+    /* CSS fallback if WebGL is unavailable */
+    background:
+      radial-gradient(120% 80% at 20% 20%,#FF6B2C 0%,transparent 55%),
+      radial-gradient(90% 70% at 80% 60%,#E6336E 0%,transparent 60%),
+      radial-gradient(80% 60% at 40% 90%,#2EC4B6 0%,transparent 60%),
+      #1A0B1E;
+    box-shadow:0 40px 120px rgba(0,0,0,.5);
+  }
+  .contact-card canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .contact-inner{position:relative;display:flex;flex-wrap:wrap;gap:48px;padding:clamp(28px,5vw,72px)}
+
+  /* ---------- Left column ---------- */
+  .contact-intro{flex:1 1 360px;min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:48px;text-shadow:0 1px 24px rgba(20,10,18,.35)}
+  .contact-intro .top{display:flex;flex-direction:column;gap:20px;align-items:flex-start}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);text-shadow:none}
+  .contact-intro h2{margin:0;font-weight:700;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.04em}
+  .contact-intro p{margin:0;max-width:400px;font-size:18px;line-height:1.55;color:rgba(255,255,255,.92)}
+  .details{display:flex;flex-direction:column;gap:16px}
+  .details .mail{font-size:22px;font-weight:600;color:#fff;text-decoration:none}
+  .details .loc{font-size:17px;color:rgba(255,255,255,.9)}
+  .socials{display:flex;gap:10px;flex-wrap:wrap;text-shadow:none}
+  .socials a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,.45);color:#fff;text-decoration:none;font-size:15px;font-weight:500;transition:all .2s}
+  .socials a:hover{background:#fff;color:#141414}
+
+  /* ---------- Right panel ---------- */
+  .panel{flex:1 1 480px;min-width:0;background:var(--glass);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--line);border-radius:var(--radius-panel);padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:24px}
+  .tabs{display:flex;gap:4px;padding:4px;background:rgba(255,255,255,.08);border-radius:999px}
+  .tabs button{flex:1;min-height:44px;border:0;border-radius:999px;font:600 15px Inter,sans-serif;cursor:pointer;transition:all .2s;background:transparent;color:rgba(255,255,255,.85)}
+  .tabs button[aria-selected="true"]{background:#fff;color:var(--ink)}
+  [hidden]{display:none!important}
+
+  /* Booking */
+  .book{display:flex;flex-direction:column;gap:20px}
+  .book-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .book-head .title{font-size:20px;font-weight:600;display:block}
+  .book-head .sub{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+  .month-nav{display:flex;align-items:center;gap:6px}
+  .month-nav span{min-width:128px;text-align:center;font-weight:600;font-size:15px}
+  .month-nav button{width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .month-nav button:hover:not(:disabled){background:rgba(255,255,255,.14)}
+  .month-nav button:disabled{opacity:.35;cursor:default}
+
+  .book-body{display:flex;flex-wrap:wrap;gap:20px}
+  .cal{flex:1 1 260px;min-width:0;display:flex;flex-direction:column;gap:6px}
+  .dow,.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+  .dow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.7);text-align:center}
+  .day{aspect-ratio:1;min-height:36px;border-radius:10px;border:0;padding:0;font:500 14px Inter,sans-serif;background:transparent;color:rgba(255,255,255,.32);cursor:default;transition:background .15s,color .15s}
+  .day.blank{visibility:hidden}
+  .day.available{background:rgba(255,255,255,.06);color:#fff;cursor:pointer;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:6px}
+  .day.available:hover{background:rgba(255,255,255,.14)}
+  .day[aria-pressed="true"]{background:var(--accent);color:var(--ink);font-weight:700;text-decoration:none}
+  .legend{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:12px;color:rgba(255,255,255,.72)}
+  .legend i{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+  .slots{flex:1 1 160px;min-width:0;display:flex;flex-direction:column;gap:10px}
+  .slots .day-label{font-size:14px;font-weight:600}
+  .slots .tz{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.7)}
+  .slot{min-height:44px;border-radius:12px;font:500 15px 'JetBrains Mono',monospace;cursor:pointer;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.22);transition:all .15s}
+  .slot:hover{border-color:var(--accent)}
+  .slot[aria-pressed="true"]{background:var(--accent);color:var(--ink);border-color:var(--accent)}
+
+  .confirm{display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;border-radius:14px;text-decoration:none;font:600 16px Inter,sans-serif;transition:all .2s;background:var(--accent);color:var(--ink)}
+  .confirm:hover{background:var(--accent-hover)}
+  .confirm .arr{display:inline-block;transition:transform .2s}
+  .confirm:hover .arr{transform:translateX(4px)}
+  .confirm.is-disabled{background:rgba(255,255,255,.1);color:var(--muted);pointer-events:none}
+
+  /* Message form */
+  .msg{display:flex;flex-direction:column;gap:16px}
+  .msg .row{display:flex;flex-wrap:wrap;gap:14px}
+  .msg label{flex:1 1 180px;display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500}
+  .inp{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:15px 18px;color:#fff;font:400 16px Inter,sans-serif;outline:none;transition:border-color .2s,background .2s}
+  .inp:focus{border-color:var(--accent);background:rgba(255,255,255,.12)}
+  .inp::placeholder{color:rgba(255,255,255,.6)}
+  .inp option{color:#141414}
+  textarea.inp{resize:vertical;min-height:170px}
+  .send{background:var(--accent);color:var(--ink);border:0;border-radius:14px;padding:16px 28px;min-height:52px;font:600 16px Inter,sans-serif;cursor:pointer}
+  .send:hover{background:var(--accent-hover)}
+  .note{font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(255,255,255,.72);text-align:center}
+</style>
+</head>
+<body>
+
+<section class="contact" id="contact">
+  <div class="contact-card" id="contactCard">
+    <canvas id="contactGL" aria-hidden="true"></canvas>
+
+    <div class="contact-inner">
+      <!-- Left -->
+      <div class="contact-intro">
+        <div class="top">
+          <span class="eyebrow">06 — Contact</span>
+          <h2>Let's start something great together.</h2>
+          <p>Pick a time for a quick call, or send a message. Freelance, full-time or just an idea — all welcome.</p>
+        </div>
+        <div class="details">
+          <a class="mail" href="mailto:[your email]">[your email]</a>
+          <span class="loc">Lilongwe, Malawi · GMT+2</span>
+          <div class="socials">
+            <a href="https://linkedin.com/in/[your-handle]" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="https://github.com/twambie62" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div class="panel">
+        <div class="tabs" role="tablist" aria-label="Contact options">
+          <button type="button" role="tab" id="tabBook" aria-selected="true" aria-controls="paneBook">Book a call</button>
+          <button type="button" role="tab" id="tabMsg" aria-selected="false" aria-controls="paneMsg">Send a message</button>
+        </div>
+
+        <div class="book" id="paneBook" role="tabpanel" aria-labelledby="tabBook">
+          <div class="book-head">
+            <div>
+              <span class="title">30-min intro call</span>
+              <span class="sub">Google Meet or Zoom · Free</span>
+            </div>
+            <div class="month-nav">
+              <button type="button" id="prevMonth" aria-label="Previous month"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+              <span id="monthLabel"></span>
+              <button type="button" id="nextMonth" aria-label="Next month"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+            </div>
+          </div>
+
+          <div class="book-body">
+            <div class="cal">
+              <div class="dow" aria-hidden="true"><span>MO</span><span>TU</span><span>WE</span><span>TH</span><span>FR</span><span>SA</span><span>SU</span></div>
+              <div class="days" id="days"></div>
+              <span class="legend"><i></i>Available days</span>
+            </div>
+            <div class="slots">
+              <span class="day-label" id="dayLabel"></span>
+              <span class="tz">Times in CAT (GMT+2)</span>
+              <div id="slots" style="display:flex;flex-direction:column;gap:10px"></div>
+            </div>
+          </div>
+
+          <a class="confirm is-disabled" id="confirm" href="#" target="_blank" rel="noopener"><span id="confirmLabel">Pick a time to continue</span> <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+
+        <form class="msg" id="paneMsg" role="tabpanel" aria-labelledby="tabMsg" hidden>
+          <div class="row">
+            <label>Name<input class="inp" type="text" name="name" placeholder="Jane Banda" required></label>
+            <label>Email<input class="inp" type="email" name="email" placeholder="jane@company.com" required></label>
+          </div>
+          <label>What's it about?
+            <select class="inp" name="topic">
+              <option>Freelance project</option>
+              <option>Full-time role</option>
+              <option>Collaboration</option>
+              <option>Just saying hi</option>
+            </select>
+          </label>
+          <label>Message<textarea class="inp" name="message" rows="6" placeholder="Project, timeline, budget — whatever you've got…" required></textarea></label>
+          <button type="submit" class="send">Send message →</button>
+          <span class="note">Usually replies within 24 hours</span>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(() => {
+  /* ===================== CONFIG ===================== */
+  const CALENDLY_URL = 'https://calendly.com/[your-link]/30min';
+  const SLOTS = ['09:00', '10:30', '13:00', '14:30', '16:00'];   // visual only
+  const MAX_MONTHS_AHEAD = 2;
+  const PALETTE = [ // dark, orange, pink, teal, violet (RGB 0–1)
+    [0.08,0.03,0.09],[1.0,0.42,0.17],[0.90,0.20,0.43],[0.18,0.77,0.71],[0.36,0.17,0.84]
+  ];
+  const SPEED = 1, MOUSE_STRENGTH = 1, GRAIN = 0.09;
+
+  /* ===================== TABS ===================== */
+  const tabBook = document.getElementById('tabBook'), tabMsg = document.getElementById('tabMsg');
+  const paneBook = document.getElementById('paneBook'), paneMsg = document.getElementById('paneMsg');
+  function setTab(book) {
+    tabBook.setAttribute('aria-selected', book); tabMsg.setAttribute('aria-selected', !book);
+    paneBook.hidden = !book; paneMsg.hidden = book;
+  }
+  tabBook.onclick = () => setTab(true);
+  tabMsg.onclick = () => setTab(false);
+
+  /* ===================== CALENDAR ===================== */
+  const today = new Date(); today.setHours(0,0,0,0);
+  const isAvailable = d => d > today && d.getDay() !== 0 && d.getDay() !== 6;
+  let picked = new Date(today); picked.setDate(picked.getDate() + 1);
+  while (!isAvailable(picked)) picked.setDate(picked.getDate() + 1);
+  let offset = 0, slot = null;
+
+  const daysEl = document.getElementById('days'), slotsEl = document.getElementById('slots');
+  const monthLabel = document.getElementById('monthLabel'), dayLabel = document.getElementById('dayLabel');
+  const prevBtn = document.getElementById('prevMonth'), nextBtn = document.getElementById('nextMonth');
+  const confirm = document.getElementById('confirm'), confirmLabel = document.getElementById('confirmLabel');
+  const pad = n => String(n).padStart(2, '0');
+
+  function render() {
+    const base = new Date(today.getFullYear(), today.getMonth() + offset, 1);
+    const y = base.getFullYear(), m = base.getMonth();
+    monthLabel.textContent = base.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+    prevBtn.disabled = offset <= 0;
+    nextBtn.disabled = offset >= MAX_MONTHS_AHEAD;
+
+    daysEl.innerHTML = '';
+    const lead = (base.getDay() + 6) % 7;
+    for (let i = 0; i < lead; i++) { const b = document.createElement('span'); b.className = 'day blank'; daysEl.append(b); }
+    const count = new Date(y, m + 1, 0).getDate();
+    for (let d = 1; d <= count; d++) {
+      const dt = new Date(y, m, d), ok = isAvailable(dt), sel = dt.getTime() === picked.getTime();
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'day' + (ok ? ' available' : ''); b.textContent = d;
+      b.disabled = !ok; b.setAttribute('aria-pressed', sel);
+      b.setAttribute('aria-label', dt.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' }) + (ok ? '' : ', unavailable'));
+      if (ok) b.onclick = () => { picked = dt; slot = null; render(); };
+      daysEl.append(b);
+    }
+
+    dayLabel.textContent = picked.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short' });
+    slotsEl.innerHTML = '';
+    SLOTS.forEach(t => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'slot'; b.textContent = t; b.setAttribute('aria-pressed', slot === t);
+      b.onclick = () => { slot = t; render(); };
+      slotsEl.append(b);
+    });
+
+    const ym = picked.getFullYear() + '-' + pad(picked.getMonth() + 1);
+    confirm.href = `${CALENDLY_URL}?month=${ym}&date=${ym}-${pad(picked.getDate())}`;
+    confirm.classList.toggle('is-disabled', !slot);
+    confirmLabel.textContent = slot
+      ? `Confirm ${picked.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })} at ${slot}`
+      : 'Pick a time to continue';
+  }
+  prevBtn.onclick = () => { offset = Math.max(0, offset - 1); render(); };
+  nextBtn.onclick = () => { offset = Math.min(MAX_MONTHS_AHEAD, offset + 1); render(); };
+  render();
+
+  /* ===================== WEBGL BACKGROUND ===================== */
+  const card = document.getElementById('contactCard'), cv = document.getElementById('contactGL');
+  const gl = cv.getContext('webgl', { premultipliedAlpha: false, antialias: false });
+  if (!gl) return; // CSS gradient fallback stays visible
+
+  const vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  const fs = `precision mediump float;
+uniform vec2 r;uniform float t;uniform vec2 m;uniform float ms;uniform float gr;
+uniform vec3 c0;uniform vec3 c1;uniform vec3 c2;uniform vec3 c3;uniform vec3 c4;
+float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p=p*2.02+vec2(1.7,9.2);a*=.5;}return v;}
+void main(){
+ vec2 uv=gl_FragCoord.xy/r;vec2 p=uv;p.x*=r.x/r.y;
+ vec2 mm=m;mm.x*=r.x/r.y;
+ float d=distance(p,mm);
+ p+=(mm-p)*exp(-d*2.2)*.55*ms;
+ mat2 rot=mat2(.82,-.57,.57,.82);vec2 q=rot*p;
+ vec2 w=vec2(fbm(q*1.6+t*.06),fbm(q*1.6+vec2(5.2,1.3)-t*.05));
+ float f=fbm(q*1.2+w*1.8+vec2(t*.04,0.));
+ float bands=sin(q.y*6.+w.x*4.+t*.25)*.5+.5;
+ vec3 col=mix(c0,c4,smoothstep(.15,.6,f));
+ col=mix(col,c2,smoothstep(.35,.85,f*bands+.1));
+ col=mix(col,c1,smoothstep(.55,.95,w.y*bands+f*.4));
+ col=mix(col,c3,smoothstep(.62,1.,w.x*(1.-bands)+.15));
+ col+=exp(-d*3.5)*.18*ms*c1;
+ float streak=smoothstep(.0,.9,sin(gl_FragCoord.x*.9+n(vec2(gl_FragCoord.x*.05,t*.2))*6.)*.5+.5);
+ col*=.94+.06*streak;
+ col+=(h(gl_FragCoord.xy+fract(t)*91.)-.5)*gr;
+ col*=1.-.35*pow(length(uv-.5),2.);
+ gl_FragColor=vec4(col,1.);}`;
+
+  const mk = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
+  const pr = gl.createProgram();
+  gl.attachShader(pr, mk(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, mk(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(pr);
+  if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+  gl.useProgram(pr);
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  const u = {}; ['r','t','m','ms','gr','c0','c1','c2','c3','c4'].forEach(k => u[k] = gl.getUniformLocation(pr, k));
+  ['c0','c1','c2','c3','c4'].forEach((k, i) => gl.uniform3fv(u[k], PALETTE[i]));
+  gl.uniform1f(u.ms, MOUSE_STRENGTH); gl.uniform1f(u.gr, GRAIN);
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let mouse = [.5, .5], target = [.5, .5], time = 0, last = performance.now(), raf = 0, visible = true;
+  card.addEventListener('pointermove', e => {
+    const b = card.getBoundingClientRect();
+    target = [(e.clientX - b.left) / b.width, 1 - (e.clientY - b.top) / b.height];
+  });
+
+  function frame(now) {
+    const dpr = Math.min(devicePixelRatio || 1, 1.5) * 0.6; // render at reduced res — it's blurry anyway
+    const w = Math.max(1, Math.round(cv.clientWidth * dpr)), h = Math.max(1, Math.round(cv.clientHeight * dpr));
+    if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; gl.viewport(0, 0, w, h); }
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    time += dt * SPEED * (reduce ? .15 : 1);
+    mouse[0] += (target[0] - mouse[0]) * .05; mouse[1] += (target[1] - mouse[1]) * .05;
+    gl.uniform2f(u.r, w, h); gl.uniform1f(u.t, time); gl.uniform2f(u.m, mouse[0], mouse[1]);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+    if (visible) raf = requestAnimationFrame(frame);
+  }
+  // Only animate while the section is on screen
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    if (visible) { last = performance.now(); cancelAnimationFrame(raf); raf = requestAnimationFrame(frame); }
+  }).observe(card);
+})();
+</script>
+</body>
+</html>

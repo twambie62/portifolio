@@ -611,7 +611,7 @@ h1 {
 
 /* Card body */
 .card-body {
-    padding: 12px 4px 16px;
+    padding: 12px 4px 14px;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -635,17 +635,19 @@ h1 {
 .card-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 6px;
+    gap: 8px;
+    margin-top: 7px;
 }
 .card-tags span {
-    border: 1px solid #D9D9D9;
-
-    color: #343434;
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: 11px;
+    border: 1px solid #DCDCDC;
+    background: #FBFBFB;
+    color: #2f2f2f;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 13px;
     font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
     white-space: nowrap;
 }
 
@@ -656,10 +658,11 @@ h1 {
     .card-media img { border-radius: 10px; }
     .card-arrow { top: 14px; right: 14px; width: 32px; height: 32px; }
     .card-arrow i { font-size: 14px; }
-    .card-body { padding: 10px 4px 14px; }
+    .card-body { padding: 10px 4px 12px; }
     .card-title { font-size: 0.95rem; }
     .card-desc { font-size: 0.78rem; -webkit-line-clamp: 2; }
-    .card-tags span { font-size: 10px; padding: 3px 8px; }
+    .card-tags { gap: 6px; }
+    .card-tags span { font-size: 12px; padding: 5px 12px; }
     .projects { gap: 12px; padding: 0 8px; }
 }
 
@@ -1323,6 +1326,36 @@ h1 {
 }
 .wcm-vast .wcm-card-img img {
     width: 100%;
+}
+
+/* Vast Knowledge — physics pills (js/home/vast-pills.js).
+   Only active when the script adds .wcm-vast--physics; delete this block
+   together with the script tags to revert. */
+.wcm-vast--physics .wcm-card-img {
+    pointer-events: auto;
+}
+.wcm-vast--physics .wcm-card-img img {
+    visibility: hidden; /* keeps the original size/aspect for the stage */
+}
+.wcm-vast-stage {
+    position: absolute;
+    inset: 0;
+    /* visible so pills fall in from the card's top edge; the card clips */
+}
+.wcm-vast-pill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #EBEBEB;
+    color: #333333;
+    border-radius: 999px;
+    font-weight: 500;
+    white-space: nowrap;
+    user-select: none;
+    will-change: transform;
 }
 
 /* Fast Execution — image touches the bottom of the card */
