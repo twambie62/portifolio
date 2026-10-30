@@ -10,12 +10,16 @@
     const WEB3FORMS_KEY = 'cd25ece4-b23a-42f8-8a0e-c66b41cab804';
     const MY_EMAIL = 'twambililemusukwa@gmail.com';
     const WA_NUMBER = '265884950893'; // +265 88 495 0893 (no + or spaces)
-    const SLOTS = ['09:00', '10:30', '13:00', '14:30', '16:00'];   // visual only
+    const SLOTS = ['09:00', '10:30', '13:00', '14:30', '16:00'];   // visual only — mobile hides the first (css/contact.css)
     const MAX_MONTHS_AHEAD = 2;
     const PALETTE = [ // dark, orange, pink, teal, violet (RGB 0–1)
         [0.08, 0.03, 0.09], [1.0, 0.42, 0.17], [0.90, 0.20, 0.43], [0.18, 0.77, 0.71], [0.36, 0.17, 0.84]
     ];
-    const SPEED = 1, MOUSE_STRENGTH = 1, GRAIN = 0.09;
+    const SPEED = 4, MOUSE_STRENGTH = 4, GRAIN = 0.0;
+    const FLUTE_PX = 72; // fluted-glass rib width in CSS px
+    const SEAM_SOFTNESS = 0;    // px the dark seam + highlight fade over — higher = softer lines
+    const SEAM_DARKNESS = 0.1; // how dark each seam line is (0 = invisible, 0.4 = harsh)
+    const VIGNETTE = 0.35;      // edge darkening of the card
     // true = fluted-glass shader + soft CSS grain; false = the original reference shader
     const GLASS = true;
 
@@ -259,24 +263,24 @@
     if (!gl) { fallback(); return; }
 
     const vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-    // Fluted glass: ribs vary along x only, so every line they draw is vertical.
-    // Each rib bends + vertically smears the flowing colour behind it. Grain is a CSS overlay.
+    // Fluted glass: discrete vertical flutes, each a lens that shifts + squeezes the flowing colour
+    // behind it. Neighbouring flutes refract differently, so every seam is a hard, pixel-sharp line.
+    // Each flute gets a light ramp, a bright sliver and a dark seam. Grain is a CSS overlay.
     const fsGlass = `precision mediump float;
-uniform vec2 r;uniform float t;uniform vec2 m;uniform float ms;
+uniform vec2 r;uniform float t;uniform vec2 m;uniform float ms;uniform float fw;
 uniform vec3 c0;uniform vec3 c1;uniform vec3 c2;uniform vec3 c3;uniform vec3 c4;
 float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
 return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
-float n1(float x){float i=floor(x),f=fract(x);f=f*f*(3.-2.*f);return mix(h(vec2(i,.5)),h(vec2(i+1.,.5)),f);}
-float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p=p*2.02+vec2(1.7,9.2);a*=.5;}return v;}
+float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<4;i++){v+=a*n(p);p=p*2.02+vec2(1.7,9.2);a*=.5;}return v;}
 void main(){
  vec2 uv=gl_FragCoord.xy/r;float ax=r.x/r.y;float X=uv.x*ax;
- float a=n1(X*6.+3.),b=n1(X*19.+11.),c=n1(X*55.+7.);
- float flute=a*.5+b*.32+c*.18;
- float rib=fract(X*11.+a*2.);
+ float fx=gl_FragCoord.x/fw;
+ float id=floor(fx),l=fract(fx),rnd=h(vec2(id,4.1));
+ float wx=fw/r.y;
  vec2 p=vec2(X,uv.y);
- p.x+=(rib-.5)*.045+(b-.5)*.05;
- p.y+=(flute-.5)*.32;
+ p.x+=(l-.5)*wx*(1.1+.5*rnd)+(rnd-.5)*wx*.4;
+ p.y+=(rnd-.5)*.09+(l-.5)*.04;
  vec2 mm=m;mm.x*=ax;
  float d=distance(vec2(X,uv.y),mm);
  p+=(mm-p)*exp(-d*2.2)*.45*ms;
@@ -288,11 +292,11 @@ void main(){
  col=mix(col,c1,smoothstep(.5,.9,w.y*.7+f*.45));
  col=mix(col,c3,smoothstep(.6,.95,w.x*.8+(1.-f)*.3));
  col+=exp(-d*3.5)*.15*ms*c1;
- float edge=smoothstep(0.,.12,rib)*smoothstep(1.,.88,rib);
- col*=.9+.1*edge;
- col*=.86+.22*b;
- col+=pow(c,8.)*.16;
- col*=1.-.35*pow(length(uv-.5),2.);
+ float aa=1./fw;
+ col*=mix(.9,1.04,l);
+ col+=.1*smoothstep(.6,.95,l)*(1.-smoothstep(1.-aa*${Math.max(SEAM_SOFTNESS, 0.01).toFixed(2)},1.,l));
+ col*=1.-${SEAM_DARKNESS.toFixed(3)}*(1.-smoothstep(0.,aa*${Math.max(SEAM_SOFTNESS, 0.01).toFixed(2)},l));
+ col*=1.-${VIGNETTE.toFixed(3)}*pow(length(uv-.5),2.);
  gl_FragColor=vec4(col,1.);}`;
 
     const fsOriginal = `precision mediump float;
@@ -335,7 +339,7 @@ void main(){
     gl.enableVertexAttribArray(loc);
     gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
     const u = {};
-    ['r', 't', 'm', 'ms', 'gr', 'c0', 'c1', 'c2', 'c3', 'c4'].forEach((k) => { u[k] = gl.getUniformLocation(pr, k); });
+    ['r', 't', 'm', 'ms', 'gr', 'fw', 'c0', 'c1', 'c2', 'c3', 'c4'].forEach((k) => { u[k] = gl.getUniformLocation(pr, k); });
     ['c0', 'c1', 'c2', 'c3', 'c4'].forEach((k, i) => gl.uniform3fv(u[k], PALETTE[i]));
     gl.uniform1f(u.ms, MOUSE_STRENGTH);
     gl.uniform1f(u.gr, GRAIN);
@@ -351,7 +355,8 @@ void main(){
     });
 
     function frame(now) {
-        const dpr = Math.min(devicePixelRatio || 1, 1.5) * 0.6; // render at reduced res — it's blurry anyway
+        // full device res: the flute seams must land on real pixels to look sharp
+        const dpr = Math.min(devicePixelRatio || 1, 2);
         const w = Math.max(1, Math.round(cv.clientWidth * dpr)), h = Math.max(1, Math.round(cv.clientHeight * dpr));
         if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; gl.viewport(0, 0, w, h); }
         const dt = Math.min(.05, (now - last) / 1000); last = now;
@@ -359,6 +364,7 @@ void main(){
         mouse[0] += (target[0] - mouse[0]) * .05;
         mouse[1] += (target[1] - mouse[1]) * .05;
         gl.uniform2f(u.r, w, h);
+        gl.uniform1f(u.fw, FLUTE_PX * dpr);
         gl.uniform1f(u.t, time);
         gl.uniform2f(u.m, mouse[0], mouse[1]);
         gl.drawArrays(gl.TRIANGLES, 0, 6);

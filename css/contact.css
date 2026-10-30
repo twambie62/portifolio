@@ -435,6 +435,9 @@
     #contact .contact-tabs button,
     #contact .contact-socials a,
     #contact .contact-slot { min-height: 40px; }
+    #contact .contact-slots { display: grid; grid-template-columns: 1fr 1fr; }
+    /* 4 times on mobile (2×2): drop the earliest */
+    #contact .contact-slot:first-child { display: none; }
 }
 
 /* Fluted-glass variant (added by js/home/contact.js when GLASS = true):
