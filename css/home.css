@@ -2290,7 +2290,7 @@ textarea { min-height: 180px; resize: vertical; }
 }
 
 .toggle-mint-red {
-    width: 112px;
+    width: 120px;
 
     justify-content: flex-end;
 }
@@ -2311,7 +2311,7 @@ textarea { min-height: 180px; resize: vertical; }
     top: 50%;
     transform: translateY(-50%);
     width: 100%;
-    aspect-ratio: 380 / 200; /* wider than the photo: matches W/H in js/home/switch-3d.js */
+    aspect-ratio: 396 / 213; /* photo proportions: matches the camera in js/home/switch-3d.js */
     height: auto;
 }
 /* Live gradient pill (js/home/gradient-pill.js): canvas sits exactly over the hidden image */
@@ -2371,7 +2371,7 @@ textarea { min-height: 180px; resize: vertical; }
     }
 
     .toggle-mint-red {
-        width: 75px;
+        width: 80px;
 
         justify-content: flex-end;
     }
