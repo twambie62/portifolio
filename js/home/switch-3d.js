@@ -78,7 +78,7 @@
         cv.setAttribute('aria-hidden', 'true');
 
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(20, 396 / 213, 0.1, 50);
+        const camera = new THREE.PerspectiveCamera(20, 380 / 200, 0.1, 50);
         camera.position.set(0, -0.4, 6.7); // framed so the pill fills the canvas edge to edge
         camera.lookAt(0, 0, 0);
 
@@ -97,7 +97,7 @@
         scene.add(fill);
 
         const grain = grainTexture();
-        const W = 3.7, H = 1.98;
+        const W = 3.8, H = 1.98; // 0.1 wider than the photo; canvas aspect-ratio in css/home.css matches
 
         // Body: rounded pill slab
         const bodyMat = new THREE.MeshStandardMaterial({ color: COLORS.body, roughness: 0.72, bumpMap: grain, bumpScale: 0.03 });
@@ -154,7 +154,7 @@
         scene.add(pill);
 
         // ── State + animation ──
-        const OFF_X = -0.83, ON_X = 0.81; // knob stops a little inside the rim at each end
+        const OFF_X = -0.88, ON_X = 0.86; // knob stops a little inside the rim at each end
         let on = false, from = OFF_X, to = OFF_X, start = 0, raf = 0;
         knob.position.x = OFF_X;
         const DUR = 420;

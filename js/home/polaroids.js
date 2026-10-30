@@ -76,7 +76,7 @@ let switchRevealed = false;
 
 // Text color reveal, scrubbed with scroll. Once it completes going forward,
 // the images pop in. Scrolling back up past the start hides them again.
-gsap.timeline({
+const introTl = gsap.timeline({
     scrollTrigger: {
         trigger: ".intro-text",
         start: "top 52%",
@@ -98,3 +98,24 @@ gsap.timeline({
         stagger: WORD_STAGGER,
         ease: "none"
     });
+
+// "enterprise" pill: a highlighter swipe. Starts grey like the unrevealed words, then yellow
+// sweeps in left → right while the text darkens. Slotted between its neighbouring words.
+// Set from JS so the CSS default (solid yellow) still shows if GSAP never runs.
+const highlight = document.querySelector(".intro-text .highlight-pill");
+if (highlight) {
+    const nextWord = introWords.indexOf(highlight.nextElementSibling);
+    gsap.set(highlight, {
+        color: getComputedStyle(introWords[0]).color,
+        backgroundColor: "#EFEFEF",
+        backgroundImage: "linear-gradient(#FFCC33, #FFCC33)",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "0% 100%"
+    });
+    introTl.to(highlight, {
+        backgroundSize: "100% 100%",
+        color: "#111",
+        duration: WORD_DUR * 1.4,
+        ease: "power1.inOut"
+    }, (nextWord - 0.5) * WORD_STAGGER);
+}

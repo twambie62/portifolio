@@ -17,11 +17,17 @@
     ];
     const SPEED = 4, MOUSE_STRENGTH = 4, GRAIN = 0.0;
     const FLUTE_PX = 72; // fluted-glass rib width in CSS px
-    const SEAM_SOFTNESS = 0;    // px the dark seam + highlight fade over — higher = softer lines
-    const SEAM_DARKNESS = 0.1; // how dark each seam line is (0 = invisible, 0.4 = harsh)
-    const VIGNETTE = 0.35;      // edge darkening of the card
+    const SEAM_SOFTNESS = 0.5;    // px the dark seam + highlight fade over — higher = softer lines
+    const SEAM_DARKNESS = 0.2; // how dark each seam line is (0 = invisible, 0.4 = harsh)
+    const VIGNETTE = 0.4;      // edge darkening of the card
     // true = fluted-glass shader + soft CSS grain; false = the original reference shader
     const GLASS = true;
+    // Only with GLASS: true = refracted "prism" glass (colour split at every flute edge,
+    // vertical light streaks); false = the previous plain fluted glass. Flip to compare/revert.
+    const PRISM = true;
+    const PRISM_SPLIT = 2;      // strength of the colour fringes at the flute edges (0 = none)
+    const PRISM_STREAK = 0;   // vertical stretch of the colours (lower = longer streaks, 1 = none)
+    const PRISM_SATURATION = 1.3; // colour punch (1 = as the palette)
 
     const $ = (id) => document.getElementById(id);
 
@@ -299,6 +305,48 @@ void main(){
  col*=1.-${VIGNETTE.toFixed(3)}*pow(length(uv-.5),2.);
  gl_FragColor=vec4(col,1.);}`;
 
+    // Refracted ("prism") glass, same palette + vertical flutes as fsGlass. Each flute is a lens:
+    // it shifts + magnifies the colour behind it, and splits it into R/G/B by slightly different
+    // amounts — most at the flute's edges — so every seam gets thin coloured fringes.
+    // The colour field is stretched vertically so it reads as light streaks running down the glass.
+    const fsPrism = `precision mediump float;
+uniform vec2 r;uniform float t;uniform vec2 m;uniform float ms;uniform float fw;
+uniform vec3 c0;uniform vec3 c1;uniform vec3 c2;uniform vec3 c3;uniform vec3 c4;
+float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<3;i++){v+=a*n(p);p=p*2.02+vec2(1.7,9.2);a*=.5;}return v/.875;}
+vec3 pal(float f,vec2 w){
+ vec3 col=mix(c0,c4,smoothstep(.32,.72,f));
+ col=mix(col,c2,smoothstep(.38,.8,f+w.x*.25-.1));
+ col=mix(col,c1,smoothstep(.5,.9,w.y*.7+f*.45));
+ return mix(col,c3,smoothstep(.6,.95,w.x*.8+(1.-f)*.3));}
+void main(){
+ vec2 uv=gl_FragCoord.xy/r;float ax=r.x/r.y;float X=uv.x*ax;
+ float fx=gl_FragCoord.x/fw;
+ float id=floor(fx),l=fract(fx),rnd=h(vec2(id,4.1));
+ float wx=fw/r.y,lens=l-.5;
+ vec2 p=vec2(X,uv.y);
+ p.x+=lens*wx*(1.8+.6*rnd)+(rnd-.5)*wx*.6;
+ p.y+=(rnd-.5)*.22+lens*.05;
+ vec2 mm=m;mm.x*=ax;
+ float d=distance(vec2(X,uv.y),mm);
+ p+=(mm-p)*exp(-d*2.2)*.45*ms;
+ vec2 q=p*vec2(1.35,${PRISM_STREAK.toFixed(3)});
+ vec2 w=vec2(fbm(q*1.4+t*.05),fbm(q*1.4+vec2(5.2,1.3)-t*.04));
+ vec2 dq=vec2(wx*${PRISM_SPLIT.toFixed(3)}*lens*(.7+10.*lens*lens),0.);
+ vec2 base=q*1.1+w*1.6+vec2(t*.035,0.);
+ float fr=fbm(base+dq),fg=fbm(base),fb=fbm(base-dq);
+ vec3 col=vec3(pal(fr,w).r,pal(fg,w).g,pal(fb,w).b);
+ col=mix(vec3(dot(col,vec3(.299,.587,.114))),col,${PRISM_SATURATION.toFixed(3)});
+ col+=exp(-d*3.5)*.15*ms*c1;
+ float aa=1./fw;
+ col*=mix(.86,1.08,smoothstep(0.,1.,1.-abs(lens)*2.));
+ col+=.08*smoothstep(.6,.95,l)*(1.-smoothstep(1.-aa*${Math.max(SEAM_SOFTNESS, 0.01).toFixed(2)},1.,l));
+ col*=1.-${SEAM_DARKNESS.toFixed(3)}*(1.-smoothstep(0.,aa*${Math.max(SEAM_SOFTNESS, 0.01).toFixed(2)},l));
+ col*=1.-${VIGNETTE.toFixed(3)}*pow(length(uv-.5),2.);
+ gl_FragColor=vec4(clamp(col,0.,1.),1.);}`;
+
     const fsOriginal = `precision mediump float;
 uniform vec2 r;uniform float t;uniform vec2 m;uniform float ms;uniform float gr;
 uniform vec3 c0;uniform vec3 c1;uniform vec3 c2;uniform vec3 c3;uniform vec3 c4;
@@ -329,7 +377,7 @@ void main(){
     const mk = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
     const pr = gl.createProgram();
     gl.attachShader(pr, mk(gl.VERTEX_SHADER, vs));
-    gl.attachShader(pr, mk(gl.FRAGMENT_SHADER, GLASS ? fsGlass : fsOriginal));
+    gl.attachShader(pr, mk(gl.FRAGMENT_SHADER, GLASS ? (PRISM ? fsPrism : fsGlass) : fsOriginal));
     gl.linkProgram(pr);
     if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) { fallback(); return; }
     gl.useProgram(pr);

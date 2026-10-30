@@ -2290,7 +2290,7 @@ textarea { min-height: 180px; resize: vertical; }
 }
 
 .toggle-mint-red {
-    width: 120px;
+    width: 112px;
 
     justify-content: flex-end;
 }
@@ -2302,6 +2302,8 @@ textarea { min-height: 180px; resize: vertical; }
 
 /* 3D switch (js/home/switch-3d.js): canvas sits exactly over the hidden image */
 .toggle--3d { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+/* pull the neighbouring words in: the pill has some empty canvas at each end */
+.toggle.toggle--3d { margin: 0 -4px; }
 .toggle--3d img { visibility: hidden; }
 .toggle--3d .toggle-3d {
     position: absolute;
@@ -2309,8 +2311,20 @@ textarea { min-height: 180px; resize: vertical; }
     top: 50%;
     transform: translateY(-50%);
     width: 100%;
-    aspect-ratio: 396 / 213;
+    aspect-ratio: 380 / 200; /* wider than the photo: matches W/H in js/home/switch-3d.js */
     height: auto;
+}
+/* Live gradient pill (js/home/gradient-pill.js): canvas sits exactly over the hidden image */
+.toggle--shader img { visibility: hidden; }
+.toggle--shader .toggle-shader {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    aspect-ratio: 552 / 212;
+    height: auto;
+    border-radius: 999px;
 }
 .toggle--3d:focus-visible { outline: 2px solid var(--dot); outline-offset: 4px; border-radius: 999px; }
 
@@ -2357,7 +2371,7 @@ textarea { min-height: 180px; resize: vertical; }
     }
 
     .toggle-mint-red {
-        width: 80px;
+        width: 75px;
 
         justify-content: flex-end;
     }
