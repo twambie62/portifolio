@@ -63,6 +63,17 @@ function hideImages() {
     });
 }
 
+// The 3D switch (js/home/switch-3d.js) turns on once the word just before it is fully
+// revealed, and off again when scrolling back un-reveals it. It only hears about
+// crossings, so a manual click stays put until the reveal crosses it again.
+const introSwitch = document.querySelector(".intro-text .toggle-mint-red");
+const introWords = gsap.utils.toArray(".intro-text .words");
+const WORD_DUR = 0.5, WORD_STAGGER = 0.4;
+const switchAt = introSwitch
+    ? introWords.indexOf(introSwitch.previousElementSibling) * WORD_STAGGER + WORD_DUR
+    : Infinity;
+let switchRevealed = false;
+
 // Text color reveal, scrubbed with scroll. Once it completes going forward,
 // the images pop in. Scrolling back up past the start hides them again.
 gsap.timeline({
@@ -73,10 +84,17 @@ gsap.timeline({
         scrub: 0.6,
         onLeave: revealImages,        // scrolled past the end, moving down
         onEnterBack: hideImages       // scrolled back above the start, moving up
+    },
+    onUpdate() {
+        const revealed = this.time() >= switchAt;
+        if (revealed === switchRevealed) return;
+        switchRevealed = revealed;
+        introSwitch.dispatchEvent(new CustomEvent("intro-switch", { detail: revealed }));
     }
 })
     .to(".words", {
         color: "#1A1A1A",
-        stagger: 0.4,
+        duration: WORD_DUR,
+        stagger: WORD_STAGGER,
         ease: "none"
     });

@@ -2290,7 +2290,7 @@ textarea { min-height: 180px; resize: vertical; }
 }
 
 .toggle-mint-red {
-    width: 108px;
+    width: 120px;
 
     justify-content: flex-end;
 }
@@ -2299,6 +2299,20 @@ textarea { min-height: 180px; resize: vertical; }
     width: 108px;
     justify-content: flex-end;
 }
+
+/* 3D switch (js/home/switch-3d.js): canvas sits exactly over the hidden image */
+.toggle--3d { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.toggle--3d img { visibility: hidden; }
+.toggle--3d .toggle-3d {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    aspect-ratio: 396 / 213;
+    height: auto;
+}
+.toggle--3d:focus-visible { outline: 2px solid var(--dot); outline-offset: 4px; border-radius: 999px; }
 
 .toggle-knob {
     width: 24px;
@@ -2343,7 +2357,7 @@ textarea { min-height: 180px; resize: vertical; }
     }
 
     .toggle-mint-red {
-        width: 72px;
+        width: 80px;
 
         justify-content: flex-end;
     }

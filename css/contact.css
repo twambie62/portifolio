@@ -67,13 +67,14 @@
     gap: 16px;
     align-items: flex-start;
 }
+/* same shape as the site's .section-label tags (css/home.css), glass colours for the dark card */
 #contact .contact-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    padding: 6px 12px;
-    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: var(--radius-small);
     background: rgba(255, 255, 255, .14);
     border: 1px solid rgba(255, 255, 255, .28);
     text-shadow: none;
