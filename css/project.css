@@ -871,4 +871,5 @@ body {
     .proj-nav-next { grid-template-columns: 1fr; gap: 18px; }
     .proj-nav-media { height: 240px; padding: 20px; }
     .proj-nav-row { flex-direction: column-reverse; align-items: flex-start; margin-top: 28px; }
+    .proj-nav-all { display: none; } /* no "View all projects" button on mobile project pages */
 }
