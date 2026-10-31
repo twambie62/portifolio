@@ -2743,11 +2743,11 @@ textarea { min-height: 180px; resize: vertical; }
     font-size: 13.5px;
     padding: 12px 20px 12px 23px;
     gap: 6px;
-    background: #f0f0f0 !important;      /* a little darker than the CV button's #f0f0f0 */
+    background: #f0f0f0 !important;
     border-color: #D9D9D9 !important;
 }
 .view-all-btn:hover {
-    background: #DCDCDC !important;
+    background: #E9E9E9 !important;      /* slightly darker than #f0f0f0 */
 }
 .view-all-arrow {
     font-size: 16px;
