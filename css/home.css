@@ -2735,10 +2735,13 @@ textarea { min-height: 180px; resize: vertical; }
     justify-content: center;
     margin-top: 8px;
 }
+@media (max-width: 640px) {
+    .view-all-wrap { margin-top: 18px; } /* 10px more space above the button on mobile */
+}
 .view-all-btn {
     text-decoration: none;
     font-size: 13.5px;
-    padding: 11px 20px 11px 23px;
+    padding: 12px 20px 12px 23px;
     gap: 6px;
     background: #f0f0f0 !important;      /* a little darker than the CV button's #f0f0f0 */
     border-color: #D9D9D9 !important;
@@ -2753,6 +2756,19 @@ textarea { min-height: 180px; resize: vertical; }
 }
 .view-all-btn:hover .view-all-arrow {
     transform: translate(2px, -2px);
+}
+/* All-projects title — fixed breaks, longest line first:
+   desktop: "A Collection of Every Project I've" / "Designed, Built & Shipped"
+   mobile:  "A Collection of Every Project" / "I've Designed, Built" / "& Shipped" */
+.all-projects-page .br-mobile { display: none; }
+@media (max-width: 640px) {
+    .all-projects-page .br-desktop { display: none; }
+    .all-projects-page .br-mobile { display: inline; }
+    .all-projects-page .projects-title {
+        padding: 0 12px;
+        /* shrink just enough on small phones that the first (longest) line never wraps */
+        font-size: min(1.8rem, calc((94vw - 24px) / 14.6));
+    }
 }
 .all-projects-page #projects {
     padding-top: 72px; /* no section badge on this page, so the title needs its own top space */

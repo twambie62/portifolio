@@ -31,7 +31,7 @@
         headerEl.innerHTML = `
     <div class="container">
         <nav class="nav">
-            <div class="logo"><span>t.</span></div>
+            <div class="logo"><a class="logo-link" href="${isHome ? '#home' : base + 'index.html'}" aria-label="Home"><span>t.</span></a></div>
             <div class="nav-links">${navLinks}
             </div>
             <button class="hamburger" id="hamburger-btn" aria-label="Menu">
@@ -48,6 +48,15 @@
         mobileMenu.innerHTML = LINKS.map(([id, label]) => `
     <a href="${href(id)}" class="mobile-nav-link">${label}</a>`).join('') + '\n';
         headerEl.insertAdjacentElement('afterend', mobileMenu);
+
+        // On the home page the logo scrolls smoothly back to the top instead of jumping
+        const logoLink = headerEl.querySelector('.logo-link');
+        if (isHome && logoLink) {
+            logoLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
 
         const hamburgerBtn = document.getElementById('hamburger-btn');
         function setMenuOpen(isOpen) {

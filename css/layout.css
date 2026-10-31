@@ -102,6 +102,17 @@ header > .container {
     z-index: 12;
 }
 .logo span { margin-left: 0; display: inline-block; }
+/* The logo is a link home: the link fills the whole badge and ignores the .nav a pill styles */
+.nav .logo { padding: 0; }
+.nav .logo-link {
+    font-size: inherit;
+    padding: 6px 12px;
+    border: 0;
+    border-radius: inherit;
+    color: inherit;
+    text-decoration: none;
+}
+.nav .logo-link:hover { background: transparent; }
 .nav-links {
     display: inline-flex;
     align-items: center;
