@@ -4,7 +4,9 @@
 (function () {
     const path = window.location.pathname || '';
     const isHome = path.endsWith('index.html') || path === '/' || path === '' || /[/\\]$/.test(path);
-    const base = isHome ? '' : '../';
+    // Pages inside projects/ or pages/ need '../' to reach the site root; root-level pages (e.g. projects.html) don't
+    const inSubdir = /\/(projects|pages)\/[^/]*$/.test(path);
+    const base = inSubdir ? '../' : '';
     const activeId = isHome ? 'home' : 'projects';
     const LINKS = [
         ['home', 'Home'],

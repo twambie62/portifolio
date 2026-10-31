@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Projects — Twambi</title>
+    <link rel="icon" href="assets/shared/me.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body class="all-projects-page">
+<div class="cursor-follower">
+    <div class="cursor-circle"></div>
+    <span>VIEW</span>
+</div>
+<header id="app-header"></header>
+
+<main class="container">
+    <section id="projects" style="margin-bottom: 40px;">
+        <div>
+            <div class="projects-header">
+                    <h2 class="projects-title">A Collection of Every Project I've<br>Designed, <span class="title-muted">Built &amp; Shipped</span></h2>
+
+                    <div class="filter-bar">
+                        <button  class="filter-btn active" data-filter="all">
+                            <i class="ri-grid-fill"></i>
+                            <span >  All  </span>
+                        </button>
+                        <button class="filter-btn" data-filter="ui-design">
+                            <i class="ri-palette-line"></i>
+                            <span>UI Design</span>
+                        </button>
+                        <button class="filter-btn" data-filter="case-study">
+                            <i class="ri-book-open-line"></i>
+                            <span>Case study</span>
+                        </button>
+                        <button class="filter-btn" data-filter="software">
+                            <i class="ri-code-s-slash-line"></i>
+                            <span>Software</span>
+                        </button>
+                        <button class="filter-btn" data-filter="poster">
+                            <i class="ri-image-2-line"></i>
+                            <span>Poster</span>
+                        </button>
+                        <button class="filter-btn" data-filter="electronics">
+                            <i class="ri-cpu-line"></i>
+                            <span>Electronics</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="projects" id="projectsGrid">
+
+                    <a href="projects/blood-pressure-app.html" class="card-link" data-category="ui-design case-study software electronics">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/blood-pressure-app.webp');">
+                                <img src="assets/projects/blood-pressure-app/screens/home.webp" alt="Blood Pressure Project" loading="lazy" width="1646" height="3354">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Blood Pressure App (Case study)</div>
+                                <div class="card-desc">Remote blood pressure monitoring system connected to Arduino ESP-32 for real-time patient tracking.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>App Development</span>
+                                    <span>Case Study</span>
+                                    <span>Electronics</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="projects/influencer-malawi.html" class="card-link" data-category="ui-design case-study software">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/influencer-malawi-app.webp');">
+                                <img src="assets/projects/influencer-malawi/screens/onboarding-profile.webp" alt="Influencer Malawi App" loading="lazy" width="1672" height="1618">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Influencer Malawi App (Case study)</div>
+                                <div class="card-desc">A platform connecting influencers with brands for collaboration and marketing campaigns.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>App Development</span>
+                                    <span>Case Study</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+
+                    <a href="projects/akometsi.html" class="card-link" data-category="ui-design case-study software">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/movie-app.webp');">
+                                <img src="assets/projects/akometsi/screens/home-movie-details-dark.webp" alt="Movie App" loading="lazy" width="1688" height="1748">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Movie App (Case study)</div>
+                                <div class="card-desc">A streaming platform with movie details, video player, and group viewing features in dark mode.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>App Development</span>
+                                    <span>Case Study</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="projects/smart-home.html" class="card-link" data-category="ui-design software electronics">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/smart-home-app.webp');">
+                                <img src="assets/projects/smart-home/screens/main-screen-home.webp" alt="Smart Home App" loading="lazy" width="804" height="1760">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Smart Home App</div>
+                                <div class="card-desc">IoT-based smart home control system with room management, automation, and device settings.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>App Development</span>
+                                    <span>Electronics</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="projects/kwacha-wise.html" class="card-link" data-category="ui-design ">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/fin-tech-app.webp');">
+                                <img src="assets/projects/kwacha-wise/screens/home-mockup.webp" alt="Fintech App" loading="lazy" width="1646" height="3354">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Fintech App</div>
+                                <div class="card-desc">A modern personal finance analytics experience with income tracking, expenditure insights, and clean dashboard.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>App Design</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+
+                    <a href="projects/courier-app.html" class="card-link" data-category="ui-design case-study">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/courier-app.webp');">
+                                <img src="assets/projects/courier-app/screens/home-live-tracking.webp" alt="Courier App" loading="lazy" width="1840" height="1918">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Courier App (Case study)</div>
+                                <div class="card-desc">Live tracking courier application with real-time delivery updates and payment integration.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>App Design</span>
+                                    <span>Case Study</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="projects/notes-app.html" class="card-link" data-category="ui-design ">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/notes-app.webp');">
+                                <img src="assets/projects/notes-app/screens/home-onboarding.webp" alt="Notes App" loading="lazy" width="1647" height="1618">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Notes App</div>
+                                <div class="card-desc">A personal management app for notes, habits, and finance tracking with clean onboarding.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>App Design</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="projects/track-it-website.html" class="card-link" data-category="ui-design software">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/track-it-website.webp');">
+                                <img src="assets/projects/track-it-website/screens/main-image.webp" alt="Track it Website" loading="lazy" width="2400" height="1642">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Track it Website</div>
+                                <div class="card-desc">A landing page for a personal productivity, finance and task management mobile application.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>Web Design</span>
+                                    <span>Web Development</span>
+
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="projects/leads-desk.html" class="card-link" data-category="ui-design ">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/smart-apps-redesign.webp');">
+                                <img src="assets/projects/leads-desk/screens/dashboard.webp" alt="Smart Apps Redesign" loading="lazy" width="2400" height="1522">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">LeadsDesk</div>
+                                <div class="card-desc">A full-stack lead management platform with admin and agent dashboards, follow-ups, and audit logging</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>Web Design</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="projects/sales-verse.html" class="card-link" data-category="ui-design software">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/sales-verse-2.webp');">
+                                <img src="assets/projects/sales-verse/screens/hero-section.webp" alt="Smart Home App" loading="lazy" width="1728" height="1159">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">SalesVerse Website</div>
+                                <div class="card-desc">
+                                    A B2B lead-generation agency website with service showcases and lead capture, built to convert prospects into sales opportunities.
+                                </div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>Web Design</span>
+                                    <span>Web Development</span>
+
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="projects/nyanja-health.html" class="card-link" data-category="ui-design software">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/courier-app.webp');">
+                                <img src="assets/projects/nyanja-health/screens/hero-section-2.webp" alt="Smart Home App" loading="lazy" width="1728" height="1268">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Nyanja Research Institute Website</div>
+                                <div class="card-desc">A health research institute website with publications, team profiles, and news, built to support grant applications.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>Web Design</span>
+                                    <span>Web Development</span>
+
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="projects/smart-apps-website.html" class="card-link" data-category="ui-design ">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/smart-apps-website.webp');">
+                                <img src="assets/projects/smart-apps-website/screens/hero-section-2-2.webp" alt="Smart Apps Website" loading="lazy" width="2400" height="1831">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Smart Apps Website</div>
+                                <div class="card-desc">A technology company website showcasing web hosting, services, and company information.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>Web Design</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="projects/smart-apps-redesign.html" class="card-link" data-category="ui-design ">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/smart-apps-redesign.webp');">
+                                <img src="assets/projects/smart-apps-redesign/screens/hero-section.webp" alt="Smart Apps Redesign" loading="lazy" width="2400" height="1625">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Smart Apps Redesign</div>
+                                <div class="card-desc">A fresh redesign of the Smart Apps website with modernized hero section and improved UX.</div>
+                                <div class="card-tags">
+                                    <span>UI/UX</span>
+                                    <span>Web Design</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a class="card-link" data-category="poster">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/courier-app.webp');">
+                                <img src="assets/projects/posters/courier.webp" alt="Courier App Poster" loading="lazy" width="1624" height="2030">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Courier App Poster</div>
+                                <div class="card-desc">Promotional poster design for the Courier delivery application.</div>
+                                <div class="card-tags">
+                                    <span>Graphic Design</span>
+                                    <span>Poster Design</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                    <a class="card-link" data-category="poster">
+                        <article class="card">
+                            <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/fin-tech-app.webp');">
+                                <img src="assets/projects/posters/kwacha-pos.webp" alt="Kwacha POS poster" loading="lazy" width="1624" height="2297">
+                                <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-title">Kwacha POS Poster</div>
+                                <div class="card-desc">Point of sale system promotional poster design for Kwacha brand.</div>
+                                <div class="card-tags">
+                                    <span>Graphic Design</span>
+                                    <span>Poster Design</span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                    <a class="card-link" data-category="poster">
+
+                    <article class="card">
+                        <div class="card-media" style="--card-bg-img: url('../assets/home/project-cards/backgrounds/influencer-malawi-app.webp');">
+                                                    <img src="assets/projects/posters/influencer-malawi-testimonial.webp" alt="Testimonial" loading="lazy" width="902" height="1263">
+                                                    <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="card-title">Influencer Malawi Testimonial</div>
+                                                    <div class="card-desc">Testimonial graphic design for Influencer Malawi platform.</div>
+                                                    <div class="card-tags">
+                                                        <span>Graphic Design</span>
+                                                        <span>Poster Design</span>
+                                                    </div>
+                                                </div>
+                                            </article>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer id="app-footer" class="app-footer"></footer>
+<script src="js/shared/layout.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script>gsap.registerPlugin(ScrollTrigger);</script>
+<script src="js/shared/slide-buttons.js"></script>
+<script src="js/shared/footer-reveal.js"></script>
+<script src="js/home/project-card-images.js"></script>
+<script src="js/home/project-filter.js"></script>
+<script src="js/home/cursor.js"></script>
+</body>
+</html>

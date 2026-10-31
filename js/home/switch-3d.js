@@ -154,7 +154,7 @@
         scene.add(pill);
 
         // ── State + animation ──
-        const OFF_X = -0.80, ON_X = 0.80; // knob stops a little inside the rim at each end
+        const OFF_X = -0.792, ON_X = 0.790; // knob stops a little inside the rim at each end
         let on = false, from = OFF_X, to = OFF_X, start = 0, raf = 0;
         knob.position.x = OFF_X;
         const DUR = 420;

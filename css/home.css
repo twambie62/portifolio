@@ -2728,3 +2728,32 @@ textarea { min-height: 180px; resize: vertical; }
 
 @media (max-width: 640px) {
     .section-separator{margin-right: 2px}}
+
+/* ===== Projects — "View all" button + all-projects page ===== */
+.view-all-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+.view-all-btn {
+    text-decoration: none;
+    font-size: 13.5px;
+    padding: 11px 20px 11px 23px;
+    gap: 6px;
+    background: #f0f0f0 !important;      /* a little darker than the CV button's #f0f0f0 */
+    border-color: #D9D9D9 !important;
+}
+.view-all-btn:hover {
+    background: #DCDCDC !important;
+}
+.view-all-arrow {
+    font-size: 16px;
+    line-height: 1;
+    transition: transform 0.25s ease;
+}
+.view-all-btn:hover .view-all-arrow {
+    transform: translate(2px, -2px);
+}
+.all-projects-page #projects {
+    padding-top: 72px; /* no section badge on this page, so the title needs its own top space */
+}

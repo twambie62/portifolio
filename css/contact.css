@@ -34,7 +34,7 @@
         radial-gradient(90% 70% at 80% 60%, #E6336E 0%, transparent 60%),
         radial-gradient(80% 60% at 40% 90%, #2EC4B6 0%, transparent 60%),
         #1A0B1E;
-    box-shadow: 0 40px 120px rgba(0, 0, 0, .5);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .25); /* half of the original: 0 40px 120px rgba(0, 0, 0, .5) */
 }
 #contact .contact-gl {
     position: absolute;

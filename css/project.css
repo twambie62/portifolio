@@ -700,3 +700,48 @@ body {
     padding: 2px 0;
     margin-left: 30px;
 }
+
+/* ===== Web project grids (.web-grid) =====
+   Every screen card — including the first (#first-grid-media) — gets the same
+   padding and a grey box flush with the content edges, so all images line up. */
+.screen-grid.web-grid .screen-card {
+    height: auto;
+}
+.screen-grid.web-grid .screen-card .screen-media,
+.screen-grid.web-grid #first-grid-media {
+    display: block;
+    position: relative;
+    box-sizing: border-box !important;
+    height: auto !important;
+    padding: 36px !important;
+}
+.screen-grid.web-grid .screen-card .screen-media::before,
+.screen-grid.web-grid #first-grid-media::before {
+    content: "";
+    position: absolute;
+    inset: 0 !important;
+    border-radius: 14px !important;
+    background: #F7F7F7 !important;
+    z-index: 1;
+}
+.screen-grid.web-grid .screen-card .screen-media img,
+.screen-grid.web-grid #first-grid-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 14px !important;
+}
+@media (max-width: 640px) {
+    .screen-grid.web-grid .screen-card .screen-media,
+    .screen-grid.web-grid #first-grid-media {
+        padding: 20px !important;
+    }
+    .screen-grid.web-grid .screen-card .screen-media::before,
+    .screen-grid.web-grid #first-grid-media::before {
+        border-radius: 12px !important;
+    }
+    .screen-grid.web-grid .screen-card .screen-media img,
+    .screen-grid.web-grid #first-grid-media img {
+        border-radius: 12px !important;
+    }
+}
